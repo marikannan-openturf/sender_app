@@ -1,7 +1,5 @@
 .featured {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
 }
 
 .featuredItem {
@@ -48,4 +46,55 @@
 .featuredSub {
     font-size: 15px;
     color: gray;
+}
+/* styles */
+.status-main-container{
+    margin: 90px;
+}
+.mobile-active-tab{
+    cursor: pointer;
+    font-size: 26px;
+    color:#ff4624;
+    border-bottom: 2px solid #20336d;
+    margin-right: 30px;
+}
+.bank-active-tab{
+    cursor: pointer;
+    font-size: 26px;
+    color:#ff4624;
+    border-bottom: 2px solid #20336d;
+}
+.mobile-tab{
+    cursor: pointer;
+    font-size: 26px;
+    color: #7e7e7e;
+    margin-right: 30px;
+}
+.bank-tab{
+    cursor: pointer;
+    font-size: 26px;
+    color: #7e7e7e;
+}
+.mobile-accont-status-container{
+    background-color: white;
+}
+.main-tab-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.create-transcation-btn{
+    width: 230px;
+    padding: 10px 10px 10px 10px;
+    font-size: 20px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #4490fa;
+}
+.mobile-accont-status-container{
+    width: 100%;
+    background-color: white;
+    padding: 40px 20px 40px 0px;
 }
