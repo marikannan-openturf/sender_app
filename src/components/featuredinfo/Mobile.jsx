@@ -1,10 +1,9 @@
 import './featuredInfo.css'
-import { Button, Container, Dialog, DialogTitle, FormControl, InputLabel, OutlinedInput, Paper, Stack, TextField, Typography } from '@mui/material'
+import { Button,OutlinedInput, Paper, Stack, TextField, Typography } from '@mui/material'
 import { useState } from 'react'
 import AccountStatusPopup from './AccountStatusPopup'
-import { CloseRounded } from '@mui/icons-material'
-import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { styled } from '@mui/system'
 
 export default function Mobile() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
@@ -23,19 +22,26 @@ export default function Mobile() {
     setFeaturedInfo(true)
   }
 
+  const CustomButtom = styled(Button)`
+    &.Mui-disabled{
+       opacity:0.5;
+       background-color : #1976d2;
+       color:white
+    }`
+
   return (
     <>
       <Paper sx={{ height: '100%', width: '100%' }}>
-        <Typography py={5} textAlign='center' fontSize={24} fontFamily='Poppins-SemiBold' color="#404040">Mobile Account Status</Typography>
+        <Typography py={5} textAlign='center' fontSize={20} variant='h6' color="#404040">Mobile Account Status</Typography>
         <Stack spacing={5} pl={10} direction='row' >
           <Stack spacing={8}>
-            <Typography fontFamily='Poppins-SemiBold' color="#404040">
+            <Typography color="#404040">
               Account Number of the beneficiary
             </Typography>
-            <Typography fontFamily='Poppins-SemiBold' color="#404040">
+            <Typography color="#404040">
               Account KYC Number of the beneficiary
             </Typography>
-            <Typography fontFamily='Poppins-SemiBold' color="#404040">
+            <Typography color="#404040">
               Mobile network of the beneficiary
             </Typography>
           </Stack>
@@ -59,8 +65,10 @@ export default function Mobile() {
               <MenuItem value='Jio'>Jio</MenuItem>
             </TextField>
             <Stack pb={5}>
-              <Button sx={{ letterSpacing: 1, alignSelf: 'start' }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
-
+             {accountNumber && kycNumber && network 
+             ?  <Button sx={{ letterSpacing: 1, alignSelf: 'start' }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
+             : <CustomButtom sx={{ letterSpacing: 1, alignSelf: 'start' }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
+             }
             </Stack>
           </Stack>
 

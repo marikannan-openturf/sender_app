@@ -26,12 +26,12 @@ export default function FeaturedInfo() {
           <Stack direction='row' spacing={3}>
           <Link   component="button"
  underline={mobile ? "always" : "none"} color="inherit" onClick={mobileActive}>
-            <Typography fontFamily='Poppins-Medium' fontSize={18} color={mobile ? '#e85654' : '#7e7e7e'}>Mobile</Typography>
+            <Typography  fontSize={18} color={mobile ? '#e85654' : '#7e7e7e'}>Mobile</Typography>
 
           </Link>
           <Link component="button" underline={bank ? "always" : "none"} color="inherit" onClick={bankActive}>
 
-            <Typography fontFamily='Poppins-Medium' fontSize={18} color={bank ? '#e85654' : '#7e7e7e'}>Bank</Typography>
+            <Typography  fontSize={18} color={bank ? '#e85654' : '#7e7e7e'}>Bank</Typography>
 
           </Link>
         </Stack>
