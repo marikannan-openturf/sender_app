@@ -92,9 +92,26 @@
     border: none;
     border-radius: 5px;
     background-color: #4490fa;
+    margin-bottom: 20px;
 }
 .mobile-accont-status-container{
     width: 100%;
     background-color: white;
     padding: 40px 20px 40px 0px;
+}
+
+.bank-accont-status-container{
+    background-color: white;
+}
+
+.bank-accont-status-container{
+    width: 100%;
+    background-color: white;
+    padding: 40px 20px 40px 0px;
+}
+
+.mobile-account-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
