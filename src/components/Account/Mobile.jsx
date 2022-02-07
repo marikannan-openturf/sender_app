@@ -1,4 +1,4 @@
-import './featuredInfo.css'
+import './AccountStatusStyles.css'
 import { Button,OutlinedInput, Paper, Stack, TextField, Typography } from '@mui/material'
 import { useState } from 'react'
 import AccountStatusPopup from './AccountStatusPopup'
@@ -56,15 +56,17 @@ export default function Mobile() {
               value={network}
               onChange={({ target }) => setNetwork(target.value)}
               select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
             >
-              <MenuItem value="">
+              <MenuItem value="" >
                 Mobile Network
               </MenuItem>
               <MenuItem value='Airtel'>Airtel</MenuItem>
               <MenuItem value='Vodafone'>Vodafone</MenuItem>
               <MenuItem value='Jio'>Jio</MenuItem>
             </TextField>
-            <Stack pb={5}>
+            <Stack pb={5} >
              {accountNumber && kycNumber && network 
              ?  <Button sx={{ letterSpacing: 1, alignSelf: 'start' }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
              : <CustomButtom sx={{ letterSpacing: 1, alignSelf: 'start' }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>

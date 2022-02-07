@@ -2,31 +2,36 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import './app.css'
 import Home from "./pages/Home";
-import Transactions from "./pages/Transactions";
+import TransactionsBusiness from "./pages/TransactionsBusiness";
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
 import TransactionsPersonal from "./pages/TransactionsPersonal";
-import TransactionStatus from "./pages/TransactionStatus";
+import AccountStatus from "./pages/AccountStatus";
 import ReportLetger from "./pages/ReportLetger";
 import ReportStatement from "./pages/ReportStatement";
+import MenuBar from "./components/sidebar/MenuBar";
+import BankList from "./pages/BankList";
+import Settings from "./pages/Settings";
 function App() {
   return (
     <BrowserRouter>
         <Topbar />
       <div className="container">
-        <Sidebar />
+        {/* <Sidebar /> */}
+        <MenuBar/>
         <Routes>
-
-          <Route  path="/" element= {<Home />} />
-            <Route path="/transactions" element = {<Transactions />}/>
+            <Route  path="/" element= {<Home />} />
+            <Route path="/account-status" element = {<AccountStatus />}/>
+            <Route path="/transactions-business" element = {<TransactionsBusiness />}/>
             <Route path="/transactions-personal" element = {<TransactionsPersonal />}/>
-            <Route path="/transactions-status" element = {<TransactionStatus />}/>
             <Route path="/report-ledger" element = {<ReportLetger />}/>
             <Route path="/report-statement" element = {<ReportStatement />}/>
-            </Routes>
+            <Route path="/bank-list" element={<BankList/>}/>
+            <Route path="/settings" element={<Settings/>}/>
+        </Routes>
 
       </div>
   </BrowserRouter>  );

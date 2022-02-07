@@ -69,6 +69,8 @@ export default function Bank() {
               value={network}
               onChange={({ target }) => setNetwork(target.value)}
               select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
             >
               <MenuItem value="">
                 <en>Mobile Network</en>
