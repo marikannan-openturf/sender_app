@@ -3,6 +3,7 @@ import { useState } from 'react'
 import AccountStatusPopup from './AccountStatusPopup'
 import { CloseRounded } from '@mui/icons-material'
 import MenuItem from '@mui/material/MenuItem';
+import ErrorPopup from '../../pages/ErrorPopup';
 
 export default function Bank() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
@@ -14,7 +15,7 @@ export default function Bank() {
   const [provider, setProvider] = useState('')
   const [subCode, setSubCode] = useState('')
   const [network, setNetwork] = useState('')
-
+  const [errorPopup, setErrorPopup] =useState(false)
   const setFeaturedInfoClose = () => {
     setFeaturedInfo(false)
     setAccountNumber('')
@@ -28,7 +29,25 @@ export default function Bank() {
   }
 
   const setFeaturedInfoDetails = () => {
-    setFeaturedInfo(true)
+    if(accountNumber && kycNumber && bankCode){
+      setFeaturedInfo(true)
+      setErrorPopup(false)
+    } else {
+      setFeaturedInfo(false)
+      setAccountNumber('')
+      setKycNumber('')
+      setBankCode('')
+      setMobileNumber('')
+      setCountry('')
+      setProvider('')
+      setSubCode('')
+      setNetwork('')
+      setErrorPopup(true)
+    }
+  }
+
+  const CloseErrorPopup = () =>{
+    setErrorPopup(false)
   }
   return (
     <>
@@ -95,6 +114,8 @@ export default function Bank() {
         network={network}
         kycNumber={kycNumber}
         setFeaturedInfoClose={setFeaturedInfoClose} />
+        <ErrorPopup errorPopup={errorPopup}
+        CloseErrorPopup={CloseErrorPopup} />
     </>
   )
 }

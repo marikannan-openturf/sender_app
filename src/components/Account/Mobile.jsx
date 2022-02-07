@@ -4,12 +4,19 @@ import { useState } from 'react'
 import AccountStatusPopup from './AccountStatusPopup'
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/system'
+import ErrorPopup from '../../pages/ErrorPopup';
+
 
 export default function Mobile() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [accountNumber, setAccountNumber] = useState('')
   const [kycNumber, setKycNumber] = useState('')
   const [network, setNetwork] = useState('')
+  const [errorPopup, setErrorPopup] =useState(false)
+
+  const CloseErrorPopup = () =>{
+    setErrorPopup(false)
+  }
 
   const setFeaturedInfoClose = () => {
     setAccountNumber('')
@@ -87,6 +94,8 @@ export default function Mobile() {
         kycNumber={kycNumber}
         setFeaturedInfoClose={setFeaturedInfoClose}
       />
+      <ErrorPopup errorPopup={errorPopup}
+        CloseErrorPopup={CloseErrorPopup} />
     </>
   )
 }
