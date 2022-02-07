@@ -21,15 +21,25 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 export default function MenuBar() {
-  const [open, setOpen] = React.useState(true);
+  const [accountOpen, setAccountOpen] = React.useState(true);
+  const [transactionOpen, setTransactionOpen] = React.useState(true);
+  const [reportOpen, setReportOpen] = React.useState(true);
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
+  const handleAccountClick = () => {
+    setAccountOpen(!accountOpen);
+  }
+
+  const handleTransactionClick = () => {
+    setTransactionOpen(!transactionOpen);
+  }
+
+  const handleReportClick = () => {
+    setReportOpen(!reportOpen);
+  }
 
   return (
     <List
-      sx={{ width: '100%', maxWidth: 250, bgcolor: 'background.paper' }}
+      sx={{ width: '100%', maxWidth: 200, bgcolor: 'background.paper' }}
       component="nav"
       aria-labelledby="nested-list-subheader">
       {/* <ListItemButton component={Link} to="/">
@@ -39,17 +49,17 @@ export default function MenuBar() {
         <ListItemText primary="Home" />
       </ListItemButton>
       <Divider/> */}
-      <ListItemButton onClick={handleClick}>
-        <ListItemIcon>
+      <ListItemButton onClick={handleAccountClick}>
+        <ListItemIcon sx={{minWidth:'35px'}}>
           <PermIdentityOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Account" />
-        {open ? <ExpandLess /> : <ExpandMore />}
+        {accountOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={accountOpen} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }} component={Link} to="/account-status">
-            <ListItemIcon>
+          <ListItemButton component={Link} to="/account-status">
+            <ListItemIcon sx={{minWidth:'35px',paddingLeft:'30px'}}>
               <CheckCircleOutlineOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Status" />
@@ -58,25 +68,25 @@ export default function MenuBar() {
       </Collapse>
       <Divider/>
 
-      <ListItemButton onClick={handleClick}>
-        <ListItemIcon>
+      <ListItemButton onClick={handleTransactionClick}>
+        <ListItemIcon sx={{minWidth:'35px'}}>
           <RepeatOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Transactions" />
-        {open ? <ExpandLess /> : <ExpandMore />}
+        {transactionOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={transactionOpen} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }} component={Link} to="/transactions-personal">
-            <ListItemIcon>
+          <ListItemButton  component={Link} to="/transactions-personal">
+            <ListItemIcon sx={{minWidth:'35px',paddingLeft:'30px'}}>
               <AccountBoxOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Personal" />
           </ListItemButton>
         </List>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }}  component={Link} to="/transactions-business">
-            <ListItemIcon>
+          <ListItemButton  component={Link} to="/transactions-business">
+            <ListItemIcon sx={{minWidth:'35px',paddingLeft:'30px'}}>
               <BusinessCenterOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Business" />
@@ -85,25 +95,25 @@ export default function MenuBar() {
       </Collapse>
       <Divider/>
 
-      <ListItemButton onClick={handleClick}>
-        <ListItemIcon>
+      <ListItemButton onClick={handleReportClick}>
+        <ListItemIcon sx={{minWidth:'35px'}}> 
           <NoteAltOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Report" />
-        {open ? <ExpandLess /> : <ExpandMore />}
+        {reportOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={reportOpen} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }} component={Link} to="/report-ledger">
-            <ListItemIcon>
+          <ListItemButton component={Link} to="/report-ledger">
+            <ListItemIcon sx={{minWidth:'35px',paddingLeft:'30px'}}>
               <ListOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Ledger" />
           </ListItemButton>
         </List>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }} component={Link} to="/report-statement">
-            <ListItemIcon>
+          <ListItemButton component={Link} to="/report-statement">
+            <ListItemIcon sx={{minWidth:'35px',paddingLeft:'30px'}}>
               <DescriptionOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Statement" />
@@ -113,14 +123,14 @@ export default function MenuBar() {
       <Divider/>
 
       <ListItemButton component={Link} to="/bank-list">
-        <ListItemIcon>
+        <ListItemIcon sx={{minWidth:'35px'}}>
           <AccountBalanceOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Bank list" />
       </ListItemButton>
       <Divider/>
       <ListItemButton component={Link} to="/settings">
-        <ListItemIcon>
+        <ListItemIcon sx={{minWidth:'35px'}}>
           <SettingsOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Settings" />

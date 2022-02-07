@@ -1,115 +1,127 @@
-import React, { useState } from 'react';
-import './sidebar.css'
-import { LineStyle, AccountBalanceWallet } from '@mui/icons-material'
-import { useNavigate } from "react-router-dom";
-export default function () {
-    let navigate = useNavigate();
-    const [statusActive, setStatusActive] = useState(false)
-    const [transactionsActive, setTransactionsActive] = useState(false)
-    const [transactionsPersonalActive, setTransactionsPersonalActive] = useState(false)
-    const [reportLetgerActive, setReportLedgerActive] = useState(false)
-    const [reportStatementActive, setReportStatementActive] = useState(false)
+// import * as React from 'react';
+// import PropTypes from 'prop-types';
+// import AppBar from '@mui/material/AppBar';
+// import Box from '@mui/material/Box';
+// import CssBaseline from '@mui/material/CssBaseline';
+// import Divider from '@mui/material/Divider';
+// import Drawer from '@mui/material/Drawer';
+// import InboxIcon from '@mui/icons-material/MoveToInbox';
+// import List from '@mui/material/List';
+// import ListItem from '@mui/material/ListItem';
+// import ListItemIcon from '@mui/material/ListItemIcon';
+// import ListItemText from '@mui/material/ListItemText';
+// import MailIcon from '@mui/icons-material/Mail';
+// import Toolbar from '@mui/material/Toolbar';
 
-    const statusNavigate = () => {
-        setStatusActive(true)
-        setTransactionsActive(false)
-        setTransactionsPersonalActive(false)
-        setReportLedgerActive(false)
-        setReportStatementActive(false)
-        navigate('/')
-    }
+// const drawerWidth = 240;
 
-    const transactionsBusinessNavigate = () => {
-        setStatusActive(false)
-        setTransactionsPersonalActive(false)
-        setReportLedgerActive(false)
-        setReportStatementActive(false)
-        setTransactionsActive(true)
-        navigate('/transactions')
-    }
+// function ResponsiveDrawer(props) {
+//   const { window } = props;
+//   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    const transactionsPersonalNavigate = () => {
-        setTransactionsPersonalActive(true)
-        setTransactionsActive(false)
-        setStatusActive(false)
-        setReportLedgerActive(false)
-        setReportStatementActive(false)
-        navigate('/transactions-personal')
-    }
+//   const handleDrawerToggle = () => {
+//     setMobileOpen(!mobileOpen);
+//   };
 
-    const reportLedgerNavigate = () => {
-        setTransactionsPersonalActive(false)
-        setTransactionsActive(false)
-        setStatusActive(false)
-        setReportStatementActive(false)
-        setReportLedgerActive(true)
-        navigate('/report-ledger')
-    }
+//   const drawer = (
+//     <div>
+//       <Toolbar >         
+//         <span className="logo-sender-app">Sender APP</span>
+//         </Toolbar>
+//       <Divider/>
+//       <List>
+//         {['Account', 'Transactions', 'Report', 'Bank List', 'Settings'].map((text, index) => (
+//           <ListItem button key={text}>
+//             <ListItemIcon>
+//               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+//             </ListItemIcon>
+//             <ListItemText primary={text} />
+//           </ListItem>
+//         ))}
+//       </List>
+//       {/* <Divider /> */}
+//       {/* <List>
+//         {['All mail', 'Trash', 'Spam'].map((text, index) => (
+//           <ListItem button key={text}>
+//             <ListItemIcon>
+//               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+//             </ListItemIcon>
+//             <ListItemText primary={text} />
+//           </ListItem>
+//         ))}
+//       </List> */}
+//     </div>
+//   );
 
-    const reportStatementNavigate = () => {
-        setTransactionsPersonalActive(false)
-        setTransactionsActive(false)
-        setStatusActive(false)
-        setReportLedgerActive(false)
-        setReportStatementActive(true)
-        navigate('/report-statement')
-    }
+//   const container = window !== undefined ? () => window().document.body : undefined;
 
+//   return (
+//     <Box sx={{ display: 'flex' }}>
+//       <CssBaseline />
+//       <AppBar
+//         position="fixed"
+//         sx={{
+//           width: { sm: `calc(100% - ${drawerWidth}px)` },
+//           ml: { sm: `${drawerWidth}px` },
+//         }}
+//       >
+//         {/* <Toolbar>
+//           <IconButton
+//             color="inherit"
+//             aria-label="open drawer"
+//             edge="start"
+//             onClick={handleDrawerToggle}
+//             sx={{ mr: 2, display: { sm: 'none' } }}
+//           >
+//             <MenuIcon />
+//           </IconButton>
+//           <Typography variant="h6" noWrap component="div">
+//             Responsive drawer
+//           </Typography>
+//         </Toolbar> */}
+//       </AppBar>
+//       <Box
+//         component="nav"
+//         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+//         aria-label="mailbox folders"
+//       >
+//         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+//         <Drawer
+//           container={container}
+//           variant="temporary"
+//           open={mobileOpen}
+//           onClose={handleDrawerToggle}
+//           ModalProps={{
+//             keepMounted: true, // Better open performance on mobile.
+//           }}
+//           sx={{
+//             display: { xs: 'block', sm: 'none' },
+//             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+//           }}
+//         >
+//           {drawer}
+//         </Drawer>
+//         <Drawer
+//           variant="permanent"
+//           sx={{
+//             display: { xs: 'none', sm: 'block' },
+//             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+//           }}
+//           open
+//         >
+//           {drawer}
+//         </Drawer>
+//       </Box>
+//     </Box>
+//   );
+// }
 
-    return (
-        <div className='sidebar'>
-            <div className="sidebarWrapper">
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Account</h3>
-                    <ul className="sidebarList">
-                        <li className={statusActive ? "sidebarListItem active" : "sidebarListItem"} onClick={statusNavigate} >
-                            <AccountBalanceWallet className='sidebarIcon' />
-                            Status
-                        </li>
-                    </ul>
-                </div>
+// ResponsiveDrawer.propTypes = {
+//   /**
+//    * Injected by the documentation to work in an iframe.
+//    * You won't need it on your project.
+//    */
+//   window: PropTypes.func,
+// };
 
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Transactions</h3>
-                    <ul className="sidebarList">
-                        <li className={transactionsActive ? "sidebarListItem active" : "sidebarListItem"} onClick={transactionsBusinessNavigate}>
-                            <LineStyle className='sidebarIcon' />
-                            Business
-                        </li>
-                        <li className={transactionsPersonalActive ? "sidebarListItem active" : "sidebarListItem"} onClick={transactionsPersonalNavigate}>
-                            <LineStyle className='sidebarIcon' />
-                            Personal
-                        </li>
-                        {/* <li className="sidebarListItem" onClick={() => navigate('/transactions-status')}>
-                            <AccountBalanceWallet className='sidebarIcon' />
-                            Status
-                        </li> */}
-                    </ul>
-                </div>
-
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Report</h3>
-                    <ul className="sidebarList">
-                        <li className={reportLetgerActive ? "sidebarListItem active" : "sidebarListItem"} onClick={reportLedgerNavigate}>
-                            <LineStyle className='sidebarIcon' />
-                            Letger
-                        </li>
-                        <li className={reportStatementActive ? "sidebarListItem active" : "sidebarListItem"} onClick={reportStatementNavigate}>
-                            <AccountBalanceWallet className='sidebarIcon' />
-                            Statement
-                        </li>
-                    </ul>
-                </div>
-
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Bank List</h3>
-
-                </div>
-
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Settings</h3>
-                </div>
-            </div>
-        </div>
-    )
-}
+// export default ResponsiveDrawer;
