@@ -2,8 +2,6 @@ import { useState } from "react";
 import PersonalBank from "./PersonalBank";
 import PersonalMobile from "./PersonalMobile"
 import { Stack, Link, Button, Typography } from "@mui/material";
-import Mobile from "../../Account/Mobile";
-import Bank from "../../Account/Bank";
 export default function TransactionPersonalStatus() {
   const [mobile, setMobile] = useState(true)
   const [bank, setBank] = useState(false)

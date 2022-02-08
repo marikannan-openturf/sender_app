@@ -1,7 +1,6 @@
 import React from 'react';
 import './topbar.css'
 import { NotificationsNone } from '@mui/icons-material';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { Link } from "react-router-dom";
 import Box from '@mui/material/Box';
 

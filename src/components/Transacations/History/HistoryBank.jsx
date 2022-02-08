@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Stack, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
@@ -19,7 +19,6 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import Avatar from "@mui/material/Avatar";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 

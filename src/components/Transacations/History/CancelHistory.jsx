@@ -1,7 +1,4 @@
-import { Container,Box, Button, Dialog, OutlinedInput, Paper, Stack, TextField, Typography, Content, DialogContent, IconButton, DialogTitle, DialogContentText } from '@mui/material'
-import { useState } from 'react'
-import { CloseRounded } from '@mui/icons-material'
-import { styled } from '@mui/system'
+import { Box, Button, Paper, Stack, Typography } from '@mui/material'
 
 export default function CancelHistory(props) {
     const OnClickCancelClose = () => {
