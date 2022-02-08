@@ -1,15 +1,19 @@
 import * as React from 'react';
 import { useState } from "react";
-import { Stack, Link, Button, Typography } from "@mui/material";
+import { Stack, Link, Button, Typography, Box } from "@mui/material";
 import HistoryMobile from "./HistoryMobile";
 import HistoryBank from "./HistoryBank";
+import CancelHistory from './CancelHistory';
+import ReverseHistory from './ReverseHistory';
 
 
 
 export default function TransactionHistory() {
   const [mobile, setMobile] = useState(true)
   const [bank, setBank] = useState(false)
-
+  const [cancelTrans, setCancelTrans] =useState(false)
+  const [reverseTrans, setReverseTrans] =useState(false)
+  
   const mobileActive = () => {
     setMobile(true)
     setBank(false)
@@ -23,7 +27,10 @@ export default function TransactionHistory() {
   return (
     <>
       <Stack spacing={3} p={6}>
-        <Stack direction='row' justifyContent='space-between' spacing={5}>
+        {cancelTrans? <CancelHistory  setCancelTrans={setCancelTrans} />:
+          reverseTrans? <ReverseHistory setReverseTrans={setReverseTrans} />:
+        <Box component="div">
+        <Stack direction='row' justifyContent='space-between' spacing={5} mb={2}>
           <Stack direction='row' spacing={3}>
             <Link component="button"
               underline={mobile ? "always" : "none"} color="inherit" onClick={mobileActive}>
@@ -36,12 +43,14 @@ export default function TransactionHistory() {
 
             </Link>
           </Stack>
-          <Stack>
-            <Button variant='contained'>Create Transaction</Button>
-          </Stack>
+            <Stack>
+              <Button variant='contained'>Create Transaction</Button>
+            </Stack>
         </Stack>
 
-        {mobile ? <HistoryMobile/> : <HistoryBank/>}
+        {mobile ? <HistoryMobile setCancelTrans={setCancelTrans} setReverseTrans={setReverseTrans}  /> : <HistoryBank setCancelTrans={setCancelTrans} setReverseTrans={setReverseTrans} />}
+      </Box>
+      }
 
       </Stack>
     </>

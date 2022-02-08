@@ -13,11 +13,15 @@ import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import Avatar from "@mui/material/Avatar";
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -103,7 +107,7 @@ const rows = [
   createData('19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
 ].sort((a, b) => (a.dates < b.dates ? -1 : 1));
 
-export default function HistoryMobile() {
+export default function HistoryMobile(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -118,6 +122,23 @@ export default function HistoryMobile() {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
+  };
+
+  /* more popup */
+  const [morePopup, setMorePopup] = React.useState(null);
+  const open = Boolean(morePopup);
+  const handleClick = (event) => {
+    setMorePopup(event.currentTarget);
+  };
+  const handleClose = () => {
+    setMorePopup(null);
+  };
+
+  const OnClickCancel = () => {
+    props.setCancelTrans(true);
+  };
+  const OnClickReverse = () => {
+    props.setReverseTrans(true);
   };
 
   return (
@@ -154,7 +175,22 @@ export default function HistoryMobile() {
                 <StyledTableCell align="left">{row.reference}</StyledTableCell>
                 <StyledTableCell align="left">{row.sender}</StyledTableCell>
                 <StyledTableCell align="left">{row.recepient}</StyledTableCell>
-                <StyledTableCell align="center">...</StyledTableCell>
+                <StyledTableCell align="center">
+                  <Box>
+                    <Tooltip title="More">
+                      <IconButton
+                        onClick={handleClick}
+                        size="small"
+                        sx={{ ml: 0 }}
+                        aria-controls={open ? "More" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? "true" : undefined}
+                      >
+                      <MoreHorizIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
+                </StyledTableCell>
               </StyledTableRow>
           ))}
 
@@ -186,6 +222,45 @@ export default function HistoryMobile() {
         </TableFooter>
       </Table>
     </TableContainer>
+    <Menu
+        anchorEl={morePopup}
+        id="More"
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: "visible",
+            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+            mt: 0.2,
+            "& .MuiAvatar-root": {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 5,
+            },
+            "&:before": {
+              content: '""',
+              display: "block",
+              position: "absolute",
+              top: 0,
+              right: 10,
+              width: 10,
+              height: 10,
+              bgcolor: "background.paper",
+              transform: "translateY(-50%) rotate(45deg)",
+              zIndex: 0
+            }
+          }
+        }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+      >
+        <MenuItem>View</MenuItem>
+        <MenuItem onClick={OnClickCancel}>Cancel</MenuItem>
+        <MenuItem onClick={OnClickReverse} >Reverse</MenuItem>
+      </Menu>
     </Paper>
   );
 }
