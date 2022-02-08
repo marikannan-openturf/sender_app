@@ -19,6 +19,7 @@
     font-weight: bold;
     font-size: 30px;
     color: darkblue;
+    cursor: pointer;
 }
 
 .topbarIconContainer {
@@ -43,6 +44,7 @@
 .topRight {
     display: flex;
     align-items: center;
+    text-decoration: none !important;
 }
 
 .topAvatar {

@@ -15,6 +15,7 @@ import ReportStatement from "./pages/ReportStatement";
 import MenuBar from "./components/sidebar/MenuBar";
 import BankList from "./pages/BankList";
 import Settings from "./pages/Settings";
+import TransactionsHistory from "./pages/TransactionsHistory";
 function App() {
   return (
     <BrowserRouter>
@@ -27,6 +28,7 @@ function App() {
             <Route path="/account-status" element = {<AccountStatus />}/>
             <Route path="/transactions-business" element = {<TransactionsBusiness />}/>
             <Route path="/transactions-personal" element = {<TransactionsPersonal />}/>
+            <Route path="/transactions-history" element={<TransactionsHistory/>}/>
             <Route path="/report-ledger" element = {<ReportLetger />}/>
             <Route path="/report-statement" element = {<ReportStatement />}/>
             <Route path="/bank-list" element={<BankList/>}/>

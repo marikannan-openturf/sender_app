@@ -9,14 +9,10 @@ export default function Topbar() {
   return (
     <div className='topbar'>
     <div className="topbarWrapper">
-        <div className="topLeft">
-        <span className="logo-sender-app">Sender APP</span>
-        </div>
+      <Box className="topLeft" component={Link} to="/" >
+          <span className="logo-sender-app">Sender APP</span>
+      </Box>
         <div className="topRight">
-          <Box className="topRight" sx={{margin:4}}
-            component={Link} to="/" >
-            <HomeOutlinedIcon />
-          </Box>
           <div className="topbarIconContainer">
               <NotificationsNone />
               <span className="topIconBadge">2</span>

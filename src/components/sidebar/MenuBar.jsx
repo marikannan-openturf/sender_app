@@ -17,6 +17,7 @@ import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import HistoryIcon from '@mui/icons-material/History';
 
 export default function MenuBar() {
   const [accountOpen, setAccountOpen] = React.useState(true);
@@ -88,6 +89,14 @@ export default function MenuBar() {
               <BusinessCenterOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Business" />
+          </ListItemButton>
+        </List>
+        <List component="div" disablePadding>
+          <ListItemButton  component={Link} to="/transactions-history">
+            <ListItemIcon sx={{minWidth:'35px',paddingLeft:'30px'}}>
+              <HistoryIcon />
+            </ListItemIcon>
+            <ListItemText primary="History" />
           </ListItemButton>
         </List>
       </Collapse>
