@@ -2,6 +2,8 @@ import { OutlinedInput, Paper, Stack, Typography, TextField,Button } from '@mui/
 import React,{useState} from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/system'
+import TransactionMobileStatusPopup from './TransactionMobileStatusPopup';
+import ErrorPopup from '../../../pages/ErrorPopup';
 
 export default function PersonalMobile() {
   const [amount,setAmount] = useState('')
@@ -26,6 +28,8 @@ export default function PersonalMobile() {
   const [reciveCountry, setReciveCountry] = useState('')
   const [sourceFund, setSourceFund] = useState('')
   const [senderRelation, setSenderRelation] = useState('')
+  const [errorPopup, setErrorPopup] = useState(false)
+  const [featuredInfo, setFeaturedInfo] = useState(false)
 
   const CustomButtom = styled(Button)`
   &.Mui-disabled{
@@ -34,7 +38,21 @@ export default function PersonalMobile() {
      color:white
   }`
 
-  console.log("dsd",amount, currency , mobileNumber,kycName , network , dob , nationality , genter , idType , expDate , idNumber , mobile , fullName && senderAddress && country && city && accountKycName && remitancePurpose && quoteId && reciveCountry && sourceFund && senderRelation)
+  const CloseErrorPopup = () => {
+    setErrorPopup(false)
+  }
+
+  const setFeaturedInfoClose = () => {
+    setAmount('')
+    setCurrency('')
+    setNetwork('')
+    setFeaturedInfo(false)
+  }
+
+  const setFeaturedInfoDetails = () => {
+    setFeaturedInfo(true)
+  }
+
 
   return (
     <>
@@ -214,12 +232,22 @@ export default function PersonalMobile() {
 
         <Stack alignItems='center' mt={5}>
         {amount && currency && mobileNumber && kycName && network && dob && nationality && genter && idType && expDate && idNumber && mobile && fullName && senderAddress && country && city && accountKycName && remitancePurpose && quoteId && reciveCountry && sourceFund && senderRelation ?
-        <Button variant='contained'>Submit</Button> :
+        <Button variant='contained' onClick={setFeaturedInfoDetails} >Submit</Button> :
         <CustomButtom variant='contained' disabled>Submit</CustomButtom> }
 
         </Stack>
 
       </Paper>
+      <TransactionMobileStatusPopup
+      featuredInfo={featuredInfo}
+        amount={amount}
+        currency={currency}
+        network={network}
+        kycName={kycName}
+        setFeaturedInfoClose={setFeaturedInfoClose}
+      />
+      <ErrorPopup errorPopup={errorPopup}
+        CloseErrorPopup={CloseErrorPopup} />
     </>
   )
 }

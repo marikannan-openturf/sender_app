@@ -20,9 +20,17 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HistoryIcon from '@mui/icons-material/History';
 
 export default function MenuBar() {
-  const [accountOpen, setAccountOpen] = React.useState(true);
-  const [transactionOpen, setTransactionOpen] = React.useState(true);
-  const [reportOpen, setReportOpen] = React.useState(true);
+  const [accountOpen, setAccountOpen] = React.useState(true)
+  const [transactionOpen, setTransactionOpen] = React.useState(true)
+  const [reportOpen, setReportOpen] = React.useState(true)
+  const [accountScreen, setAccountScreen] = React.useState(false)
+  const [tpActiveScreen, setTpActiveScreen] = React.useState(false)
+  const [tbActiveScreen, setTbActiveScreen] = React.useState(false)
+  const [thActiveScreen, setThActiveScreen] = React.useState(false)
+  const [reportLedgerScreen, setReportLedgerScreen] = React.useState(false)
+  const [reportStatementScreen, setReportStatementScreen] = React.useState(false)
+  const [bankListScreen, setBankListScreen] = React.useState(false)
+  const [settingsScreen, setSettingsScreen] = React.useState(false)
 
   const handleAccountClick = () => {
     setAccountOpen(!accountOpen);
@@ -36,9 +44,97 @@ export default function MenuBar() {
     setReportOpen(!reportOpen);
   }
 
+  const accountActive = () => {
+    setTpActiveScreen(false)
+    setTbActiveScreen(false)
+    setThActiveScreen(false)
+    setReportLedgerScreen(false)
+    setReportStatementScreen(false)
+    setBankListScreen(false)
+    setSettingsScreen(false)
+    setAccountScreen(true)
+  }
+  const tpActive  = () => {
+    setAccountScreen(false)
+    setTbActiveScreen(false)
+    setThActiveScreen(false)
+    setReportLedgerScreen(false)
+    setReportStatementScreen(false)
+    setBankListScreen(false)
+    setSettingsScreen(false)
+    setTpActiveScreen(true)
+  }
+
+  const tbActive  = () => {
+    setAccountScreen(false)
+    setTpActiveScreen(false)
+    setThActiveScreen(false)
+    setReportLedgerScreen(false)
+    setReportStatementScreen(false)
+    setBankListScreen(false)
+    setSettingsScreen(false)
+    setTbActiveScreen(true)
+  }
+
+  const thActive  = () => {
+    setAccountScreen(false)
+    setTpActiveScreen(false)
+    setTbActiveScreen(false)
+    setReportLedgerScreen(false)
+    setReportStatementScreen(false)
+    setBankListScreen(false)
+    setSettingsScreen(false)
+    setThActiveScreen(true)
+  }
+
+  const reportLedger  = () => {
+    setAccountScreen(false)
+    setTpActiveScreen(false)
+    setTbActiveScreen(false)
+    setThActiveScreen(false)
+    setReportStatementScreen(false)
+    setBankListScreen(false)
+    setSettingsScreen(false)
+    setReportLedgerScreen(true)
+  }
+
+  const reportStatement  = () => {
+    setAccountScreen(false)
+    setTpActiveScreen(false)
+    setTbActiveScreen(false)
+    setThActiveScreen(false)
+    setReportLedgerScreen(false)
+    setBankListScreen(false)
+    setSettingsScreen(false)
+    setReportStatementScreen(true)
+  }
+
+  const bankList  = () => {
+    setAccountScreen(false)
+    setTpActiveScreen(false)
+    setTbActiveScreen(false)
+    setThActiveScreen(false)
+    setReportLedgerScreen(false)
+    setReportStatementScreen(false)
+    setSettingsScreen(false)
+    setBankListScreen(true)
+  }
+
+  const settingsList  = () => {
+    setAccountScreen(false)
+    setTpActiveScreen(false)
+    setTbActiveScreen(false)
+    setThActiveScreen(false)
+    setReportLedgerScreen(false)
+    setReportStatementScreen(false)
+    setBankListScreen(false)
+    setSettingsScreen(true)
+  }
+
+
   return (
     <List
-      sx={{ minWidth:200, bgcolor: 'background.paper' }}
+      sx={{ minWidth:200, bgcolor: 'background.paper',paddingTop:'0px',paddingBottom:'0px' }}
       component="nav"
       aria-labelledby="nested-list-subheader">
       {/* <ListItemButton component={Link} to="/">
@@ -56,9 +152,9 @@ export default function MenuBar() {
         {accountOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={accountOpen} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton component={Link} to="/account-status">
-            <ListItemIcon sx={{minWidth:'35px',paddingLeft:'30px'}}>
+        <List component="div" disablePadding sx={accountScreen ? {background: '#4490fa',color:'white'} : {}}>
+          <ListItemButton component={Link} to="/account-status" onClick={accountActive}>
+            <ListItemIcon sx={accountScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white'} : {minWidth:'35px',paddingLeft:'30px'}}>
               <CheckCircleOutlineOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Status" />
@@ -75,25 +171,25 @@ export default function MenuBar() {
         {transactionOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={transactionOpen} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton  component={Link} to="/transactions-personal">
-            <ListItemIcon sx={{minWidth:'35px',paddingLeft:'30px'}}>
+        <List component="div" disablePadding sx={tpActiveScreen ? {background: '#4490fa',color:'white'} : {}}>
+          <ListItemButton  component={Link} to="/transactions-personal" onClick={tpActive}>
+            <ListItemIcon sx={tpActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white'} : {minWidth:'35px',paddingLeft:'30px'}}>
               <AccountBoxOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Personal" />
           </ListItemButton>
         </List>
-        <List component="div" disablePadding>
-          <ListItemButton  component={Link} to="/transactions-business">
-            <ListItemIcon sx={{minWidth:'35px',paddingLeft:'30px'}}>
+        <List component="div" disablePadding sx={tbActiveScreen ? {background: '#4490fa',color:'white'} : {}}>
+          <ListItemButton  component={Link} to="/transactions-business" onClick={tbActive}>
+            <ListItemIcon sx={tbActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white'} : {minWidth:'35px',paddingLeft:'30px'}}>
               <BusinessCenterOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Business" />
           </ListItemButton>
         </List>
-        <List component="div" disablePadding>
-          <ListItemButton  component={Link} to="/transactions-history">
-            <ListItemIcon sx={{minWidth:'35px',paddingLeft:'30px'}}>
+        <List component="div" disablePadding sx={thActiveScreen ? {background: '#4490fa',color:'white'} : {}}>
+          <ListItemButton  component={Link} to="/transactions-history" onClick={thActive}>
+            <ListItemIcon sx={thActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white'} : {minWidth:'35px',paddingLeft:'30px'}}>
               <HistoryIcon />
             </ListItemIcon>
             <ListItemText primary="History" />
@@ -110,17 +206,17 @@ export default function MenuBar() {
         {reportOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={reportOpen} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton component={Link} to="/report-ledger">
-            <ListItemIcon sx={{minWidth:'35px',paddingLeft:'30px'}}>
+        <List component="div" disablePadding sx={reportLedgerScreen ? {background: '#4490fa',color:'white'} : {}}>
+          <ListItemButton component={Link} to="/report-ledger" onClick={reportLedger}>
+            <ListItemIcon sx={reportLedgerScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white'} : {minWidth:'35px',paddingLeft:'30px'}}>
               <ListOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Ledger" />
           </ListItemButton>
         </List>
-        <List component="div" disablePadding>
-          <ListItemButton component={Link} to="/report-statement">
-            <ListItemIcon sx={{minWidth:'35px',paddingLeft:'30px'}}>
+        <List component="div" disablePadding sx={reportStatementScreen ? {background: '#4490fa',color:'white'} : {}}>
+          <ListItemButton component={Link} to="/report-statement" onClick={reportStatement}>
+            <ListItemIcon sx={reportStatementScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white'} : {minWidth:'35px',paddingLeft:'30px'}}>
               <DescriptionOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Statement" />
@@ -128,20 +224,24 @@ export default function MenuBar() {
         </List>
       </Collapse>
       {/* <Divider/> */}
+      <List component="div" disablePadding sx={bankListScreen ? {background: '#4490fa',color:'white'} : {}}>
 
-      <ListItemButton component={Link} to="/bank-list">
-        <ListItemIcon sx={{minWidth:'35px'}}>
+      <ListItemButton component={Link} to="/bank-list" onClick={bankList}>
+        <ListItemIcon sx={bankListScreen ? {minWidth:'35px',color:'white'} : {minWidth:'35px'}}>
           <AccountBalanceOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Bank list" />
       </ListItemButton>
+      </List>
       {/* <Divider/> */}
-      <ListItemButton component={Link} to="/settings">
-        <ListItemIcon sx={{minWidth:'35px'}}>
+      <List component="div" disablePadding sx={settingsScreen ? {background: '#4490fa',color:'white'} : {}}>
+      <ListItemButton component={Link} to="/settings" onClick={settingsList}>
+        <ListItemIcon sx={settingsScreen ? {minWidth:'35px',color:'white'} : {minWidth:'35px'}}>
           <SettingsOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Settings" />
       </ListItemButton>
+      </List>
     </List>
   );
 }

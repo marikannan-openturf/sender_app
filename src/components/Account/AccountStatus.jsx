@@ -23,12 +23,12 @@ export default function AccountStatus() {
           <Stack direction='row' spacing={3}>
             <Link component="button"
               underline={mobile ? "always" : "none"} color="inherit" onClick={mobileActive}>
-              <Typography fontSize={18} color={mobile ? '#e85654' : '#7e7e7e'}>Mobile</Typography>
+              <Typography fontSize={18} fontWeight='500' color={mobile ? '#e85654' : '#7e7e7e'}>Mobile</Typography>
 
             </Link>
             <Link component="button" underline={bank ? "always" : "none"} color="inherit" onClick={bankActive}>
 
-              <Typography fontSize={18} color={bank ? '#e85654' : '#7e7e7e'}>Bank</Typography>
+              <Typography fontSize={18} fontWeight='500' color={bank ? '#e85654' : '#7e7e7e'}>Bank</Typography>
 
             </Link>
           </Stack>
