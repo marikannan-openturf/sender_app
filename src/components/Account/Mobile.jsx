@@ -1,5 +1,4 @@
-import './AccountStatusStyles.css'
-import { Button,OutlinedInput, Paper, Stack, TextField, Typography } from '@mui/material'
+import { Button, OutlinedInput, Paper, Stack, TextField, Typography } from '@mui/material'
 import { useState } from 'react'
 import AccountStatusPopup from './AccountStatusPopup'
 import MenuItem from '@mui/material/MenuItem';
@@ -12,9 +11,9 @@ export default function Mobile() {
   const [accountNumber, setAccountNumber] = useState('')
   const [kycNumber, setKycNumber] = useState('')
   const [network, setNetwork] = useState('')
-  const [errorPopup, setErrorPopup] =useState(false)
+  const [errorPopup, setErrorPopup] = useState(false)
 
-  const CloseErrorPopup = () =>{
+  const CloseErrorPopup = () => {
     setErrorPopup(false)
   }
 
@@ -38,27 +37,28 @@ export default function Mobile() {
 
   return (
     <>
-      <Paper sx={{ height: '100%', width: '100%' }}>
-        <Typography py={5} textAlign='center' fontSize={20} variant='h6' color="#404040">Mobile Account Status</Typography>
-        <Stack spacing={5} pl={10} direction='row' >
-          <Stack spacing={8}>
-            <Typography color="#404040">
+      <Paper sx={{ p: 2 }}>
+        <Typography textAlign='center' pt={2} fontSize={20} variant='h6' color="#404040">Mobile Account Status</Typography>
+        <Stack width={600} spacing={5} sx={{ p: 4 }}>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
               Account Number of the beneficiary
             </Typography>
-            <Typography color="#404040">
+            <OutlinedInput sx={{ height: 40 }} placeholder='Account Number' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
               Account KYC Number of the beneficiary
             </Typography>
-            <Typography color="#404040">
+            <OutlinedInput sx={{ height: 40 }} placeholder='KYC Name' onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
               Mobile network of the beneficiary
             </Typography>
-          </Stack>
-          <Stack spacing={5}>
-
-            <OutlinedInput sx={{ height: 40 }} placeholder='Account Number' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
-            <OutlinedInput sx={{ height: 40 }} placeholder='KYC Name' onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
-
 
             <TextField
+              sx={{ width: 205 }}
               label="Mobile Network"
               value={network}
               onChange={({ target }) => setNetwork(target.value)}
@@ -73,19 +73,16 @@ export default function Mobile() {
               <MenuItem value='Vodafone'>Vodafone</MenuItem>
               <MenuItem value='Jio'>Jio</MenuItem>
             </TextField>
-            <Stack pb={5} >
-             {accountNumber && kycNumber && network 
-             ?  <Button sx={{ letterSpacing: 1, alignSelf: 'start' }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
-             : <CustomButtom sx={{ letterSpacing: 1, alignSelf: 'start' }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
-             }
-            </Stack>
           </Stack>
-
+          <Stack direction='row'>
+            <div style={{ width: '400px' }}>
+            </div>
+            {accountNumber && kycNumber && network
+              ? <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
+              : <CustomButtom sx={{ letterSpacing: 1}} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
+            }
+          </Stack>
         </Stack>
-
-
-
-
       </Paper>
       <AccountStatusPopup
         featuredInfo={featuredInfo}

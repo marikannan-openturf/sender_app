@@ -1,9 +1,9 @@
 import { Button, Container, Dialog, DialogTitle, OutlinedInput, Paper, Stack, TextField, Typography } from '@mui/material'
 import { useState } from 'react'
 import AccountStatusPopup from './AccountStatusPopup'
-import { CloseRounded } from '@mui/icons-material'
 import MenuItem from '@mui/material/MenuItem';
 import ErrorPopup from '../../pages/ErrorPopup';
+import { styled } from '@mui/system'
 
 export default function Bank() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
@@ -49,41 +49,37 @@ export default function Bank() {
   const CloseErrorPopup = () =>{
     setErrorPopup(false)
   }
+
+  const CustomButtom = styled(Button)`
+    &.Mui-disabled{
+       opacity:0.5;
+       background-color : #1976d2;
+       color:white
+    }`
+
   return (
     <>
-      <Paper sx={{ height: '100%', width: '100%' }}>
-        <Typography py={5} textAlign='center' fontSize={20} variant='h6' color="#404040">Bank Account Status</Typography>
-        <Stack spacing={5} pl={10} direction='row' >
-          <Stack spacing={8}>
-            <Typography color="#404040">
+      <Paper sx={{ p: 2 }}>
+        <Typography textAlign='center' pt={2} fontSize={20} variant='h6' color="#404040">Bank Account Status</Typography>
+        <Stack width={600} spacing={5} sx={{ p: 4 }}>
+        <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
               Account Number of the beneficiary
             </Typography>
-            <Typography color="#404040">
-              Account KYC Number of the beneficiary
-            </Typography>
-            <Typography color="#404040">
-              Bank name of the beneficiary
-            </Typography>
-            <Typography color="#404040">
-              Bank code-IFSC/Routing Code/Swift BIC
-            </Typography>
-            <Typography  color="#404040">
-              Account Mobile number of the beneficiary
-            </Typography>
-            <Typography color="#404040">
-              Country
-            </Typography>
-            <Typography color="#404040">
-              Provider
-            </Typography>
-            <Typography color="#404040">
-              Bank Subcode
-            </Typography>
-          </Stack>
-          <Stack spacing={5}>
             <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Account KYC Number of the beneficiary
+            </Typography>
             <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
-            <TextField
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Bank name of the beneficiary
+             </Typography>
+             <TextField
+              sx={{ width: 205 }}
               label="Mobile Network"
               value={network}
               onChange={({ target }) => setNetwork(target.value)}
@@ -91,21 +87,51 @@ export default function Bank() {
               InputProps={{ style: { height: 40 } }}
               InputLabelProps={{ style: { height: 40 } }}
             >
-              <MenuItem value="">
-                <en>Mobile Network</en>
+              <MenuItem value="" >
+                Mobile Network
               </MenuItem>
               <MenuItem value='Airtel'>Airtel</MenuItem>
               <MenuItem value='Vodafone'>Vodafone</MenuItem>
               <MenuItem value='Jio'>Jio</MenuItem>
             </TextField>
-            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setBankCode(target.value)} value={bankCode} />
-            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setMobileNumber(target.value)} value={mobileNumber} />
-            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setCountry(target.value)} value={country} />
-            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setProvider(target.value)} value={provider} />
-            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setSubCode(target.value)} value={subCode} />
-            <Stack pb={5}>
-              <Button sx={{ letterSpacing: 1, alignSelf: 'start' }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
             </Stack>
+            <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Bank code-IFSC/Routing Code/Swift BIC
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setBankCode(target.value)} value={bankCode} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Account Mobile number of the beneficiary
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setMobileNumber(target.value)} value={mobileNumber} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Country
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setCountry(target.value)} value={country} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Provider
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setProvider(target.value)} value={provider} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Bank Subcode
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setSubCode(target.value)} value={subCode} />
+          </Stack>
+          <Stack direction='row'>
+            <div style={{ width: '400px' }}>
+            </div>
+            {accountNumber && kycNumber && network && bankCode && mobileNumber && country && provider 
+              ? <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
+              : <CustomButtom sx={{ letterSpacing: 1}} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
+            }
           </Stack>
         </Stack>
       </Paper>

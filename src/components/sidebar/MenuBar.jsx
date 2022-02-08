@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { Divider } from '@mui/material';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import RepeatOutlinedIcon from '@mui/icons-material/RepeatOutlined';
@@ -18,7 +17,6 @@ import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 export default function MenuBar() {
   const [accountOpen, setAccountOpen] = React.useState(true);
@@ -39,7 +37,7 @@ export default function MenuBar() {
 
   return (
     <List
-      sx={{ width: '100%', maxWidth: 200, bgcolor: 'background.paper' }}
+      sx={{ minWidth:200, bgcolor: 'background.paper' }}
       component="nav"
       aria-labelledby="nested-list-subheader">
       {/* <ListItemButton component={Link} to="/">
@@ -66,7 +64,7 @@ export default function MenuBar() {
           </ListItemButton>
         </List>
       </Collapse>
-      <Divider/>
+      {/* <Divider/> */}
 
       <ListItemButton onClick={handleTransactionClick}>
         <ListItemIcon sx={{minWidth:'35px'}}>
@@ -93,7 +91,7 @@ export default function MenuBar() {
           </ListItemButton>
         </List>
       </Collapse>
-      <Divider/>
+      {/* <Divider/> */}
 
       <ListItemButton onClick={handleReportClick}>
         <ListItemIcon sx={{minWidth:'35px'}}> 
@@ -120,7 +118,7 @@ export default function MenuBar() {
           </ListItemButton>
         </List>
       </Collapse>
-      <Divider/>
+      {/* <Divider/> */}
 
       <ListItemButton component={Link} to="/bank-list">
         <ListItemIcon sx={{minWidth:'35px'}}>
@@ -128,7 +126,7 @@ export default function MenuBar() {
         </ListItemIcon>
         <ListItemText primary="Bank list" />
       </ListItemButton>
-      <Divider/>
+      {/* <Divider/> */}
       <ListItemButton component={Link} to="/settings">
         <ListItemIcon sx={{minWidth:'35px'}}>
           <SettingsOutlinedIcon />

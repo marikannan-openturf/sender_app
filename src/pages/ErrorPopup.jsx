@@ -17,7 +17,7 @@ export default function ErrorPopup(props) {
     >
       <DialogTitle>
         <Stack sx={{ float: 'right' }} spacing={15} direction='row'>
-          <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0}><CloseRounded width={10} height={10} onClick={() => props.CloseErrorPopup()} /></IconButton>
+          <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0} onClick={() => props.CloseErrorPopup()}><CloseRounded width={10} height={10} /></IconButton>
         </Stack>
       </DialogTitle>
       <DialogContentText>

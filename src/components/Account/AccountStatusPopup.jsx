@@ -24,15 +24,15 @@ export default function AccountStatusPopup(props) {
       <DialogContentText>
 
         <Stack spacing={2} width={500} alignItems='center' justifyContent='center' direction='row'>
-          <Stack spacing={3} textAlign='right'>
-            <Typography >Account Status :</Typography>
-            <Typography >Account Sub Status :</Typography>
-            <Typography > Legal Entity Identifier :</Typography>
+          <Stack  spacing={3} textAlign='right'>
+            <Typography color="#575757" fontWeight='500' >Account Status :</Typography>
+            <Typography color="#575757" fontWeight='500' >Account Sub Status :</Typography>
+            <Typography color="#575757" fontWeight='500' > Legal Entity Identifier :</Typography>
           </Stack>
           <Stack spacing={3}>
-            <Typography>{props.accountNumber}</Typography>
-            <Typography>{props.kycNumber}</Typography>
-            <Typography> {props.network}</Typography>
+            <Typography color="#575757" fontWeight='500'>{props.accountNumber}</Typography>
+            <Typography color="#575757" fontWeight='500'>{props.kycNumber}</Typography>
+            <Typography color="#575757" fontWeight='500'> {props.network}</Typography>
           </Stack>
 
         </Stack>
