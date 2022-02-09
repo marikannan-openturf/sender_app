@@ -71,6 +71,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 11,
+    fontWeight: 500,
   },
 }));
 
@@ -141,7 +142,7 @@ export default function HistoryMobile(props) {
   };
 
   return (
-    <Paper sx={{ p:5 }}>
+    <Paper sx={{ paddingTop:3, paddingLeft:5, paddingRight:5, paddingBottom:5, }}>
             <Stack alignItems='center' sx={{pb:4}}>
         <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Mobile Transaction History</Typography>
 

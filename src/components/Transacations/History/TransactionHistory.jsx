@@ -26,11 +26,11 @@ export default function TransactionHistory() {
 
   return (
     <>
-      <Stack spacing={3} p={6}>
+      <Stack p={6}>
         {cancelTrans? <CancelHistory  setCancelTrans={setCancelTrans} />:
           reverseTrans? <ReverseHistory setReverseTrans={setReverseTrans} />:
-        <Box component="div">
-        <Stack direction='row' justifyContent='space-between' spacing={5} mb={2}>
+        <Stack spacing={3}>
+        <Stack direction='row' justifyContent='space-between' spacing={5}>
           <Stack direction='row' spacing={3}>
             <Link component="button"
               underline={mobile ? "always" : "none"} color="inherit" onClick={mobileActive}>
@@ -49,7 +49,7 @@ export default function TransactionHistory() {
         </Stack>
 
         {mobile ? <HistoryMobile setCancelTrans={setCancelTrans} setReverseTrans={setReverseTrans}  /> : <HistoryBank setCancelTrans={setCancelTrans} setReverseTrans={setReverseTrans} />}
-      </Box>
+      </Stack>
       }
 
       </Stack>

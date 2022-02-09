@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Typography,Stack} from '@mui/material'
+import { Typography, Stack } from '@mui/material'
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
@@ -71,6 +71,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 11,
+    fontWeight: 500,
   },
 }));
 
@@ -141,13 +142,12 @@ export default function HistoryBank(props) {
   };
 
   return (
-    <Paper sx={{ p:5 }}>
-      <Stack alignItems='center' sx={{pb:4}}>
-        <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Bank Transaction History</Typography>
-
-          </Stack>
+    <Paper sx={{ paddingTop:3, paddingLeft:5, paddingRight:5, paddingBottom:5, }}>
+    <Stack alignItems='center' sx={{pb:4}}>
+      <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Bank Transaction History</Typography>
+    </Stack>
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="custom pagination table">
+    <Table sx={{ minWidth: 700 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
             <StyledTableCell>Date</StyledTableCell>
