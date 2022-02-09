@@ -145,16 +145,16 @@ export default function MenuBar() {
       </ListItemButton>
       <Divider/> */}
       <ListItemButton onClick={handleAccountClick}>
-        <ListItemIcon sx={{minWidth:'35px'}}>
+        <ListItemIcon sx={{minWidth:'35px', marginTop: '-3px'}}>
           <PermIdentityOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Account" />
         {accountOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={accountOpen} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding sx={accountScreen ? {background: '#4490fa',color:'white'} : {}}>
+        <List component="div" disablePadding sx={accountScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
           <ListItemButton component={Link} to="/account-status" onClick={accountActive}>
-            <ListItemIcon sx={accountScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white'} : {minWidth:'35px',paddingLeft:'30px'}}>
+            <ListItemIcon sx={accountScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <CheckCircleOutlineOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Status" />
@@ -164,32 +164,32 @@ export default function MenuBar() {
       {/* <Divider/> */}
 
       <ListItemButton onClick={handleTransactionClick}>
-        <ListItemIcon sx={{minWidth:'35px'}}>
+        <ListItemIcon sx={{minWidth:'35px', marginTop: '-3px'}}>
           <RepeatOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Transactions" />
         {transactionOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={transactionOpen} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding sx={tpActiveScreen ? {background: '#4490fa',color:'white'} : {}}>
+        <List component="div" disablePadding sx={tpActiveScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
           <ListItemButton  component={Link} to="/transactions-personal" onClick={tpActive}>
-            <ListItemIcon sx={tpActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white'} : {minWidth:'35px',paddingLeft:'30px'}}>
+            <ListItemIcon sx={tpActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <AccountBoxOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Personal" />
           </ListItemButton>
         </List>
-        <List component="div" disablePadding sx={tbActiveScreen ? {background: '#4490fa',color:'white'} : {}}>
+        <List component="div" disablePadding sx={tbActiveScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
           <ListItemButton  component={Link} to="/transactions-business" onClick={tbActive}>
-            <ListItemIcon sx={tbActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white'} : {minWidth:'35px',paddingLeft:'30px'}}>
+            <ListItemIcon sx={tbActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <BusinessCenterOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Business" />
           </ListItemButton>
         </List>
-        <List component="div" disablePadding sx={thActiveScreen ? {background: '#4490fa',color:'white'} : {}}>
+        <List component="div" disablePadding sx={thActiveScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
           <ListItemButton  component={Link} to="/transactions-history" onClick={thActive}>
-            <ListItemIcon sx={thActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white'} : {minWidth:'35px',paddingLeft:'30px'}}>
+            <ListItemIcon sx={thActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <HistoryIcon />
             </ListItemIcon>
             <ListItemText primary="History" />
@@ -199,24 +199,24 @@ export default function MenuBar() {
       {/* <Divider/> */}
 
       <ListItemButton onClick={handleReportClick}>
-        <ListItemIcon sx={{minWidth:'35px'}}> 
+        <ListItemIcon sx={{minWidth:'35px', marginTop: '-3px'}}> 
           <NoteAltOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Report" />
         {reportOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={reportOpen} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding sx={reportLedgerScreen ? {background: '#4490fa',color:'white'} : {}}>
+        <List component="div" disablePadding sx={reportLedgerScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
           <ListItemButton component={Link} to="/report-ledger" onClick={reportLedger}>
-            <ListItemIcon sx={reportLedgerScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white'} : {minWidth:'35px',paddingLeft:'30px'}}>
+            <ListItemIcon sx={reportLedgerScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <ListOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Ledger" />
           </ListItemButton>
         </List>
-        <List component="div" disablePadding sx={reportStatementScreen ? {background: '#4490fa',color:'white'} : {}}>
+        <List component="div" disablePadding sx={reportStatementScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
           <ListItemButton component={Link} to="/report-statement" onClick={reportStatement}>
-            <ListItemIcon sx={reportStatementScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white'} : {minWidth:'35px',paddingLeft:'30px'}}>
+            <ListItemIcon sx={reportStatementScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <DescriptionOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Statement" />
@@ -224,19 +224,19 @@ export default function MenuBar() {
         </List>
       </Collapse>
       {/* <Divider/> */}
-      <List component="div" disablePadding sx={bankListScreen ? {background: '#4490fa',color:'white'} : {}}>
+      <List component="div" disablePadding sx={bankListScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
 
       <ListItemButton component={Link} to="/bank-list" onClick={bankList}>
-        <ListItemIcon sx={bankListScreen ? {minWidth:'35px',color:'white'} : {minWidth:'35px'}}>
+        <ListItemIcon sx={bankListScreen ? {minWidth:'35px',color:'white', marginTop: '-3px'} : {minWidth:'35px', marginTop: '-3px'}}>
           <AccountBalanceOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Bank list" />
       </ListItemButton>
       </List>
       {/* <Divider/> */}
-      <List component="div" disablePadding sx={settingsScreen ? {background: '#4490fa',color:'white'} : {}}>
+      <List component="div" disablePadding sx={settingsScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
       <ListItemButton component={Link} to="/settings" onClick={settingsList}>
-        <ListItemIcon sx={settingsScreen ? {minWidth:'35px',color:'white'} : {minWidth:'35px'}}>
+        <ListItemIcon sx={settingsScreen ? {minWidth:'35px',color:'white', marginTop: '-3px'} : {minWidth:'35px', marginTop: '-3px'}}>
           <SettingsOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Settings" />
