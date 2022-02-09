@@ -18,6 +18,7 @@ import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HistoryIcon from '@mui/icons-material/History';
+import TableRowsRoundedIcon from '@mui/icons-material/TableRowsRounded';
 
 export default function MenuBar() {
   const [accountOpen, setAccountOpen] = React.useState(true)
@@ -30,6 +31,7 @@ export default function MenuBar() {
   const [reportLedgerScreen, setReportLedgerScreen] = React.useState(false)
   const [reportStatementScreen, setReportStatementScreen] = React.useState(false)
   const [bankListScreen, setBankListScreen] = React.useState(false)
+  const [quotationScreen, setQuotationScreen] = React.useState(false)
   const [settingsScreen, setSettingsScreen] = React.useState(false)
 
   const handleAccountClick = () => {
@@ -45,6 +47,7 @@ export default function MenuBar() {
   }
 
   const accountActive = () => {
+    setQuotationScreen(false)
     setTpActiveScreen(false)
     setTbActiveScreen(false)
     setThActiveScreen(false)
@@ -55,6 +58,7 @@ export default function MenuBar() {
     setAccountScreen(true)
   }
   const tpActive  = () => {
+    setQuotationScreen(false)
     setAccountScreen(false)
     setTbActiveScreen(false)
     setThActiveScreen(false)
@@ -66,6 +70,7 @@ export default function MenuBar() {
   }
 
   const tbActive  = () => {
+    setQuotationScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
     setThActiveScreen(false)
@@ -77,6 +82,7 @@ export default function MenuBar() {
   }
 
   const thActive  = () => {
+    setQuotationScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
     setTbActiveScreen(false)
@@ -88,6 +94,7 @@ export default function MenuBar() {
   }
 
   const reportLedger  = () => {
+    setQuotationScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
     setTbActiveScreen(false)
@@ -99,6 +106,7 @@ export default function MenuBar() {
   }
 
   const reportStatement  = () => {
+    setQuotationScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
     setTbActiveScreen(false)
@@ -110,6 +118,7 @@ export default function MenuBar() {
   }
 
   const bankList  = () => {
+    setQuotationScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
     setTbActiveScreen(false)
@@ -119,8 +128,20 @@ export default function MenuBar() {
     setSettingsScreen(false)
     setBankListScreen(true)
   }
+  const QuotationList  = () => {
+    setAccountScreen(false)
+    setTpActiveScreen(false)
+    setTbActiveScreen(false)
+    setThActiveScreen(false)
+    setReportLedgerScreen(false)
+    setReportStatementScreen(false)
+    setSettingsScreen(false)
+    setBankListScreen(false)
+    setQuotationScreen(true)
+  }
 
   const settingsList  = () => {
+    setQuotationScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
     setTbActiveScreen(false)
@@ -233,6 +254,16 @@ export default function MenuBar() {
         <ListItemText primary="Bank list" />
       </ListItemButton>
       </List>
+
+      <List component="div" disablePadding sx={ quotationScreen? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
+      <ListItemButton component={Link} to="/quotation" onClick={QuotationList}>
+        <ListItemIcon sx={quotationScreen ? {minWidth:'35px',color:'white', marginTop: '-3px'} : {minWidth:'35px', marginTop: '-3px'}}>
+          <TableRowsRoundedIcon />
+        </ListItemIcon>
+        <ListItemText primary="Quotation" />
+      </ListItemButton>
+      </List>
+      
       {/* <Divider/> */}
       <List component="div" disablePadding sx={settingsScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
       <ListItemButton component={Link} to="/settings" onClick={settingsList}>

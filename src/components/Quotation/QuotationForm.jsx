@@ -1,0 +1,130 @@
+import { Button, OutlinedInput, Paper, Stack, TextField, Typography, Container } from '@mui/material'
+import { useState } from 'react'
+import MenuItem from '@mui/material/MenuItem';
+import { styled } from '@mui/system'
+import QuotationResponse from './QuotationResponse';
+import ErrorPopup from '../../pages/ErrorPopup';
+
+export default function QuotationForm() {
+  const [amount,setAmount] = useState('')
+  const [currency,setCurrency] = useState('')
+  const [senderMobileNumber,setSenderMobileNumber] = useState('')
+  const [beneficiaryMobileNumber,setBeneficiaryMobileNumber] = useState('')
+  const [bankAccountNumber,setBankAccountNumber] = useState('')
+  const [country, setCountry] = useState('')
+  const [sendingCurrency, setSendingCurrency] = useState('')
+  const [receivingCurrency, setReceivingCurrency] = useState('')
+
+  const [errorPopup, setErrorPopup] = useState(false)
+  const [featuredInfo, setFeaturedInfo] = useState(false)
+
+
+
+  const setFeaturedInfoClose = () => {
+    setAmount('')
+    setCurrency('')
+    setSenderMobileNumber('')
+    setBeneficiaryMobileNumber('')
+    setBankAccountNumber('')
+    setCountry('')
+    setSendingCurrency('')
+    setReceivingCurrency('')
+    setFeaturedInfo(false)
+  }
+
+  const setFeaturedInfoDetails = () => {
+      setFeaturedInfo(true)
+      setErrorPopup(false)
+  }
+
+  const CloseErrorPopup = () =>{
+    setErrorPopup(false)
+  }
+
+  const CustomButtom = styled(Button)`
+    &.Mui-disabled{
+       opacity:0.5;
+       background-color : #1976d2;
+       color:white
+    }`
+
+  return (
+    <>
+      <Paper sx={{ p: 2 }}>
+        <Stack width={600} spacing={5} sx={{ p: 4 }}>
+        <Stack alignItems='center' justifyContent='space-between' direction='row'>
+          <Typography color="#575757" fontWeight='500'>
+            Amount
+          </Typography>
+          <OutlinedInput sx={{ height: 40 }} placeholder='Amount' value={amount} onChange={({target}) => setAmount(target.value)}/>
+        </Stack>
+        <Stack alignItems='center' justifyContent='space-between' direction='row'>
+          <Typography color="#575757" fontWeight='500'>
+            Currency
+          </Typography>
+          <OutlinedInput sx={{ height: 40 }} placeholder='Currency' value={currency} onChange={({target}) => setCurrency(target.value)} />
+        </Stack>
+        <Stack alignItems='center' justifyContent='space-between' direction='row'>
+          <Typography color="#575757" fontWeight='500'>
+            Sender Mobile Number
+          </Typography>
+          <OutlinedInput sx={{ height: 40 }} placeholder='Sender Mobile Number' value={senderMobileNumber} onChange={({target}) => setSenderMobileNumber(target.value)} />
+        </Stack>
+        <Stack alignItems='center' justifyContent='space-between' direction='row'>
+          <Typography color="#575757" fontWeight='500'>
+          Beneficiary Mobile Number
+          </Typography>
+          <OutlinedInput sx={{ height: 40 }}   placeholder='Beneficiary Mobile Number' value={beneficiaryMobileNumber} onChange={({target}) => setBeneficiaryMobileNumber(target.value)}/>
+        </Stack>
+        <Stack alignItems='center' justifyContent='space-between' direction='row'>
+          <Typography color="#575757" fontWeight='500'>
+            Bank Account Number
+          </Typography>
+          <OutlinedInput sx={{ height: 40 }} placeholder=' Bank Account Number' value={bankAccountNumber} onChange={({target}) => setBankAccountNumber(target.value)} />
+        </Stack>
+        <Stack alignItems='center' justifyContent='space-between' direction='row'>
+        <Typography color="#575757" fontWeight='500'>
+          Country
+          </Typography>
+        <TextField
+          sx={{width:205}}
+          label="Country"
+          value={country}
+          onChange={({ target }) => setCountry(target.value)}
+          select
+          InputProps={{ style: { height: 40 } }}
+          InputLabelProps={{ style: { height: 40 } }}
+        >
+          <MenuItem value='India'>India</MenuItem>
+          <MenuItem value='France'>France</MenuItem>
+          <MenuItem value='Germany'>Germany</MenuItem>
+        </TextField>
+        </Stack>
+        <Stack alignItems='center' justifyContent='space-between' direction='row'>
+          <Typography color="#575757" fontWeight='500'>
+              Sending Currency
+          </Typography>
+          <OutlinedInput sx={{ height: 40 }} placeholder='Sending Currency'  value={sendingCurrency} onChange={({target}) => setSendingCurrency(target.value)}/>
+        </Stack>
+        <Stack alignItems='center' justifyContent='space-between' direction='row'>
+          <Typography color="#575757" fontWeight='500'>
+          Receiving Currency
+          </Typography>
+          <OutlinedInput sx={{ height: 40 }} placeholder='Receiving Currency' value={receivingCurrency} onChange={({target}) => setReceivingCurrency(target.value)}/>
+        </Stack>
+          </Stack>
+          <Stack direction='row' sx={{marginBottom: 3}}>
+            <div style={{ width: '400px'}}>
+            </div>
+            {amount && currency && senderMobileNumber && beneficiaryMobileNumber && bankAccountNumber && country && sendingCurrency && receivingCurrency ?
+                <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
+              : <CustomButtom sx={{ letterSpacing: 1}} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
+            }
+          </Stack>
+      </Paper>
+      <QuotationResponse setFeaturedInfoClose={setFeaturedInfoClose} featuredInfo={featuredInfo} />
+      <ErrorPopup errorPopup={errorPopup}
+        CloseErrorPopup={CloseErrorPopup} />
+    </>
+  )
+}

@@ -15,6 +15,7 @@ import MenuBar from "./components/sidebar/MenuBar";
 import BankList from "./pages/BankList";
 import Settings from "./pages/Settings";
 import TransactionsHistory from "./pages/TransactionsHistory";
+import Quotation from "./pages/Quotation";
 function App() {
   return (
     <BrowserRouter>
@@ -32,6 +33,7 @@ function App() {
             <Route path="/report-statement" element = {<ReportStatement />}/>
             <Route path="/bank-list" element={<BankList/>}/>
             <Route path="/settings" element={<Settings/>}/>
+            <Route path="/quotation" element={<Quotation/>}/>
         </Routes>
 
       </div>
