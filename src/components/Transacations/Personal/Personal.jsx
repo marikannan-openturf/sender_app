@@ -33,7 +33,7 @@ export default function TransactionPersonalStatus() {
             </Link>
           </Stack>
           <Stack>
-            <Button variant='contained'>Create Transaction</Button>
+            <Button variant='contained' sx={{backgroundColor:'#4490fa'}}>Create Transaction</Button>
           </Stack>
         </Stack>
 

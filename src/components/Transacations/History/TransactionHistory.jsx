@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from "react";
-import { Stack, Link, Button, Typography, Box } from "@mui/material";
+import { Stack, Link, Button, Typography } from "@mui/material";
 import HistoryMobile from "./HistoryMobile";
 import HistoryBank from "./HistoryBank";
 import CancelHistory from './CancelHistory';
@@ -44,7 +44,7 @@ export default function TransactionHistory() {
             </Link>
           </Stack>
             <Stack>
-              <Button variant='contained'>Create Transaction</Button>
+            <Button variant='contained' sx={{backgroundColor:'#4490fa'}}>Create Transaction</Button>
             </Stack>
         </Stack>
 
