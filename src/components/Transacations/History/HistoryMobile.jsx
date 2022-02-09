@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Typography } from '@mui/material'
+import { Typography,Stack } from '@mui/material'
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
@@ -141,8 +141,11 @@ export default function HistoryMobile(props) {
   };
 
   return (
-    <Paper sx={{ paddingTop:3, paddingLeft:5, paddingRight:5, paddingBottom:5, }}>
-    <Typography textAlign='center' pt={2} pb={2} fontSize={20} variant='h6' color="#404040">Mobile Transaction History</Typography>
+    <Paper sx={{ p:5 }}>
+            <Stack alignItems='center' sx={{pb:4}}>
+        <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Mobile Transaction History</Typography>
+
+          </Stack>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="custom pagination table">
         <TableHead>

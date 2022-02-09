@@ -77,6 +77,10 @@ export default function PersonalMobile() {
     <>
 
       <Paper sx={{ p: 5 }}>
+        <Stack alignItems='center' sx={{pb:4}}>
+        <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Transaction Personal Mobile Status</Typography>
+
+          </Stack>
         <Stack spacing={4} justifyContent='space-between' direction='row'>
 
           <Stack spacing={4} width={450}>
