@@ -16,6 +16,7 @@ import BankList from "./pages/BankList";
 import Settings from "./pages/Settings";
 import TransactionsHistory from "./pages/TransactionsHistory";
 import Quotation from "./pages/Quotation";
+import ReportCorridor from "./pages/ReportCorridor";
 function App() {
   return (
     <BrowserRouter>
@@ -31,6 +32,7 @@ function App() {
             <Route path="/transactions-history" element={<TransactionsHistory/>}/>
             <Route path="/report-ledger" element = {<ReportLetger />}/>
             <Route path="/report-statement" element = {<ReportStatement />}/>
+            <Route path="/report-corridor" element = {<ReportCorridor/>}/>
             <Route path="/bank-list" element={<BankList/>}/>
             <Route path="/settings" element={<Settings/>}/>
             <Route path="/quotation" element={<Quotation/>}/>

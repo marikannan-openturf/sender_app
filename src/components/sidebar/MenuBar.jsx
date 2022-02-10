@@ -19,6 +19,7 @@ import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlin
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HistoryIcon from '@mui/icons-material/History';
 import TableRowsRoundedIcon from '@mui/icons-material/TableRowsRounded';
+import PublicIcon from '@mui/icons-material/Public';
 
 export default function MenuBar() {
   const [accountOpen, setAccountOpen] = React.useState(true)
@@ -30,6 +31,7 @@ export default function MenuBar() {
   const [thActiveScreen, setThActiveScreen] = React.useState(false)
   const [reportLedgerScreen, setReportLedgerScreen] = React.useState(false)
   const [reportStatementScreen, setReportStatementScreen] = React.useState(false)
+  const [reportCorridorScreen, setReportCorridorScreen] = React.useState(false)
   const [bankListScreen, setBankListScreen] = React.useState(false)
   const [quotationScreen, setQuotationScreen] = React.useState(false)
   const [settingsScreen, setSettingsScreen] = React.useState(false)
@@ -47,6 +49,7 @@ export default function MenuBar() {
   }
 
   const accountActive = () => {
+    setReportCorridorScreen(false)
     setQuotationScreen(false)
     setTpActiveScreen(false)
     setTbActiveScreen(false)
@@ -58,6 +61,7 @@ export default function MenuBar() {
     setAccountScreen(true)
   }
   const tpActive  = () => {
+    setReportCorridorScreen(false)
     setQuotationScreen(false)
     setAccountScreen(false)
     setTbActiveScreen(false)
@@ -70,6 +74,7 @@ export default function MenuBar() {
   }
 
   const tbActive  = () => {
+    setReportCorridorScreen(false)
     setQuotationScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
@@ -82,6 +87,7 @@ export default function MenuBar() {
   }
 
   const thActive  = () => {
+    setReportCorridorScreen(false)
     setQuotationScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
@@ -94,6 +100,7 @@ export default function MenuBar() {
   }
 
   const reportLedger  = () => {
+    setReportCorridorScreen(false)
     setQuotationScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
@@ -106,6 +113,7 @@ export default function MenuBar() {
   }
 
   const reportStatement  = () => {
+    setReportCorridorScreen(false)
     setQuotationScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
@@ -117,7 +125,21 @@ export default function MenuBar() {
     setReportStatementScreen(true)
   }
 
+  const reportCorridor  = () => {
+    setQuotationScreen(false)
+    setAccountScreen(false)
+    setTpActiveScreen(false)
+    setTbActiveScreen(false)
+    setThActiveScreen(false)
+    setReportStatementScreen(false)
+    setBankListScreen(false)
+    setSettingsScreen(false)
+    setReportLedgerScreen(false)
+    setReportCorridorScreen(true)
+  }
+
   const bankList  = () => {
+    setReportCorridorScreen(false)
     setQuotationScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
@@ -129,6 +151,7 @@ export default function MenuBar() {
     setBankListScreen(true)
   }
   const QuotationList  = () => {
+    setReportCorridorScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
     setTbActiveScreen(false)
@@ -141,6 +164,7 @@ export default function MenuBar() {
   }
 
   const settingsList  = () => {
+    setReportCorridorScreen(false)
     setQuotationScreen(false)
     setAccountScreen(false)
     setTpActiveScreen(false)
@@ -233,6 +257,14 @@ export default function MenuBar() {
               <ListOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Ledger" />
+          </ListItemButton>
+        </List>
+        <List component="div" disablePadding sx={reportCorridorScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
+          <ListItemButton component={Link} to="/report-corridor" onClick={reportCorridor}>
+            <ListItemIcon sx={reportCorridorScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
+              <PublicIcon />
+            </ListItemIcon>
+            <ListItemText primary="Corridor" />
           </ListItemButton>
         </List>
         <List component="div" disablePadding sx={reportStatementScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
