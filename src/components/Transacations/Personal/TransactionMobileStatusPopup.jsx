@@ -14,7 +14,7 @@ export default function TransactionMobileStatusPopup(props) {
       open={props.featuredInfo} sx={{ height: '100%', width: '100%' }} onClose={() => props.setFeaturedInfoClose()}
     >
       <DialogTitle>
-        <Stack spacing={12} justifyContent='end' direction='row'>
+        <Stack spacing={9} justifyContent='end' direction='row'>
           <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}> Transaction Mobile Status</Typography>
           <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0}><CloseRounded width={10} height={10} onClick={() => props.setFeaturedInfoClose()} /></IconButton>
         </Stack>

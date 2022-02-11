@@ -4,7 +4,10 @@ import AccountStatusPopup from './AccountStatusPopup'
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/system'
 import ErrorPopup from '../../pages/ErrorPopup';
+import axios from 'axios'
+import { config } from '../../assets/config/config';
 
+const apiUrl = config.api.url
 
 export default function Mobile() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
@@ -15,17 +18,40 @@ export default function Mobile() {
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
-  }
-
-  const setFeaturedInfoClose = () => {
     setAccountNumber('')
     setKycNumber('')
     setNetwork('')
+  }
+
+  const setFeaturedInfoClose = () => {
     setFeaturedInfo(false)
+    setAccountNumber('')
+    setKycNumber('')
+    setNetwork('')
   }
 
   const setFeaturedInfoDetails = () => {
-    setFeaturedInfo(true)
+    const options = {
+      headers: {
+        'username': 'OpenTurfDev',
+        'password': '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'actualdate': '2018-04-04 09:27:16',
+        'origincountry': 'US'
+      }
+    }
+    axios.post(`${apiUrl}/js/accounts-status`
+      , {
+        "instrument": "mobile-wallet",
+        "msisdn": "+9779840002320",
+        "beneficiaryName": "David Robinson"
+    },
+      { headers: options.headers } 
+    ).then((res) => {
+      setFeaturedInfo(true)
+
+    }).catch((err) => {
+      setErrorPopup(true)
+    })
   }
 
   const CustomButtom = styled(Button)`
@@ -34,7 +60,6 @@ export default function Mobile() {
        background-color : #1976d2;
        color:white
     }`
-
   return (
     <>
       <Paper sx={{ p: 2 }}>
@@ -79,7 +104,7 @@ export default function Mobile() {
             </div>
             {accountNumber && kycNumber && network
               ? <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
-              : <CustomButtom sx={{ letterSpacing: 1}} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
+              : <CustomButtom sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
             }
           </Stack>
         </Stack>
