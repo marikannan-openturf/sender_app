@@ -20,7 +20,7 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -151,12 +151,27 @@ export default function HistoryMobile(props) {
       <Table sx={{ minWidth: 700 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Date</StyledTableCell>
+            <StyledTableCell>
+                <Stack alignItems='center' justifyContent='center' direction='row'>
+                  <Typography>Date</Typography>
+                <ArrowUpwardIcon/>
+                </Stack>
+            </StyledTableCell>
             <StyledTableCell align="left">Amount</StyledTableCell>
-            <StyledTableCell align="left">Curency</StyledTableCell>
+            <StyledTableCell align="left">
+                <Stack alignItems='center' justifyContent='center' direction='row'>
+                  <Typography>Curency</Typography>
+                  <ArrowUpwardIcon/>
+                </Stack>
+            </StyledTableCell>
             <StyledTableCell align="left">Type</StyledTableCell>
             <StyledTableCell align="left">Req Ref Id</StyledTableCell>
-            <StyledTableCell align="left">Satus</StyledTableCell>
+            <StyledTableCell align="left">
+              <Stack alignItems='center' justifyContent='center' direction='row'>
+                <Typography>Satus</Typography>
+                <ArrowUpwardIcon/>
+              </Stack>
+            </StyledTableCell>
             <StyledTableCell align="left">Reference</StyledTableCell>
             <StyledTableCell align="left">Sender</StyledTableCell>
             <StyledTableCell align="left">Receipient</StyledTableCell>

@@ -4,8 +4,8 @@ import Production from "./Production"
 import { Stack, Link, Button, Typography } from "@mui/material";
 
 export default function APISettings() {
-  const [production, setProduction] = useState(true)
-  const [sandbox, setSandbox] = useState(false)
+  const [production, setProduction] = useState(false)
+  const [sandbox, setSandbox] = useState(true)
 
   const productionActive = () => {
     setProduction(true)
