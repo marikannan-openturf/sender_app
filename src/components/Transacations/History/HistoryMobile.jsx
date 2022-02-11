@@ -21,6 +21,7 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import SortIcon from '../../../assets/img/two-arrows.png'
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -153,23 +154,23 @@ export default function HistoryMobile(props) {
           <TableRow>
             <StyledTableCell>
                 <Stack alignItems='center' justifyContent='center' direction='row'>
-                  <Typography>Date</Typography>
-                <ArrowUpwardIcon/>
+                <img src={SortIcon} height="16" weight="16"/>
+                <Typography sx={{paddingLeft:0.5}}>Date</Typography>
                 </Stack>
             </StyledTableCell>
             <StyledTableCell align="left">Amount</StyledTableCell>
             <StyledTableCell align="left">
                 <Stack alignItems='center' justifyContent='center' direction='row'>
-                  <Typography>Curency</Typography>
-                  <ArrowUpwardIcon/>
+                <img src={SortIcon} height="16" weight="16"/>
+                <Typography sx={{paddingLeft:0.5}} >Curency</Typography>
                 </Stack>
             </StyledTableCell>
             <StyledTableCell align="left">Type</StyledTableCell>
             <StyledTableCell align="left">Req Ref Id</StyledTableCell>
             <StyledTableCell align="left">
               <Stack alignItems='center' justifyContent='center' direction='row'>
-                <Typography>Satus</Typography>
-                <ArrowUpwardIcon/>
+              <img src={SortIcon} height="16" weight="16"/>
+              <Typography sx={{paddingLeft:0.5}}>Satus</Typography>
               </Stack>
             </StyledTableCell>
             <StyledTableCell align="left">Reference</StyledTableCell>
@@ -276,8 +277,8 @@ export default function HistoryMobile(props) {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem>View</MenuItem>
-        <MenuItem onClick={OnClickCancel}>Cancel</MenuItem>
-        <MenuItem onClick={OnClickReverse} >Reverse</MenuItem>
+        <MenuItem /* onClick={OnClickCancel} */>Cancel</MenuItem>
+        <MenuItem /* onClick={OnClickReverse}  */>Reverse</MenuItem>
       </Menu>
     </Paper>
   );

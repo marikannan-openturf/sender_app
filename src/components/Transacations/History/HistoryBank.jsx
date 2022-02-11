@@ -9,6 +9,7 @@ import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
+import { useState } from "react";
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
@@ -20,7 +21,9 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import SortIcon from '../../../assets/img/two-arrows.png'
+import BankReverseHistory from './BankReverseHistory';
+import BankCancelHistory from './BankCancelHistory';
 
 
 function TablePaginationActions(props) {
@@ -108,9 +111,11 @@ const rows = [
   createData('19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
 ].sort((a, b) => (a.dates < b.dates ? -1 : 1));
 
-export default function HistoryBank(props) {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+export default function HistoryBank() {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [cancelTrans, setCancelTrans] =useState(false)
+  const [reverseTrans, setReverseTrans] =useState(false)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -136,13 +141,24 @@ export default function HistoryBank(props) {
   };
 
   const OnClickCancel = () => {
-    props.setCancelTrans(true);
+    setReverseTrans(false);
+   setCancelTrans(true);
   };
   const OnClickReverse = () => {
-    props.setReverseTrans(true);
+    setCancelTrans(false);
+    setReverseTrans(true);
+  };
+  const onClickCancelClose = () => {
+    console.log("CLICK ADFASDF")
+    setCancelTrans(false);
+  };
+  const OnClickReverseClose = () => {
+    setReverseTrans(false);
   };
 
+
   return (
+    <>
     <Paper sx={{ paddingTop:3, paddingLeft:5, paddingRight:5, paddingBottom:5, }}>
     <Stack alignItems='center' sx={{pb:4}}>
       <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Bank Transaction History</Typography>
@@ -152,19 +168,19 @@ export default function HistoryBank(props) {
         <TableHead>
           <TableRow>
             <StyledTableCell><Stack alignItems='center' justifyContent='center' direction='row'>
-            <Typography>Date</Typography>
-          <ArrowUpwardIcon/>
+            <img src={SortIcon} height="16" weight="16"/>
+            <Typography sx={{paddingLeft:0.5}}>Date</Typography>
           </Stack></StyledTableCell>
             <StyledTableCell align="left">Amount</StyledTableCell>
             <StyledTableCell align="left"><Stack alignItems='center' justifyContent='center' direction='row'>
-            <Typography>Curency</Typography>
-            <ArrowUpwardIcon/>
+            <img src={SortIcon} height="16" weight="16"/>
+            <Typography sx={{paddingLeft:0.5}} >Curency</Typography>
           </Stack></StyledTableCell>
             <StyledTableCell align="left">Type</StyledTableCell>
             <StyledTableCell align="left">Req Ref Id</StyledTableCell>
             <StyledTableCell align="left"> <Stack alignItems='center' justifyContent='center' direction='row'>
-            <Typography>Satus</Typography>
-            <ArrowUpwardIcon/>
+            <img src={SortIcon} height="16" weight="16"/>
+            <Typography sx={{paddingLeft:0.5}}>Satus</Typography>
           </Stack></StyledTableCell>
             <StyledTableCell align="left">Reference</StyledTableCell>
             <StyledTableCell align="left">Sender</StyledTableCell>
@@ -274,5 +290,8 @@ export default function HistoryBank(props) {
         <MenuItem onClick={OnClickReverse} >Reverse</MenuItem>
       </Menu>
     </Paper>
+    <BankCancelHistory cancelTrans={cancelTrans} onClickCancelClose={onClickCancelClose} />
+    <BankReverseHistory reverseTrans={reverseTrans} OnClickReverseClose={OnClickReverseClose} />
+    </>
   );
 }

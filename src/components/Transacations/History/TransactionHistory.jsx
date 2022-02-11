@@ -3,16 +3,12 @@ import { useState } from "react";
 import { Stack, Link, Button, Typography } from "@mui/material";
 import HistoryMobile from "./HistoryMobile";
 import HistoryBank from "./HistoryBank";
-import CancelHistory from './CancelHistory';
-import ReverseHistory from './ReverseHistory';
 
 
 
 export default function TransactionHistory() {
   const [mobile, setMobile] = useState(true)
   const [bank, setBank] = useState(false)
-  const [cancelTrans, setCancelTrans] =useState(false)
-  const [reverseTrans, setReverseTrans] =useState(false)
   
   const mobileActive = () => {
     setMobile(true)
@@ -27,8 +23,6 @@ export default function TransactionHistory() {
   return (
     <>
       <Stack p={6}>
-        {cancelTrans? <CancelHistory  setCancelTrans={setCancelTrans} />:
-          reverseTrans? <ReverseHistory setReverseTrans={setReverseTrans} />:
         <Stack spacing={3}>
         <Stack direction='row' justifyContent='space-between' spacing={5}>
           <Stack direction='row' spacing={3}>
@@ -48,10 +42,8 @@ export default function TransactionHistory() {
             </Stack>
         </Stack>
 
-        {mobile ? <HistoryMobile setCancelTrans={setCancelTrans} setReverseTrans={setReverseTrans}  /> : <HistoryBank setCancelTrans={setCancelTrans} setReverseTrans={setReverseTrans} />}
+        {mobile ? <HistoryMobile/> : <HistoryBank />}
       </Stack>
-      }
-
       </Stack>
     </>
   )
