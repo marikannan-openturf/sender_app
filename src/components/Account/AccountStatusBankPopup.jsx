@@ -28,20 +28,20 @@ export default function AccountStatusBankPopup(props) {
             <Typography color="#575757" fontWeight='500' >Account KYC Number of the beneficiary :</Typography>
             <Typography color="#575757" fontWeight='500' > Bank name of the beneficiary :</Typography>
             <Typography color="#575757" fontWeight='500' > Bank code-IFSC/Routing Code/Swift BIC :</Typography>
-            <Typography color="#575757" fontWeight='500' > Account Mobile number of the beneficiary :</Typography>
+            {/* <Typography color="#575757" fontWeight='500' > Account Mobile number of the beneficiary :</Typography> */}
             <Typography color="#575757" fontWeight='500' > Country :</Typography>
-            <Typography color="#575757" fontWeight='500' > Provider :</Typography>
-            <Typography color="#575757" fontWeight='500' > Bank Subcode :</Typography>
+            {/* <Typography color="#575757" fontWeight='500' > Provider :</Typography> */}
+            {/* <Typography color="#575757" fontWeight='500' > Bank Subcode :</Typography> */}
           </Stack>
           <Stack spacing={3}>
             <Typography color="#575757" fontWeight='500'>{props.accountNumber}</Typography>
             <Typography color="#575757" fontWeight='500'>{props.kycNumber}</Typography>
             <Typography color="#575757" fontWeight='500'> {props.network}</Typography>
             <Typography color="#575757" fontWeight='500'> {props.bankCode}</Typography>
-            <Typography color="#575757" fontWeight='500'> {props.mobileNumber}</Typography>
+            {/* <Typography color="#575757" fontWeight='500'> {props.mobileNumber}</Typography> */}
             <Typography color="#575757" fontWeight='500'> {props.country}</Typography>
-            <Typography color="#575757" fontWeight='500'> {props.provider}</Typography>
-            <Typography color="#575757" fontWeight='500'> {props.subCode}</Typography>
+            {/* <Typography color="#575757" fontWeight='500'> {props.provider}</Typography> */}
+            {/* <Typography color="#575757" fontWeight='500'> {props.subCode}</Typography> */}
 
           </Stack>
 

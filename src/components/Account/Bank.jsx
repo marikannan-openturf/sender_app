@@ -13,7 +13,7 @@ export default function Bank() {
   const [accountNumber, setAccountNumber] = useState('')
   const [kycNumber, setKycNumber] = useState('')
   const [bankCode, setBankCode] = useState('')
-  const [mobileNumber, setMobileNumber] = useState('')
+  const [bankName, setBankName] = useState('')
   const [country, setCountry] = useState('')
   const [provider, setProvider] = useState('')
   const [subCode, setSubCode] = useState('')
@@ -24,7 +24,7 @@ export default function Bank() {
     setAccountNumber('')
     setKycNumber('')
     setBankCode('')
-    setMobileNumber('')
+    setBankName('')
     setCountry('')
     setProvider('')
     setSubCode('')
@@ -51,6 +51,14 @@ export default function Bank() {
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
+    setAccountNumber('')
+    setKycNumber('')
+    setBankCode('')
+    setBankName('')
+    setCountry('')
+    setProvider('')
+    setSubCode('')
+    setNetwork('')
   }
 
   const CustomButtom = styled(Button)`
@@ -71,12 +79,12 @@ export default function Bank() {
       }
       axios.post(`${apiUrl}/js/accounts-status`
         , {
-          "instrument": "bank-account",
-          "accountId": "50100002965304",
-          "bankName": "HDFC Bank",
-          "countryCode": "IN",
-          "beneficiaryName": "Deepa Jain",
-          "bankCode": "HDFC0001626"
+          "instrument": `${network}`,
+          "accountId": `${accountNumber}`,
+          "bankName": `${bankName}`,
+          "countryCode": `${country}`,
+          "beneficiaryName": `${kycNumber}`,
+          "bankCode": `${bankCode}`
       },
         { headers: options.headers } 
       ).then((res) => {
@@ -100,23 +108,23 @@ export default function Bank() {
         <Stack width={600} spacing={5} sx={{ p: 4 }}>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Account Number of the beneficiary
+            Beneficiary Bank Account ID or IBAN Number
             </Typography>
             <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Account KYC Number of the beneficiary
+            Full KYC name of the beneficiary
             </Typography>
             <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Bank name of the beneficiary
+              Account Instrument
             </Typography>
             <TextField
               sx={{ width: 205 }}
-              label="Mobile Network"
+              label="instrument"
               value={network}
               onChange={({ target }) => setNetwork(target.value)}
               select
@@ -124,12 +132,17 @@ export default function Bank() {
               InputLabelProps={{ style: { height: 40 } }}
             >
               <MenuItem value="" >
-                Mobile Network
+              instrument
               </MenuItem>
-              <MenuItem value='Airtel'>Airtel</MenuItem>
-              <MenuItem value='Vodafone'>Vodafone</MenuItem>
-              <MenuItem value='Jio'>Jio</MenuItem>
+              <MenuItem value='mobile-wallet'>Mobile-Wallet</MenuItem>
+              <MenuItem value='bank-account'>Bank-Account</MenuItem>
             </TextField>
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+             Bank Name
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setBankName(target.value)} value={bankName} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -139,32 +152,26 @@ export default function Bank() {
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Account Mobile number of the beneficiary
-            </Typography>
-            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setMobileNumber(target.value)} value={mobileNumber} />
-          </Stack>
-          <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography color="#575757" fontWeight='500'>
               Country
             </Typography>
             <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setCountry(target.value)} value={country} />
           </Stack>
-          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Provider
             </Typography>
             <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setProvider(target.value)} value={provider} />
-          </Stack>
-          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+          </Stack> */}
+          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Bank Subcode
             </Typography>
             <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setSubCode(target.value)} value={subCode} />
-          </Stack>
+          </Stack> */}
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
-            {accountNumber && kycNumber && network && bankCode && mobileNumber && country && provider
+            {accountNumber && kycNumber && network && bankCode && bankName && country 
               ? <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
               : <CustomButtom sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
             }
@@ -176,10 +183,8 @@ export default function Bank() {
         network={network}
         kycNumber={kycNumber}
         bankCode={bankCode}
-        mobileNumber={mobileNumber}
+        bankName={bankName}
         country={country}
-        provider={provider}
-        subCode={subCode}
         setFeaturedInfoClose={setFeaturedInfoClose} />
       <ErrorPopup errorPopup={errorPopup}
         CloseErrorPopup={CloseErrorPopup} />

@@ -47,8 +47,12 @@ export default function Mobile() {
     },
       { headers: options.headers } 
     ).then((res) => {
-      setFeaturedInfo(true)
-
+      console.log("res",res.data)
+      if(res.data.status === 'available') {
+        setFeaturedInfo(true)
+      } else {
+        setErrorPopup(true)
+      }
     }).catch((err) => {
       setErrorPopup(true)
     })
@@ -69,13 +73,13 @@ export default function Mobile() {
             <Typography color="#575757" fontWeight='500'>
              Beneficiary MSISDN with country code
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Account Number' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
+            <OutlinedInput sx={{ height: 40 }} placeholder='MSISDN number' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
             Full KYC name of the beneficiary
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='KYC Name' onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
+            <OutlinedInput sx={{ height: 40 }} placeholder='Full KYC name' onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -95,7 +99,7 @@ export default function Mobile() {
                 Instrument
               </MenuItem>
               <MenuItem value='mobile-wallet'>Mobile-Wallet</MenuItem>
-              <MenuItem value='mobile-bank'>Mobile-Bank</MenuItem>
+              <MenuItem value='bank-account'>Bank-Account</MenuItem>
             </TextField>
           </Stack>
           <Stack direction='row'>
