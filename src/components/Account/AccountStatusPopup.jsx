@@ -44,14 +44,15 @@ export default function AccountStatusPopup(props) {
       open={props.featuredInfo} sx={{ height: '100%', width: '100%' }} onClose={() => props.setFeaturedInfoClose()}
     >
       <DialogTitle>
-        <Stack sx={{ float: 'right' }} spacing={10} direction='row'>
-
-          <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Mobile Account Status</Typography>
-          <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0}><CloseRounded width={10} height={10} onClick={() => props.setFeaturedInfoClose()} /></IconButton>
+        <Stack alignItems='right' justifyContent='right' direction='row'>
+          <IconButton ><CloseRounded width={10} height={10} onClick={() => props.setFeaturedInfoClose()} /></IconButton>
+        </Stack>
+        <Stack alignItems='center' justifyContent='center' direction='row' pb={1}>
+          <Typography variant='h6' fontFamily='Poppins' fontWeight='600'>Mobile Account Status</Typography>
         </Stack>
       </DialogTitle>
       <DialogContentText>
-      <Stack width={500} paddingLeft={5} paddingRight={5} alignItems='center' justifyContent='center' direction='row'>
+      <Stack px={5} width={500} alignItems='center' justifyContent='center' direction='row'>
       {/* <Stack  spacing={3} textAlign='right'>
             <Typography color="#575757" fontWeight='500' >Account Status :</Typography>
             <Typography color="#575757" fontWeight='500' >Account Sub Status :</Typography>
@@ -63,7 +64,7 @@ export default function AccountStatusPopup(props) {
             <Typography color="#575757" fontWeight='500'>{props.network}</Typography>
           </Stack> */}
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+              <Table aria-label="custom pagination table">
               <TableHead>
                   <TableRow>
                   <StyledTableCell>Account</StyledTableCell>
@@ -73,13 +74,13 @@ export default function AccountStatusPopup(props) {
               <TableBody>
                   {props.status && 
                   <StyledTableRow>
-                    <StyledTableCell component="th" scope="row" >Account Status</StyledTableCell>
-                    <StyledTableCell align="left">{props.status}</StyledTableCell>
+                    <StyledTableCell component="th" scope="row" sx={{width:'50%'}} >Status</StyledTableCell>
+                    <StyledTableCell align="left" sx={{width:'50%'}} >{props.status}</StyledTableCell>
                   </StyledTableRow>
                 }
                   {props.subStatus && 
                   <StyledTableRow>
-                    <StyledTableCell component="th" scope="row" >Account Sub Status</StyledTableCell>
+                    <StyledTableCell component="th" scope="row" >Sub Status</StyledTableCell>
                     <StyledTableCell align="left">{props.subStatus}</StyledTableCell>
                   </StyledTableRow>
                 }
@@ -94,7 +95,7 @@ export default function AccountStatusPopup(props) {
                     <StyledTableCell align="left">{props.accountNumber}</StyledTableCell>
                   </StyledTableRow>
                   <StyledTableRow>
-                    <StyledTableCell component="th" scope="row" >Beneficiary Name"</StyledTableCell>
+                    <StyledTableCell component="th" scope="row" >Beneficiary Name</StyledTableCell>
                     <StyledTableCell align="left">{props.kycNumber}</StyledTableCell>
                   </StyledTableRow>
                   <StyledTableRow>
@@ -105,7 +106,7 @@ export default function AccountStatusPopup(props) {
               </Table>
           </TableContainer>
         </Stack>
-        <Stack spacing={3} py={3} justifyContent='center' direction='row'>
+        <Stack py={3} justifyContent='center' direction='row'>
           <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={() => props.setFeaturedInfoClose()}>OK</Button>
           {/* <CustomButtom sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' disabled>Create Transaction</CustomButtom> */}
 

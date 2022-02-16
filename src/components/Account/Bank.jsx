@@ -19,6 +19,11 @@ export default function Bank() {
   const [subCode, setSubCode] = useState('')
   const [network, setNetwork] = useState('')
   const [errorPopup, setErrorPopup] = useState(false)
+
+  const [status, setStatus] = useState('')
+  const [subStatus, setSubStatus] = useState('')
+  const [lei, setLei] = useState('')
+
   const setFeaturedInfoClose = () => {
     setFeaturedInfo(false)
     setAccountNumber('')
@@ -92,6 +97,9 @@ export default function Bank() {
           setErrorPopup(true)
           setFeaturedInfo(false)
         } else {
+          setLei(res.data.lei)
+          setStatus(res.data.status)
+          setSubStatus(res.data.subStatus)
           setFeaturedInfo(true)
           setErrorPopup(false)
         }
@@ -185,7 +193,10 @@ export default function Bank() {
         bankCode={bankCode}
         bankName={bankName}
         country={country}
-        setFeaturedInfoClose={setFeaturedInfoClose} />
+        setFeaturedInfoClose={setFeaturedInfoClose}
+        lei={lei}
+        status={status}
+        subStatus={subStatus} />
       <ErrorPopup errorPopup={errorPopup}
         CloseErrorPopup={CloseErrorPopup} />
     </>
