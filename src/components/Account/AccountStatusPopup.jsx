@@ -1,6 +1,36 @@
 import { Button, Dialog, Stack, Typography, IconButton, DialogTitle, DialogContentText } from '@mui/material'
 import { CloseRounded } from '@mui/icons-material'
 import { styled } from '@mui/system'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableHead from '@mui/material/TableHead';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      fontSize: 16,
+      fontWeight: 500,
+      backgroundColor: '#4490fa',
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+      fontWeight: 500,
+    },
+  }));
+  
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(even)': {
+      backgroundColor: theme.palette.action.hover,
+    }, 
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
 
 export default function AccountStatusPopup(props) {
   const CustomButtom = styled(Button)`
@@ -21,9 +51,8 @@ export default function AccountStatusPopup(props) {
         </Stack>
       </DialogTitle>
       <DialogContentText>
-
-        <Stack spacing={2} width={500} alignItems='center' justifyContent='center' direction='row'>
-          <Stack  spacing={3} textAlign='right'>
+      <Stack width={500} paddingLeft={5} paddingRight={5} alignItems='center' justifyContent='center' direction='row'>
+      {/* <Stack  spacing={3} textAlign='right'>
             <Typography color="#575757" fontWeight='500' >Account Status :</Typography>
             <Typography color="#575757" fontWeight='500' >Account Sub Status :</Typography>
             <Typography color="#575757" fontWeight='500' > Legal Entity Identifier :</Typography>
@@ -31,13 +60,54 @@ export default function AccountStatusPopup(props) {
           <Stack spacing={3}>
             <Typography color="#575757" fontWeight='500'>{props.accountNumber}</Typography>
             <Typography color="#575757" fontWeight='500'>{props.kycNumber}</Typography>
-            <Typography color="#575757" fontWeight='500'> {props.network}</Typography>
-          </Stack>
-
+            <Typography color="#575757" fontWeight='500'>{props.network}</Typography>
+          </Stack> */}
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+              <TableHead>
+                  <TableRow>
+                  <StyledTableCell>Account</StyledTableCell>
+                  <StyledTableCell align="left">Status</StyledTableCell>
+                  </TableRow>
+              </TableHead>
+              <TableBody>
+                  {props.status && 
+                  <StyledTableRow>
+                    <StyledTableCell component="th" scope="row" >Account Status</StyledTableCell>
+                    <StyledTableCell align="left">{props.status}</StyledTableCell>
+                  </StyledTableRow>
+                }
+                  {props.subStatus && 
+                  <StyledTableRow>
+                    <StyledTableCell component="th" scope="row" >Account Sub Status</StyledTableCell>
+                    <StyledTableCell align="left">{props.subStatus}</StyledTableCell>
+                  </StyledTableRow>
+                }
+                  {props.lei && 
+                    <StyledTableRow>
+                      <StyledTableCell component="th" scope="row" >Legal Entity Identifierinstrument</StyledTableCell>
+                      <StyledTableCell align="left">{props.lei}</StyledTableCell>
+                  </StyledTableRow>
+                }
+                  <StyledTableRow>
+                    <StyledTableCell component="th" scope="row" > MSISDN</StyledTableCell>
+                    <StyledTableCell align="left">{props.accountNumber}</StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow>
+                    <StyledTableCell component="th" scope="row" >Beneficiary Name"</StyledTableCell>
+                    <StyledTableCell align="left">{props.kycNumber}</StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow>
+                    <StyledTableCell component="th" scope="row" >Instrument</StyledTableCell>
+                    <StyledTableCell align="left">{props.network}</StyledTableCell>
+                  </StyledTableRow>
+              </TableBody>
+              </Table>
+          </TableContainer>
         </Stack>
-        <Stack spacing={3} py={5} justifyContent='center' direction='row'>
+        <Stack spacing={3} py={3} justifyContent='center' direction='row'>
           <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={() => props.setFeaturedInfoClose()}>OK</Button>
-          <CustomButtom sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' disabled>Create Transaction</CustomButtom>
+          {/* <CustomButtom sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' disabled>Create Transaction</CustomButtom> */}
 
         </Stack>
       </DialogContentText>

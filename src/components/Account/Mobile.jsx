@@ -14,6 +14,9 @@ export default function Mobile() {
   const [accountNumber, setAccountNumber] = useState('')
   const [kycNumber, setKycNumber] = useState('')
   const [network, setNetwork] = useState('')
+  const [status, setStatus] = useState('')
+  const [subStatus, setSubStatus] = useState('')
+  const [lei, setLei] = useState('')
   const [errorPopup, setErrorPopup] = useState(false)
 
   const CloseErrorPopup = () => {
@@ -49,6 +52,9 @@ export default function Mobile() {
     ).then((res) => {
       console.log("res",res.data)
       if(res.data.status === 'available') {
+        setLei(res.data.lei)
+        setStatus(res.data.status)
+        setSubStatus(res.data.subStatus)
         setFeaturedInfo(true)
       } else {
         setErrorPopup(true)
@@ -118,6 +124,9 @@ export default function Mobile() {
         network={network}
         kycNumber={kycNumber}
         setFeaturedInfoClose={setFeaturedInfoClose}
+        lei={lei}
+        status={status}
+        subStatus={subStatus}
       />
       <ErrorPopup errorPopup={errorPopup}
         CloseErrorPopup={CloseErrorPopup} />
