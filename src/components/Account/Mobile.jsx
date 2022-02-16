@@ -41,9 +41,9 @@ export default function Mobile() {
     }
     axios.post(`${apiUrl}/js/accounts-status`
       , {
-        "instrument": "mobile-wallet",
-        "msisdn": "+9779840002320",
-        "beneficiaryName": "David Robinson"
+        "instrument": `${network}`,
+        "msisdn": `${accountNumber}`,
+        "beneficiaryName": `${kycNumber}`
     },
       { headers: options.headers } 
     ).then((res) => {
@@ -67,24 +67,24 @@ export default function Mobile() {
         <Stack width={600} spacing={5} sx={{ p: 4 }}>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Account Number of the beneficiary
+             Beneficiary MSISDN with country code
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Account Number' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Account KYC Number of the beneficiary
+            Full KYC name of the beneficiary
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='KYC Name' onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Mobile network of the beneficiary
+              Account Instrument
             </Typography>
 
             <TextField
               sx={{ width: 205 }}
-              label="Mobile Network"
+              label="Instrument"
               value={network}
               onChange={({ target }) => setNetwork(target.value)}
               select
@@ -92,11 +92,10 @@ export default function Mobile() {
               InputLabelProps={{ style: { height: 40 } }}
             >
               <MenuItem value="" >
-                Mobile Network
+                Instrument
               </MenuItem>
-              <MenuItem value='Airtel'>Airtel</MenuItem>
-              <MenuItem value='Vodafone'>Vodafone</MenuItem>
-              <MenuItem value='Jio'>Jio</MenuItem>
+              <MenuItem value='mobile-wallet'>Mobile-Wallet</MenuItem>
+              <MenuItem value='mobile-bank'>Mobile-Bank</MenuItem>
             </TextField>
           </Stack>
           <Stack direction='row'>
