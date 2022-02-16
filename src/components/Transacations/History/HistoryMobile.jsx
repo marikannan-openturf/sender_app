@@ -22,7 +22,10 @@ import Tooltip from "@mui/material/Tooltip";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import SortIcon from '../../../assets/img/two-arrows.png'
-
+import { useEffect } from 'react';
+import axios from 'axios';
+import { config } from '../../../assets/config/config';
+const apiUrl = config.api.url
 function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -34,6 +37,29 @@ function TablePaginationActions(props) {
   const handleNextButtonClick = (event) => {
     onPageChange(event, page + 1);
   };
+
+  useEffect(()=>{
+   getTransactionHistory()
+  },[])
+
+  const getTransactionHistory = () => {
+    console.log("mari")
+    const options = {
+      headers: {
+        'username': 'OpenTurfDev',
+        'password': '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'actualdate': '2018-04-04 09:27:16',
+        'origincountry': 'US'
+      }
+    }
+    axios.get(`${apiUrl}/js/transaction?transactionReference=SrcTxnId001`,{ headers: options.headers } 
+    ).then((res) => {
+      // setFeaturedInfo(true)
+
+    }).catch((err) => {
+      // setErrorPopup(true)
+    }) 
+  }
 
 
   return (
@@ -153,23 +179,23 @@ export default function HistoryMobile(props) {
         <TableHead>
           <TableRow>
             <StyledTableCell>
-                <Stack alignItems='center' justifyContent='center' direction='row'>
-                <img src={SortIcon} height="16" weight="16"/>
+                <Stack  direction='row'>
+                <img src={SortIcon} height="16" weight="16" style={{marginTop:'1px'}} />
                 <Typography sx={{paddingLeft:0.5}}>Date</Typography>
                 </Stack>
             </StyledTableCell>
             <StyledTableCell align="left">Amount</StyledTableCell>
             <StyledTableCell align="left">
-                <Stack alignItems='center' justifyContent='center' direction='row'>
-                <img src={SortIcon} height="16" weight="16"/>
+                <Stack direction='row'>
+                <img src={SortIcon} height="16" weight="16" style={{marginTop:'1px'}}/>
                 <Typography sx={{paddingLeft:0.5}} >Curency</Typography>
                 </Stack>
             </StyledTableCell>
-            <StyledTableCell align="left">Type</StyledTableCell>
+            {/* <StyledTableCell align="left">Type</StyledTableCell> */}
             <StyledTableCell align="left">Req Ref Id</StyledTableCell>
             <StyledTableCell align="left">
-              <Stack alignItems='center' justifyContent='center' direction='row'>
-              <img src={SortIcon} height="16" weight="16"/>
+              <Stack direction='row'>
+              <img src={SortIcon} height="16" weight="16" style={{marginTop:'1px'}}/>
               <Typography sx={{paddingLeft:0.5}}>Satus</Typography>
               </Stack>
             </StyledTableCell>
@@ -188,7 +214,7 @@ export default function HistoryMobile(props) {
                 <StyledTableCell component="th" scope="row" >{row.dates}</StyledTableCell>
                 <StyledTableCell align="left">{row.amount}</StyledTableCell>
                 <StyledTableCell align="left">{row.currency}</StyledTableCell>
-                <StyledTableCell align="left">{row.type}</StyledTableCell>
+                {/* <StyledTableCell align="left">{row.type}</StyledTableCell> */}
                 <StyledTableCell align="left">{row.reqrefid}</StyledTableCell>
                 <StyledTableCell align="left">{row.status}</StyledTableCell>
                 <StyledTableCell align="left">{row.reference}</StyledTableCell>

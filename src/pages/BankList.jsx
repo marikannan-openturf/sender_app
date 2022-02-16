@@ -6,7 +6,7 @@ export default function BankList() {
   return (
     <div className='banklist'>
     <Container>
-        <BankListTable/>
+        <BankListTable />
     </Container>
   </div>
   ) 

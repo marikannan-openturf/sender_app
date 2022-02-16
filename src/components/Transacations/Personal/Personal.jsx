@@ -32,9 +32,9 @@ export default function TransactionPersonalStatus() {
 
             </Link>
           </Stack>
-          <Stack>
+          {/* <Stack>
             <Button variant='contained' sx={{backgroundColor:'#4490fa'}}>Create Transaction</Button>
-          </Stack>
+          </Stack> */}
         </Stack>
 
         {mobile ? <PersonalMobile /> : <PersonalBank />}

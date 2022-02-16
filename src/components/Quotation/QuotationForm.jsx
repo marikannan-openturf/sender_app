@@ -4,7 +4,10 @@ import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/system'
 import QuotationResponse from './QuotationResponse';
 import ErrorPopup from '../../pages/ErrorPopup';
+import axios from 'axios'
+import { config } from '../../assets/config/config';
 
+const apiUrl = config.api.url
 export default function QuotationForm() {
   const [amount,setAmount] = useState('')
   const [currency,setCurrency] = useState('')
@@ -33,8 +36,43 @@ export default function QuotationForm() {
   }
 
   const setFeaturedInfoDetails = () => {
+    const options = {
+      headers: {
+        'username': 'OpenTurfDev',
+        'password': '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'actualdate': '2018-04-04 09:27:16',
+        'origincountry': 'US'
+      }
+    }
+    axios.post(`${apiUrl}/js/quotation`
+      , {
+        "requestDate": "2017-06-20 12:27:16",
+        "creditParty": [
+          {
+            "key": "bankaccountno",
+            "value": "50100002965304"
+          },
+          {
+            "key": "receivingCountry",
+            "value": "IN"
+          }
+        ],
+        "requestAmount": "500",
+        "requestCurrency": "INR",
+        "quotes": [
+          {
+            "sendingCurrency": "USD",
+            "receivingCurrency": "INR"
+          }
+        ]
+      },
+      { headers: options.headers } 
+    ).then((res) => {
       setFeaturedInfo(true)
-      setErrorPopup(false)
+
+    }).catch((err) => {
+      setErrorPopup(true)
+    })
   }
 
   const CloseErrorPopup = () =>{
