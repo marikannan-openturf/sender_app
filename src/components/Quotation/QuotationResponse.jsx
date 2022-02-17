@@ -64,19 +64,19 @@ export default function QuotationResponse(props) {
     <Dialog
       open={props.featuredInfo} sx={{ height: '100%', width: '100%' }} onClose={() => props.setFeaturedInfoClose()} >
       <DialogTitle>
-        <Stack direction='row' justifyContent='space-between'>
-          <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}> Quotation Id: 34234234</Typography>
-          <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Date: 10 Jan 2020</Typography>
+        <Stack direction='row' justifyContent='space-between' py={2} px={2}>
+          <Typography variant='h6' fontFamily='Poppins' fontWeight='600' > Quotation Id: 34234234</Typography>
+          <Typography variant='h6' fontFamily='Poppins' fontWeight='600' >Date: 10 Jan 2020</Typography>
         </Stack>
       </DialogTitle>
       <DialogContentText>
-        <Stack spacing={2} width={500} paddingBottom={5} paddingLeft={5} paddingRight={5} alignItems='center' justifyContent='center' direction='row'>
-            <TableContainer component={Paper}>
+        <Stack width={500} px={5} alignItems='center' justifyContent='center' direction='row'>
+            <TableContainer component={Paper} >
             <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
             <TableHead>
                 <TableRow>
-                <StyledTableCell>Request Amount</StyledTableCell>
-                <StyledTableCell align="left">Dollars</StyledTableCell>
+                <StyledTableCell sx={{width:'50%'}}>Request Amount</StyledTableCell>
+                <StyledTableCell align="left" sx={{width:'50%'}} >Dollars</StyledTableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -91,7 +91,7 @@ export default function QuotationResponse(props) {
             </Table>
         </TableContainer>
         </Stack>
-        <Stack paddingBottom={5} paddingRight={5} justifyContent='right' direction='row'>
+        <Stack paddingBottom={5} paddingRight={5} py={3} justifyContent='right' direction='row'>
           <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={() => props.setFeaturedInfoClose()}>OK</Button>
         </Stack>
       </DialogContentText>

@@ -8,7 +8,7 @@ function Sandbox() {
   return (
     <div>
       <Paper>
-          <Box padding={'140px'}>
+          <Box padding={'120px'}>
               <Stack spacing={4} alignItems='center' >
 
                 <Stack spacing={12} alignItems='center' justifyContent='center' direction='row'>
