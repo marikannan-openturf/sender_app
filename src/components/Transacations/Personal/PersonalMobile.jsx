@@ -1,5 +1,5 @@
-import { OutlinedInput, Paper, Stack, Typography, TextField,Button } from '@mui/material';
-import React,{useState} from 'react';
+import { OutlinedInput, Paper, Stack, Typography, TextField, Button } from '@mui/material';
+import React, { useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/system'
 import TransactionMobileStatusPopup from './TransactionMobileStatusPopup';
@@ -9,17 +9,17 @@ import { config } from '../../../assets/config/config';
 const apiUrl = config.api.url
 
 export default function PersonalMobile() {
-  const [amount,setAmount] = useState('500')
-  const [currency,setCurrency] = useState('INR')
-  const [transactionType,setTransactionType] = useState('inttransfer')
-  const [mobileNumber,setMobileNumber] = useState('+971810456234')
-  const [reciverMobileNumber,setReciverMobileNumber] = useState('+9779840002320')
-  const [accountNr,setAccountNr] = useState('50100002965304')
-  const [kycName,setKycName] = useState('HDFC Bank')
-  const [bankCode,setBankCode] = useState('HDFC0001626')
+  const [amount, setAmount] = useState('500')
+  const [currency, setCurrency] = useState('INR')
+  const [transactionType, setTransactionType] = useState('inttransfer')
+  const [mobileNumber, setMobileNumber] = useState('+971810456234')
+  const [reciverMobileNumber, setReciverMobileNumber] = useState('+9779840002320')
+  const [accountNr, setAccountNr] = useState('50100002965304')
+  const [kycName, setKycName] = useState('HDFC Bank')
+  const [bankCode, setBankCode] = useState('HDFC0001626')
   const [network, setNetwork] = useState('')
   const [dob, setDob] = useState('1967-05-28')
-  const [nationality,setNationality] = useState('AE')
+  const [nationality, setNationality] = useState('AE')
   // const [genter, setGenter] = useState('')
   const [genderDetails, setGenderDetails] = useState('M')
   const [idType, setIdType] = useState('VOTER_CARD')
@@ -207,7 +207,7 @@ export default function PersonalMobile() {
           "relationshipSender": `${senderRelation}`
         }
       },
-      { headers: options.headers } 
+      { headers: options.headers }
     ).then((res) => {
       setFeaturedInfo(true)
 
@@ -216,15 +216,15 @@ export default function PersonalMobile() {
     })
   }
 
-console.log("dasd0",new Date())
+  console.log("dasd0", new Date())
   return (
     <>
 
       <Paper sx={{ p: 5 }}>
-        <Stack alignItems='center' sx={{pb:4}}>
-        <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Transaction Personal Mobile Status</Typography>
+        <Stack alignItems='center' sx={{ pb: 4 }}>
+          <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Transaction Personal Mobile Status</Typography>
 
-          </Stack>
+        </Stack>
         <Stack spacing={4} justifyContent='space-between' direction='row'>
 
           <Stack spacing={4} width={450}>
@@ -233,13 +233,13 @@ console.log("dasd0",new Date())
               <Typography color="#575757" fontWeight='500'>
                 Amount
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Amount' value={amount} onChange={({target}) => setAmount(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Amount' value={amount} onChange={({ target }) => setAmount(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Currency
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Currency' value={currency} onChange={({target}) => setCurrency(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='Currency' value={currency} onChange={({ target }) => setCurrency(target.value)} />
             </Stack>
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
             <Typography color="#575757" fontWeight='500'>
@@ -267,17 +267,17 @@ console.log("dasd0",new Date())
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Sender Mobile Number
+                Sender Mobile Number
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobileNumber} onChange={({target}) => setMobileNumber(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobileNumber} onChange={({ target }) => setMobileNumber(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Reciver Mobile Number
+                Reciver Mobile Number
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={reciverMobileNumber} onChange={({target}) => setReciverMobileNumber(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={reciverMobileNumber} onChange={({ target }) => setReciverMobileNumber(target.value)} />
             </Stack>
-            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+            {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
               Beneficiary Bank Account 
               </Typography>
@@ -294,51 +294,51 @@ console.log("dasd0",new Date())
               Bank Code
               </Typography>
               <OutlinedInput sx={{ height: 40 }}   placeholder='Bank Code' value={bankCode} onChange={({target}) => setBankCode(target.value)}/>
-            </Stack>
+            </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
-            <Typography color="#575757" fontWeight='500'>
-           Gender
-              </Typography>
-            <TextField
-              sx={{width:205}}
-              label="Gender"
-              value={genderDetails}
-              onChange={({ target }) => setGenderDetails(target.value)}
-              select
-              InputProps={{ style: { height: 40 } }}
-              InputLabelProps={{ style: { height: 40 } }}
-            >
-              <MenuItem value="" >
+              <Typography color="#575757" fontWeight='500'>
                 Gender
-              </MenuItem>
-              <MenuItem value='M'>Male</MenuItem>
-              <MenuItem value='F'>Female</MenuItem>
-              {/* <MenuItem value='Jio'>Jio</MenuItem> */}
-            </TextField>
+              </Typography>
+              <TextField
+                sx={{ width: 205 }}
+                label="Gender"
+                value={genderDetails}
+                onChange={({ target }) => setGenderDetails(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+                <MenuItem value="" >
+                  Gender
+                </MenuItem>
+                <MenuItem value='M'>Male</MenuItem>
+                <MenuItem value='F'>Female</MenuItem>
+                {/* <MenuItem value='Jio'>Jio</MenuItem> */}
+              </TextField>
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Nationality
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Nationality' value={nationality} onChange={({target}) => setNationality(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='Nationality' value={nationality} onChange={({ target }) => setNationality(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Date of Birth
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Date of Birth'  value={dob} onChange={({target}) => setDob(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Date of Birth' value={dob} onChange={({ target }) => setDob(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Description
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Description'  value={descriptionText} onChange={({target}) => setDescriptionText(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Description' value={descriptionText} onChange={({ target }) => setDescriptionText(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Transaction Reference
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Transaction Reference'  value={transactionRef} onChange={({target}) => setTransactionRef(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Transaction Reference' value={transactionRef} onChange={({ target }) => setTransactionRef(target.value)} />
             </Stack>
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -350,52 +350,48 @@ console.log("dasd0",new Date())
               <Typography color="#575757" fontWeight='500'>
                 ID Type
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='ID Type' value={idType} onChange={({target}) => setIdType(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='ID Type' value={idType} onChange={({ target }) => setIdType(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 ID Number
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='ID Number' value={idNumber} onChange={({target}) => setIdNumber(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='ID Number' value={idNumber} onChange={({ target }) => setIdNumber(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Issue Date
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='ID Number' value={issueDate} onChange={({target}) => setIssueDate(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='ID Number' value={issueDate} onChange={({ target }) => setIssueDate(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Expiry Date
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Expiry Date' value={expDate} onChange={({target}) => setExpDate(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='Expiry Date' value={expDate} onChange={({ target }) => setExpDate(target.value)} />
             </Stack>
-           
-          </Stack>
-
-
-          <Stack spacing={4} width={450}>
-
 
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Issuer Country
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Issuer Country' value={issuerCountry} onChange={({target}) => setIssuerCountry(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='Issuer Country' value={issuerCountry} onChange={({ target }) => setIssuerCountry(target.value)} />
             </Stack>
+          </Stack>
 
 
+          <Stack spacing={4} width={450}>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Id Number
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobile} onChange={({target}) => setMobile(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobile} onChange={({ target }) => setMobile(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Full Name
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Full Name' value={fullName} onChange={({target}) => setFullName(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='Full Name' value={fullName} onChange={({ target }) => setFullName(target.value)} />
             </Stack>
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -421,38 +417,38 @@ console.log("dasd0",new Date())
               <Typography color="#575757" fontWeight='500'>
                 Address Line1
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Address line 1' value={address1} onChange={({target}) => setAddress1(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Address line 1' value={address1} onChange={({ target }) => setAddress1(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Address Line2
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Address line 2' value={address2} onChange={({target}) => setAddress2(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Address line 2' value={address2} onChange={({ target }) => setAddress2(target.value)} />
             </Stack>
-                        <Stack alignItems='center' justifyContent='space-between' direction='row'>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 City
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='City' value={city} onChange={({target}) => setCity(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='City' value={city} onChange={({ target }) => setCity(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 State Province
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='State Province' value={stateProvince} onChange={({target}) => setStateProvince(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='State Province' value={stateProvince} onChange={({ target }) => setStateProvince(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Postal Code
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Postal Code' value={postalCode} onChange={({target}) => setPostalCode(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Postal Code' value={postalCode} onChange={({ target }) => setPostalCode(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Country
               </Typography>
-              <OutlinedInput sx={{ height: 40 }}  placeholder='Country' value={country} onChange={({target}) => setCountry(target.value)} />
-            </Stack> 
+              <OutlinedInput sx={{ height: 40 }} placeholder='Country' value={country} onChange={({ target }) => setCountry(target.value)} />
+            </Stack>
 
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -464,52 +460,52 @@ console.log("dasd0",new Date())
               <Typography color="#575757" fontWeight='500'>
                 Remittance Purpose
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Remittance Purpose' value={remitancePurpose} onChange={({target}) => setRemitancePurpose(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='Remittance Purpose' value={remitancePurpose} onChange={({ target }) => setRemitancePurpose(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Recipient Name
               </Typography>
-              <OutlinedInput sx={{ height: 40 }}  placeholder='Recipient Name' value={recipientName} onChange={({target}) => setRecipientName(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Name' value={recipientName} onChange={({ target }) => setRecipientName(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Quote ID
               </Typography>
-              <OutlinedInput sx={{ height: 40 }}  placeholder='Quote ID' value={quoteId} onChange={({target}) => setQuoteId(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Quote ID' value={quoteId} onChange={({ target }) => setQuoteId(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Receiving Country
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Receiving Country' value={reciveCountry} onChange={({target}) => setReciveCountry(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='Receiving Country' value={reciveCountry} onChange={({ target }) => setReciveCountry(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Source of Fund
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Source of Fund' value={sourceFund} onChange={({target}) => setSourceFund(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='Source of Fund' value={sourceFund} onChange={({ target }) => setSourceFund(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Sender Relationship
               </Typography>
-              <OutlinedInput sx={{ height: 40 }}  placeholder='Sender Relationship' value={senderRelation} onChange={({target}) => setSenderRelation(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='Sender Relationship' value={senderRelation} onChange={({ target }) => setSenderRelation(target.value)} />
             </Stack>
           </Stack>
         </Stack>
 
         <Stack alignItems='center' mt={5}>
-        {/* {amount && currency && mobileNumber && kycName && network && dob && nationality && genderDetails && idType && expDate && idNumber  && fullName  && country && city && accountKycName && remitancePurpose && quoteId && reciveCountry && sourceFund && senderRelation ? */}
-        <Button variant='contained' onClick={setFeaturedInfoDetails} >Submit</Button> 
-        {/* :
+          {/* {amount && currency && mobileNumber && kycName && network && dob && nationality && genderDetails && idType && expDate && idNumber  && fullName  && country && city && accountKycName && remitancePurpose && quoteId && reciveCountry && sourceFund && senderRelation ? */}
+          <Button variant='contained' onClick={setFeaturedInfoDetails} >Submit</Button>
+          {/* :
         <CustomButtom variant='contained' disabled>Submit</CustomButtom> } */}
 
         </Stack>
 
       </Paper>
       <TransactionMobileStatusPopup
-      featuredInfo={featuredInfo}
+        featuredInfo={featuredInfo}
         amount={amount}
         currency={currency}
         network={network}
