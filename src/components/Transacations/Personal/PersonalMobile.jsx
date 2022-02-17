@@ -9,28 +9,32 @@ import { config } from '../../../assets/config/config';
 const apiUrl = config.api.url
 
 export default function PersonalMobile() {
-  const [amount,setAmount] = useState('')
-  const [currency,setCurrency] = useState('')
-  const [mobileNumber,setMobileNumber] = useState('')
-  const [kycName,setKycName] = useState('')
+  const [amount,setAmount] = useState('500')
+  const [currency,setCurrency] = useState('INR')
+  const [transactionType,setTransactionType] = useState('inttransfer')
+  const [mobileNumber,setMobileNumber] = useState('+971810456234')
+  const [accountNr,setAccountNr] = useState('50100002965304')
+  const [kycName,setKycName] = useState('HDFC Bank')
+  const [bankCode,setBankCode] = useState('HDFC0001626')
   const [network, setNetwork] = useState('')
-  const [dob, setDob] = useState('')
-  const [nationality,setNationality] = useState('')
-  const [genter, setGenter] = useState('')
-  const [idType, setIdType] = useState('')
-  const [idNumber, setIdNumber] = useState('')
-  const [expDate, setExpDate] = useState('')
-  const [mobile, setMobile] = useState('')
-  const [fullName, setFullName] = useState('')
+  const [dob, setDob] = useState('1967-05-28')
+  const [nationality,setNationality] = useState('AE')
+  // const [genter, setGenter] = useState('')
+  const [genderDetails, setGenderDetails] = useState('M')
+  const [idType, setIdType] = useState('VOTER_CARD')
+  const [idNumber, setIdNumber] = useState('13321115521')
+  const [expDate, setExpDate] = useState('2067-05-28')
+  const [mobile, setMobile] = useState('13321115521')
+  const [fullName, setFullName] = useState('Test Sender2')
   const [senderAddress, setSenderAddress] = useState('')
-  const [country, setCountry] = useState('')
-  const [city, setCity] = useState('')
-  const [accountKycName, setAccountKycName] = useState('')
-  const [remitancePurpose, setRemitancePurpose] = useState('')
-  const [quoteId, setQuoteId] = useState('')
-  const [reciveCountry, setReciveCountry] = useState('')
-  const [sourceFund, setSourceFund] = useState('')
-  const [senderRelation, setSenderRelation] = useState('')
+  const [country, setCountry] = useState('US')
+  const [city, setCity] = useState('Florida')
+  const [accountKycName, setAccountKycName] = useState('Oyugi Randy Electric Sale Pvt. Ltd.')
+  const [remitancePurpose, setRemitancePurpose] = useState('Business Travel')
+  const [quoteId, setQuoteId] = useState('QR037C1NA6ZXBSQ88B')
+  const [reciveCountry, setReciveCountry] = useState('IN')
+  const [sourceFund, setSourceFund] = useState('Business Income')
+  const [senderRelation, setSenderRelation] = useState('Employer')
   const [errorPopup, setErrorPopup] = useState(false)
   const [featuredInfo, setFeaturedInfo] = useState(false)
 
@@ -42,32 +46,59 @@ export default function PersonalMobile() {
   }`
 
   const CloseErrorPopup = () => {
+    setAmount('500')
+    setCurrency('INR')
+    setNetwork('')
+    setTransactionType('inttransfer')
+    setMobileNumber('+971810456234')
+    setKycName('HDFC Bank')
+    setDob('1967-05-28')
+    setNationality('AE')
+    // setGenter('')
+    setGenderDetails('M')
+    setIdType('VOTER_CARD')
+    setIdNumber('13321115521')
+    setExpDate('2067-05-28')
+    setMobile('13321115521')
+    setFullName('Test Sender2')
+    setSenderAddress('')
+    setCountry('US')
+    setCity('Florida')
+    setAccountKycName('Oyugi Randy Electric Sale Pvt. Ltd.')
+    setRemitancePurpose('Business Travel')
+    setQuoteId('QR037C1NA6ZXBSQ88B')
+    setReciveCountry('IN')
+    setSourceFund('Business Income')
+    setSenderRelation('Employer')
+    setFeaturedInfo(false)
     setErrorPopup(false)
   }
 
   const setFeaturedInfoClose = () => {
-    setAmount('')
-    setCurrency('')
+    setAmount('500')
+    setCurrency('INR')
     setNetwork('')
-    setMobileNumber('')
-    setKycName('')
-    setDob('')
-    setNationality('')
-    setGenter('')
-    setIdType('')
-    setIdNumber('')
-    setExpDate('')
-    setMobile('')
-    setFullName('')
+    setTransactionType('inttransfer')
+    setMobileNumber('+971810456234')
+    setKycName('HDFC Bank')
+    setDob('1967-05-28')
+    setNationality('AE')
+    // setGenter('')
+    setGenderDetails('M')
+    setIdType('VOTER_CARD')
+    setIdNumber('13321115521')
+    setExpDate('2067-05-28')
+    setMobile('13321115521')
+    setFullName('Test Sender2')
     setSenderAddress('')
-    setCountry('')
-    setCity('')
-    setAccountKycName('')
-    setRemitancePurpose('')
-    setQuoteId('')
-    setReciveCountry('')
-    setSourceFund('')
-    setSenderRelation('')
+    setCountry('US')
+    setCity('Florida')
+    setAccountKycName('Oyugi Randy Electric Sale Pvt. Ltd.')
+    setRemitancePurpose('Business Travel')
+    setQuoteId('QR037C1NA6ZXBSQ88B')
+    setReciveCountry('IN')
+    setSourceFund('Business Income')
+    setSenderRelation('Employer')
     setFeaturedInfo(false)
   }
 
@@ -163,7 +194,7 @@ export default function PersonalMobile() {
     })
   }
 
-
+console.log("dasd0",new Date())
   return (
     <>
 
@@ -189,36 +220,72 @@ export default function PersonalMobile() {
               <OutlinedInput sx={{ height: 40 }} placeholder='Currency' value={currency} onChange={({target}) => setCurrency(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
-              <Typography color="#575757" fontWeight='500'>
-                Mobile Number
-              </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobileNumber} onChange={({target}) => setMobileNumber(target.value)} />
-            </Stack>
-            <Stack alignItems='center' justifyContent='space-between' direction='row'>
-              <Typography color="#575757" fontWeight='500'>
-                Account KYC Name
-              </Typography>
-              <OutlinedInput sx={{ height: 40 }}   placeholder='Account KYC Name' value={kycName} onChange={({target}) => setKycName(target.value)}/>
-            </Stack>
-            <Stack alignItems='center' justifyContent='space-between' direction='row'>
             <Typography color="#575757" fontWeight='500'>
-            Mobile Network
+            Transaction Type
               </Typography>
             <TextField
               sx={{width:205}}
-              label="Mobile Network"
-              value={network}
-              onChange={({ target }) => setNetwork(target.value)}
+              label="Transaction Type"
+              value={transactionType}
+              onChange={({ target }) => setTransactionType(target.value)}
               select
               InputProps={{ style: { height: 40 } }}
               InputLabelProps={{ style: { height: 40 } }}
             >
               <MenuItem value="" >
-                Mobile Network
+              Transaction Type
               </MenuItem>
-              <MenuItem value='Airtel'>Airtel</MenuItem>
-              <MenuItem value='Vodafone'>Vodafone</MenuItem>
-              <MenuItem value='Jio'>Jio</MenuItem>
+              <MenuItem value='inttransfer-wallet'>Wallet</MenuItem>
+              <MenuItem value='inttransfer'>Bank</MenuItem>
+              <MenuItem value='b2p'>B2P</MenuItem>
+              <MenuItem value='b2b'>B2B</MenuItem>
+              <MenuItem value='p2b'>P2B</MenuItem>
+
+            </TextField>
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
+              Sender Mobile Number
+              </Typography>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobileNumber} onChange={({target}) => setMobileNumber(target.value)} />
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
+              Beneficiary Bank Account 
+              </Typography>
+              <OutlinedInput sx={{ height: 40 }}   placeholder='Account no' value={accountNr} onChange={({target}) => setAccountNr(target.value)}/>
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
+              Full name of beneficiary bank
+              </Typography>
+              <OutlinedInput sx={{ height: 40 }}   placeholder='Account KYC Name' value={kycName} onChange={({target}) => setKycName(target.value)}/>
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
+              Bank Code
+              </Typography>
+              <OutlinedInput sx={{ height: 40 }}   placeholder='Bank Code' value={bankCode} onChange={({target}) => setBankCode(target.value)}/>
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+            <Typography color="#575757" fontWeight='500'>
+           Gender
+              </Typography>
+            <TextField
+              sx={{width:205}}
+              label="Gender"
+              value={genderDetails}
+              onChange={({ target }) => setGenderDetails(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              <MenuItem value="" >
+                Gender
+              </MenuItem>
+              <MenuItem value='M'>Male</MenuItem>
+              <MenuItem value='F'>Female</MenuItem>
+              {/* <MenuItem value='Jio'>Jio</MenuItem> */}
             </TextField>
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
@@ -233,12 +300,13 @@ export default function PersonalMobile() {
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Date of Birth'  value={dob} onChange={({target}) => setDob(target.value)}/>
             </Stack>
-            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+            {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Gender
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Gender' value={genter} onChange={({target}) => setGenter(target.value)}/>
-            </Stack><Stack alignItems='center' justifyContent='space-between' direction='row'>
+            </Stack> */}
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 ID Type
               </Typography>
@@ -250,20 +318,21 @@ export default function PersonalMobile() {
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='ID Number' value={idNumber} onChange={({target}) => setIdNumber(target.value)} />
             </Stack>
-            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+           
+          </Stack>
+
+
+          <Stack spacing={4} width={450}>
+          <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Expiry Date
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Expiry Date' value={expDate} onChange={({target}) => setExpDate(target.value)} />
             </Stack>
-          </Stack>
-
-
-          <Stack spacing={4} width={450}>
 
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Mobile Number
+                Id Number
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobile} onChange={({target}) => setMobile(target.value)} />
             </Stack>
@@ -273,7 +342,7 @@ export default function PersonalMobile() {
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Full Name' value={fullName} onChange={({target}) => setFullName(target.value)} />
             </Stack>
-            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+            {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Sender Address
               </Typography>
@@ -292,7 +361,7 @@ export default function PersonalMobile() {
               <MenuItem value='Airtel'>Airtel</MenuItem>
               <MenuItem value='Vodafone'>Vodafone</MenuItem>
               <MenuItem value='Jio'>Jio</MenuItem>
-            </TextField>            </Stack>
+            </TextField>            </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Country
@@ -345,9 +414,10 @@ export default function PersonalMobile() {
         </Stack>
 
         <Stack alignItems='center' mt={5}>
-        {amount && currency && mobileNumber && kycName && network && dob && nationality && genter && idType && expDate && idNumber && mobile && fullName && senderAddress && country && city && accountKycName && remitancePurpose && quoteId && reciveCountry && sourceFund && senderRelation ?
-        <Button variant='contained' onClick={setFeaturedInfoDetails} >Submit</Button> :
-        <CustomButtom variant='contained' disabled>Submit</CustomButtom> }
+        {/* {amount && currency && mobileNumber && kycName && network && dob && nationality && genderDetails && idType && expDate && idNumber  && fullName  && country && city && accountKycName && remitancePurpose && quoteId && reciveCountry && sourceFund && senderRelation ? */}
+        <Button variant='contained' onClick={setFeaturedInfoDetails} >Submit</Button> 
+        {/* :
+        <CustomButtom variant='contained' disabled>Submit</CustomButtom> } */}
 
         </Stack>
 

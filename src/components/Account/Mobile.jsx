@@ -11,9 +11,9 @@ const apiUrl = config.api.url
 
 export default function Mobile() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
-  const [accountNumber, setAccountNumber] = useState('')
-  const [kycNumber, setKycNumber] = useState('')
-  const [network, setNetwork] = useState('')
+  const [accountNumber, setAccountNumber] = useState('+9779840002320')
+  const [kycNumber, setKycNumber] = useState('David Robinson')
+  const [network, setNetwork] = useState('mobile-wallet')
   const [status, setStatus] = useState('')
   const [subStatus, setSubStatus] = useState('')
   const [lei, setLei] = useState('')
@@ -21,16 +21,16 @@ export default function Mobile() {
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
-    setAccountNumber('')
-    setKycNumber('')
-    setNetwork('')
+    setAccountNumber('+9779840002320')
+    setKycNumber('David Robinson')
+    setNetwork('mobile-wallet')
   }
 
   const setFeaturedInfoClose = () => {
     setFeaturedInfo(false)
-    setAccountNumber('')
-    setKycNumber('')
-    setNetwork('')
+    setAccountNumber('+9779840002320')
+    setKycNumber('David Robinson')
+    setNetwork('mobile-wallet')
   }
 
   const setFeaturedInfoDetails = () => {

@@ -10,14 +10,14 @@ import { config } from '../../assets/config/config';
 const apiUrl = config.api.url
 export default function Bank() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
-  const [accountNumber, setAccountNumber] = useState('')
-  const [kycNumber, setKycNumber] = useState('')
-  const [bankCode, setBankCode] = useState('')
-  const [bankName, setBankName] = useState('')
-  const [country, setCountry] = useState('')
+  const [accountNumber, setAccountNumber] = useState('50100002965304')
+  const [kycNumber, setKycNumber] = useState('Deepa Jain')
+  const [bankCode, setBankCode] = useState('HDFC0001626')
+  const [bankName, setBankName] = useState('HDFC Bank')
+  const [country, setCountry] = useState('IN')
   const [provider, setProvider] = useState('')
   const [subCode, setSubCode] = useState('')
-  const [network, setNetwork] = useState('')
+  const [network, setNetwork] = useState('bank-account')
   const [errorPopup, setErrorPopup] = useState(false)
 
   const [status, setStatus] = useState('')
@@ -26,14 +26,14 @@ export default function Bank() {
 
   const setFeaturedInfoClose = () => {
     setFeaturedInfo(false)
-    setAccountNumber('')
-    setKycNumber('')
-    setBankCode('')
-    setBankName('')
-    setCountry('')
+    setAccountNumber('50100002965304')
+    setKycNumber('Deepa Jain')
+    setBankCode('HDFC0001626')
+    setBankName('HDFC Bank')
+    setCountry('IN')
     setProvider('')
     setSubCode('')
-    setNetwork('')
+    setNetwork('bank-account')
   }
 
   // const setFeaturedInfoDetails = () => {
@@ -56,14 +56,14 @@ export default function Bank() {
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
-    setAccountNumber('')
-    setKycNumber('')
-    setBankCode('')
-    setBankName('')
-    setCountry('')
+    setAccountNumber('50100002965304')
+    setKycNumber('Deepa Jain')
+    setBankCode('HDFC0001626')
+    setBankName('HDFC Bank')
+    setCountry('IN')
     setProvider('')
     setSubCode('')
-    setNetwork('')
+    setNetwork('bank-account')
   }
 
   const CustomButtom = styled(Button)`
