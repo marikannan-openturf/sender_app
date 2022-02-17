@@ -217,6 +217,7 @@ export default function PersonalBank() {
       },
       { headers: options.headers }
     ).then((res) => {
+      console.log("Personal Bank Response", res.data)
       setFeaturedInfo(true)
 
     }).catch((err) => {
@@ -520,6 +521,14 @@ export default function PersonalBank() {
         network={network}
         kycName={kycName}
         setFeaturedInfoClose={setFeaturedInfoClose}
+        dob={dob}
+        network={network}
+        mobileNumber={mobileNumber}
+        bankCode={bankCode}
+        accountNr={accountNr}
+        genderDetails={genderDetails}
+        nationality={nationality}
+        descriptionText={descriptionText}
       />
       <ErrorPopup errorPopup={errorPopup}
         CloseErrorPopup={CloseErrorPopup} />

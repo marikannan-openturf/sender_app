@@ -209,6 +209,7 @@ export default function PersonalMobile() {
       },
       { headers: options.headers }
     ).then((res) => {
+      console.log("Personal Mobile REsponse", res.data)
       setFeaturedInfo(true)
 
     }).catch((err) => {
@@ -508,8 +509,13 @@ export default function PersonalMobile() {
         featuredInfo={featuredInfo}
         amount={amount}
         currency={currency}
-        network={network}
-        kycName={kycName}
+        transactionType={transactionType}
+        mobileNumber={mobileNumber}
+        reciverMobileNumber={reciverMobileNumber}
+        genderDetails={genderDetails}
+        nationality={nationality}
+        dob={dob}
+        descriptionText={descriptionText}
         setFeaturedInfoClose={setFeaturedInfoClose}
       />
       <ErrorPopup errorPopup={errorPopup}

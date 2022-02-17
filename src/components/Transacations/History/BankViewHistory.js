@@ -1,16 +1,16 @@
 import { Button, Dialog, Stack, Typography, IconButton, DialogTitle } from '@mui/material'
 import { CloseRounded } from '@mui/icons-material'
 
-export default function MobileReverseHistory(props) {
+export default function BankViewHistory(props) {
 
   return (
     <Dialog
-      open={props.reverseTrans} sx={{ height: '100%', width: '100%' }} onClose={() => props.OnClickReverseClose()}
+      open={props.viewTrans} sx={{ height: '100%', width: '100%' }} onClose={() => props.OnClickViewClose()}
     >
       <DialogTitle>
         <Stack spacing={12} justifyContent='end' direction='row'>
-        <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Bank Transacation Reversed</Typography>
-        <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0}><CloseRounded width={10} height={10} onClick={props.onClickCancelClose} /></IconButton>
+        <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Bank Transacation View</Typography>
+        <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0}><CloseRounded width={10} height={10} onClick={props.OnClickViewClose} /></IconButton>
         </Stack>
       </DialogTitle>
       <Stack spacing={1} justifyContent="center" alignItems="center" direction="row" width={500}>
@@ -31,7 +31,7 @@ export default function MobileReverseHistory(props) {
 
       </Stack>
       <Stack spacing={3} py={5} justifyContent='center' direction='row'>
-      <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={props.OnClickReverseClose}>OK</Button>
+      <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={props.OnClickViewClose}>OK</Button>
       </Stack>
     </Dialog>
   )

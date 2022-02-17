@@ -7,8 +7,8 @@ export default function ReportCorridor() {
   return (
   <div className='reportCorridor'>
       <Container>
-          <CorridorQuotation/>
           {/* <CorridorEmpty/> */}
+          <CorridorQuotation/>
       </Container>
   </div>
   )

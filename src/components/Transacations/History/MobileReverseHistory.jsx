@@ -9,8 +9,8 @@ export default function MobileReverseHistory(props) {
     >
       <DialogTitle>
         <Stack spacing={12} justifyContent='end' direction='row'>
-        <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Bank Transacation Reversed</Typography>
-        <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0}><CloseRounded width={10} height={10} onClick={props.onClickCancelClose} /></IconButton>
+        <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Mobile Transacations Reversed</Typography>
+        <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0}><CloseRounded width={10} height={10} onClick={() => props.OnClickReverseClose()} /></IconButton>
         </Stack>
       </DialogTitle>
       <Stack spacing={1} justifyContent="center" alignItems="center" direction="row" width={500}>
@@ -19,7 +19,7 @@ export default function MobileReverseHistory(props) {
         <Typography color="#575757" fontWeight='500' >Mobile Number :</Typography>
         <Typography color="#575757" fontWeight='500' >Transacations Type :</Typography>
         <Typography color="#575757" fontWeight='500' >Transacations Reference :</Typography>
-        <Typography color="#575757" fontWeight='500' >Cancellation Status :</Typography>
+        <Typography color="#575757" fontWeight='500' >Reversal Status :</Typography>
         </Stack>
         <Stack spacing={2} textAlign="left">
         <Typography color="#575757" fontWeight='500'>27 Jan 2022</Typography>

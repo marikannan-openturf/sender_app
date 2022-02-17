@@ -22,9 +22,14 @@ import Tooltip from "@mui/material/Tooltip";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import SortIcon from '../../../assets/img/two-arrows.png'
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { config } from '../../../assets/config/config';
+import MobileReverseHistory from './MobileReverseHistory';
+import MobileViewHistory from './MobileViewHistory';
+import MobileCancelHistory from './MobileCancelHistory';
+
+
 const apiUrl = config.api.url
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -135,8 +140,11 @@ const rows = [
 ].sort((a, b) => (a.dates < b.dates ? -1 : 1));
 
 export default function HistoryMobile(props) {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [cancelTrans, setCancelTrans] =useState(false)
+  const [reverseTrans, setReverseTrans] =useState(false)
+  const [viewTrans, setViewTrans] =useState(false)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -162,11 +170,30 @@ export default function HistoryMobile(props) {
   };
 
   const OnClickCancel = () => {
-    props.setCancelTrans(true);
+    setViewTrans(false);
+    setReverseTrans(false);
+   setCancelTrans(true);
   };
   const OnClickReverse = () => {
-    props.setReverseTrans(true);
+    setViewTrans(false);
+    setCancelTrans(false);
+    setReverseTrans(true);
   };
+  const onClickView = () => {
+    setCancelTrans(false);
+    setReverseTrans(false);
+    setViewTrans(true);
+  };
+  const onClickCancelClose = () => {
+    setCancelTrans(false);
+  };
+  const OnClickReverseClose = () => {
+    setReverseTrans(false);
+  };
+  const OnClickViewClose = () => {
+    setViewTrans(false);
+  };
+
 
   return (
     <Paper sx={{ paddingTop:3, paddingLeft:5, paddingRight:5, paddingBottom:5, }}>
@@ -302,10 +329,13 @@ export default function HistoryMobile(props) {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>View</MenuItem>
-        <MenuItem /* onClick={OnClickCancel} */>Cancel</MenuItem>
-        <MenuItem /* onClick={OnClickReverse}  */>Reverse</MenuItem>
+        <MenuItem onClick={onClickView} >View</MenuItem>
+        <MenuItem onClick={OnClickCancel}>Cancel</MenuItem>
+        <MenuItem onClick={OnClickReverse} >Reverse</MenuItem>
       </Menu>
+      <MobileReverseHistory reverseTrans={reverseTrans} OnClickReverseClose={OnClickReverseClose}  />
+      <MobileViewHistory viewTrans={viewTrans} OnClickViewClose={OnClickViewClose} />
+      <MobileCancelHistory cancelTrans={cancelTrans} onClickCancelClose={onClickCancelClose} />
     </Paper>
   );
 }

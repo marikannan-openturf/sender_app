@@ -27,6 +27,7 @@ import BankCancelHistory from './BankCancelHistory';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { config } from '../../../assets/config/config';
+import BankViewHistory from './BankViewHistory';
 const apiUrl = config.api.url
 
 function TablePaginationActions(props) {
@@ -142,6 +143,7 @@ export default function HistoryBank() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [cancelTrans, setCancelTrans] =useState(false)
   const [reverseTrans, setReverseTrans] =useState(false)
+  const [viewTrans, setViewTrans] =useState(false)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -167,19 +169,28 @@ export default function HistoryBank() {
   };
 
   const OnClickCancel = () => {
+    setViewTrans(false);
     setReverseTrans(false);
    setCancelTrans(true);
   };
   const OnClickReverse = () => {
+    setViewTrans(false);
     setCancelTrans(false);
     setReverseTrans(true);
   };
+  const onClickView = () => {
+    setCancelTrans(false);
+    setReverseTrans(false);
+    setViewTrans(true);
+  };
   const onClickCancelClose = () => {
-    console.log("CLICK ADFASDF")
     setCancelTrans(false);
   };
   const OnClickReverseClose = () => {
     setReverseTrans(false);
+  };
+  const OnClickViewClose = () => {
+    setViewTrans(false);
   };
 
 
@@ -311,13 +322,14 @@ export default function HistoryBank() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>View</MenuItem>
+        <MenuItem onClick={onClickView}>View</MenuItem>
         <MenuItem onClick={OnClickCancel}>Cancel</MenuItem>
         <MenuItem onClick={OnClickReverse} >Reverse</MenuItem>
       </Menu>
     </Paper>
     <BankCancelHistory cancelTrans={cancelTrans} onClickCancelClose={onClickCancelClose} />
     <BankReverseHistory reverseTrans={reverseTrans} OnClickReverseClose={OnClickReverseClose} />
+    <BankViewHistory viewTrans={viewTrans} OnClickViewClose={OnClickViewClose} />
     </>
   );
 }

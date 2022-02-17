@@ -33,16 +33,10 @@ import Paper from '@mui/material/Paper';
   }));
 
 export default function AccountStatusPopup(props) {
-  const CustomButtom = styled(Button)`
-    &.Mui-disabled{
-       opacity:0.5;
-       background-color : #1976d2;
-       color:white
-    }`
+
   return (
     <Dialog
-      open={props.featuredInfo} sx={{ height: '100%', width: '100%' }} onClose={() => props.setFeaturedInfoClose()}
-    >
+      open={props.featuredInfo} sx={{ height: '100%', width: '100%' }} onClose={() => props.setFeaturedInfoClose()} >
       <DialogTitle>
         <Stack alignItems='right' justifyContent='right' direction='row'>
           <IconButton ><CloseRounded width={10} height={10} onClick={() => props.setFeaturedInfoClose()} /></IconButton>

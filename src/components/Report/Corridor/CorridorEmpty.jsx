@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Container,Stack, Box, Button, Paper, Typography  } from '@mui/material';
-import EmptyCorridor from '../../../assets/img/EmptyCorridor.svg'
+import WorldConnectedIcon from '../../../assets/img/WorldConnectedIcon.svg'
 
 
 
@@ -22,11 +22,11 @@ export default function CorridorEmpty() {
         </Stack>
         </Stack>
         <Paper >
-                <Box sx={{padding:'40px' }}>
-                    <Stack spacing={2} alignItems='center' justifyContent='center' direction='row'>
-                        <Stack alignItems='center' justifyContent='center'>
-                            <img src={EmptyCorridor} width="400" height="400" />
-                            <Typography  sx={{marginTop:'-70px' }} fontSize={18} fontWeight='500' >No Corridor active.</Typography>
+                <Box>
+                    <Stack alignItems='center' justifyContent='center' direction='row'>
+                        <Stack alignItems='center' justifyContent='center' sx={{marginTop:'-60px' }} >
+                            <img src={WorldConnectedIcon} width="500" height="500" />
+                            <Typography  pb={5} sx={{marginTop:'-80px' }} fontSize={18} fontWeight='500' >No corridor active.</Typography>
                         </Stack>
                     </Stack>
                     

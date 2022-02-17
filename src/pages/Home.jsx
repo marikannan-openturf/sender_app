@@ -8,9 +8,9 @@ export default function Home() {
   <div className='home'>
     <Stack p={6} >
       <Stack direction='row' justifyContent='flex-start' spacing={5}>
-        <Stack direction='row' mb={3}>
-          <Typography textAlign='left' fontSize={20} fontFamily='Poppins' variant='h6' color="#404040">Ledger Balance</Typography> 
-        </Stack>
+       {/*  <Stack direction='row' mb={3}>
+          <Typography textAlign='left' fontSize={20} fontFamily='Poppins' variant='h6' color="#404040">Home</Typography> 
+        </Stack> */}
       </Stack>
         <Paper>
           <Stack p={1} alignItems='center' justifyContent='center' direction='row' ><img src={WelcomeIcon} width="350" height="350" alt="walletIcon"/></Stack>
