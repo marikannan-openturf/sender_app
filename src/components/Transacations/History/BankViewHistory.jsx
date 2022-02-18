@@ -36,7 +36,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-export default function MobileViewHistory(props) {
+export default function BankViewHistory(props) {
 
   const [historyList, setHistoryList] = useState({})
 
@@ -80,7 +80,7 @@ export default function MobileViewHistory(props) {
     >
       <DialogTitle>
         <Stack spacing={12} justifyContent='end' direction='row'>
-          <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Mobile Transacation View</Typography>
+          <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Bank Transacation View</Typography>
           <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0}><CloseRounded width={10} height={10} onClick={props.OnClickViewClose} /></IconButton>
         </Stack>
       </DialogTitle>
@@ -178,11 +178,11 @@ export default function MobileViewHistory(props) {
                   <StyledTableCell component="th" scope="row" >Currency</StyledTableCell>
                   <StyledTableCell align="left"> {historyList.currency}</StyledTableCell>
                 </StyledTableRow>
-                {historyList && historyList.creditParty && historyList.creditParty.length > 0 &&  <StyledTableRow>
+                {historyList && historyList.creditParty && historyList.creditParty.length > 0 && <StyledTableRow>
                   <StyledTableCell component="th" scope="row" >Sender Mobile</StyledTableCell>
                   <StyledTableCell align="left"> {historyList.creditParty[0].value}</StyledTableCell>
                 </StyledTableRow>}
-                {historyList && historyList.debitParty && historyList.debitParty.length > 0 &&  <StyledTableRow>
+                {historyList && historyList.debitParty && historyList.debitParty.length > 0 && <StyledTableRow>
                   <StyledTableCell component="th" scope="row" >Reciver Mobile</StyledTableCell>
                   <StyledTableCell align="left"> {historyList.debitParty[0].value}</StyledTableCell>
                 </StyledTableRow>}

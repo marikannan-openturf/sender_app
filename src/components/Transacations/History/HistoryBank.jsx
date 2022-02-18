@@ -116,26 +116,26 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(dates, amount, currency, type, reqrefid, status, reference, sender, recepient) {
-  return { dates, amount, currency, type, reqrefid, status, reference, sender, recepient};
+function createData(id,dates, amount, currency, type, reqrefid, status, reference, sender, recepient) {
+  return { id,dates, amount, currency, type, reqrefid, status, reference, sender, recepient};
 }
 
 const rows = [
-  createData('01-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('02-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('23-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('35-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('20-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('30-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('11-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('12-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('13-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('10-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('07-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(1,'01-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(2,'02-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(3,'23-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(4,'19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(5,'35-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(6,'19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(7,'19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(8,'20-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(9,'30-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(10,'11-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(11,'12-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(12,'13-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(13,'10-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(14,'07-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(15,'19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
 ].sort((a, b) => (a.dates < b.dates ? -1 : 1));
 
 export default function HistoryBank() {
@@ -144,6 +144,9 @@ export default function HistoryBank() {
   const [cancelTrans, setCancelTrans] =useState(false)
   const [reverseTrans, setReverseTrans] =useState(false)
   const [viewTrans, setViewTrans] =useState(false)
+  const [refId,setRefId] = useState('SrcTxnId001')
+  const [reverseDetails,setReverseDetails] = useState({})
+  const [cancelDetails, setCancelDetails] = useState({})
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -169,14 +172,57 @@ export default function HistoryBank() {
   };
 
   const OnClickCancel = () => {
-    setViewTrans(false);
-    setReverseTrans(false);
-   setCancelTrans(true);
+    const options = {
+      headers: {
+        'username': 'OpenTurfDev',
+        'password': '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'actualdate': '2018-04-04 09:27:16',
+        'origincountry': 'US'
+      }
+    }
+    axios.post(`${apiUrl}/js/cancel-transaction`
+      , {
+        "reason": "cancelling",
+        "txnId": "SrcTxnId001"
+    },
+      { headers: options.headers }
+    ).then((res) => {
+      setCancelDetails(res.data)
+      setViewTrans(false);
+      setReverseTrans(false);
+      setCancelTrans(true);
+    }).catch((err) => {
+      setViewTrans(false);
+      setReverseTrans(false);
+      setCancelTrans(true);
+    })
   };
   const OnClickReverse = () => {
+
+    const options = {
+      headers: {
+        'username': 'OpenTurfDev',
+        'password': '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'actualdate': '2018-04-04 09:27:16',
+        'origincountry': 'US'
+      }
+    }
+    axios.post(`${apiUrl}/js/reverse-transaction`
+      , {
+        "reversalReason": "reversalreason",
+        "txnId": "TPKM000000056269"
+    },
+      { headers: options.headers } 
+    ).then((res) => {
+    setReverseDetails(res.data)
     setViewTrans(false);
     setCancelTrans(false);
     setReverseTrans(true);
+    }).catch((err) => {
+    setViewTrans(false);
+    setCancelTrans(false);
+    setReverseTrans(true);
+    })
   };
   const onClickView = () => {
     setCancelTrans(false);
@@ -230,7 +276,7 @@ export default function HistoryBank() {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <StyledTableRow key={row.name}>
+            <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row" >{row.dates}</StyledTableCell>
                 <StyledTableCell align="left">{row.amount}</StyledTableCell>
                 <StyledTableCell align="left">{row.currency}</StyledTableCell>
@@ -327,9 +373,9 @@ export default function HistoryBank() {
         <MenuItem onClick={OnClickReverse} >Reverse</MenuItem>
       </Menu>
     </Paper>
-    <BankCancelHistory cancelTrans={cancelTrans} onClickCancelClose={onClickCancelClose} />
-    <BankReverseHistory reverseTrans={reverseTrans} OnClickReverseClose={OnClickReverseClose} />
-    <BankViewHistory viewTrans={viewTrans} OnClickViewClose={OnClickViewClose} />
+    {cancelTrans &&  <BankCancelHistory cancelTrans={cancelTrans} cancelDetails={cancelDetails} onClickCancelClose={onClickCancelClose} /> }
+    {reverseTrans && <BankReverseHistory reverseTrans={reverseTrans} reverseDetails={reverseDetails} OnClickReverseClose={OnClickReverseClose} />}
+    {viewTrans && <BankViewHistory viewTrans={viewTrans} refId={refId} OnClickViewClose={OnClickViewClose} />}
     </>
   );
 }

@@ -162,7 +162,6 @@ export default function BankListTable() {
   }, [])
 
   const getBankList = () => {
-    console.log("mari")
     const options = {
       headers: {
         'username': 'OpenTurfDev',

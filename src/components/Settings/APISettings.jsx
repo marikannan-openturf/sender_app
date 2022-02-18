@@ -21,11 +21,11 @@ export default function APISettings() {
     <>
       <Stack p={6}>
 
-        <Stack direction='row' mb={3}>
+        {/* <Stack direction='row' mb={3}>
           <Typography textAlign='left' fontSize={20} fontFamily='Poppins' variant='h6' color="#404040">API Settings</Typography> 
-        </Stack>
+        </Stack> */}
 
-        <Stack direction='row' justifyContent='space-between' pb={0.5}>
+        <Stack direction='row' justifyContent='space-between' pb={3}>
         
           <Stack direction='row'  spacing={3}>
             <Link component="button" underline={sandbox ? "always" : "none"} color="inherit" onClick={sandboxActive}>

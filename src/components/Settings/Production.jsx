@@ -1,14 +1,34 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { OutlinedInput, Stack, Paper, Button, Box, Typography } from "@mui/material";
+import { styled } from '@mui/system'
 
 function Production() {
   const [username,setUsername] = useState('')
   const [password,setPassword] = useState('')
-
+  useEffect(()=>{
+    if(localStorage.getItem('prodUsername')) {
+      setUsername(localStorage.getItem('prodUsername'))
+    }
+    if(localStorage.getItem('prodPassword')) {
+      setPassword(localStorage.getItem('prodPassword'))
+    }
+    },[])
+  
+    const sandboxHandler = () => {
+      localStorage.setItem('prodUsername',username)
+      localStorage.setItem('prodPassword',password)
+    }
+  
+    const CustomButtom = styled(Button)`
+      &.Mui-disabled{
+         opacity:0.5;
+         background-color : #1976d2;
+         color:white
+      }`
   return (
     <div>
       <Paper>
-          <Box padding={'120px'}>
+          <Box padding={6}>
               <Stack spacing={4} alignItems='center' >
 
                 <Stack spacing={12} alignItems='center' justifyContent='center' direction='row'>
@@ -30,8 +50,10 @@ function Production() {
                 </Stack>
 
                   <Stack pl={52}>
-                    <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained'>Save</Button>
-                  </Stack>
+                  {username && password ? 
+
+<Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={sandboxHandler}>Save</Button>
+: <CustomButtom sx={{ alignSelf: 'center', letterSpacing: 1 }} onClick={sandboxHandler} variant='contained' disabled>Save</CustomButtom>}                  </Stack>
 
               </Stack>
           </Box>

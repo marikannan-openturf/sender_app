@@ -1,8 +1,8 @@
 import { useState } from "react";
-import BusinessBank from "./BusinessBank";
-import BusinessMobile from "./BusinessMobile"
+import Bank from "./Bank";
+import Mobile from "./Mobile"
 import { Stack, Link, Button, Typography } from "@mui/material";
-export default function Business() {
+export default function QuotationStatus() {
   const [mobile, setMobile] = useState(true)
   const [bank, setBank] = useState(false)
 
@@ -37,7 +37,7 @@ export default function Business() {
           </Stack> */}
         </Stack>
 
-        {mobile ? <BusinessMobile /> : <BusinessBank />}
+        {mobile ? <Mobile /> : <Bank />}
 
       </Stack>
     </>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Typography,Stack } from '@mui/material'
+import { Typography, Stack } from '@mui/material'
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
@@ -28,8 +28,6 @@ import { config } from '../../../assets/config/config';
 import MobileReverseHistory from './MobileReverseHistory';
 import MobileViewHistory from './MobileViewHistory';
 import MobileCancelHistory from './MobileCancelHistory';
-
-
 const apiUrl = config.api.url
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -43,9 +41,9 @@ function TablePaginationActions(props) {
     onPageChange(event, page + 1);
   };
 
-  useEffect(()=>{
-   getTransactionHistory()
-  },[])
+  useEffect(() => {
+    getTransactionHistory()
+  }, [])
 
   const getTransactionHistory = () => {
     console.log("mari")
@@ -57,13 +55,13 @@ function TablePaginationActions(props) {
         'origincountry': 'US'
       }
     }
-    axios.get(`${apiUrl}/js/transaction?transactionReference=SrcTxnId001`,{ headers: options.headers } 
+    axios.get(`${apiUrl}/js/transaction?transactionReference=SrcTxnId001`, { headers: options.headers }
     ).then((res) => {
       // setFeaturedInfo(true)
 
     }).catch((err) => {
       // setErrorPopup(true)
-    }) 
+    })
   }
 
 
@@ -110,41 +108,44 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(even)': {
     backgroundColor: theme.palette.action.hover,
-  }, 
+  },
   // hide last border
   '&:last-child td, &:last-child th': {
     border: 0,
   },
 }));
 
-function createData(dates, amount, currency, type, reqrefid, status, reference, sender, recepient) {
-  return { dates, amount, currency, type, reqrefid, status, reference, sender, recepient};
+function createData(id, dates, amount, currency, type, reqrefid, status, reference, sender, recepient) {
+  return { id, dates, amount, currency, type, reqrefid, status, reference, sender, recepient };
 }
 
 const rows = [
-  createData('01-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('02-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('23-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('35-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('20-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('30-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('11-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('12-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('13-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('10-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('07-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
-  createData('19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(1, '01-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(2, '02-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(3, '23-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(4, '19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(5, '35-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(6, '19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(7, '19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(8, '20-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(9, '30-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(10, '11-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(11, '12-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(12, '13-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(13, '10-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(14, '07-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
+  createData(15, '19-02-2020', 4000, 'dollar', 'type', 42342, 'status', 'reference', 'senderName', 'recepientname'),
 ].sort((a, b) => (a.dates < b.dates ? -1 : 1));
 
 export default function HistoryMobile(props) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [cancelTrans, setCancelTrans] =useState(false)
-  const [reverseTrans, setReverseTrans] =useState(false)
-  const [viewTrans, setViewTrans] =useState(false)
+  const [cancelTrans, setCancelTrans] = useState(false)
+  const [reverseTrans, setReverseTrans] = useState(false)
+  const [viewTrans, setViewTrans] = useState(false)
+  const [refId, setRefId] = useState('SrcTxnId001')
+  const [reverseDetails, setReverseDetails] = useState({})
+  const [cancelDetails, setCancelDetails] = useState({})
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -170,14 +171,58 @@ export default function HistoryMobile(props) {
   };
 
   const OnClickCancel = () => {
-    setViewTrans(false);
-    setReverseTrans(false);
-   setCancelTrans(true);
+      const options = {
+      headers: {
+        'username': 'OpenTurfDev',
+        'password': '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'actualdate': '2018-04-04 09:27:16',
+        'origincountry': 'US'
+      }
+    }
+    axios.post(`${apiUrl}/js/cancel-transaction`
+      , {
+        "reason": "cancelling",
+        "txnId": "SrcTxnId001"
+    },
+      { headers: options.headers }
+    ).then((res) => {
+      setCancelDetails(res.data)
+      setViewTrans(false);
+      setReverseTrans(false);
+      setCancelTrans(true);
+    }).catch((err) => {
+      setViewTrans(false);
+      setReverseTrans(false);
+      setCancelTrans(true);
+    })
+
   };
   const OnClickReverse = () => {
-    setViewTrans(false);
-    setCancelTrans(false);
-    setReverseTrans(true);
+
+    const options = {
+      headers: {
+        'username': 'OpenTurfDev',
+        'password': '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'actualdate': '2018-04-04 09:27:16',
+        'origincountry': 'US'
+      }
+    }
+    axios.post(`${apiUrl}/js/reverse-transaction`
+      , {
+        "reversalReason": "reversalreason",
+        "txnId": "TPKM000000056269"
+      },
+      { headers: options.headers }
+    ).then((res) => {
+      setReverseDetails(res.data)
+      setViewTrans(false);
+      setCancelTrans(false);
+      setReverseTrans(true);
+    }).catch((err) => {
+      setViewTrans(false);
+      setCancelTrans(false);
+      setReverseTrans(true);
+    })
   };
   const onClickView = () => {
     setCancelTrans(false);
@@ -196,48 +241,48 @@ export default function HistoryMobile(props) {
 
 
   return (
-    <Paper sx={{ paddingTop:3, paddingLeft:5, paddingRight:5, paddingBottom:5, }}>
-            <Stack alignItems='center' sx={{pb:4}}>
+    <Paper sx={{ paddingTop: 3, paddingLeft: 5, paddingRight: 5, paddingBottom: 5, }}>
+      <Stack alignItems='center' sx={{ pb: 4 }}>
         <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Mobile Transaction History</Typography>
 
-          </Stack>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="custom pagination table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>
-                <Stack  direction='row'>
-                <img src={SortIcon} height="16" weight="16" style={{marginTop:'1px'}} />
-                <Typography sx={{paddingLeft:0.5}}>Date</Typography>
-                </Stack>
-            </StyledTableCell>
-            <StyledTableCell align="left">Amount</StyledTableCell>
-            <StyledTableCell align="left">
+      </Stack>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="custom pagination table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>
                 <Stack direction='row'>
-                <img src={SortIcon} height="16" weight="16" style={{marginTop:'1px'}}/>
-                <Typography sx={{paddingLeft:0.5}} >Curency</Typography>
+                  <img src={SortIcon} height="16" weight="16" style={{ marginTop: '1px' }} />
+                  <Typography sx={{ paddingLeft: 0.5 }}>Date</Typography>
                 </Stack>
-            </StyledTableCell>
-            {/* <StyledTableCell align="left">Type</StyledTableCell> */}
-            <StyledTableCell align="left">Req Ref Id</StyledTableCell>
-            <StyledTableCell align="left">
-              <Stack direction='row'>
-              <img src={SortIcon} height="16" weight="16" style={{marginTop:'1px'}}/>
-              <Typography sx={{paddingLeft:0.5}}>Satus</Typography>
-              </Stack>
-            </StyledTableCell>
-            <StyledTableCell align="left">Reference</StyledTableCell>
-            <StyledTableCell align="left">Sender</StyledTableCell>
-            <StyledTableCell align="left">Receipient</StyledTableCell>
-            <StyledTableCell align="center">More</StyledTableCell>
-          </TableRow>
-      </TableHead>
-        <TableBody>
-          {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
-            <StyledTableRow key={row.name}>
+              </StyledTableCell>
+              <StyledTableCell align="left">Amount</StyledTableCell>
+              <StyledTableCell align="left">
+                <Stack direction='row'>
+                  <img src={SortIcon} height="16" weight="16" style={{ marginTop: '1px' }} />
+                  <Typography sx={{ paddingLeft: 0.5 }} >Curency</Typography>
+                </Stack>
+              </StyledTableCell>
+              {/* <StyledTableCell align="left">Type</StyledTableCell> */}
+              <StyledTableCell align="left">Req Ref Id</StyledTableCell>
+              <StyledTableCell align="left">
+                <Stack direction='row'>
+                  <img src={SortIcon} height="16" weight="16" style={{ marginTop: '1px' }} />
+                  <Typography sx={{ paddingLeft: 0.5 }}>Satus</Typography>
+                </Stack>
+              </StyledTableCell>
+              <StyledTableCell align="left">Reference</StyledTableCell>
+              <StyledTableCell align="left">Sender</StyledTableCell>
+              <StyledTableCell align="left">Receipient</StyledTableCell>
+              <StyledTableCell align="center">More</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {(rowsPerPage > 0
+              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : rows
+            ).map((row) => (
+              <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row" >{row.dates}</StyledTableCell>
                 <StyledTableCell align="left">{row.amount}</StyledTableCell>
                 <StyledTableCell align="left">{row.currency}</StyledTableCell>
@@ -258,43 +303,43 @@ export default function HistoryMobile(props) {
                         aria-haspopup="true"
                         aria-expanded={open ? "true" : undefined}
                       >
-                      <MoreHorizIcon />
+                        <MoreHorizIcon />
                       </IconButton>
                     </Tooltip>
                   </Box>
                 </StyledTableCell>
               </StyledTableRow>
-          ))}
+            ))}
 
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={10}
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    'aria-label': 'rows per page',
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
             </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={10}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
-    <Menu
+          </TableFooter>
+        </Table>
+      </TableContainer>
+      <Menu
         anchorEl={morePopup}
         id="More"
         open={open}
@@ -333,9 +378,9 @@ export default function HistoryMobile(props) {
         <MenuItem onClick={OnClickCancel}>Cancel</MenuItem>
         <MenuItem onClick={OnClickReverse} >Reverse</MenuItem>
       </Menu>
-      <MobileReverseHistory reverseTrans={reverseTrans} OnClickReverseClose={OnClickReverseClose}  />
-      <MobileViewHistory viewTrans={viewTrans} OnClickViewClose={OnClickViewClose} />
-      <MobileCancelHistory cancelTrans={cancelTrans} onClickCancelClose={onClickCancelClose} />
+      {reverseTrans && <MobileReverseHistory reverseTrans={reverseTrans} reverseDetails={reverseDetails} OnClickReverseClose={OnClickReverseClose} />}
+      {viewTrans && <MobileViewHistory viewTrans={viewTrans} refId={refId} OnClickViewClose={OnClickViewClose} />}
+      {cancelTrans && <MobileCancelHistory cancelTrans={cancelTrans} cancelDetails={cancelDetails} onClickCancelClose={onClickCancelClose} />}
     </Paper>
   );
 }

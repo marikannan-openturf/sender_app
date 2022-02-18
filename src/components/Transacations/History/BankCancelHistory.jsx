@@ -1,7 +1,36 @@
 import { Button, Dialog, Stack, Typography, IconButton, DialogTitle } from '@mui/material'
 import { CloseRounded } from '@mui/icons-material'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableHead from '@mui/material/TableHead';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableRow from '@mui/material/TableRow';
+import { styled } from '@mui/system'
+import Paper from '@mui/material/Paper';
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    fontSize: 16,
+    fontWeight: 500,
+    backgroundColor: '#4490fa',
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+    fontWeight: 500,
+  },
+}));
 
-export default function MobileCancelHistory(props) {
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(even)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+export default function BankCancelHistory(props) {
 
   return (
     <Dialog
@@ -9,11 +38,11 @@ export default function MobileCancelHistory(props) {
     >
       <DialogTitle>
         <Stack spacing={12} justifyContent='end' direction='row'>
-        <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Bank Transacation Cancelled</Typography>
-        <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0}><CloseRounded width={10} height={10} onClick={props.onClickCancelClose} /></IconButton>
+          <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Bank Transacation Canceled</Typography>
+          <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0} onClick={() => props.onClickCancelClose()}><CloseRounded width={10} height={10} onClick={props.onClickCancelClose} /></IconButton>
         </Stack>
       </DialogTitle>
-      <Stack spacing={1} justifyContent="center" alignItems="center" direction="row" width={500}>
+      {/* <Stack spacing={1} justifyContent="center" alignItems="center" direction="row" width={500}>
         <Stack direction="column" spacing={2} textAlign="right" >
         <Typography color="#575757" fontWeight='500' >Transacations Date :</Typography>
         <Typography color="#575757" fontWeight='500' >Mobile Number :</Typography>
@@ -29,9 +58,32 @@ export default function MobileCancelHistory(props) {
         <Typography color="#575757" fontWeight='500'>Success</Typography>
         </Stack>
 
-      </Stack>
+      </Stack> */}
+      {props.cancelDetails ?
+        <Stack px={5} width={500} alignItems='center' justifyContent='center' direction='row'>
+          <TableContainer component={Paper}>
+            <Table aria-label="custom pagination table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Account</StyledTableCell>
+                  <StyledTableCell align="left">Status</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow>
+                  <StyledTableCell component="th" scope="row" > Status Code</StyledTableCell>
+                  <StyledTableCell align="left">{props.cancelDetails.statusCode}</StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow>
+                  <StyledTableCell component="th" scope="row" > Response Message</StyledTableCell>
+                  <StyledTableCell align="left">{props.cancelDetails.responseMessage}</StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Stack> : ''}
       <Stack spacing={3} py={5} justifyContent='center' direction='row'>
-      <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={props.onClickCancelClose}>OK</Button>
+        <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={props.onClickCancelClose}>OK</Button>
       </Stack>
     </Dialog>
   )

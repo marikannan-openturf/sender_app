@@ -66,10 +66,13 @@ export default function Ledger() {
                 <Stack alignItems='right' justifyContent='right' mr={3} mt={3} direction='row' >
                 <IconButton><img  className="infomation-img" onClick={openLedgerPopup} src={InformationIconGray} width="20" height="20" alt="walletIcon"/></IconButton>
                 </Stack>
-                <Stack alignItems='center' justifyContent='center' direction='row' ><img src={WalletIcon} width="350" height="350" alt="walletIcon"/></Stack>
-                <Box sx={{marginTop:'-50px' }} pb={5}>
-                    <Stack spacing={2} alignItems='center' justifyContent='center' direction='row'>
-                            <Typography color={"#575757"} fontSize={25} fontWeight='500' >Your Current Balance is : {balance} {currency}</Typography>
+                <Stack sx={{pb:0}} alignItems='center' justifyContent='center' direction='row' ><img src={WalletIcon} width="250" height="250" alt="walletIcon"/></Stack>
+
+                <Box pb={4}>
+                    <Stack alignItems='center' justifyContent='center'>
+                            <Typography color={"#575757"} fontSize={25} fontWeight='500' >Your Current Balance </Typography>
+                            <Typography color={"#575757"} fontSize={25} fontWeight='500' >{balance} {currency}</Typography>
+
                     </Stack>
                 </Box>
         </Paper>
