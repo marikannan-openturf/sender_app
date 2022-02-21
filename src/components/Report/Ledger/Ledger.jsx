@@ -13,6 +13,7 @@ export default function Ledger() {
    const [balance,setBalance] = useState('100, 0000.00')
    const [currency,setCurrency] = useState('')
    const [ledgerPopup, setLedgerPopup] = useState(false)
+   const [response,setResponse] = useState({})
 
    const openLedgerPopup = () =>{
      setLedgerPopup(true)
@@ -40,6 +41,7 @@ export default function Ledger() {
          if(res.data && res.data.length > 0) {
            setBalance(res.data[0].currentBalance)
            setCurrency(res.data[0].currency)
+           setResponse(res.data)
          }
          console.log(res.data[0].currentBalance)
    
@@ -73,7 +75,7 @@ export default function Ledger() {
                     </Stack>
                 </Box>
         </Paper>
-        <LedgerPopup closeLedgerPopup={closeLedgerPopup} ledgerPopup={ledgerPopup} />
+        <LedgerPopup response={response} closeLedgerPopup={closeLedgerPopup} ledgerPopup={ledgerPopup} />
       </Stack>
     </>
   )
