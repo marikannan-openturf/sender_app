@@ -259,7 +259,7 @@ export default function HistoryMobile(props) {
               <StyledTableCell align="left">
                 <Stack direction='row'>
                   <img src={SortIcon} height="16" weight="16" style={{ marginTop: '1px' }} />
-                  <Typography sx={{ paddingLeft: 0.5 }} >Curency</Typography>
+                  <Typography sx={{ paddingLeft: 0.5 }} >Currency</Typography>
                 </Stack>
               </StyledTableCell>
               {/* <StyledTableCell align="left">Type</StyledTableCell> */}
@@ -267,7 +267,7 @@ export default function HistoryMobile(props) {
               <StyledTableCell align="left">
                 <Stack direction='row'>
                   <img src={SortIcon} height="16" weight="16" style={{ marginTop: '1px' }} />
-                  <Typography sx={{ paddingLeft: 0.5 }}>Satus</Typography>
+                  <Typography sx={{ paddingLeft: 0.5 }}>Status</Typography>
                 </Stack>
               </StyledTableCell>
               <StyledTableCell align="left">Reference</StyledTableCell>

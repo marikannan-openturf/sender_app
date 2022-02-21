@@ -207,7 +207,7 @@ export default function BankListTable() {
                   <StyledTableCell align="left">Bank Code</StyledTableCell>
                   <StyledTableCell align="left">Provider Code</StyledTableCell>
                   <StyledTableCell align="left">City</StyledTableCell>
-                  <StyledTableCell align="left">Satus</StyledTableCell>
+                  <StyledTableCell align="left">Status</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
