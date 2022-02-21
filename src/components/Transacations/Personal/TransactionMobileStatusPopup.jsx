@@ -132,7 +132,7 @@ export default function TransactionMobileStatusPopup(props) {
                     <StyledTableCell align="left">{props.mobileNumber}</StyledTableCell>
                   </StyledTableRow>
                   <StyledTableRow>
-                    <StyledTableCell component="th" scope="row" >Reciver Mobile Number</StyledTableCell>
+                    <StyledTableCell component="th" scope="row" >Receiver Mobile Number</StyledTableCell>
                     <StyledTableCell align="left">{props.reciverMobileNumber}
                     </StyledTableCell>
                   </StyledTableRow>

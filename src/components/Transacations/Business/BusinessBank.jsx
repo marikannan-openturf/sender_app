@@ -370,13 +370,13 @@ export default function BusinessBank() {
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Business-Name
+                Business Name
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Business-Name' value={businessName} onChange={({ target }) => setBusinessName(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Business Address1
+                Business Address
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Business Address1' value={businessAddress1} onChange={({ target }) => setBusinessAddress1(target.value)} />
             </Stack>
@@ -478,7 +478,7 @@ export default function BusinessBank() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Business ID Valid
+                Business Valid Id
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Business ID Valid' value={businessIDValidThru} onChange={({ target }) => setBusinessIDValidThru(target.value)} />
             </Stack>

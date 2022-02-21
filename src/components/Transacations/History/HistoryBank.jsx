@@ -266,7 +266,7 @@ export default function HistoryBank() {
           </Stack></StyledTableCell>
             <StyledTableCell align="left">Reference</StyledTableCell>
             <StyledTableCell align="left">Sender</StyledTableCell>
-            <StyledTableCell align="left">Receipient</StyledTableCell>
+            <StyledTableCell align="left">Recipient</StyledTableCell>
             <StyledTableCell align="center">More</StyledTableCell>
           </TableRow>
       </TableHead>

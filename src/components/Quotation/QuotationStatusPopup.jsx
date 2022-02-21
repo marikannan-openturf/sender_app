@@ -68,7 +68,7 @@ export default function QuotationStatusPopup(props) {
               <TableBody>
                   {props.creditMobileNumber && 
                   <StyledTableRow>
-                    <StyledTableCell component="th" scope="row" sx={{width:'50%'}} >Reciver Mobile Number</StyledTableCell>
+                    <StyledTableCell component="th" scope="row" sx={{width:'50%'}} >Receiver Mobile Number</StyledTableCell>
                     <StyledTableCell align="left" sx={{width:'50%'}} >{props.creditMobileNumber}</StyledTableCell>
                   </StyledTableRow>
                 }
@@ -92,7 +92,7 @@ export default function QuotationStatusPopup(props) {
                 }
                 {props.reciveCurrency && 
                     <StyledTableRow>
-                      <StyledTableCell component="th" scope="row" >Recive Currency</StyledTableCell>
+                      <StyledTableCell component="th" scope="row" >Receive Currency</StyledTableCell>
                       <StyledTableCell align="left">{props.reciveCurrency}</StyledTableCell>
                   </StyledTableRow>
                 }

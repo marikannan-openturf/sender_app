@@ -106,7 +106,7 @@ export default function Bank() {
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Recive Country
+              Receive Country
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Recive Country' onChange={({ target }) => setReciveCountry(target.value)} value={reciveCountry} />
           </Stack>
@@ -130,7 +130,7 @@ export default function Bank() {
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Recive Currency
+              Receive Currency
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Recive Currency' onChange={({ target }) => setReciveCurrency(target.value)} value={reciveCurrency} />
           </Stack>

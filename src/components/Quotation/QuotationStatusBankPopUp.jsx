@@ -70,7 +70,7 @@ export default function QuotationStatusBankPopup(props) {
                 }
                 {props.reciveCountry && 
                   <StyledTableRow>
-                    <StyledTableCell component="th" scope="row" sx={{width:'50%'}} >Recive Country</StyledTableCell>
+                    <StyledTableCell component="th" scope="row" sx={{width:'50%'}} >Receive Country</StyledTableCell>
                     <StyledTableCell align="left" sx={{width:'50%'}} >{props.reciveCountry}</StyledTableCell>
                   </StyledTableRow>
                 }
@@ -94,7 +94,7 @@ export default function QuotationStatusBankPopup(props) {
                 }
                 {props.reciveCurrency && 
                     <StyledTableRow>
-                      <StyledTableCell component="th" scope="row" >Recive Currency</StyledTableCell>
+                      <StyledTableCell component="th" scope="row" >Receive Currency</StyledTableCell>
                       <StyledTableCell align="left">{props.reciveCurrency}</StyledTableCell>
                   </StyledTableRow>
                 }

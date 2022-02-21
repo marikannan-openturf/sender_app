@@ -272,7 +272,7 @@ export default function PersonalMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Reciver Mobile Number
+                Receiver Mobile Number
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={reciverMobileNumber} onChange={({ target }) => setReciverMobileNumber(target.value)} />
             </Stack>

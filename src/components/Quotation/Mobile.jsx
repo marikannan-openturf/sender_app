@@ -91,7 +91,7 @@ export default function Mobile() {
         <Stack width={600} spacing={5} sx={{ p: 4 }}>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-             Reciver Mobile Number
+             Receiver Mobile Number
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='MSISDN number' onChange={({ target }) => setCreditMobileNumber(target.value)} value={creditMobileNumber} />
           </Stack>
@@ -115,7 +115,7 @@ export default function Mobile() {
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-            Recive Currency
+            Receive Currency
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Recive Currency' onChange={({ target }) => setReciveCurrency(target.value)} value={reciveCurrency} />
           </Stack>
