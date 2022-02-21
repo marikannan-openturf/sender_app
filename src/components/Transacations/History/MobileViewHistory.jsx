@@ -41,9 +41,7 @@ export default function MobileViewHistory(props) {
   const [historyList, setHistoryList] = useState({})
 
   useEffect(() => {
-    console.log("props", props)
     if (props.viewTrans) {
-      console.log("testx")
       getHistoryStatusView()
     }
   }, [props])
@@ -60,7 +58,6 @@ export default function MobileViewHistory(props) {
     axios.get(`${apiUrl}/js/transaction?transactionReference=SrcTxnId001`, { headers: options.headers }
     ).then((res) => {
       // setFeaturedInfo(true)
-      console.log("res.data.length", res.data)
       setHistoryList(res.data)
       //  if(res.data && res.data.length > 0) {
       //    console.log("test")
@@ -73,7 +70,6 @@ export default function MobileViewHistory(props) {
       // setErrorPopup(true)
     })
   }
-  console.log("hisa", historyList.debitParty)
   return (
     <Dialog
       open={props.viewTrans} sx={{ height: '100%', width: '100%' }} onClose={() => props.OnClickViewClose()}

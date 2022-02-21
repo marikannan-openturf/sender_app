@@ -50,7 +50,6 @@ export default function Mobile() {
     },
       { headers: options.headers } 
     ).then((res) => {
-      console.log("res",res.data)
       if(res.data.status === 'available') {
         setLei(res.data.lei)
         setStatus(res.data.status)

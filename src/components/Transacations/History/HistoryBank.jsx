@@ -47,7 +47,6 @@ function TablePaginationActions(props) {
    },[])
  
    const getTransactionHistory = () => {
-     console.log("mari")
      const options = {
        headers: {
          'username': 'OpenTurfDev',

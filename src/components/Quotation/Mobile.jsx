@@ -13,7 +13,7 @@ export default function Mobile() {
   const [creditMobileNumber, setCreditMobileNumber] = useState('+9779840002320')
   const [amount, setAmount] = useState('500')
   const [requestCurrency, setRequestCurrency] = useState('NPR')
-  const [sendCurrency, setSendCurrency] = useState('NPR')
+  const [sendCurrency, setSendCurrency] = useState('USD')
   const [reciveCurrency, setReciveCurrency] = useState('NPR')
   const [status, setStatus] = useState('')
   const [subStatus, setSubStatus] = useState('')
@@ -65,8 +65,7 @@ export default function Mobile() {
     },
       { headers: options.headers } 
     ).then((res) => {
-      console.log("res",res.data)
-      if(res.data.status === 'available') {
+      if(res.data) {
         setLei(res.data.lei)
         setStatus(res.data.status)
         setSubStatus(res.data.subStatus)

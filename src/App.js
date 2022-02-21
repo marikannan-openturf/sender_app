@@ -19,13 +19,13 @@ import Quotation from "./pages/Quotation";
 import ReportCorridor from "./pages/ReportCorridor";
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.REACT_APP_BASE_URL}>
         <Topbar />
       <div className="container">
         {/* <Sidebar /> */}
         <MenuBar/>
         <Routes>
-            <Route  path="/" element= {<Home />} />
+            <Route path="/" element= {<Home />} />
             <Route path="/account-status" element = {<AccountStatus />}/>
             <Route path="/transactions-business" element = {<TransactionsBusiness />}/>
             <Route path="/transactions-personal" element = {<TransactionsPersonal />}/>
@@ -36,6 +36,7 @@ function App() {
             <Route path="/bank-list" element={<BankList/>}/>
             <Route path="/settings" element={<Settings/>}/>
             <Route path="/quotation" element={<Quotation/>}/>
+            <Route path="*" element={<Home />} />
         </Routes>
 
       </div>

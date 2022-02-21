@@ -264,7 +264,6 @@ export default function BusinessMobile() {
       },
       { headers: options.headers }
     ).then((res) => {
-      console.log("Personal Mobile REsponse", res.data)
       setFeaturedInfo(true)
 
     }).catch((err) => {

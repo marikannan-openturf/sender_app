@@ -137,7 +137,6 @@ export default function CorridorQuotation() {
     axios.get(`${apiUrl}/js/quotation`, { headers: options.headers }
     ).then((res) => {
       // setFeaturedInfo(true)
-      console.log("res.data.length", res.data.quotes)
       setCorridors(res.data.quotes)
       //  if(res.data && res.data.length > 0) {
       //    console.log("test")

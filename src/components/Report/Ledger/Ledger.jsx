@@ -26,7 +26,6 @@ export default function Ledger() {
      },[])
    
      const getLedgerBalance = () => {
-       console.log("mari")
        const options = {
          headers: {
            'username': 'OpenTurfDev',
@@ -38,9 +37,7 @@ export default function Ledger() {
        axios.post(`${apiUrl}/js/ledger-balance`,{},{ headers: options.headers } 
        ).then((res) => {
          // setFeaturedInfo(true)
-         console.log("res.data.length",res.data.length)
          if(res.data && res.data.length > 0) {
-           console.log("test")
            setBalance(res.data[0].currentBalance)
            setCurrency(res.data[0].currency)
          }

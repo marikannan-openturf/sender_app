@@ -16,7 +16,7 @@ export default function Home() {
           <Stack p={1} alignItems='center' justifyContent='center' direction='row' ><img src={WelcomeIcon} width="350" height="350" alt="walletIcon"/></Stack>
             <Box sx={{marginTop:'-75px' }} py={7}>
                 <Stack spacing={2} alignItems='center' justifyContent='center' direction='row'>
-                        <Typography   color={"#575757"} fontSize={16} fontWeight='500' >Welcome! start sending money.</Typography>
+                        <Typography   color={"#575757"} fontSize={16} fontWeight='500' >Welcome! Start sending money.</Typography>
                 </Stack>
             </Box>
         </Paper>

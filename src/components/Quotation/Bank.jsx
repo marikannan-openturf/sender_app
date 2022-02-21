@@ -13,9 +13,9 @@ export default function Bank() {
   const [accountNumber, setAccountNumber] = useState('50100002965304')
   const [reciveCountry, setReciveCountry] = useState('IN')
   const [amount, setAmount] = useState('500')
-  const [requestCurrency, setRequestCurrency] = useState('NPR')
-  const [sendCurrency, setSendCurrency] = useState('NPR')
-  const [reciveCurrency, setReciveCurrency] = useState('NPR')
+  const [requestCurrency, setRequestCurrency] = useState('INR')
+  const [sendCurrency, setSendCurrency] = useState('USD')
+  const [reciveCurrency, setReciveCurrency] = useState('INR')
   const [status, setStatus] = useState('')
   const [subStatus, setSubStatus] = useState('')
   const [lei, setLei] = useState('')
@@ -23,17 +23,17 @@ export default function Bank() {
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
-    setAccountNumber('+9779840002320')
+    setAccountNumber('50100002965304')
     setRequestCurrency('500')
-    setRequestCurrency('NPR')
+    setRequestCurrency('INR')
     setSendCurrency('USD')
-    setReciveCurrency('NPR')
+    setReciveCurrency('INR')
     setReciveCountry('IN')
   }
 
   const setFeaturedInfoClose = () => {
     setFeaturedInfo(false)
-    setAccountNumber('+9779840002320')
+    setAccountNumber('50100002965304')
     setRequestCurrency('500')
     setRequestCurrency('NPR')
     setSendCurrency('USD')
@@ -74,8 +74,7 @@ export default function Bank() {
       },
       { headers: options.headers }
     ).then((res) => {
-      console.log("res", res.data)
-      if (res.data.status === 'available') {
+      if (res.data) {
         setLei(res.data.lei)
         setStatus(res.data.status)
         setSubStatus(res.data.subStatus)

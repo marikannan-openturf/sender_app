@@ -217,7 +217,6 @@ export default function PersonalBank() {
       },
       { headers: options.headers }
     ).then((res) => {
-      console.log("Personal Bank Response", res.data)
       setFeaturedInfo(true)
 
     }).catch((err) => {
@@ -225,7 +224,6 @@ export default function PersonalBank() {
     })
   }
 
-  console.log("dasd0", new Date())
   return (
     <>
 

@@ -173,7 +173,6 @@ export default function BankListTable() {
     axios.get(`${apiUrl}/js/bank-list?countryCode=BD`, { headers: options.headers }
     ).then((res) => {
       // setFeaturedInfo(true)
-      console.log("res.data.length", res.data.banks)
       setBanks(res.data.banks)
       //  if(res.data && res.data.length > 0) {
       //    console.log("test")
