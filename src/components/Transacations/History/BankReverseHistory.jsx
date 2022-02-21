@@ -38,7 +38,7 @@ export default function MobileReverseHistory(props) {
     >
       <DialogTitle>
         <Stack spacing={12} justifyContent='end' direction='row'>
-          <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Bank Transacations Reversed</Typography>
+          <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Bank Transacations Reverse</Typography>
           <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0} onClick={() => props.OnClickReverseClose()}><CloseRounded width={10} height={10} onClick={props.onClickCancelClose} /></IconButton>
         </Stack>
       </DialogTitle>
