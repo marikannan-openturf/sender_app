@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Container, Stack, Box, Button, Paper, Typography } from '@mui/material';
+import { Container, Stack, Box, Button, Paper, Typography, TextField } from '@mui/material';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
@@ -17,6 +17,8 @@ import IconButton from "@mui/material/IconButton";
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import { config } from '../../../assets/config/config';
+import MenuItem from '@mui/material/MenuItem';
+
 const apiUrl = config.api.url
 
 function TablePaginationActions(props) {
@@ -107,6 +109,7 @@ export default function CorridorQuotation() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [corridors, setCorridors] = useState([])
+  const [currency, setCurrency] = useState('All')
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -128,8 +131,8 @@ export default function CorridorQuotation() {
   const getCorridorList = () => {
     const options = {
       headers: {
-        'username': 'OpenTurfDev',
-        'password': '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+        'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
         'actualdate': '2018-04-04 09:27:16',
         'origincountry': 'US'
       }
@@ -150,6 +153,39 @@ export default function CorridorQuotation() {
     })
   }
 
+  const getCorridorListByCurrency = (data) => {
+    const options = {
+      headers: {
+        'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+        'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'actualdate': '2018-04-04 09:27:16',
+        'origincountry': 'US'
+      }
+    }
+    axios.get(`${apiUrl}/js/quotation?currency=${data}`, { headers: options.headers }
+    ).then((res) => {
+      // setFeaturedInfo(true)
+      setCorridors(res.data.quotes)
+      //  if(res.data && res.data.length > 0) {
+      //    console.log("test")
+      //    setBalance(res.data[0].currentBalance)
+      //    setCurrency(res.data[0].currency)
+      //  }
+      //  console.log(res.data[0].currentBalance)
+
+    }).catch((err) => {
+      // setErrorPopup(true)
+    })
+  }
+
+  const setCurrencyHandler = (e) => {
+    setCurrency(e.target.value)
+    if(e.target.value !== 'All') {
+     getCorridorListByCurrency(e.target.value)
+    } else {
+      getCorridorList()
+    }
+  }
 
   return (
     <>
@@ -163,6 +199,31 @@ export default function CorridorQuotation() {
           </Stack>
         </Stack>
         <Paper sx={{ paddingTop: 5, paddingLeft: 5, paddingRight: 5, paddingBottom: 5, }}>
+        <Stack direction='row' alignItems='center' justifyContent='space-between' pb={4}>
+            {/* <Typography color="#575757" fontWeight='500'>
+              Account Instrument
+            </Typography> */}
+
+            <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Currency"
+              value={currency}
+              onChange={setCurrencyHandler}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+                            <MenuItem value='All'>All</MenuItem>
+
+              {corridors && corridors.length > 0 && corridors.map((value)=>{
+                return (
+                  <MenuItem value={value.receivingCurrency}>{value.receivingCurrency}</MenuItem>
+                )
+              })}
+            </TextField>
+          </Stack>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="custom pagination table">
               <TableHead>

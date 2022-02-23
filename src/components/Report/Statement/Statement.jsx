@@ -84,21 +84,21 @@ function createData(description, times, type, internalRef,externalRef, amt, curr
 }
 
 const rows = [
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
-  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'desc'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Welcome notes'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Sample Message'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Happy Morning!!!'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Welcome notes'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Happy Morning!!!'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Sample Message'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Welcome notes'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Happy Morning!!!'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Sample Message'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Welcome notes'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Sample Message'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Happy Morning!!!'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Welcome notes'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Happy Morning!!!'),
+  createData("description", 4,'type', 'InternalRef', "ExternalRef", 42342, 'dollar',3143, 42342, 'Sample Message'),
 ].sort((a, b) => (a.dates < b.dates ? -1 : 1));
 
 export default function Statement() {
@@ -140,15 +140,15 @@ export default function Statement() {
             <TableHead>
               <TableRow>
                 <StyledTableCell>Description</StyledTableCell>
-                <StyledTableCell align="left">Times</StyledTableCell>
-                <StyledTableCell align="left">Type</StyledTableCell>
+                {/* <StyledTableCell align="left">Times</StyledTableCell>
+                <StyledTableCell align="left">Type</StyledTableCell> */}
                 <StyledTableCell align="left">Internal Ref</StyledTableCell>
                 <StyledTableCell align="left">External Ref</StyledTableCell>
                 <StyledTableCell align="left">Amt</StyledTableCell>
                 <StyledTableCell align="left">Currency</StyledTableCell>
                 <StyledTableCell align="left">Converted Amt</StyledTableCell>
                 <StyledTableCell align="left">Balance</StyledTableCell>
-                <StyledTableCell align="left">Desc</StyledTableCell>
+                <StyledTableCell align="left">Message</StyledTableCell>
               </TableRow>
           </TableHead>
             <TableBody>
@@ -158,8 +158,8 @@ export default function Statement() {
               ).map((row) => (
                 <StyledTableRow key={row.description}>
                     <StyledTableCell component="th" scope="row" >{row.description}</StyledTableCell>
-                    <StyledTableCell align="left">{row.times}</StyledTableCell>
-                    <StyledTableCell align="left">{row.type}</StyledTableCell>
+                    {/* <StyledTableCell align="left">{row.times}</StyledTableCell>
+                    <StyledTableCell align="left">{row.type}</StyledTableCell> */}
                     <StyledTableCell align="left">{row.internalRef}</StyledTableCell>
                     <StyledTableCell align="left">{row.externalRef}</StyledTableCell>
                     <StyledTableCell align="left">{row.amt}</StyledTableCell>

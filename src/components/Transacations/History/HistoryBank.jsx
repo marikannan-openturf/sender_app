@@ -48,9 +48,9 @@ function TablePaginationActions(props) {
  
    const getTransactionHistory = () => {
      const options = {
-       headers: {
-         'username': 'OpenTurfDev',
-         'password': '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+      headers: {
+        'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+        'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
          'actualdate': '2018-04-04 09:27:16',
          'origincountry': 'US'
        }
@@ -173,8 +173,8 @@ export default function HistoryBank() {
   const OnClickCancel = () => {
     const options = {
       headers: {
-        'username': 'OpenTurfDev',
-        'password': '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+        'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
         'actualdate': '2018-04-04 09:27:16',
         'origincountry': 'US'
       }
@@ -200,8 +200,8 @@ export default function HistoryBank() {
 
     const options = {
       headers: {
-        'username': 'OpenTurfDev',
-        'password': '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+        'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
         'actualdate': '2018-04-04 09:27:16',
         'origincountry': 'US'
       }
