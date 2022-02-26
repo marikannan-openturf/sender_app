@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios'
 import { config } from '../../../assets/config/config';
 import MenuItem from '@mui/material/MenuItem';
+import { currencyList } from '../../../Utils/currency';
 
 const apiUrl = config.api.url
 
@@ -128,6 +129,12 @@ export default function CorridorQuotation() {
     getCorridorList()
   }, [])
 
+  const corridorRefresh = () => {
+    setCurrency('All')
+    getCorridorList()
+
+  }
+
   const getCorridorList = () => {
     const options = {
       headers: {
@@ -195,7 +202,7 @@ export default function CorridorQuotation() {
             <Typography textAlign='left' fontSize={20} fontFamily='Poppins' variant='h6' color="#404040">Corridor Quotation</Typography>
           </Stack>
           <Stack spacing={3}>
-            <Button variant='contained' sx={{ backgroundColor: '#4490fa' }} onClick={getCorridorList} >Refresh</Button>
+            <Button variant='contained' sx={{ backgroundColor: '#4490fa' }} onClick={corridorRefresh} >Refresh</Button>
           </Stack>
         </Stack>
         <Paper sx={{ paddingTop: 5, paddingLeft: 5, paddingRight: 5, paddingBottom: 5, }}>
@@ -217,11 +224,11 @@ export default function CorridorQuotation() {
               
                             <MenuItem value='All'>All</MenuItem>
 
-              {corridors && corridors.length > 0 && corridors.map((value)=>{
-                return (
-                  <MenuItem value={value.receivingCurrency}>{value.receivingCurrency}</MenuItem>
-                )
-              })}
+                            {currencyList && currencyList.length > 0 && currencyList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.id}</MenuItem>
+                  )
+                })}
             </TextField>
           </Stack>
           <TableContainer component={Paper}>
@@ -233,7 +240,7 @@ export default function CorridorQuotation() {
                   <StyledTableCell align="left">Rate</StyledTableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
+            {corridors && corridors.length > 0 ?  <TableBody>
                 {(rowsPerPage > 0
                   ? corridors.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   : corridors
@@ -245,13 +252,24 @@ export default function CorridorQuotation() {
                   </StyledTableRow>
                 ))}
 
-                {emptyRows > 0 && (
+                {/* {emptyRows > 0 && (
                   <TableRow style={{ height: 53 * emptyRows }}>
                     <TableCell colSpan={6} />
                   </TableRow>
-                )}
-              </TableBody>
-              <TableFooter>
+                )} */}
+              </TableBody> :
+              <TableBody>
+                    <TableRow>
+                    {/* <TableCell align='center' colSpan='center'> */}
+                    <Typography spacing={2} p={2}>
+
+No data available
+</Typography>
+                    {/* </TableCell> */}
+                   
+                    </TableRow>
+                    </TableBody>}
+                    {corridors && corridors.length > 0 ?  <TableFooter>
                 <TableRow>
                   <TablePagination
                     rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
@@ -270,7 +288,7 @@ export default function CorridorQuotation() {
                     ActionsComponent={TablePaginationActions}
                   />
                 </TableRow>
-              </TableFooter>
+              </TableFooter> : ''}
             </Table>
           </TableContainer>
         </Paper>

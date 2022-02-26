@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Container, Stack, Box, Button, Paper, Typography, IconButton,TextField } from '@mui/material';
+import { Container, Stack, Box, Button, Paper, Typography, IconButton, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { config } from '../../../assets/config/config';
@@ -22,6 +22,8 @@ import { styled } from '@mui/material/styles';
 import Tooltip from "@mui/material/Tooltip";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import MenuItem from '@mui/material/MenuItem';
+import { currencyList } from '../../../Utils/currency';
+import Autocomplete from '@mui/material/Autocomplete';
 
 const apiUrl = config.api.url
 function TablePaginationActions(props) {
@@ -112,7 +114,7 @@ export default function Ledger() {
   const [balance, setBalance] = useState('100, 0000.00')
   const [currency, setCurrency] = useState('All')
   const [ledgerPopup, setLedgerPopup] = useState(false)
-  const [response, setResponse] = useState({})
+  const [response, setResponse] = useState([])
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [corridors, setCorridors] = useState([])
   const [page, setPage] = React.useState(0);
@@ -142,6 +144,7 @@ export default function Ledger() {
   }, [])
 
   const getLedgerBalance = () => {
+    setCurrency('All')
     const options = {
       headers: {
         'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
@@ -185,20 +188,23 @@ export default function Ledger() {
       console.log(res.data[0].currentBalance)
 
     }).catch((err) => {
+      console.log("test", err)
+      setBalance(0)
+      // setCurrency(res.data[0].currency)
+      setResponse([])
       // setErrorPopup(true)
     })
   }
 
 
-const setCurrencyHandler = (e) => {
-  setCurrency(e.target.value)
-  if(e.target.value !== 'All') {
-    getLedgerBalanceByCurrency(e.target.value)
-  } else {
-    getLedgerBalance()
+  const setCurrencyHandler = (e) => {
+    setCurrency(e.target.value)
+    if (e.target.value !== 'All') {
+      getLedgerBalanceByCurrency(e.target.value)
+    } else {
+      getLedgerBalance()
+    }
   }
-}
-
   return (
     <>
       <Stack p={6} >
@@ -211,105 +217,115 @@ const setCurrencyHandler = (e) => {
           </Stack>
         </Stack>
         <Paper >
-        <Stack alignItems='right' justifyContent='space-between' mr={3} mt={3} direction='row' >
-        {/* <IconButton><img className="infomation-img" onClick={openLedgerPopup} src={InformationIconGray} width="20" height="20" alt="walletIcon" /></IconButton> */}
-        <Stack direction='row' alignItems='center' justifyContent='space-between' pl={8}>
-            {/* <Typography color="#575757" fontWeight='500'>
+          <Stack alignItems='right' justifyContent='space-between' mr={3} mt={3} direction='row' >
+            {/* <IconButton><img className="infomation-img" onClick={openLedgerPopup} src={InformationIconGray} width="20" height="20" alt="walletIcon" /></IconButton> */}
+            <Stack direction='row' alignItems='center' justifyContent='space-between' pl={4}>
+              {/* <Typography color="#575757" fontWeight='500'>
               Account Instrument
             </Typography> */}
 
-            <TextField
-            alignItems='center'
-              sx={{ width: 205}}
-              label="Currency"
-              value={currency}
-              onChange={setCurrencyHandler}
-              select
-              InputProps={{ style: { height: 40 } }}
-              InputLabelProps={{ style: { height: 40 } }}
-            >
-              
-                            <MenuItem value='All'>All</MenuItem>
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Currency"
+                value={currency}
+                onChange={setCurrencyHandler}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
 
-              {response && response.length > 0 && response.map((value)=>{
-                return (
-                  <MenuItem value={value.currency}>{value.currency}</MenuItem>
-                )
-              })}
-            </TextField>
-          </Stack>
+                <MenuItem value='All'>All</MenuItem>
+
+                {currencyList && currencyList.length > 0 && currencyList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.id}</MenuItem>
+                  )
+                })}
+              </TextField>
+            </Stack>
             <IconButton><img className="infomation-img" onClick={openLedgerPopup} src={InformationIconGray} width="20" height="20" alt="walletIcon" /></IconButton>
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='center'>
-        <Paper sx={{boxShadow:'none',minWidth: 350}} >
-         
+            <Paper sx={{ boxShadow: 'none', minWidth: 350 }} >
 
-          <Box pb={4}>
-          <Stack sx={{ pb: 0 }} alignItems='center' justifyContent='center' direction='row' >
-            <img src={WalletIcon} width="250" height="250" alt="walletIcon" />
-            </Stack>
 
-            {/* <Stack alignItems='center' justifyContent='center'>
+              <Box pb={4}>
+                <Stack sx={{ pb: 0 }} alignItems='center' justifyContent='center' direction='row' >
+                  <img src={WalletIcon} width="250" height="250" alt="walletIcon" />
+                </Stack>
+
+                {/* <Stack alignItems='center' justifyContent='center'>
               <Typography color={"#575757"} fontSize={20} fontWeight='500' >Your Current Balance </Typography>
               <Typography color={"#575757"} fontSize={20} fontWeight='500' >{balance} {currency}</Typography>
 
             </Stack> */}
-          </Box>
-        </Paper>
-        <Paper sx={{ paddingTop: 5, paddingLeft: 5, paddingRight: 5, paddingBottom: 5,boxShadow:'none' }}>
+              </Box>
+            </Paper>
+            <Paper sx={{ paddingTop: 5, paddingLeft: 5, paddingRight: 5, paddingBottom: 5, boxShadow: 'none' }}>
 
-          {response && response.length > 0 ?
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell align="left">Currency</StyledTableCell>
-                    <StyledTableCell>Current Balance</StyledTableCell>
-                    {/* <StyledTableCell align="left">Rate</StyledTableCell> */}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {(rowsPerPage > 0
-                    ? response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    : response
-                  ).map((row) => (
-                    <StyledTableRow key={row.corridorName}>
-                      <StyledTableCell align="left">{row.currency}</StyledTableCell>
-                      <StyledTableCell component="th" scope="row" >{row.currentBalance}</StyledTableCell>
-                      {/* <StyledTableCell align="left">{row.status}</StyledTableCell> */}
-                                        </StyledTableRow>
-                  ))}
+                <TableContainer component={Paper}>
+                  <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+                    <TableHead>
+                      <TableRow>
+                        <StyledTableCell align="left">Currency</StyledTableCell>
+                        <StyledTableCell>Current Balance</StyledTableCell>
+                        {/* <StyledTableCell align="left">Rate</StyledTableCell> */}
+                      </TableRow>
+                    </TableHead>
+                   {response && response.length > 0 ?  <TableBody>
+                      {(rowsPerPage > 0
+                        ? response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        : response
+                      ).map((row) => (
+                        <StyledTableRow key={row.corridorName}>
+                          <StyledTableCell align="left">{row.currency}</StyledTableCell>
+                          <StyledTableCell component="th" scope="row" >{row.currentBalance}</StyledTableCell>
+                          {/* <StyledTableCell align="left">{row.status}</StyledTableCell> */}
+                        </StyledTableRow>
+                      ))}
 
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 53 * emptyRows }}>
-                      <TableCell colSpan={6} />
+                      {emptyRows > 0 && (
+                        <TableRow style={{ height: 53 * emptyRows }}>
+                          <TableCell colSpan={6} />
+                        </TableRow>
+                      )}
+                    </TableBody>
+                  :  <TableBody>
+                    <TableRow>
+                    {/* <TableCell align='center' colSpan='center'> */}
+                    <Typography spacing={2} p={2}>
+
+No data available
+</Typography>
+                    {/* </TableCell> */}
+                   
                     </TableRow>
-                  )}
-                </TableBody>
-                <TableFooter>
-                  <TableRow>
-                    <TablePagination
-                      rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                      colSpan={10}
-                      count={response.length}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      SelectProps={{
-                        inputProps: {
-                          'aria-label': 'rows per page',
-                        },
-                        native: true,
-                      }}
-                      onPageChange={handleChangePage}
-                      onRowsPerPageChange={handleChangeRowsPerPage}
-                      ActionsComponent={TablePaginationActions}
-                    />
-                  </TableRow>
-                </TableFooter>
-              </Table>
-            </TableContainer> : ''}
-        </Paper>
-        </Stack>
+                    </TableBody> }
+                    {response && response.length > 0 ?    <TableFooter>
+                      <TableRow>
+                        <TablePagination
+                          rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                          colSpan={10}
+                          count={response.length}
+                          rowsPerPage={rowsPerPage}
+                          page={page}
+                          SelectProps={{
+                            inputProps: {
+                              'aria-label': 'rows per page',
+                            },
+                            native: true,
+                          }}
+                          onPageChange={handleChangePage}
+                          onRowsPerPageChange={handleChangeRowsPerPage}
+                          ActionsComponent={TablePaginationActions}
+                        />
+                      </TableRow>
+                    </TableFooter> : ''}
+                  </Table>
+                </TableContainer> 
+            </Paper>
+          </Stack>
         </Paper>
 
         <LedgerPopup response={response} closeLedgerPopup={closeLedgerPopup} ledgerPopup={ledgerPopup} />

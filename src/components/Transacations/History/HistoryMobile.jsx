@@ -42,26 +42,26 @@ function TablePaginationActions(props) {
   };
 
   useEffect(() => {
-    getTransactionHistory()
+    // getTransactionHistory()
   }, [])
 
-  const getTransactionHistory = () => {
-    const options = {
-      headers: {
-        'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-        'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-        'actualdate': '2018-04-04 09:27:16',
-        'origincountry': 'US'
-      }
-    }
-    axios.get(`${apiUrl}/js/transaction?transactionReference=SrcTxnId001`, { headers: options.headers }
-    ).then((res) => {
-      // setFeaturedInfo(true)
+  // const getTransactionHistory = () => {
+  //   const options = {
+  //     headers: {
+  //       'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+  //       'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+  //       'actualdate': '2018-04-04 09:27:16',
+  //       'origincountry': 'US'
+  //     }
+  //   }
+  //   axios.get(`${apiUrl}/js/transaction?transactionReference=SrcTxnId001`, { headers: options.headers }
+  //   ).then((res) => {
+  //     // setFeaturedInfo(true)
 
-    }).catch((err) => {
-      // setErrorPopup(true)
-    })
-  }
+  //   }).catch((err) => {
+  //     // setErrorPopup(true)
+  //   })
+  // }
 
 
   return (
@@ -145,7 +145,7 @@ export default function HistoryMobile(props) {
   const [refId, setRefId] = useState('SrcTxnId001')
   const [reverseDetails, setReverseDetails] = useState({})
   const [cancelDetails, setCancelDetails] = useState({})
-
+  const [history,setHistory] = useState([])
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -238,6 +238,186 @@ export default function HistoryMobile(props) {
     setViewTrans(false);
   };
 
+  useEffect(()=>{
+  getHistoryTransaction()
+  },[])
+
+  const getHistoryTransaction = (data) => {
+    const options = {
+      headers: {
+        'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+        'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'actualdate': '2018-04-04 09:27:16',
+        'origincountry': 'US'
+      }
+    }
+    axios.get(`${apiUrl}/js/transaction/list`, { headers: options.headers }
+    ).then((res) => {
+      // setFeaturedInfo(true)
+      setHistory(res.data.rows)
+      //  if(res.data && res.data.length > 0) {
+      //    console.log("test")
+      //    setBalance(res.data[0].currentBalance)
+      //    setCurrency(res.data[0].currency)
+      //  }
+      //  console.log(res.data[0].currentBalance)
+
+    }).catch((err) => {
+      // setErrorPopup(true)
+    })
+  }
+
+  const historyMockJson = {
+    "count": 1,
+    "rows": [
+        {
+            "id": 1,
+            "data": {
+                "type": "inttransfer",
+                "amount": "500",
+                "currency": "NPR",
+                "debitParty": [
+                    {
+                        "key": "msisdn",
+                        "value": "+9779840002320"
+                    }
+                ],
+                "creditParty": [
+                    {
+                        "key": "msisdn",
+                        "value": "+9779840002320"
+                    }
+                ],
+                "requestDate": "2021-05-23 08:19:36",
+                "transactionStatus": "3050:Remit Acknowledged.",
+                "transactionReference": "TPOT000000723289",
+                "requestingOrganisationTransactionReference": "SrcTxnId3858"
+            }
+        },
+        {
+          "id": 2,
+          "data": {
+              "type": "inttransfer",
+              "amount": "500",
+              "currency": "NPR",
+              "debitParty": [
+                  {
+                      "key": "msisdn",
+                      "value": "+9779840002320"
+                  }
+              ],
+              "creditParty": [
+                  {
+                      "key": "msisdn",
+                      "value": "+9779840002320"
+                  }
+              ],
+              "requestDate": "2021-05-23 08:19:36",
+              "transactionStatus": "3050:Remit Acknowledged.",
+              "transactionReference": "TPOT000000723289",
+              "requestingOrganisationTransactionReference": "SrcTxnId3858"
+          }
+      },
+      {
+        "id": 3,
+        "data": {
+            "type": "inttransfer",
+            "amount": "500",
+            "currency": "NPR",
+            "debitParty": [
+                {
+                    "key": "msisdn",
+                    "value": "+9779840002320"
+                }
+            ],
+            "creditParty": [
+                {
+                    "key": "msisdn",
+                    "value": "+9779840002320"
+                }
+            ],
+            "requestDate": "2021-05-23 08:19:36",
+            "transactionStatus": "3050:Remit Acknowledged.",
+            "transactionReference": "TPOT000000723289",
+            "requestingOrganisationTransactionReference": "SrcTxnId3858"
+        }
+    },
+    {
+      "id": 4,
+      "data": {
+          "type": "inttransfer",
+          "amount": "500",
+          "currency": "NPR",
+          "debitParty": [
+              {
+                  "key": "msisdn",
+                  "value": "+9779840002320"
+              }
+          ],
+          "creditParty": [
+              {
+                  "key": "msisdn",
+                  "value": "+9779840002320"
+              }
+          ],
+          "requestDate": "2021-05-23 08:19:36",
+          "transactionStatus": "3050:Remit Acknowledged.",
+          "transactionReference": "TPOT000000723289",
+          "requestingOrganisationTransactionReference": "SrcTxnId3858"
+      }
+  },
+  {
+    "id": 5,
+    "data": {
+        "type": "inttransfer",
+        "amount": "500",
+        "currency": "NPR",
+        "debitParty": [
+            {
+                "key": "msisdn",
+                "value": "+9779840002320"
+            }
+        ],
+        "creditParty": [
+            {
+                "key": "msisdn",
+                "value": "+9779840002320"
+            }
+        ],
+        "requestDate": "2021-05-23 08:19:36",
+        "transactionStatus": "3050:Remit Acknowledged.",
+        "transactionReference": "TPOT000000723289",
+        "requestingOrganisationTransactionReference": "SrcTxnId3858"
+    }
+},
+{
+  "id": 6,
+  "data": {
+      "type": "inttransfer",
+      "amount": "500",
+      "currency": "NPR",
+      "debitParty": [
+          {
+              "key": "msisdn",
+              "value": "+9779840002320"
+          }
+      ],
+      "creditParty": [
+          {
+              "key": "msisdn",
+              "value": "+9779840002320"
+          }
+      ],
+      "requestDate": "2021-05-23 08:19:36",
+      "transactionStatus": "3050:Remit Acknowledged.",
+      "transactionReference": "TPOT000000723289",
+      "requestingOrganisationTransactionReference": "SrcTxnId3858"
+  }
+}
+    ]
+}
+
+console.log("res",historyMockJson)
 
   return (
     <Paper sx={{ paddingTop: 3, paddingLeft: 5, paddingRight: 5, paddingBottom: 5, }}>
@@ -263,7 +443,7 @@ export default function HistoryMobile(props) {
                 </Stack>
               </StyledTableCell>
               {/* <StyledTableCell align="left">Type</StyledTableCell> */}
-              <StyledTableCell align="left">Req Ref Id</StyledTableCell>
+              {/* <StyledTableCell align="left">Req Ref Id</StyledTableCell> */}
               <StyledTableCell align="left">
                 <Stack direction='row'>
                   <img src={SortIcon} height="16" weight="16" style={{ marginTop: '1px' }} />
@@ -272,25 +452,27 @@ export default function HistoryMobile(props) {
               </StyledTableCell>
               <StyledTableCell align="left">Reference</StyledTableCell>
               <StyledTableCell align="left">Sender</StyledTableCell>
-              <StyledTableCell align="left">Recipient</StyledTableCell>
+              <StyledTableCell align="left">Receiver</StyledTableCell>
+              {/* <StyledTableCell align="left">Recipient</StyledTableCell> */}
               <StyledTableCell align="center">More</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {(rowsPerPage > 0
-              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : rows
+              ? historyMockJson.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : historyMockJson.rows
             ).map((row) => (
               <StyledTableRow key={row.id}>
-                <StyledTableCell component="th" scope="row" >{row.dates}</StyledTableCell>
-                <StyledTableCell align="left">{row.amount}</StyledTableCell>
-                <StyledTableCell align="left">{row.currency}</StyledTableCell>
+                <StyledTableCell component="th" scope="row" >{row.data.requestDate}</StyledTableCell>
+                <StyledTableCell align="left">{row.data.amount}</StyledTableCell>
+                <StyledTableCell align="left">{row.data.currency}</StyledTableCell>
                 {/* <StyledTableCell align="left">{row.type}</StyledTableCell> */}
-                <StyledTableCell align="left">{row.reqrefid}</StyledTableCell>
-                <StyledTableCell align="left">{row.status}</StyledTableCell>
-                <StyledTableCell align="left">{row.reference}</StyledTableCell>
-                <StyledTableCell align="left">{row.sender}</StyledTableCell>
-                <StyledTableCell align="left">{row.recepient}</StyledTableCell>
+                {/* <StyledTableCell align="left">{row.reqrefid}</StyledTableCell> */}
+                <StyledTableCell align="left">{row.data.transactionStatus}</StyledTableCell>
+                <StyledTableCell align="left">{row.data.transactionReference}</StyledTableCell>
+                <StyledTableCell align="left">{row.data.creditParty[0].value}</StyledTableCell>
+                <StyledTableCell align="left">{row.data.debitParty[0].value}</StyledTableCell>
+                {/* <StyledTableCell align="left">{row.recepient}</StyledTableCell> */}
                 <StyledTableCell align="center">
                   <Box>
                     <Tooltip title="More">
@@ -321,7 +503,7 @@ export default function HistoryMobile(props) {
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                 colSpan={10}
-                count={rows.length}
+                count={historyMockJson.rows.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 SelectProps={{
