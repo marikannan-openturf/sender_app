@@ -8,7 +8,7 @@ export default function Topbar() {
   return (
     <div className='topbar'>
     <div className="topbarWrapper">
-      <Box className="topLeft" component={Link} to="/" >
+      <Box className="topLeft" component={Link} to="/sender-app" >
           <span className="logo-sender-app">Sender APP</span>
       </Box>
         {/* <div className="topRight">

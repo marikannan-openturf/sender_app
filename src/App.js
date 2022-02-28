@@ -19,24 +19,24 @@ import Quotation from "./pages/Quotation";
 import ReportCorridor from "./pages/ReportCorridor";
 function App() {
   return (
-    <BrowserRouter basename={process.env.REACT_APP_BASE_URL}>
+    <BrowserRouter>
         <Topbar />
       <div className="container">
         {/* <Sidebar /> */}
         <MenuBar/>
-        <Routes>
+        <Routes basename={process.env.REACT_APP_BASE_URL}>
             <Route path="/" element= {<Home />} />
-            <Route path="/account-status" element = {<AccountStatus />}/>
-            <Route path="/transactions-business" element = {<TransactionsBusiness />}/>
-            <Route path="/transactions-personal" element = {<TransactionsPersonal />}/>
-            <Route path="/transactions-history" element={<TransactionsHistory/>}/>
-            <Route path="/report-ledger" element = {<ReportLetger />}/>
-            <Route path="/report-statement" element = {<ReportStatement />}/>
-            <Route path="/report-corridor" element = {<ReportCorridor/>}/>
-            <Route path="/bank-list" element={<BankList/>}/>
-            <Route path="/settings" element={<Settings/>}/>
-            <Route path="/quotation" element={<Quotation/>}/>
-            <Route path="*" to={process.env.REACT_APP_BASE_URL} element={<Home />} />
+            <Route path={`${process.env.REACT_APP_BASE_URL}/account-status`} element = {<AccountStatus />}/>
+            <Route path={`${process.env.REACT_APP_BASE_URL}/transactions-business`} element = {<TransactionsBusiness />}/>
+            <Route path={`${process.env.REACT_APP_BASE_URL}/transactions-personal`} element = {<TransactionsPersonal />}/>
+            <Route path={`${process.env.REACT_APP_BASE_URL}/transactions-history`} element={<TransactionsHistory/>}/>
+            <Route path={`${process.env.REACT_APP_BASE_URL}/report-ledger`} element = {<ReportLetger />}/>
+            <Route path={`${process.env.REACT_APP_BASE_URL}/report-statement`} element = {<ReportStatement />}/>
+            <Route path={`${process.env.REACT_APP_BASE_URL}/report-corridor`} element = {<ReportCorridor/>}/>
+            <Route path={`${process.env.REACT_APP_BASE_URL}/bank-list`} element={<BankList/>}/>
+            <Route path={`${process.env.REACT_APP_BASE_URL}/settings`} element={<Settings/>}/>
+            <Route path={`${process.env.REACT_APP_BASE_URL}/quotation`} element={<Quotation/>}/>
+            <Route path="*" element={<Home />} />
         </Routes>
 
       </div>

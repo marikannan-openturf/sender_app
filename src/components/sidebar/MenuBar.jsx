@@ -198,7 +198,7 @@ export default function MenuBar() {
       </ListItemButton>
       <Collapse in={accountOpen} timeout="auto" unmountOnExit>
         <List component="div" disablePadding sx={accountScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
-          <ListItemButton component={Link} to="/account-status" onClick={accountActive}>
+          <ListItemButton component={Link} to="sender-app/account-status" onClick={accountActive}>
             <ListItemIcon sx={accountScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <CheckCircleOutlineOutlinedIcon />
             </ListItemIcon>
@@ -217,7 +217,7 @@ export default function MenuBar() {
       </ListItemButton>
       <Collapse in={transactionOpen} timeout="auto" unmountOnExit>
         <List component="div" disablePadding sx={tpActiveScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
-          <ListItemButton  component={Link} to="/transactions-personal" onClick={tpActive}>
+          <ListItemButton  component={Link} to="sender-app/transactions-personal" onClick={tpActive}>
             <ListItemIcon sx={tpActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <AccountBoxOutlinedIcon />
             </ListItemIcon>
@@ -225,7 +225,7 @@ export default function MenuBar() {
           </ListItemButton>
         </List>
         <List component="div" disablePadding sx={tbActiveScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
-          <ListItemButton  component={Link} to="/transactions-business" onClick={tbActive}>
+          <ListItemButton  component={Link} to="sender-app/transactions-business" onClick={tbActive}>
             <ListItemIcon sx={tbActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <BusinessCenterOutlinedIcon />
             </ListItemIcon>
@@ -233,7 +233,7 @@ export default function MenuBar() {
           </ListItemButton>
         </List>
         <List component="div" disablePadding sx={thActiveScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
-          <ListItemButton  component={Link} to="/transactions-history" onClick={thActive}>
+          <ListItemButton  component={Link} to="sender-app/transactions-history" onClick={thActive}>
             <ListItemIcon sx={thActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <HistoryIcon />
             </ListItemIcon>
@@ -252,7 +252,7 @@ export default function MenuBar() {
       </ListItemButton>
       <Collapse in={reportOpen} timeout="auto" unmountOnExit>
         <List component="div" disablePadding sx={reportLedgerScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
-          <ListItemButton component={Link} to="/report-ledger" onClick={reportLedger}>
+          <ListItemButton component={Link} to="sender-app/report-ledger" onClick={reportLedger}>
             <ListItemIcon sx={reportLedgerScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <ListOutlinedIcon />
             </ListItemIcon>
@@ -260,7 +260,7 @@ export default function MenuBar() {
           </ListItemButton>
         </List>
         <List component="div" disablePadding sx={reportCorridorScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
-          <ListItemButton component={Link} to="/report-corridor" onClick={reportCorridor}>
+          <ListItemButton component={Link} to="sender-app/report-corridor" onClick={reportCorridor}>
             <ListItemIcon sx={reportCorridorScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <PublicIcon />
             </ListItemIcon>
@@ -268,7 +268,7 @@ export default function MenuBar() {
           </ListItemButton>
         </List>
         <List component="div" disablePadding sx={reportStatementScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
-          <ListItemButton component={Link} to="/report-statement" onClick={reportStatement}>
+          <ListItemButton component={Link} to="sender-app/report-statement" onClick={reportStatement}>
             <ListItemIcon sx={reportStatementScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <DescriptionOutlinedIcon />
             </ListItemIcon>
@@ -279,7 +279,7 @@ export default function MenuBar() {
       {/* <Divider/> */}
       <List component="div" disablePadding sx={bankListScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
 
-      <ListItemButton component={Link} to="/bank-list" onClick={bankList}>
+      <ListItemButton component={Link} to="sender-app/bank-list" onClick={bankList}>
         <ListItemIcon sx={bankListScreen ? {minWidth:'35px',color:'white', marginTop: '-3px'} : {minWidth:'35px', marginTop: '-3px'}}>
           <AccountBalanceOutlinedIcon />
         </ListItemIcon>
@@ -288,7 +288,7 @@ export default function MenuBar() {
       </List>
 
       <List component="div" disablePadding sx={ quotationScreen? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
-      <ListItemButton component={Link} to="/quotation" onClick={QuotationList}>
+      <ListItemButton component={Link} to="sender-app/quotation" onClick={QuotationList}>
         <ListItemIcon sx={quotationScreen ? {minWidth:'35px',color:'white', marginTop: '-3px'} : {minWidth:'35px', marginTop: '-3px'}}>
           <TableRowsRoundedIcon />
         </ListItemIcon>
@@ -298,7 +298,7 @@ export default function MenuBar() {
       
       {/* <Divider/> */}
       <List component="div" disablePadding sx={settingsScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
-      <ListItemButton component={Link} to="/settings" onClick={settingsList}>
+      <ListItemButton component={Link} to="sender-app/settings" onClick={settingsList}>
         <ListItemIcon sx={settingsScreen ? {minWidth:'35px',color:'white', marginTop: '-3px'} : {minWidth:'35px', marginTop: '-3px'}}>
           <SettingsOutlinedIcon />
         </ListItemIcon>
