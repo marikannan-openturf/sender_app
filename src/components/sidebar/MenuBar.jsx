@@ -267,14 +267,14 @@ export default function MenuBar() {
             <ListItemText primary="Corridor" />
           </ListItemButton>
         </List>
-        <List component="div" disablePadding sx={reportStatementScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
+        {/* <List component="div" disablePadding sx={reportStatementScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
           <ListItemButton component={Link} to="sender-app/report-statement" onClick={reportStatement}>
             <ListItemIcon sx={reportStatementScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <DescriptionOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Statement" />
           </ListItemButton>
-        </List>
+        </List> */}
       </Collapse>
       {/* <Divider/> */}
       <List component="div" disablePadding sx={bankListScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>

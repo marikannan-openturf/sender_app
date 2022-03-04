@@ -66,14 +66,14 @@ export default function Mobile() {
     },
       { headers: options.headers } 
     ).then((res) => {
-      if(res.data) {
+      if(res.data.error) {
+        setErrorPopup(true)
+        setErrorRes(res.data)
+      } else {
         setLei(res.data.lei)
         setStatus(res.data.status)
         setSubStatus(res.data.subStatus)
         setFeaturedInfo(true)
-      } else {
-        setErrorPopup(true)
-        setErrorRes(res.data)
       }
     }).catch((err) => {
       setErrorPopup(true)
