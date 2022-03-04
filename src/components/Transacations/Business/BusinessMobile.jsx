@@ -11,7 +11,7 @@ const apiUrl = config.api.url
 export default function BusinessMobile() {
   const [amount, setAmount] = useState('500')
   const [currency, setCurrency] = useState('INR')
-  const [transactionType, setTransactionType] = useState('b2p')
+  const [transactionType, setTransactionType] = useState('p2b')
   const [mobileNumber, setMobileNumber] = useState('+971810456234')
   const [reciverMobileNumber, setReciverMobileNumber] = useState('+9779840002320')
   const [accountNr, setAccountNr] = useState('50100002965304')
@@ -65,6 +65,7 @@ export default function BusinessMobile() {
   const [businessRegistrationIssueDate, setBusinessRegistrationIssueDate] = useState('2001-09-26')
   const [businessIDValidThru, setBusinessIDValidThru] = useState('2001-09-26')
   const [businessEmail, setBusinessEmail] = useState('test@testemail.com')
+  const [errorRes,setErrorRes] = useState({})
 
   const CustomButtom = styled(Button)`
   &.Mui-disabled{
@@ -209,16 +210,8 @@ export default function BusinessMobile() {
         ],
         "creditParty": [
           {
-            "key": "bankaccountno",
-            "value": `${accountNr}`
-          },
-          {
-            "key": "organisationid",
-            "value": `${kycName}`
-          },
-          {
-            "key": "sortcode",
-            "value": `${bankCode}`
+            "key": "msisdn",
+            "value": `${reciverMobileNumber}`
           }
         ],
         "senderKyc": {},
@@ -324,12 +317,18 @@ export default function BusinessMobile() {
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobileNumber} onChange={({ target }) => setMobileNumber(target.value)} />
             </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+            <Typography color="#575757" fontWeight='500'>
+              Receiver Mobile Number
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={reciverMobileNumber} onChange={({ target }) => setReciverMobileNumber(target.value)} />
+          </Stack>
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Reciver Mobile Number
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={reciverMobileNumber} onChange={({ target }) => setReciverMobileNumber(target.value)} />
-            </Stack> */}
+            </Stack> 
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Beneficiary Bank Account
@@ -347,7 +346,7 @@ export default function BusinessMobile() {
                 Bank Code
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Bank Code' value={bankCode} onChange={({ target }) => setBankCode(target.value)} />
-            </Stack>
+            </Stack>*/}
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Gender
@@ -635,7 +634,7 @@ export default function BusinessMobile() {
         descriptionText={descriptionText}
         setFeaturedInfoClose={setFeaturedInfoClose}
       />
-      <ErrorPopup errorPopup={errorPopup}
+      <ErrorPopup errorPopup={errorPopup} errorRes={errorRes}
         CloseErrorPopup={CloseErrorPopup} />
     </>
   )
