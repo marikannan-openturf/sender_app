@@ -13,24 +13,25 @@ export default function Mobile() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [accountNumber, setAccountNumber] = useState('+9779840002320')
   const [kycNumber, setKycNumber] = useState('David Robinson')
-  const [network, setNetwork] = useState('mobile-wallet')
+  // const [network, setNetwork] = useState('mobile-wallet')
   const [status, setStatus] = useState('')
   const [subStatus, setSubStatus] = useState('')
   const [lei, setLei] = useState('')
   const [errorPopup, setErrorPopup] = useState(false)
+  const [errorRes,setErrorRes] = useState({})
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
     setAccountNumber('+9779840002320')
     setKycNumber('David Robinson')
-    setNetwork('mobile-wallet')
+    // setNetwork('mobile-wallet')
   }
 
   const setFeaturedInfoClose = () => {
     setFeaturedInfo(false)
     setAccountNumber('+9779840002320')
     setKycNumber('David Robinson')
-    setNetwork('mobile-wallet')
+    // setNetwork('mobile-wallet')
   }
 
   const setFeaturedInfoDetails = () => {
@@ -44,7 +45,7 @@ export default function Mobile() {
     }
     axios.post(`${apiUrl}/js/accounts-status`
       , {
-        "instrument": `${network}`,
+        "instrument": 'mobile-wallet',
         "msisdn": `${accountNumber}`,
         "beneficiaryName": `${kycNumber}`
     },
@@ -56,7 +57,9 @@ export default function Mobile() {
         setSubStatus(res.data.subStatus)
         setFeaturedInfo(true)
       } else {
+        console.log("res.da",res.data)
         setErrorPopup(true)
+        setErrorRes(res.data)
       }
     }).catch((err) => {
       setErrorPopup(true)
@@ -86,7 +89,7 @@ export default function Mobile() {
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Full KYC name' onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
           </Stack>
-          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Account Instrument
             </Typography>
@@ -106,11 +109,11 @@ export default function Mobile() {
               <MenuItem value='mobile-wallet'>Mobile-Wallet</MenuItem>
               <MenuItem value='bank-account'>Bank-Account</MenuItem>
             </TextField>
-          </Stack>
+          </Stack> */}
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
-            {accountNumber && kycNumber && network
+            {accountNumber && kycNumber 
               ? <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
               : <CustomButtom sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
             }
@@ -120,14 +123,14 @@ export default function Mobile() {
       <AccountStatusPopup
         featuredInfo={featuredInfo}
         accountNumber={accountNumber}
-        network={network}
+        // network={network}
         kycNumber={kycNumber}
         setFeaturedInfoClose={setFeaturedInfoClose}
         lei={lei}
         status={status}
         subStatus={subStatus}
       />
-      <ErrorPopup errorPopup={errorPopup}
+      <ErrorPopup errorPopup={errorPopup} errorRes={errorRes}
         CloseErrorPopup={CloseErrorPopup} />
     </>
   )

@@ -47,6 +47,7 @@ export default function PersonalBank() {
   const [recipientName, setRecipientName] = useState('David Robinson')
   const [errorPopup, setErrorPopup] = useState(false)
   const [featuredInfo, setFeaturedInfo] = useState(false)
+  const [errorRes,setErrorRes] = useState({})
 
   const CustomButtom = styled(Button)`
   &.Mui-disabled{
@@ -220,6 +221,7 @@ export default function PersonalBank() {
       setFeaturedInfo(true)
 
     }).catch((err) => {
+      setErrorRes(err)
       setErrorPopup(true)
     })
   }
@@ -528,7 +530,7 @@ export default function PersonalBank() {
         nationality={nationality}
         descriptionText={descriptionText}
       />
-      <ErrorPopup errorPopup={errorPopup}
+      <ErrorPopup errorPopup={errorPopup} errorRes={errorRes}
         CloseErrorPopup={CloseErrorPopup} />
     </>
   )

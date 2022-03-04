@@ -26,7 +26,7 @@ export default function CorridorEmpty() {
                     <Stack alignItems='center' justifyContent='center' direction='row'>
                         <Stack alignItems='center' justifyContent='center' sx={{marginTop:'-60px' }} >
                             <img src={WorldConnectedIcon} width="500" height="500" />
-                            <Typography  pb={5} sx={{marginTop:'-80px' }} fontSize={18} fontWeight='500' >No corridor active.</Typography>
+                            <Typography  pb={5} sx={{marginTop:'-80px' }} fontSize={14} fontWeight='500' >No corridor active.</Typography>
                         </Stack>
                     </Stack>
                     

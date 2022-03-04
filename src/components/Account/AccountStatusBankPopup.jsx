@@ -104,10 +104,10 @@ export default function AccountStatusBankPopup(props) {
                       <StyledTableCell component="th" scope="row" >Account KYC Number of the beneficiary</StyledTableCell>
                       <StyledTableCell align="left">{props.kycNumber}</StyledTableCell>
                     </StyledTableRow>
-                    <StyledTableRow>
+                    {/* <StyledTableRow>
                       <StyledTableCell component="th" scope="row" >Bank name of the beneficiary</StyledTableCell>
                       <StyledTableCell align="left">{props.network}</StyledTableCell>
-                    </StyledTableRow>
+                    </StyledTableRow> */}
                     <StyledTableRow>
                       <StyledTableCell component="th" scope="row" >Bank code-IFSC/Routing Code/Swift BIC</StyledTableCell>
                       <StyledTableCell align="left">{props.bankCode}</StyledTableCell>

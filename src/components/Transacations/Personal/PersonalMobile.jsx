@@ -47,6 +47,7 @@ export default function PersonalMobile() {
   const [recipientName, setRecipientName] = useState('David Robinson')
   const [errorPopup, setErrorPopup] = useState(false)
   const [featuredInfo, setFeaturedInfo] = useState(false)
+  const [errorRes,setErrorRes] = useState({})
 
   const CustomButtom = styled(Button)`
   &.Mui-disabled{
@@ -209,9 +210,12 @@ export default function PersonalMobile() {
       },
       { headers: options.headers }
     ).then((res) => {
+      console.log("res",res.data)
       setFeaturedInfo(true)
 
     }).catch((err) => {
+      console.log("sasas",err)
+      setErrorRes(err)
       setErrorPopup(true)
     })
   }
@@ -515,8 +519,8 @@ export default function PersonalMobile() {
         dob={dob}
         descriptionText={descriptionText}
         setFeaturedInfoClose={setFeaturedInfoClose}
-      />
-      <ErrorPopup errorPopup={errorPopup}
+      /> 
+      <ErrorPopup errorPopup={errorPopup} errorRes={errorRes}
         CloseErrorPopup={CloseErrorPopup} />
     </>
   )

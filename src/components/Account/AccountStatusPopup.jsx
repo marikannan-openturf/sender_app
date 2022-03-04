@@ -94,7 +94,7 @@ export default function AccountStatusPopup(props) {
                   </StyledTableRow>
                   <StyledTableRow>
                     <StyledTableCell component="th" scope="row" >Instrument</StyledTableCell>
-                    <StyledTableCell align="left">{props.network}</StyledTableCell>
+                    <StyledTableCell align="left">Mobile-Wallet</StyledTableCell>
                   </StyledTableRow>
               </TableBody>
               </Table>

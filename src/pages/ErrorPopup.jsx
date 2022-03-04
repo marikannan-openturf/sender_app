@@ -25,7 +25,7 @@ export default function ErrorPopup(props) {
         <Stack spacing={2} width={500} alignItems='center' justifyContent='center' direction='row'>
           <Stack spacing={3} textAlign='right'>
             <img src={ErrorPopupIcon} width="100px" height="150px"style={{margin: 'auto'}} />
-            <Typography >Something went wrong. Please try again later</Typography>
+           {props.errorRes.error && props.errorRes.error ? <Typography >{props.errorRes.error.errorDescription}</Typography> :  <Typography >Something went wrong. Please try again later</Typography>}
           </Stack>
         </Stack>
         <Stack spacing={3} py={5} justifyContent='center' direction='row'>

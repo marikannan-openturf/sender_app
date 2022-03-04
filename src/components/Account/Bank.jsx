@@ -17,8 +17,9 @@ export default function Bank() {
   const [country, setCountry] = useState('IN')
   const [provider, setProvider] = useState('')
   const [subCode, setSubCode] = useState('')
-  const [network, setNetwork] = useState('bank-account')
+  // const [network, setNetwork] = useState('bank-account')
   const [errorPopup, setErrorPopup] = useState(false)
+  const [errorRes,setErrorRes] = useState({})
 
   const [status, setStatus] = useState('')
   const [subStatus, setSubStatus] = useState('')
@@ -33,7 +34,7 @@ export default function Bank() {
     setCountry('IN')
     setProvider('')
     setSubCode('')
-    setNetwork('bank-account')
+    // setNetwork('bank-account')
   }
 
   // const setFeaturedInfoDetails = () => {
@@ -63,7 +64,7 @@ export default function Bank() {
     setCountry('IN')
     setProvider('')
     setSubCode('')
-    setNetwork('bank-account')
+    // setNetwork('bank-account')
   }
 
   const CustomButtom = styled(Button)`
@@ -84,7 +85,7 @@ export default function Bank() {
       }
       axios.post(`${apiUrl}/js/accounts-status`
         , {
-          "instrument": `${network}`,
+          "instrument": 'bank-account',
           "accountId": `${accountNumber}`,
           "bankName": `${bankName}`,
           "countryCode": `${country}`,
@@ -95,6 +96,7 @@ export default function Bank() {
       ).then((res) => {
         if(res.data.error) {
           setErrorPopup(true)
+          setErrorRes(res.data)
           setFeaturedInfo(false)
         } else {
           setLei(res.data.lei)
@@ -126,7 +128,7 @@ export default function Bank() {
             </Typography>
             <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
           </Stack>
-          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Account Instrument
             </Typography>
@@ -145,7 +147,7 @@ export default function Bank() {
               <MenuItem value='mobile-wallet'>Mobile-Wallet</MenuItem>
               <MenuItem value='bank-account'>Bank-Account</MenuItem>
             </TextField>
-          </Stack>
+          </Stack> */}
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
              Bank Name
@@ -179,7 +181,7 @@ export default function Bank() {
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
-            {accountNumber && kycNumber && network && bankCode && bankName && country 
+            {accountNumber && kycNumber &&  bankCode && bankName && country 
               ? <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
               : <CustomButtom sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
             }
@@ -188,7 +190,7 @@ export default function Bank() {
       </Paper>
       <AccountStatusBankPopup featuredInfo={featuredInfo}
         accountNumber={accountNumber}
-        network={network}
+        // network={network}
         kycNumber={kycNumber}
         bankCode={bankCode}
         bankName={bankName}
@@ -197,7 +199,7 @@ export default function Bank() {
         lei={lei}
         status={status}
         subStatus={subStatus} />
-      <ErrorPopup errorPopup={errorPopup}
+      <ErrorPopup errorPopup={errorPopup} errorRes={errorRes}
         CloseErrorPopup={CloseErrorPopup} />
     </>
   )
