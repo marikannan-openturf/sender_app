@@ -11,7 +11,7 @@ const apiUrl = config.api.url
 export default function BusinessBank() {
   const [amount, setAmount] = useState('500')
   const [currency, setCurrency] = useState('INR')
-  const [transactionType, setTransactionType] = useState('b2p ')
+  const [transactionType, setTransactionType] = useState('b2p')
   const [mobileNumber, setMobileNumber] = useState('+971810456234')
   const [reciverMobileNumber, setReciverMobileNumber] = useState('+9779840002320')
   const [accountNr, setAccountNr] = useState('50100002965304')
