@@ -17,7 +17,7 @@ export default function QuotationForm() {
   const [country, setCountry] = useState('')
   const [sendingCurrency, setSendingCurrency] = useState('')
   const [receivingCurrency, setReceivingCurrency] = useState('')
-
+  const [errorRes,setErrorRes] = useState({})
   const [errorPopup, setErrorPopup] = useState(false)
   const [featuredInfo, setFeaturedInfo] = useState(false)
 
@@ -161,7 +161,7 @@ export default function QuotationForm() {
           </Stack>
       </Paper>
       <QuotationResponse setFeaturedInfoClose={setFeaturedInfoClose} featuredInfo={featuredInfo} />
-      <ErrorPopup errorPopup={errorPopup}
+      <ErrorPopup errorPopup={errorPopup} errorRes={errorRes}
         CloseErrorPopup={CloseErrorPopup} />
     </>
   )

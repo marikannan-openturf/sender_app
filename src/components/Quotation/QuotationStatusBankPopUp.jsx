@@ -98,6 +98,12 @@ export default function QuotationStatusBankPopup(props) {
                       <StyledTableCell align="left">{props.reciveCurrency}</StyledTableCell>
                   </StyledTableRow>
                 }
+                {props.successRes && 
+                    <StyledTableRow>
+                      <StyledTableCell component="th" scope="row" >Quotation Reference</StyledTableCell>
+                      <StyledTableCell align="left">{props.successRes.quotationReference}</StyledTableCell>
+                  </StyledTableRow>
+                }
               </TableBody>
               </Table>
           </TableContainer>

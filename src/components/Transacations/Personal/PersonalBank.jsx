@@ -221,7 +221,7 @@ export default function PersonalBank() {
       setFeaturedInfo(true)
 
     }).catch((err) => {
-      setErrorRes(err)
+      setErrorRes(err.response.data)
       setErrorPopup(true)
     })
   }

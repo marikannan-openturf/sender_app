@@ -19,6 +19,7 @@ export default function Mobile() {
   const [subStatus, setSubStatus] = useState('')
   const [lei, setLei] = useState('')
   const [errorPopup, setErrorPopup] = useState(false)
+  const [errorRes,setErrorRes] = useState({})
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
@@ -72,6 +73,7 @@ export default function Mobile() {
         setFeaturedInfo(true)
       } else {
         setErrorPopup(true)
+        setErrorRes(res.data)
       }
     }).catch((err) => {
       setErrorPopup(true)
@@ -168,7 +170,7 @@ export default function Mobile() {
         status={status}
         subStatus={subStatus}
       />
-      <ErrorPopup errorPopup={errorPopup}
+      <ErrorPopup errorPopup={errorPopup} errorRes={errorRes}
         CloseErrorPopup={CloseErrorPopup} />
     </>
   )

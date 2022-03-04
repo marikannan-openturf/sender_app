@@ -20,6 +20,8 @@ export default function Bank() {
   const [subStatus, setSubStatus] = useState('')
   const [lei, setLei] = useState('')
   const [errorPopup, setErrorPopup] = useState(false)
+  const [errorRes,setErrorRes] = useState({})
+  const [successRes,setSuccessRes] = useState({})
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
@@ -74,15 +76,23 @@ export default function Bank() {
       },
       { headers: options.headers }
     ).then((res) => {
-      if (res.data) {
+      if (res.data.error) {
+        console.log("res",res.data)
+        setErrorPopup(true)
+        setErrorRes(res.data)
+      } else {
+        
+        console.log("res",res.data)
+
         setLei(res.data.lei)
         setStatus(res.data.status)
         setSubStatus(res.data.subStatus)
+        setSuccessRes(res.data)
         setFeaturedInfo(true)
-      } else {
-        setErrorPopup(true)
       }
     }).catch((err) => {
+      console.log("catch",err)
+
       setFeaturedInfo(true)
     })
   }
@@ -156,8 +166,9 @@ export default function Bank() {
         lei={lei}
         status={status}
         subStatus={subStatus}
+        successRes={successRes}
       />
-      <ErrorPopup errorPopup={errorPopup}
+      <ErrorPopup errorPopup={errorPopup} errorRes={errorRes}
         CloseErrorPopup={CloseErrorPopup} />
     </>
   )

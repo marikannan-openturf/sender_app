@@ -213,9 +213,10 @@ export default function PersonalMobile() {
       console.log("res",res.data)
       setFeaturedInfo(true)
 
-    }).catch((err) => {
-      console.log("sasas",err)
-      setErrorRes(err)
+    })
+    .catch((err) => {
+      console.log("CATCH",err.response.data)
+      setErrorRes(err.response.data)
       setErrorPopup(true)
     })
   }
