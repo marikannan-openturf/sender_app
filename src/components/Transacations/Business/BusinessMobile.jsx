@@ -11,6 +11,7 @@ const apiUrl = config.api.url
 export default function BusinessMobile() {
   const [amount, setAmount] = useState('500')
   const [currency, setCurrency] = useState('INR')
+  const [payingCurrency, setPayingCurrency] = useState('USD')
   const [transactionType, setTransactionType] = useState('b2p')
   const [mobileNumber, setMobileNumber] = useState('+971810456234')
   const [reciverMobileNumber, setReciverMobileNumber] = useState('+9779840002320')
@@ -41,10 +42,11 @@ export default function BusinessMobile() {
   const [stateProvince, setStateProvince] = useState('50000')
   const [postalCode, setPostalCode] = useState('12')
   const [descriptionText, setDescriptionText] = useState('Gift for my brother')
-  const [transactionRef, setTransactionRef] = useState('SrcTxnId001')
+  const [transactionRef, setTransactionRef] = useState('SrcTxnId003435435')
   const [issueDate, setIssueDate] = useState('1967-05-28')
   const [issuerCountry, setIssuerCountry] = useState('AE')
-  const [recipientName, setRecipientName] = useState('David Robinson')
+  const [recipientName, setRecipientName] = useState('Deepa')
+  const [lastName, setLastName] = useState('Jain')
   const [errorPopup, setErrorPopup] = useState(false)
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [sendAmount, setSendAmount] = useState('35500.00')
@@ -53,7 +55,7 @@ export default function BusinessMobile() {
   const [sendingPartnerCode, setSendingPartnerCode] = useState('343432223')
   const [receivingPartnerCode, setReceivingPartnerCode] = useState('343432223')
   const [businessName, setBusinessName] = useState('sample business')
-  const [businessAddress1, setBusinessAddress1] = useState('altons road')
+  const [businessAddress1, setBusinessAddress1] = useState(`alton's road`)
   const [businessAddressCity, setBusinessAddressCity] = useState('Lyon')
   const [businessAddressCountryCode, setBusinessAddressCountryCode] = useState('US')
   const [businessPrimaryContactCountryCode, setBusinessPrimaryContactCountryCode] = useState('US')
@@ -63,7 +65,7 @@ export default function BusinessMobile() {
   const [businessRegistrationType, setBusinessRegistrationType] = useState('Private Limited Company')
   const [businessRegistrationNumber, setBusinessRegistrationNumber] = useState('23123456789')
   const [businessRegistrationIssueDate, setBusinessRegistrationIssueDate] = useState('2001-09-26')
-  const [businessIDValidThru, setBusinessIDValidThru] = useState('2001-09-26')
+  const [businessIDValidThru, setBusinessIDValidThru] = useState('2033-09-26')
   const [businessEmail, setBusinessEmail] = useState('test@testemail.com')
   const [errorRes,setErrorRes] = useState({})
 
@@ -77,6 +79,7 @@ export default function BusinessMobile() {
   const CloseErrorPopup = () => {
     setAmount('500')
     setCurrency('INR')
+    setPayingCurrency('USD')
     setNetwork('')
     setTransactionType('b2p')
     setMobileNumber('+971810456234')
@@ -106,7 +109,8 @@ export default function BusinessMobile() {
     setTransactionRef('SrcTxnId001')
     setIssueDate('1967-05-28')
     setIssuerCountry('AE')
-    setRecipientName('David Robinson')
+    setRecipientName('Deepa')
+    setLastName('Jain')
     setSendAmount('35500.00')
     setpaymentMode('cash')
     setAuthenticationPartnerCode('4534')
@@ -125,13 +129,16 @@ export default function BusinessMobile() {
     setBusinessRegistrationIssueDate('2001-09-26')
     setBusinessIDValidThru('2033-09-26')
     setBusinessEmail('test@testemail.com')
+    setAccountNr('50100002965304')
     setFeaturedInfo(false)
     setErrorPopup(false)
+    setBankCode('HDFC0001626')
   }
 
   const setFeaturedInfoClose = () => {
     setAmount('500')
     setCurrency('INR')
+    setPayingCurrency('USD')
     setNetwork('')
     setTransactionType('b2p')
     setMobileNumber('+971810456234')
@@ -161,7 +168,8 @@ export default function BusinessMobile() {
     setTransactionRef('SrcTxnId001')
     setIssueDate('1967-05-28')
     setIssuerCountry('AE')
-    setRecipientName('David Robinson')
+    setRecipientName('Deepa')
+    setLastName('Jain')
     setSendAmount('35500.00')
     setpaymentMode('cash')
     setAuthenticationPartnerCode('4534')
@@ -181,10 +189,12 @@ export default function BusinessMobile() {
     setBusinessIDValidThru('2033-09-26')
     setBusinessEmail('test@testemail.com')
     setFeaturedInfo(false)
+    setAccountNr('50100002965304')
+    setBankCode('HDFC0001626')
   }
 
   const setFeaturedInfoDetails = () => {
-
+    console.log("testerer")
     // setFeaturedInfo(true)
     const options = {
       headers: {
@@ -209,21 +219,28 @@ export default function BusinessMobile() {
           }
         ],
         "creditParty": [
-          {
-            "key": "msisdn",
-            "value": `${reciverMobileNumber}`
-          }
-        ],
+        {
+            "key": "bankaccountno",
+            "value": `${accountNr}`
+        },
+        {
+            "key": "organisationid",
+            "value": `${kycName}`
+        },
+        {
+            "key": "sortcode",
+            "value": `${bankCode}`
+        }],
         "senderKyc": {},
         "recipientKyc": {
           "subjectName": {
             "firstName": `${recipientName}`,
-            "lastName": `${recipientName}`,
-            "fullName": `${recipientName}`
+            "lastName": `${lastName}`,
+            "fullName": `${recipientName} ${lastName}`
           }
         },
         "sendingAmount": `${sendAmount}`,
-        "payinCcyCode": `${currency}`,
+        "payinCcyCode": `${payingCurrency}`,
         "paymentMode": `${paymentMode}`,
         "authenticationPartnerCode": `${authenticationPartnerCode}`,
         "paymentOption": "Mobile Wallet",
@@ -306,7 +323,7 @@ export default function BusinessMobile() {
                 {/* <MenuItem value='inttransfer-wallet'>Wallet</MenuItem>
               <MenuItem value='inttransfer'>Bank</MenuItem> */}
                 <MenuItem value='b2p'>B2P</MenuItem>
-                <MenuItem value='b2b'>B2B</MenuItem>
+                {/* <MenuItem value='b2b'>B2B</MenuItem> */}
                 {/* <MenuItem value='p2b'>P2B</MenuItem> */}
 
               </TextField>
@@ -328,10 +345,10 @@ export default function BusinessMobile() {
                 Reciver Mobile Number
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={reciverMobileNumber} onChange={({ target }) => setReciverMobileNumber(target.value)} />
-            </Stack> 
+            </Stack>  */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Beneficiary Bank Account
+                Beneficiary Bank Account No
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Account no' value={accountNr} onChange={({ target }) => setAccountNr(target.value)} />
             </Stack>
@@ -346,7 +363,7 @@ export default function BusinessMobile() {
                 Bank Code
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Bank Code' value={bankCode} onChange={({ target }) => setBankCode(target.value)} />
-            </Stack>*/}
+            </Stack>
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Gender
@@ -489,6 +506,12 @@ export default function BusinessMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
+                Paying Currency Code
+              </Typography>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Business Email' value={payingCurrency} onChange={({ target }) => setPayingCurrency(target.value)} />
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
                 Description
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Description' value={descriptionText} onChange={({ target }) => setDescriptionText(target.value)} />
@@ -505,12 +528,12 @@ export default function BusinessMobile() {
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobile} onChange={({ target }) => setMobile(target.value)} />
             </Stack> */}
-            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+            {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Full Name
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Full Name' value={fullName} onChange={({ target }) => setFullName(target.value)} />
-            </Stack>
+            </Stack> */}
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Sender Address
@@ -582,9 +605,15 @@ export default function BusinessMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Recipient Name
+                First Name
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Name' value={recipientName} onChange={({ target }) => setRecipientName(target.value)} />
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
+                Last Name
+              </Typography>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Name' value={lastName} onChange={({ target }) => setLastName(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -615,7 +644,7 @@ export default function BusinessMobile() {
 
         <Stack alignItems='center' mt={5}>
           {amount && currency && remitancePurpose && quoteId && reciveCountry && businessRegistrationType && businessAddressCountryCode && businessDescription && businessAddress1 && businessAddressCity && businessAddressCountryCode && businessCountryCode && businessPrimaryContactNo && businessIDValidThru && sourceFund && senderRelation ?
-          <Button variant='contained' onClick={setFeaturedInfoDetails} >Submit</Button>
+          <Button variant='contained' onClick={setFeaturedInfoDetails} >Submits</Button>
            :
         <CustomButtom variant='contained' disabled>Submit</CustomButtom> }
 
