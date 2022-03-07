@@ -77,7 +77,9 @@ export default function BusinessMobile() {
   }`
 
   const CloseErrorPopup = () => {
-    setAmount('500')
+    setFeaturedInfo(false)
+    setErrorPopup(false)
+    /* setAmount('500')
     setCurrency('INR')
     setPayingCurrency('USD')
     setNetwork('')
@@ -130,13 +132,12 @@ export default function BusinessMobile() {
     setBusinessIDValidThru('2033-09-26')
     setBusinessEmail('test@testemail.com')
     setAccountNr('50100002965304')
-    setFeaturedInfo(false)
-    setErrorPopup(false)
-    setBankCode('HDFC0001626')
+    setBankCode('HDFC0001626') */
   }
 
   const setFeaturedInfoClose = () => {
-    setAmount('500')
+    setFeaturedInfo(false)
+    /* setAmount('500')
     setCurrency('INR')
     setPayingCurrency('USD')
     setNetwork('')
@@ -188,9 +189,8 @@ export default function BusinessMobile() {
     setBusinessRegistrationIssueDate('2001-09-26')
     setBusinessIDValidThru('2033-09-26')
     setBusinessEmail('test@testemail.com')
-    setFeaturedInfo(false)
     setAccountNr('50100002965304')
-    setBankCode('HDFC0001626')
+    setBankCode('HDFC0001626') */
   }
 
   const setFeaturedInfoDetails = () => {

@@ -13,6 +13,7 @@ export default function Mobile() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [accountNumber, setAccountNumber] = useState('+9779840002320')
   const [kycNumber, setKycNumber] = useState('David Robinson')
+  const [provider, setProvider] = useState()
   // const [network, setNetwork] = useState('mobile-wallet')
   const [status, setStatus] = useState('')
   const [subStatus, setSubStatus] = useState('')
@@ -22,15 +23,15 @@ export default function Mobile() {
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
-    setAccountNumber('+9779840002320')
-    setKycNumber('David Robinson')
+    /* setAccountNumber('+9779840002320')
+    setKycNumber('David Robinson') */
     // setNetwork('mobile-wallet')
   }
 
   const setFeaturedInfoClose = () => {
     setFeaturedInfo(false)
-    setAccountNumber('+9779840002320')
-    setKycNumber('David Robinson')
+    /* setAccountNumber('+9779840002320')
+    setKycNumber('David Robinson') */
     // setNetwork('mobile-wallet')
   }
 
@@ -47,7 +48,8 @@ export default function Mobile() {
       , {
         "instrument": 'mobile-wallet',
         "msisdn": `${accountNumber}`,
-        "beneficiaryName": `${kycNumber}`
+        "beneficiaryName": `${kycNumber}`,
+        "provider": `${provider}`
     },
       { headers: options.headers } 
     ).then((res) => {
@@ -88,6 +90,12 @@ export default function Mobile() {
             Full KYC name of the beneficiary
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Full KYC name' onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Provider
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='Provider' onChange={({ target }) => setProvider(target.value)} value={provider} />
           </Stack>
           {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>

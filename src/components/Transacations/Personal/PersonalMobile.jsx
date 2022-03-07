@@ -57,16 +57,16 @@ export default function PersonalMobile() {
   }`
 
   const CloseErrorPopup = () => {
-    setAmount('500')
+    /* setAmount('500')
     setCurrency('INR')
     setNetwork('')
     setTransactionType('inttransfer')
     setMobileNumber('+971810456234')
     setKycName('HDFC Bank')
     setDob('1967-05-28')
-    setNationality('AE')
+    setNationality('AE') */
     // setGenter('')
-    setGenderDetails('M')
+    /* setGenderDetails('M')
     setIdType('VOTER_CARD')
     setIdNumber('13321115521')
     setExpDate('2067-05-28')
@@ -74,9 +74,9 @@ export default function PersonalMobile() {
     setFullName('Test Sender2')
     setSenderAddress('')
     setCountry('US')
-    setCity('Florida')
+    setCity('Florida') */
     // setAccountKycName('Oyugi Randy Electric Sale Pvt. Ltd.')
-    setRemitancePurpose('Gift')
+    /* setRemitancePurpose('Gift')
     setQuoteId('QR037C1NA6ZXBSQ88B')
     setReciveCountry('IN')
     setSourceFund('Business Income')
@@ -90,22 +90,22 @@ export default function PersonalMobile() {
     setTransactionRef('SrcTxnId001')
     setIssueDate('1967-05-28')
     setIssuerCountry('AE')
-    setRecipientName('David Robinson')
+    setRecipientName('David Robinson') */
     setFeaturedInfo(false)
     setErrorPopup(false)
   }
 
   const setFeaturedInfoClose = () => {
-    setAmount('500')
+    /* setAmount('500')
     setCurrency('INR')
     setNetwork('')
     setTransactionType('inttransfer')
     setMobileNumber('+971810456234')
     setKycName('HDFC Bank')
     setDob('1967-05-28')
-    setNationality('AE')
+    setNationality('AE') */
     // setGenter('')
-    setGenderDetails('M')
+    /* setGenderDetails('M')
     setIdType('VOTER_CARD')
     setIdNumber('13321115521')
     setExpDate('2067-05-28')
@@ -113,9 +113,9 @@ export default function PersonalMobile() {
     setFullName('Test Sender2')
     setSenderAddress('')
     setCountry('US')
-    setCity('Florida')
+    setCity('Florida') */
     // setAccountKycName('Oyugi Randy Electric Sale Pvt. Ltd.')
-    setRemitancePurpose('Gift')
+    /* setRemitancePurpose('Gift')
     setQuoteId('QR037C1NA6ZXBSQ88B')
     setReciveCountry('IN')
     setSourceFund('Salary')
@@ -129,7 +129,7 @@ export default function PersonalMobile() {
     setTransactionRef('SrcTxnId001')
     setIssueDate('1967-05-28')
     setIssuerCountry('AE')
-    setRecipientName('David Robinson')
+    setRecipientName('David Robinson') */
     setFeaturedInfo(false)
   }
 

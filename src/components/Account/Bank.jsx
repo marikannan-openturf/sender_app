@@ -27,13 +27,13 @@ export default function Bank() {
 
   const setFeaturedInfoClose = () => {
     setFeaturedInfo(false)
-    setAccountNumber('50100002965304')
+  /*   setAccountNumber('50100002965304')
     setKycNumber('Deepa Jain')
     setBankCode('HDFC0001626')
     setBankName('HDFC Bank')
     setCountry('IN')
     setProvider('')
-    setSubCode('')
+    setSubCode('') */
     // setNetwork('bank-account')
   }
 
@@ -57,13 +57,13 @@ export default function Bank() {
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
-    setAccountNumber('50100002965304')
+    /* setAccountNumber('50100002965304')
     setKycNumber('Deepa Jain')
     setBankCode('HDFC0001626')
     setBankName('HDFC Bank')
     setCountry('IN')
     setProvider('')
-    setSubCode('')
+    setSubCode('') */
     // setNetwork('bank-account')
   }
 

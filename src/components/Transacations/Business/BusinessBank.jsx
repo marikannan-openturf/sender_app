@@ -75,7 +75,7 @@ export default function BusinessBank() {
   }`
 
   const CloseErrorPopup = () => {
-    setAmount('500')
+    /* setAmount('500')
     setCurrency('INR')
     setNetwork('')
     setTransactionType('b2p')
@@ -124,13 +124,13 @@ export default function BusinessBank() {
     setBusinessRegistrationNumber('23123456789')
     setBusinessRegistrationIssueDate('2001-09-26')
     setBusinessIDValidThru('2033-09-26')
-    setBusinessEmail('test@testemail.com')
+    setBusinessEmail('test@testemail.com') */
     setFeaturedInfo(false)
     setErrorPopup(false)
   }
 
   const setFeaturedInfoClose = () => {
-    setAmount('500')
+    /* setAmount('500')
     setCurrency('INR')
     setNetwork('')
     setTransactionType('b2p')
@@ -179,7 +179,7 @@ export default function BusinessBank() {
     setBusinessRegistrationNumber('23123456789')
     setBusinessRegistrationIssueDate('2001-09-26')
     setBusinessIDValidThru('2033-09-26')
-    setBusinessEmail('test@testemail.com')
+    setBusinessEmail('test@testemail.com') */
     setFeaturedInfo(false)
   }
 

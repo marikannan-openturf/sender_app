@@ -23,18 +23,18 @@ export default function Mobile() {
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
-    setCreditMobileNumber('+9779840002320')
+    /* setCreditMobileNumber('+9779840002320')
     setRequestCurrency('500')
     setRequestCurrency('NPR')
     setSendCurrency('USD')
-    setReciveCurrency('NPR')
+    setReciveCurrency('NPR') */
   }
 
   const setFeaturedInfoClose = () => {
     setFeaturedInfo(false)
-    setCreditMobileNumber('+9779840002320')
+    /* setCreditMobileNumber('+9779840002320')
     setRequestCurrency('500')
-    setRequestCurrency('NPR')
+    setRequestCurrency('NPR') */
   }
 
   const setFeaturedInfoDetails = () => {

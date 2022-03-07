@@ -25,22 +25,22 @@ export default function Bank() {
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
-    setAccountNumber('50100002965304')
+    /* setAccountNumber('50100002965304')
     setRequestCurrency('500')
     setRequestCurrency('INR')
     setSendCurrency('USD')
     setReciveCurrency('INR')
-    setReciveCountry('IN')
+    setReciveCountry('IN') */
   }
 
   const setFeaturedInfoClose = () => {
     setFeaturedInfo(false)
-    setAccountNumber('50100002965304')
+    /* setAccountNumber('50100002965304')
     setRequestCurrency('500')
     setRequestCurrency('NPR')
     setSendCurrency('USD')
     setReciveCurrency('NPR')
-    setReciveCountry('IN')
+    setReciveCountry('IN') */
   }
 
   const setFeaturedInfoDetails = () => {
