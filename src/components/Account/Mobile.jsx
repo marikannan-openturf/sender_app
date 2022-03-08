@@ -13,7 +13,8 @@ export default function Mobile() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [accountNumber, setAccountNumber] = useState('+9779840002320')
   const [kycNumber, setKycNumber] = useState('David Robinson')
-  const [provider, setProvider] = useState()
+  const [provider, setProvider] = useState("")
+  const [senderName, setSenderName] = useState("")
   // const [network, setNetwork] = useState('mobile-wallet')
   const [status, setStatus] = useState('')
   const [subStatus, setSubStatus] = useState('')
@@ -36,36 +37,100 @@ export default function Mobile() {
   }
 
   const setFeaturedInfoDetails = () => {
-    const options = {
-      headers: {
-        'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-        'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-        'actualdate': '2018-04-04 09:27:16',
-        'origincountry': 'US'
+    if(accountNumber && kycNumber && provider && senderName){
+      const options = {
+        headers: {
+          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+          'actualdate': '2018-04-04 09:27:16',
+          'origincountry': 'US'
+        }
       }
-    }
-    axios.post(`${apiUrl}/js/accounts-status`
-      , {
-        "instrument": 'mobile-wallet',
-        "msisdn": `${accountNumber}`,
-        "beneficiaryName": `${kycNumber}`,
-        "provider": `${provider}`
-    },
-      { headers: options.headers } 
-    ).then((res) => {
-      if(res.data.status === 'available') {
-        setLei(res.data.lei)
-        setStatus(res.data.status)
-        setSubStatus(res.data.subStatus)
-        setFeaturedInfo(true)
-      } else {
-        console.log("res.da",res.data)
+      axios.post(`${apiUrl}/js/accounts-status`
+        , {
+          "instrument": 'mobile-wallet',
+          "msisdn": `${accountNumber}`,
+          "beneficiaryName": `${kycNumber}`,
+          "provider": `${provider}`,
+          "senderName": `${senderName}`
+        },
+        { headers: options.headers } 
+      ).then((res) => {
+        if(res.data.status === 'available') {
+          setLei(res.data.lei)
+          setStatus(res.data.status)
+          setSubStatus(res.data.subStatus)
+          setFeaturedInfo(true)
+        } else {
+          console.log("res.da",res.data)
+          setErrorPopup(true)
+          setErrorRes(res.data)
+        }
+      }).catch((err) => {
         setErrorPopup(true)
-        setErrorRes(res.data)
+      })
+    } else if(accountNumber && kycNumber && provider){
+      const options = {
+        headers: {
+          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+          'actualdate': '2018-04-04 09:27:16',
+          'origincountry': 'US'
+        }
       }
-    }).catch((err) => {
-      setErrorPopup(true)
-    })
+      axios.post(`${apiUrl}/js/accounts-status`
+        , {
+          "instrument": 'mobile-wallet',
+          "msisdn": `${accountNumber}`,
+          "beneficiaryName": `${kycNumber}`,
+          "provider": `${provider}`,
+        },
+        { headers: options.headers } 
+      ).then((res) => {
+        if(res.data.status === 'available') {
+          setLei(res.data.lei)
+          setStatus(res.data.status)
+          setSubStatus(res.data.subStatus)
+          setFeaturedInfo(true)
+        } else {
+          console.log("res.da",res.data)
+          setErrorPopup(true)
+          setErrorRes(res.data)
+        }
+      }).catch((err) => {
+        setErrorPopup(true)
+      })
+    } else {
+      const options = {
+        headers: {
+          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+          'actualdate': '2018-04-04 09:27:16',
+          'origincountry': 'US'
+        }
+      }
+      axios.post(`${apiUrl}/js/accounts-status`
+        , {
+          "instrument": 'mobile-wallet',
+          "msisdn": `${accountNumber}`,
+          "beneficiaryName": `${kycNumber}`,
+        },
+        { headers: options.headers } 
+      ).then((res) => {
+        if(res.data.status === 'available') {
+          setLei(res.data.lei)
+          setStatus(res.data.status)
+          setSubStatus(res.data.subStatus)
+          setFeaturedInfo(true)
+        } else {
+          console.log("res.da",res.data)
+          setErrorPopup(true)
+          setErrorRes(res.data)
+        }
+      }).catch((err) => {
+        setErrorPopup(true)
+      })
+    }
   }
 
   const CustomButtom = styled(Button)`
@@ -96,6 +161,12 @@ export default function Mobile() {
             Provider
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Provider' onChange={({ target }) => setProvider(target.value)} value={provider} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Sender Name
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='Sender Name' onChange={({ target }) => setSenderName(target.value)} value={senderName} />
           </Stack>
           {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>

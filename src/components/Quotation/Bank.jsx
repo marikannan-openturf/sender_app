@@ -16,6 +16,7 @@ export default function Bank() {
   const [requestCurrency, setRequestCurrency] = useState('INR')
   const [sendCurrency, setSendCurrency] = useState('USD')
   const [reciveCurrency, setReciveCurrency] = useState('INR')
+  const [requestDate, setRequestDate] = useState('2017-06-20 12:27:16')
   const [status, setStatus] = useState('')
   const [subStatus, setSubStatus] = useState('')
   const [lei, setLei] = useState('')
@@ -54,7 +55,7 @@ export default function Bank() {
     }
     axios.post(`${apiUrl}/js/quotation`
       , {
-        "requestDate": "2017-06-20 12:27:16",
+        "requestDate": `${requestDate}`,
         "creditParty": [
           {
             "key": "bankaccountno",
@@ -108,6 +109,12 @@ export default function Bank() {
       <Paper sx={{ p: 2 }}>
         <Typography textAlign='center' pt={2} fontSize={20} variant='h6' color="#404040">Bank Quotation</Typography>
         <Stack width={600} spacing={5} sx={{ p: 4 }}>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Request Date
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='MSISDN number' onChange={({ target }) => setRequestDate(target.value)} value={requestDate} />
+          </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Account Number

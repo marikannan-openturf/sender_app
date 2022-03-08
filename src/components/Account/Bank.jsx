@@ -17,6 +17,7 @@ export default function Bank() {
   const [country, setCountry] = useState('IN')
   const [provider, setProvider] = useState('')
   const [subCode, setSubCode] = useState('')
+  const [msisdn, setMsisdn]=useState('')
   // const [network, setNetwork] = useState('bank-account')
   const [errorPopup, setErrorPopup] = useState(false)
   const [errorRes,setErrorRes] = useState({})
@@ -75,40 +76,300 @@ export default function Bank() {
     }`
 
     const setFeaturedInfoDetails = () => {
-      const options = {
-        headers: {
-          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-          'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US'
+      if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&subCode&&provider&&msisdn){
+        const options = {
+          headers: {
+            'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+            'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+            'actualdate': '2018-04-04 09:27:16',
+            'origincountry': 'US'
+          }
         }
-      }
-      axios.post(`${apiUrl}/js/accounts-status`
-        , {
-          "instrument": 'bank-account',
-          "accountId": `${accountNumber}`,
-          "bankName": `${bankName}`,
-          "countryCode": `${country}`,
-          "beneficiaryName": `${kycNumber}`,
-          "bankCode": `${bankCode}`
-      },
-        { headers: options.headers } 
-      ).then((res) => {
-        if(res.data.error) {
+        axios.post(`${apiUrl}/js/accounts-status`
+          , {
+            "instrument": 'bank-account',
+            "accountId": `${accountNumber}`,
+            "bankName": `${bankName}`,
+            "countryCode": `${country}`,
+            "beneficiaryName": `${kycNumber}`,
+            "bankCode": `${bankCode}`,
+            "banksubcode": `${subCode}`,
+            "provider": `${provider}`,
+            "msisdn": `${msisdn}`
+        },
+          { headers: options.headers } 
+        ).then((res) => {
+          if(res.data.error) {
+            setErrorPopup(true)
+            setErrorRes(res.data)
+            setFeaturedInfo(false)
+          } else {
+            setLei(res.data.lei)
+            setStatus(res.data.status)
+            setSubStatus(res.data.subStatus)
+            setFeaturedInfo(true)
+            setErrorPopup(false)
+          }
+        }).catch((err) => {
           setErrorPopup(true)
-          setErrorRes(res.data)
           setFeaturedInfo(false)
-        } else {
-          setLei(res.data.lei)
-          setStatus(res.data.status)
-          setSubStatus(res.data.subStatus)
-          setFeaturedInfo(true)
-          setErrorPopup(false)
+        })
+      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&subCode&&provider){
+        const options = {
+          headers: {
+            'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+            'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+            'actualdate': '2018-04-04 09:27:16',
+            'origincountry': 'US'
+          }
         }
-      }).catch((err) => {
-        setErrorPopup(true)
-        setFeaturedInfo(false)
-      })
+        axios.post(`${apiUrl}/js/accounts-status`
+          , {
+            "instrument": 'bank-account',
+            "accountId": `${accountNumber}`,
+            "bankName": `${bankName}`,
+            "countryCode": `${country}`,
+            "beneficiaryName": `${kycNumber}`,
+            "bankCode": `${bankCode}`,
+            "banksubcode": `${subCode}`,
+            "provider": `${provider}`,
+        },
+          { headers: options.headers } 
+        ).then((res) => {
+          if(res.data.error) {
+            setErrorPopup(true)
+            setErrorRes(res.data)
+            setFeaturedInfo(false)
+          } else {
+            setLei(res.data.lei)
+            setStatus(res.data.status)
+            setSubStatus(res.data.subStatus)
+            setFeaturedInfo(true)
+            setErrorPopup(false)
+          }
+        }).catch((err) => {
+          setErrorPopup(true)
+          setFeaturedInfo(false)
+        })
+        
+      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&subCode&&msisdn){
+        const options = {
+          headers: {
+            'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+            'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+            'actualdate': '2018-04-04 09:27:16',
+            'origincountry': 'US'
+          }
+        }
+        axios.post(`${apiUrl}/js/accounts-status`
+          , {
+            "instrument": 'bank-account',
+            "accountId": `${accountNumber}`,
+            "bankName": `${bankName}`,
+            "countryCode": `${country}`,
+            "beneficiaryName": `${kycNumber}`,
+            "bankCode": `${bankCode}`,
+            "banksubcode": `${subCode}`,
+            "msisdn": `${msisdn}`
+        },
+          { headers: options.headers } 
+        ).then((res) => {
+          if(res.data.error) {
+            setErrorPopup(true)
+            setErrorRes(res.data)
+            setFeaturedInfo(false)
+          } else {
+            setLei(res.data.lei)
+            setStatus(res.data.status)
+            setSubStatus(res.data.subStatus)
+            setFeaturedInfo(true)
+            setErrorPopup(false)
+          }
+        }).catch((err) => {
+          setErrorPopup(true)
+          setFeaturedInfo(false)
+        })
+      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&provider&&msisdn){
+        const options = {
+          headers: {
+            'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+            'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+            'actualdate': '2018-04-04 09:27:16',
+            'origincountry': 'US'
+          }
+        }
+        axios.post(`${apiUrl}/js/accounts-status`
+          , {
+            "instrument": 'bank-account',
+            "accountId": `${accountNumber}`,
+            "bankName": `${bankName}`,
+            "countryCode": `${country}`,
+            "beneficiaryName": `${kycNumber}`,
+            "bankCode": `${bankCode}`,
+            "provider": `${provider}`,
+            "msisdn": `${msisdn}`
+        },
+          { headers: options.headers } 
+        ).then((res) => {
+          if(res.data.error) {
+            setErrorPopup(true)
+            setErrorRes(res.data)
+            setFeaturedInfo(false)
+          } else {
+            setLei(res.data.lei)
+            setStatus(res.data.status)
+            setSubStatus(res.data.subStatus)
+            setFeaturedInfo(true)
+            setErrorPopup(false)
+          }
+        }).catch((err) => {
+          setErrorPopup(true)
+          setFeaturedInfo(false)
+        })
+      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&provider){
+        const options = {
+          headers: {
+            'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+            'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+            'actualdate': '2018-04-04 09:27:16',
+            'origincountry': 'US'
+          }
+        }
+        axios.post(`${apiUrl}/js/accounts-status`
+          , {
+            "instrument": 'bank-account',
+            "accountId": `${accountNumber}`,
+            "bankName": `${bankName}`,
+            "countryCode": `${country}`,
+            "beneficiaryName": `${kycNumber}`,
+            "bankCode": `${bankCode}`,
+            "provider": `${provider}`,
+        },
+          { headers: options.headers } 
+        ).then((res) => {
+          if(res.data.error) {
+            setErrorPopup(true)
+            setErrorRes(res.data)
+            setFeaturedInfo(false)
+          } else {
+            setLei(res.data.lei)
+            setStatus(res.data.status)
+            setSubStatus(res.data.subStatus)
+            setFeaturedInfo(true)
+            setErrorPopup(false)
+          }
+        }).catch((err) => {
+          setErrorPopup(true)
+          setFeaturedInfo(false)
+        })
+      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&subCode){
+        const options = {
+          headers: {
+            'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+            'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+            'actualdate': '2018-04-04 09:27:16',
+            'origincountry': 'US'
+          }
+        }
+        axios.post(`${apiUrl}/js/accounts-status`
+          , {
+            "instrument": 'bank-account',
+            "accountId": `${accountNumber}`,
+            "bankName": `${bankName}`,
+            "countryCode": `${country}`,
+            "beneficiaryName": `${kycNumber}`,
+            "bankCode": `${bankCode}`,
+            "banksubcode": `${subCode}`,
+        },
+          { headers: options.headers } 
+        ).then((res) => {
+          if(res.data.error) {
+            setErrorPopup(true)
+            setErrorRes(res.data)
+            setFeaturedInfo(false)
+          } else {
+            setLei(res.data.lei)
+            setStatus(res.data.status)
+            setSubStatus(res.data.subStatus)
+            setFeaturedInfo(true)
+            setErrorPopup(false)
+          }
+        }).catch((err) => {
+          setErrorPopup(true)
+          setFeaturedInfo(false)
+        })
+      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&msisdn){
+        const options = {
+          headers: {
+            'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+            'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+            'actualdate': '2018-04-04 09:27:16',
+            'origincountry': 'US'
+          }
+        }
+        axios.post(`${apiUrl}/js/accounts-status`
+          , {
+            "instrument": 'bank-account',
+            "accountId": `${accountNumber}`,
+            "bankName": `${bankName}`,
+            "countryCode": `${country}`,
+            "beneficiaryName": `${kycNumber}`,
+            "bankCode": `${bankCode}`,
+            "msisdn": `${msisdn}`
+        },
+          { headers: options.headers } 
+        ).then((res) => {
+          if(res.data.error) {
+            setErrorPopup(true)
+            setErrorRes(res.data)
+            setFeaturedInfo(false)
+          } else {
+            setLei(res.data.lei)
+            setStatus(res.data.status)
+            setSubStatus(res.data.subStatus)
+            setFeaturedInfo(true)
+            setErrorPopup(false)
+          }
+        }).catch((err) => {
+          setErrorPopup(true)
+          setFeaturedInfo(false)
+        })
+      }else{
+        const options = {
+          headers: {
+            'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+            'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+            'actualdate': '2018-04-04 09:27:16',
+            'origincountry': 'US'
+          }
+        }
+        axios.post(`${apiUrl}/js/accounts-status`
+          , {
+            "instrument": 'bank-account',
+            "accountId": `${accountNumber}`,
+            "bankName": `${bankName}`,
+            "countryCode": `${country}`,
+            "beneficiaryName": `${kycNumber}`,
+            "bankCode": `${bankCode}`
+        },
+          { headers: options.headers } 
+        ).then((res) => {
+          if(res.data.error) {
+            setErrorPopup(true)
+            setErrorRes(res.data)
+            setFeaturedInfo(false)
+          } else {
+            setLei(res.data.lei)
+            setStatus(res.data.status)
+            setSubStatus(res.data.subStatus)
+            setFeaturedInfo(true)
+            setErrorPopup(false)
+          }
+        }).catch((err) => {
+          setErrorPopup(true)
+          setFeaturedInfo(false)
+        })
+      }
     }
 
   return (
@@ -162,22 +423,28 @@ export default function Bank() {
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
+              Bank Subcode
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setSubCode(target.value)} value={subCode} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
               Country
             </Typography>
             <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setCountry(target.value)} value={country} />
           </Stack>
-          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Provider
             </Typography>
             <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setProvider(target.value)} value={provider} />
-          </Stack> */}
-          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Bank Subcode
+              Mobile Number
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setSubCode(target.value)} value={subCode} />
-          </Stack> */}
+            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setMsisdn(target.value)} value={msisdn} />
+          </Stack>
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
