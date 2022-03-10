@@ -11,6 +11,8 @@ const apiUrl = config.api.url
 export default function Bank() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [accountNumber, setAccountNumber] = useState('50100002965304')
+  const [senderMobileNumber, setSenderMobileNumber] = useState('+25691508523697')
+  const [receiverMobileNumber, setReceiverMobileNumber] = useState('+4491509874561')
   const [reciveCountry, setReciveCountry] = useState('IN')
   const [amount, setAmount] = useState('500')
   const [requestCurrency, setRequestCurrency] = useState('INR')
@@ -21,8 +23,8 @@ export default function Bank() {
   const [subStatus, setSubStatus] = useState('')
   const [lei, setLei] = useState('')
   const [errorPopup, setErrorPopup] = useState(false)
-  const [errorRes,setErrorRes] = useState({})
-  const [successRes,setSuccessRes] = useState({})
+  const [errorRes, setErrorRes] = useState({})
+  const [successRes, setSuccessRes] = useState({})
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
@@ -56,7 +58,17 @@ export default function Bank() {
     axios.post(`${apiUrl}/js/quotation`
       , {
         "requestDate": `${requestDate}`,
+        "debitParty": [
+          {
+            "key": "msisdn",
+            "value": `${receiverMobileNumber}`
+          }
+        ],
         "creditParty": [
+          {
+            "key": "msisdn",
+            "value": `${senderMobileNumber}`
+          },
           {
             "key": "bankaccountno",
             "value": `${accountNumber}`
@@ -78,12 +90,12 @@ export default function Bank() {
       { headers: options.headers }
     ).then((res) => {
       if (res.data.error) {
-        console.log("res",res.data)
+        console.log("res", res.data)
         setErrorPopup(true)
         setErrorRes(res.data)
       } else {
-        
-        console.log("res",res.data)
+
+        console.log("res", res.data)
 
         setLei(res.data.lei)
         setStatus(res.data.status)
@@ -92,7 +104,7 @@ export default function Bank() {
         setFeaturedInfo(true)
       }
     }).catch((err) => {
-      console.log("catch",err)
+      console.log("catch", err)
 
       setFeaturedInfo(true)
     })
@@ -111,9 +123,21 @@ export default function Bank() {
         <Stack width={600} spacing={5} sx={{ p: 4 }}>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-            Request Date
+              Request Date
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='MSISDN number' onChange={({ target }) => setRequestDate(target.value)} value={requestDate} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+              Sender Mobile Number
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='Sender Mobile Number' onChange={({ target }) => setSenderMobileNumber(target.value)} value={senderMobileNumber} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+              Receiver Mobile Number
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='Receiver Mobile Number' onChange={({ target }) => setReceiverMobileNumber(target.value)} value={receiverMobileNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -154,8 +178,9 @@ export default function Bank() {
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
-            {accountNumber && requestCurrency && amount && sendCurrency && reciveCurrency
-              ? <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
+            {accountNumber && requestCurrency && amount && sendCurrency && reciveCurrency && requestDate && receiverMobileNumber && senderMobileNumber
+            ? 
+            <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
               : <CustomButtom sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
             }
           </Stack>

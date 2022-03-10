@@ -21,6 +21,8 @@ export default function Mobile() {
   const [lei, setLei] = useState('')
   const [errorPopup, setErrorPopup] = useState(false)
   const [errorRes,setErrorRes] = useState({})
+  const [benificiaryErrorMsg, setBenificiaryErrorMsg] = useState(false)
+  const [kycErrorMsg, setKycErrorMsg] = useState(false)
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
@@ -37,7 +39,15 @@ export default function Mobile() {
   }
 
   const setFeaturedInfoDetails = () => {
-    if(accountNumber && kycNumber && provider && senderName){
+    if(!accountNumber) {
+      setBenificiaryErrorMsg('This Field is required')
+    }
+    if(!kycNumber) {
+      setKycErrorMsg('This Field is required')
+    }
+    else if(accountNumber && kycNumber && provider && senderName){
+      setBenificiaryErrorMsg('')
+      setKycErrorMsg('')
       const options = {
         headers: {
           'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
@@ -70,6 +80,8 @@ export default function Mobile() {
         setErrorPopup(true)
       })
     } else if(accountNumber && kycNumber && provider){
+      setBenificiaryErrorMsg('')
+      setKycErrorMsg('')
       const options = {
         headers: {
           'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
@@ -100,7 +112,9 @@ export default function Mobile() {
       }).catch((err) => {
         setErrorPopup(true)
       })
-    } else {
+    } else if(accountNumber && kycNumber){
+      setBenificiaryErrorMsg('')
+      setKycErrorMsg('')
       const options = {
         headers: {
           'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
@@ -148,25 +162,39 @@ export default function Mobile() {
             <Typography color="#575757" fontWeight='500'>
              Beneficiary MSISDN with country code
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='MSISDN number' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
+            <OutlinedInput 
+            sx={{ height: 40 }} 
+            placeholder='MSISDN number' 
+            onChange={({ target }) => setAccountNumber(target.value)} 
+            value={accountNumber} 
+            error={benificiaryErrorMsg || ''}
+            helperText={benificiaryErrorMsg ? benificiaryErrorMsg : ''}
+            />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
             Full KYC name of the beneficiary
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Full KYC name' onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
-          </Stack>
-          <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography color="#575757" fontWeight='500'>
-            Provider
-            </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Provider' onChange={({ target }) => setProvider(target.value)} value={provider} />
+            <OutlinedInput 
+            sx={{ height: 40 }} 
+            placeholder='Full KYC name' 
+            onChange={({ target }) => setKycNumber(target.value)} 
+            value={kycNumber}
+            error={kycErrorMsg || ''}
+            helperText={kycErrorMsg ? kycErrorMsg : ''} 
+            />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
             Sender Name
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Sender Name' onChange={({ target }) => setSenderName(target.value)} value={senderName} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Provider
+            </Typography>
+            <OutlinedInput type='number' sx={{ height: 40 }} placeholder='Provider' onChange={({ target }) => setProvider(target.value)} value={provider} />
           </Stack>
           {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -192,7 +220,7 @@ export default function Mobile() {
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
-            {accountNumber && kycNumber 
+            {accountNumber && kycNumber
               ? <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
               : <CustomButtom sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
             }

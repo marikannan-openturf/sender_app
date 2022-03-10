@@ -12,6 +12,7 @@ export default function Bank() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [accountNumber, setAccountNumber] = useState('50100002965304')
   const [kycNumber, setKycNumber] = useState('Deepa Jain')
+  const [senderName, setSenderName] = useState('Sender name')
   const [bankCode, setBankCode] = useState('HDFC0001626')
   const [bankName, setBankName] = useState('HDFC Bank')
   const [country, setCountry] = useState('IN')
@@ -76,7 +77,7 @@ export default function Bank() {
     }`
 
     const setFeaturedInfoDetails = () => {
-      if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&subCode&&provider&&msisdn){
+      if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&subCode&&provider&&msisdn&&senderName){
         const options = {
           headers: {
             'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
@@ -95,6 +96,7 @@ export default function Bank() {
             "bankCode": `${bankCode}`,
             "banksubcode": `${subCode}`,
             "provider": `${provider}`,
+            "snv":`${senderName}`,
             "msisdn": `${msisdn}`
         },
           { headers: options.headers } 
@@ -114,7 +116,7 @@ export default function Bank() {
           setErrorPopup(true)
           setFeaturedInfo(false)
         })
-      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&subCode&&provider){
+      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&subCode&&provider&&senderName){
         const options = {
           headers: {
             'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
@@ -133,6 +135,7 @@ export default function Bank() {
             "bankCode": `${bankCode}`,
             "banksubcode": `${subCode}`,
             "provider": `${provider}`,
+            "snv":`${senderName}`
         },
           { headers: options.headers } 
         ).then((res) => {
@@ -152,7 +155,7 @@ export default function Bank() {
           setFeaturedInfo(false)
         })
         
-      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&subCode&&msisdn){
+      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&subCode&&msisdn&&senderName){
         const options = {
           headers: {
             'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
@@ -170,6 +173,45 @@ export default function Bank() {
             "beneficiaryName": `${kycNumber}`,
             "bankCode": `${bankCode}`,
             "banksubcode": `${subCode}`,
+            "msisdn": `${msisdn}`,
+            "snv":`${senderName}`
+        },
+          { headers: options.headers } 
+        ).then((res) => {
+          if(res.data.error) {
+            setErrorPopup(true)
+            setErrorRes(res.data)
+            setFeaturedInfo(false)
+          } else {
+            setLei(res.data.lei)
+            setStatus(res.data.status)
+            setSubStatus(res.data.subStatus)
+            setFeaturedInfo(true)
+            setErrorPopup(false)
+          }
+        }).catch((err) => {
+          setErrorPopup(true)
+          setFeaturedInfo(false)
+        })
+      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&provider&&msisdn&&senderName){
+        const options = {
+          headers: {
+            'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+            'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+            'actualdate': '2018-04-04 09:27:16',
+            'origincountry': 'US'
+          }
+        }
+        axios.post(`${apiUrl}/js/accounts-status`
+          , {
+            "instrument": 'bank-account',
+            "accountId": `${accountNumber}`,
+            "bankName": `${bankName}`,
+            "countryCode": `${country}`,
+            "beneficiaryName": `${kycNumber}`,
+            "bankCode": `${bankCode}`,
+            "provider": `${provider}`,
+            "snv":`${senderName}`,
             "msisdn": `${msisdn}`
         },
           { headers: options.headers } 
@@ -189,7 +231,7 @@ export default function Bank() {
           setErrorPopup(true)
           setFeaturedInfo(false)
         })
-      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&provider&&msisdn){
+      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&provider&&senderName){
         const options = {
           headers: {
             'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
@@ -207,7 +249,7 @@ export default function Bank() {
             "beneficiaryName": `${kycNumber}`,
             "bankCode": `${bankCode}`,
             "provider": `${provider}`,
-            "msisdn": `${msisdn}`
+            "snv":`${senderName}`
         },
           { headers: options.headers } 
         ).then((res) => {
@@ -226,43 +268,7 @@ export default function Bank() {
           setErrorPopup(true)
           setFeaturedInfo(false)
         })
-      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&provider){
-        const options = {
-          headers: {
-            'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-            'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-            'actualdate': '2018-04-04 09:27:16',
-            'origincountry': 'US'
-          }
-        }
-        axios.post(`${apiUrl}/js/accounts-status`
-          , {
-            "instrument": 'bank-account',
-            "accountId": `${accountNumber}`,
-            "bankName": `${bankName}`,
-            "countryCode": `${country}`,
-            "beneficiaryName": `${kycNumber}`,
-            "bankCode": `${bankCode}`,
-            "provider": `${provider}`,
-        },
-          { headers: options.headers } 
-        ).then((res) => {
-          if(res.data.error) {
-            setErrorPopup(true)
-            setErrorRes(res.data)
-            setFeaturedInfo(false)
-          } else {
-            setLei(res.data.lei)
-            setStatus(res.data.status)
-            setSubStatus(res.data.subStatus)
-            setFeaturedInfo(true)
-            setErrorPopup(false)
-          }
-        }).catch((err) => {
-          setErrorPopup(true)
-          setFeaturedInfo(false)
-        })
-      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&subCode){
+      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&subCode&&senderName){
         const options = {
           headers: {
             'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
@@ -280,6 +286,44 @@ export default function Bank() {
             "beneficiaryName": `${kycNumber}`,
             "bankCode": `${bankCode}`,
             "banksubcode": `${subCode}`,
+            "snv":`${senderName}`
+        },
+          { headers: options.headers } 
+        ).then((res) => {
+          if(res.data.error) {
+            setErrorPopup(true)
+            setErrorRes(res.data)
+            setFeaturedInfo(false)
+          } else {
+            setLei(res.data.lei)
+            setStatus(res.data.status)
+            setSubStatus(res.data.subStatus)
+            setFeaturedInfo(true)
+            setErrorPopup(false)
+          }
+        }).catch((err) => {
+          setErrorPopup(true)
+          setFeaturedInfo(false)
+        })
+      }else if(accountNumber&&bankName&&country&&kycNumber&&bankCode&&msisdn&&senderName){
+        const options = {
+          headers: {
+            'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+            'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+            'actualdate': '2018-04-04 09:27:16',
+            'origincountry': 'US'
+          }
+        }
+        axios.post(`${apiUrl}/js/accounts-status`
+          , {
+            "instrument": 'bank-account',
+            "accountId": `${accountNumber}`,
+            "bankName": `${bankName}`,
+            "countryCode": `${country}`,
+            "beneficiaryName": `${kycNumber}`,
+            "bankCode": `${bankCode}`,
+            "snv":`${senderName}`,
+            "msisdn": `${msisdn}`
         },
           { headers: options.headers } 
         ).then((res) => {
@@ -389,6 +433,12 @@ export default function Bank() {
             </Typography>
             <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
           </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Full name of Sender
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setSenderName(target.value)} value={senderName} />
+          </Stack>
           {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Account Instrument
@@ -441,7 +491,7 @@ export default function Bank() {
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Mobile Number
+            Beneficiary Mobile Number
             </Typography>
             <OutlinedInput sx={{ height: 40 }} onChange={({ target }) => setMsisdn(target.value)} value={msisdn} />
           </Stack>

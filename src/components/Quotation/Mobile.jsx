@@ -11,16 +11,18 @@ const apiUrl = config.api.url
 export default function Mobile() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [creditMobileNumber, setCreditMobileNumber] = useState('+9779840002320')
+  const [receiverMobileNumber, setReceiverMobileNumber] = useState('+4491509874561')
   const [amount, setAmount] = useState('500')
   const [requestCurrency, setRequestCurrency] = useState('NPR')
   const [sendCurrency, setSendCurrency] = useState('USD')
   const [reciveCurrency, setReciveCurrency] = useState('NPR')
+  // const [receiverBankAccount, setReceiverBankAccount] = useState('NPR')
   const [requestDate, setRequestDate] = useState('2017-06-20 12:27:16')
   const [status, setStatus] = useState('')
   const [subStatus, setSubStatus] = useState('')
   const [lei, setLei] = useState('')
   const [errorPopup, setErrorPopup] = useState(false)
-  const [errorRes,setErrorRes] = useState({})
+  const [errorRes, setErrorRes] = useState({})
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
@@ -50,24 +52,30 @@ export default function Mobile() {
     axios.post(`${apiUrl}/js/quotation`
       , {
         "requestDate": `${requestDate}`,
-  "creditParty": [
-    {
-      "key": "msisdn",
-      "value": `${creditMobileNumber}`
-    }
-  ],
-  "requestAmount": `${amount}`,
-  "requestCurrency": `${requestCurrency}`,
-  "quotes": [
-    {
-      "sendingCurrency": `${sendCurrency}`,
-      "receivingCurrency": `${reciveCurrency}`
-    }
-  ]
-    },
-      { headers: options.headers } 
+        "debitParty": [
+          {
+            "key": "msisdn",
+            "value": `${receiverMobileNumber}`
+          }
+        ],
+        "creditParty": [
+          {
+            "key": "msisdn",
+            "value": `${creditMobileNumber}`
+          }
+        ],
+        "requestAmount": `${amount}`,
+        "requestCurrency": `${requestCurrency}`,
+        "quotes": [
+          {
+            "sendingCurrency": `${sendCurrency}`,
+            "receivingCurrency": `${reciveCurrency}`
+          }
+        ]
+      },
+      { headers: options.headers }
     ).then((res) => {
-      if(res.data.error) {
+      if (res.data.error) {
         setErrorPopup(true)
         setErrorRes(res.data)
       } else {
@@ -92,41 +100,59 @@ export default function Mobile() {
       <Paper sx={{ p: 2 }}>
         <Typography textAlign='center' pt={2} fontSize={20} variant='h6' color="#404040">Mobile Quotation</Typography>
         <Stack width={600} spacing={5} sx={{ p: 4 }}>
-            <Stack direction='row' alignItems='center' justifyContent='space-between'>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-            Request Date
+              Request Date
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='MSISDN number' onChange={({ target }) => setRequestDate(target.value)} value={requestDate} />
+            <OutlinedInput sx={{ height: 40 }} placeholder='Request Date' onChange={({ target }) => setRequestDate(target.value)} value={requestDate} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-             Receiver Mobile Number
+              Request Quotation Amount
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='MSISDN number' onChange={({ target }) => setCreditMobileNumber(target.value)} value={creditMobileNumber} />
+            <OutlinedInput sx={{ height: 40 }} placeholder='Request Quotation Amount' onChange={({ target }) => setAmount(target.value)} value={amount} />
+          </Stack>
+          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Request Quotation Amount
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='Request Quotation Amount' onChange={({ target }) => setRequestDate(target.value)} value={requestDate} />
+          </Stack> */}
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+              Sender Mobile Number
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='Sender Mobile Number' onChange={({ target }) => setCreditMobileNumber(target.value)} value={creditMobileNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-             Amount
+              Receiver Mobile Number
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Amount' onChange={({ target }) => setAmount(target.value)} value={amount} />
+            <OutlinedInput sx={{ height: 40 }} placeholder='Receiver Mobile Number' onChange={({ target }) => setReceiverMobileNumber(target.value)} value={receiverMobileNumber} />
           </Stack>
+          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+            Receive Bank Account
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='Receive Bank Account' onChange={({ target }) => setReceiverBankAccount(target.value)} value={receiverMobileNumber} />
+          </Stack> */}
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-             Request Currency
+              Request Currency
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Request Currency' onChange={({ target }) => setRequestCurrency(target.value)} value={requestCurrency} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-             Send Currency
+              Send Currency
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Send Currency' onChange={({ target }) => setSendCurrency(target.value)} value={sendCurrency} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-            Receive Currency
+              Receive Currency
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Recive Currency' onChange={({ target }) => setReciveCurrency(target.value)} value={reciveCurrency} />
+            <OutlinedInput sx={{ height: 40 }} placeholder='Receive Currency' onChange={({ target }) => setReciveCurrency(target.value)} value={reciveCurrency} />
           </Stack>
           {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -158,7 +184,7 @@ export default function Mobile() {
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
-            {creditMobileNumber && requestCurrency && amount && sendCurrency && reciveCurrency
+            {creditMobileNumber && requestCurrency && amount && sendCurrency && reciveCurrency && requestDate && receiverMobileNumber
               ? <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
               : <CustomButtom sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
             }
