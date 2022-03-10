@@ -6,7 +6,7 @@ import { styled } from '@mui/system'
 import ErrorPopup from '../../pages/ErrorPopup';
 import axios from 'axios'
 import { config } from '../../assets/config/config';
-
+import {requestBodyData} from '../../Utils/common'
 const apiUrl = config.api.url
 
 export default function Mobile() {
@@ -38,16 +38,118 @@ export default function Mobile() {
     // setNetwork('mobile-wallet')
   }
 
+  // const setFeaturedInfoDetails = () => {
+  //   if(!accountNumber) {
+  //     setBenificiaryErrorMsg('This Field is required')
+  //   }
+  //   if(!kycNumber) {
+  //     setKycErrorMsg('This Field is required')
+  //   }
+  //   else if(accountNumber && kycNumber && provider && senderName){
+  //     setBenificiaryErrorMsg('')
+  //     setKycErrorMsg('')
+  //     const options = {
+  //       headers: {
+  //         'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+  //         'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+  //         'actualdate': '2018-04-04 09:27:16',
+  //         'origincountry': 'US'
+  //       }
+  //     }
+  //     axios.post(`${apiUrl}/js/accounts-status`
+  //       , {
+  //         "instrument": 'mobile-wallet',
+  //         "msisdn": `${accountNumber}`,
+  //         "beneficiaryName": `${kycNumber}`,
+  //         "provider": `${provider}`,
+  //         "senderName": `${senderName}`
+  //       },
+  //       { headers: options.headers } 
+  //     ).then((res) => {
+  //       if(res.data.status === 'available') {
+  //         setLei(res.data.lei)
+  //         setStatus(res.data.status)
+  //         setSubStatus(res.data.subStatus)
+  //         setFeaturedInfo(true)
+  //       } else {
+  //         console.log("res.da",res.data)
+  //         setErrorPopup(true)
+  //         setErrorRes(res.data)
+  //       }
+  //     }).catch((err) => {
+  //       setErrorPopup(true)
+  //     })
+  //   } else if(accountNumber && kycNumber && provider){
+  //     setBenificiaryErrorMsg('')
+  //     setKycErrorMsg('')
+  //     const options = {
+  //       headers: {
+  //         'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+  //         'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+  //         'actualdate': '2018-04-04 09:27:16',
+  //         'origincountry': 'US'
+  //       }
+  //     }
+  //     axios.post(`${apiUrl}/js/accounts-status`
+  //       , {
+  //         "instrument": 'mobile-wallet',
+  //         "msisdn": `${accountNumber}`,
+  //         "beneficiaryName": `${kycNumber}`,
+  //         "provider": `${provider}`,
+  //       },
+  //       { headers: options.headers } 
+  //     ).then((res) => {
+  //       if(res.data.status === 'available') {
+  //         setLei(res.data.lei)
+  //         setStatus(res.data.status)
+  //         setSubStatus(res.data.subStatus)
+  //         setFeaturedInfo(true)
+  //       } else {
+  //         console.log("res.da",res.data)
+  //         setErrorPopup(true)
+  //         setErrorRes(res.data)
+  //       }
+  //     }).catch((err) => {
+  //       setErrorPopup(true)
+  //     })
+  //   } else if(accountNumber && kycNumber){
+  //     setBenificiaryErrorMsg('')
+  //     setKycErrorMsg('')
+  //     const options = {
+  //       headers: {
+  //         'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+  //         'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+  //         'actualdate': '2018-04-04 09:27:16',
+  //         'origincountry': 'US'
+  //       }
+  //     }
+  //     axios.post(`${apiUrl}/js/accounts-status`
+  //       , {
+  //         "instrument": 'mobile-wallet',
+  //         "msisdn": `${accountNumber}`,
+  //         "beneficiaryName": `${kycNumber}`,
+  //       },
+  //       { headers: options.headers } 
+  //     ).then((res) => {
+  //       if(res.data.status === 'available') {
+  //         setLei(res.data.lei)
+  //         setStatus(res.data.status)
+  //         setSubStatus(res.data.subStatus)
+  //         setFeaturedInfo(true)
+  //       } else {
+  //         console.log("res.da",res.data)
+  //         setErrorPopup(true)
+  //         setErrorRes(res.data)
+  //       }
+  //     }).catch((err) => {
+  //       setErrorPopup(true)
+  //     })
+  //   }
+  // }
+
   const setFeaturedInfoDetails = () => {
-    if(!accountNumber) {
-      setBenificiaryErrorMsg('This Field is required')
-    }
-    if(!kycNumber) {
-      setKycErrorMsg('This Field is required')
-    }
-    else if(accountNumber && kycNumber && provider && senderName){
-      setBenificiaryErrorMsg('')
-      setKycErrorMsg('')
+    
+
       const options = {
         headers: {
           'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
@@ -56,13 +158,18 @@ export default function Mobile() {
           'origincountry': 'US'
         }
       }
+      let requestBodyDataInfo = {
+        "instrument": 'mobile-wallet',
+        "msisdn": `${accountNumber}`,
+        "beneficiaryName": `${kycNumber}`,
+        "provider": `${provider}`,
+        "senderName": `${senderName}`
+      }
+      const requestBody = requestBodyData(requestBodyDataInfo)
+      console.log("requestBody",requestBody)
       axios.post(`${apiUrl}/js/accounts-status`
         , {
-          "instrument": 'mobile-wallet',
-          "msisdn": `${accountNumber}`,
-          "beneficiaryName": `${kycNumber}`,
-          "provider": `${provider}`,
-          "senderName": `${senderName}`
+          requestBody
         },
         { headers: options.headers } 
       ).then((res) => {
@@ -79,72 +186,6 @@ export default function Mobile() {
       }).catch((err) => {
         setErrorPopup(true)
       })
-    } else if(accountNumber && kycNumber && provider){
-      setBenificiaryErrorMsg('')
-      setKycErrorMsg('')
-      const options = {
-        headers: {
-          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-          'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US'
-        }
-      }
-      axios.post(`${apiUrl}/js/accounts-status`
-        , {
-          "instrument": 'mobile-wallet',
-          "msisdn": `${accountNumber}`,
-          "beneficiaryName": `${kycNumber}`,
-          "provider": `${provider}`,
-        },
-        { headers: options.headers } 
-      ).then((res) => {
-        if(res.data.status === 'available') {
-          setLei(res.data.lei)
-          setStatus(res.data.status)
-          setSubStatus(res.data.subStatus)
-          setFeaturedInfo(true)
-        } else {
-          console.log("res.da",res.data)
-          setErrorPopup(true)
-          setErrorRes(res.data)
-        }
-      }).catch((err) => {
-        setErrorPopup(true)
-      })
-    } else if(accountNumber && kycNumber){
-      setBenificiaryErrorMsg('')
-      setKycErrorMsg('')
-      const options = {
-        headers: {
-          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-          'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US'
-        }
-      }
-      axios.post(`${apiUrl}/js/accounts-status`
-        , {
-          "instrument": 'mobile-wallet',
-          "msisdn": `${accountNumber}`,
-          "beneficiaryName": `${kycNumber}`,
-        },
-        { headers: options.headers } 
-      ).then((res) => {
-        if(res.data.status === 'available') {
-          setLei(res.data.lei)
-          setStatus(res.data.status)
-          setSubStatus(res.data.subStatus)
-          setFeaturedInfo(true)
-        } else {
-          console.log("res.da",res.data)
-          setErrorPopup(true)
-          setErrorRes(res.data)
-        }
-      }).catch((err) => {
-        setErrorPopup(true)
-      })
-    }
   }
 
   const CustomButtom = styled(Button)`
