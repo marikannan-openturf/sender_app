@@ -168,9 +168,9 @@ export default function Mobile() {
       const requestBody = requestBodyData(requestBodyDataInfo)
       console.log("requestBody",requestBody)
       axios.post(`${apiUrl}/js/accounts-status`
-        , {
+        , 
           requestBody
-        },
+        ,
         { headers: options.headers } 
       ).then((res) => {
         if(res.data.status === 'available') {
@@ -237,27 +237,7 @@ export default function Mobile() {
             </Typography>
             <OutlinedInput type='number' sx={{ height: 40 }} placeholder='Provider' onChange={({ target }) => setProvider(target.value)} value={provider} />
           </Stack>
-          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography color="#575757" fontWeight='500'>
-              Account Instrument
-            </Typography>
-
-            <TextField
-              sx={{ width: 205 }}
-              label="Instrument"
-              value={network}
-              onChange={({ target }) => setNetwork(target.value)}
-              select
-              InputProps={{ style: { height: 40 } }}
-              InputLabelProps={{ style: { height: 40 } }}
-            >
-              <MenuItem value="" >
-                Instrument
-              </MenuItem>
-              <MenuItem value='mobile-wallet'>Mobile-Wallet</MenuItem>
-              <MenuItem value='bank-account'>Bank-Account</MenuItem>
-            </TextField>
-          </Stack> */}
+          
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>

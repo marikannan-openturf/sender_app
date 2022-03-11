@@ -315,7 +315,7 @@ export default function BusinessBank() {
               <MenuItem value='inttransfer'>Bank</MenuItem> */}
                 <MenuItem value='b2p'>B2P</MenuItem>
                 <MenuItem value='b2b'>B2B</MenuItem>
-                {/* <MenuItem value='p2b'>P2B</MenuItem> */}
+                <MenuItem value='p2b'>P2B</MenuItem>
 
               </TextField>
             </Stack>

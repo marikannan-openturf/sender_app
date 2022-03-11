@@ -33,7 +33,7 @@ import Paper from '@mui/material/Paper';
   }));
 
 export default function QuotationStatusPopup(props) {
-
+console.log("prop",props)
   return (
     <Dialog
       open={props.featuredInfo} sx={{ height: '100%', width: '100%' }} onClose={() => props.setFeaturedInfoClose()} >
@@ -94,6 +94,12 @@ export default function QuotationStatusPopup(props) {
                     <StyledTableRow>
                       <StyledTableCell component="th" scope="row" >Receive Currency</StyledTableCell>
                       <StyledTableCell align="left">{props.reciveCurrency}</StyledTableCell>
+                  </StyledTableRow>
+                }
+                {props.quotationReference && 
+                    <StyledTableRow>
+                      <StyledTableCell component="th" scope="row" >Quotation ID</StyledTableCell>
+                      <StyledTableCell align="left">{props.quotationReference.quotationReference}</StyledTableCell>
                   </StyledTableRow>
                 }
                   {/* <StyledTableRow>

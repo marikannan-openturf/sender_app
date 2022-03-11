@@ -163,6 +163,7 @@ export default function HistoryMobile(props) {
   const [morePopup, setMorePopup] = React.useState(null);
   const open = Boolean(morePopup);
   const handleClick = (event) => {
+    console.log("event",event)
     setMorePopup(event.currentTarget);
   };
   const handleClose = () => {
@@ -417,7 +418,7 @@ export default function HistoryMobile(props) {
     ]
 }
 
-console.log("res",historyMockJson)
+console.log("res",history)
 
   return (
     <Paper sx={{ paddingTop: 3, paddingLeft: 5, paddingRight: 5, paddingBottom: 5, }}>
@@ -451,16 +452,16 @@ console.log("res",historyMockJson)
                 </Stack>
               </StyledTableCell>
               <StyledTableCell align="left">Reference</StyledTableCell>
-              <StyledTableCell align="left">Sender</StyledTableCell>
+              {/* <StyledTableCell align="left">Sender</StyledTableCell> */}
               <StyledTableCell align="left">Receiver</StyledTableCell>
               {/* <StyledTableCell align="left">Recipient</StyledTableCell> */}
               <StyledTableCell align="center">More</StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          {history && history.length > 0 ?   <TableBody>
             {(rowsPerPage > 0
-              ? historyMockJson.rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : historyMockJson.rows
+              ? history.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : history
             ).map((row) => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row" >{row.data.requestDate}</StyledTableCell>
@@ -470,7 +471,7 @@ console.log("res",historyMockJson)
                 {/* <StyledTableCell align="left">{row.reqrefid}</StyledTableCell> */}
                 <StyledTableCell align="left">{row.data.transactionStatus}</StyledTableCell>
                 <StyledTableCell align="left">{row.data.transactionReference}</StyledTableCell>
-                <StyledTableCell align="left">{row.data.creditParty[0].value}</StyledTableCell>
+                {/* <StyledTableCell align="left">{row.data.creditParty[0].value}</StyledTableCell> */}
                 <StyledTableCell align="left">{row.data.debitParty[0].value}</StyledTableCell>
                 {/* <StyledTableCell align="left">{row.recepient}</StyledTableCell> */}
                 <StyledTableCell align="center">
@@ -498,12 +499,23 @@ console.log("res",historyMockJson)
               </TableRow>
             )}
           </TableBody>
+                  :  <TableBody>
+                  <TableRow>
+                  {/* <TableCell align='center' colSpan='center'> */}
+                  <Typography spacing={2} p={2}>
+
+No data available
+</Typography>
+                  {/* </TableCell> */}
+                 
+                  </TableRow>
+                  </TableBody> }
           <TableFooter>
             <TableRow>
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                 colSpan={10}
-                count={historyMockJson.rows.length}
+                count={history.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 SelectProps={{

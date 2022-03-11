@@ -10,9 +10,9 @@ const apiUrl = config.api.url
 
 export default function Bank() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
-  const [accountNumber, setAccountNumber] = useState('50100002965304')
-  const [senderMobileNumber, setSenderMobileNumber] = useState('+25691508523697')
-  const [receiverMobileNumber, setReceiverMobileNumber] = useState('+4491509874561')
+  const [accountNumber, setAccountNumber] = useState('232201001600')
+  const [senderMobileNumber, setSenderMobileNumber] = useState('+9779840002444')
+  const [receiverMobileNumber, setReceiverMobileNumber] = useState('+9779840002320')
   const [reciveCountry, setReciveCountry] = useState('IN')
   const [amount, setAmount] = useState('500')
   const [requestCurrency, setRequestCurrency] = useState('INR')
@@ -57,7 +57,7 @@ export default function Bank() {
     }
     axios.post(`${apiUrl}/js/quotation`
       , {
-        "requestDate": `${requestDate}`,
+        "requestDate": '2017-06-20 12:27:16',
         "debitParty": [
           {
             "key": "msisdn",
@@ -121,12 +121,12 @@ export default function Bank() {
       <Paper sx={{ p: 2 }}>
         <Typography textAlign='center' pt={2} fontSize={20} variant='h6' color="#404040">Bank Quotation</Typography>
         <Stack width={600} spacing={5} sx={{ p: 4 }}>
-          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Request Date
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='MSISDN number' onChange={({ target }) => setRequestDate(target.value)} value={requestDate} />
-          </Stack>
+          </Stack> */}
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Sender Mobile Number
@@ -178,7 +178,7 @@ export default function Bank() {
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
-            {accountNumber && requestCurrency && amount && sendCurrency && reciveCurrency && requestDate && receiverMobileNumber && senderMobileNumber
+            {accountNumber && requestCurrency && amount && sendCurrency && reciveCurrency && requestDate 
             ? 
             <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
               : <CustomButtom sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>

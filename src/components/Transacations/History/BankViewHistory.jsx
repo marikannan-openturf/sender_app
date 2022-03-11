@@ -55,7 +55,7 @@ export default function BankViewHistory(props) {
         'origincountry': 'US'
       }
     }
-    axios.get(`${apiUrl}/js/transaction?transactionReference=SrcTxnId001`, { headers: options.headers }
+    axios.get(`${apiUrl}/js/transaction?transactionReference=${props.refID}`, { headers: options.headers }
     ).then((res) => {
       // setFeaturedInfo(true)
       setHistoryList(res.data)

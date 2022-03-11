@@ -174,10 +174,10 @@ export default function MobileViewHistory(props) {
                   <StyledTableCell component="th" scope="row" >Currency</StyledTableCell>
                   <StyledTableCell align="left"> {historyList.currency}</StyledTableCell>
                 </StyledTableRow>
-                {historyList && historyList.creditParty && historyList.creditParty.length > 0 &&  <StyledTableRow>
+                {/* {historyList && historyList.creditParty && historyList.creditParty.length > 0 &&  <StyledTableRow>
                   <StyledTableCell component="th" scope="row" >Sender Mobile</StyledTableCell>
                   <StyledTableCell align="left"> {historyList.creditParty[0].value}</StyledTableCell>
-                </StyledTableRow>}
+                </StyledTableRow>} */}
                 {historyList && historyList.debitParty && historyList.debitParty.length > 0 &&  <StyledTableRow>
                   <StyledTableCell component="th" scope="row" >Reciver Mobile</StyledTableCell>
                   <StyledTableCell align="left"> {historyList.debitParty[0].value}</StyledTableCell>

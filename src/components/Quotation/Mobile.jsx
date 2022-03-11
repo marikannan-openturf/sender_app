@@ -10,15 +10,16 @@ const apiUrl = config.api.url
 
 export default function Mobile() {
   const [featuredInfo, setFeaturedInfo] = useState(false)
-  const [creditMobileNumber, setCreditMobileNumber] = useState('+9779840002320')
+  const [creditMobileNumber, setCreditMobileNumber] = useState('+255897378380')
   const [receiverMobileNumber, setReceiverMobileNumber] = useState('+4491509874561')
   const [amount, setAmount] = useState('500')
-  const [requestCurrency, setRequestCurrency] = useState('NPR')
+  const [requestCurrency, setRequestCurrency] = useState('USD')
   const [sendCurrency, setSendCurrency] = useState('USD')
-  const [reciveCurrency, setReciveCurrency] = useState('NPR')
+  const [reciveCurrency, setReciveCurrency] = useState('INR')
   // const [receiverBankAccount, setReceiverBankAccount] = useState('NPR')
   const [requestDate, setRequestDate] = useState('2017-06-20 12:27:16')
   const [status, setStatus] = useState('')
+  const [quotationReference, setQuotationReference] = useState({})
   const [subStatus, setSubStatus] = useState('')
   const [lei, setLei] = useState('')
   const [errorPopup, setErrorPopup] = useState(false)
@@ -51,7 +52,7 @@ export default function Mobile() {
     }
     axios.post(`${apiUrl}/js/quotation`
       , {
-        "requestDate": `${requestDate}`,
+        "requestDate": '2017-06-20 12:27:16',
         "debitParty": [
           {
             "key": "msisdn",
@@ -82,12 +83,15 @@ export default function Mobile() {
         setLei(res.data.lei)
         setStatus(res.data.status)
         setSubStatus(res.data.subStatus)
+        setQuotationReference(res.data)
         setFeaturedInfo(true)
       }
     }).catch((err) => {
       setErrorPopup(true)
     })
   }
+
+  console.log("quota",quotationReference)
 
   const CustomButtom = styled(Button)`
     &.Mui-disabled{
@@ -100,12 +104,12 @@ export default function Mobile() {
       <Paper sx={{ p: 2 }}>
         <Typography textAlign='center' pt={2} fontSize={20} variant='h6' color="#404040">Mobile Quotation</Typography>
         <Stack width={600} spacing={5} sx={{ p: 4 }}>
-          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Request Date
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Request Date' onChange={({ target }) => setRequestDate(target.value)} value={requestDate} />
-          </Stack>
+          </Stack> */}
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Request Quotation Amount
@@ -184,7 +188,7 @@ export default function Mobile() {
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
-            {creditMobileNumber && requestCurrency && amount && sendCurrency && reciveCurrency && requestDate && receiverMobileNumber
+            {creditMobileNumber && requestCurrency && amount && sendCurrency && reciveCurrency && requestDate && receiverMobileNumber && creditMobileNumber
               ? <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
               : <CustomButtom sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
             }
@@ -198,6 +202,8 @@ export default function Mobile() {
         requestCurrency={requestCurrency}
         sendCurrency={sendCurrency}
         reciveCurrency={reciveCurrency}
+        reciveCurrency={reciveCurrency}
+        quotationReference={quotationReference}
         setFeaturedInfoClose={setFeaturedInfoClose}
         lei={lei}
         status={status}
