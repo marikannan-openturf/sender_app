@@ -166,7 +166,6 @@ export default function Mobile() {
         "senderName": `${senderName}`
       }
       const requestBody = requestBodyData(requestBodyDataInfo)
-      console.log("requestBody",requestBody)
       axios.post(`${apiUrl}/js/accounts-status`
         , 
           requestBody
@@ -201,7 +200,7 @@ export default function Mobile() {
         <Stack width={600} spacing={5} sx={{ p: 4 }}>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-             Beneficiary MSISDN with country code
+             Beneficiary MSISDN with country code <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
             <OutlinedInput 
             sx={{ height: 40 }} 
@@ -214,7 +213,7 @@ export default function Mobile() {
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-            Full KYC name of the beneficiary
+            Full KYC name of the beneficiary <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
             <OutlinedInput 
             sx={{ height: 40 }} 

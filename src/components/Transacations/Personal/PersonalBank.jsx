@@ -7,13 +7,19 @@ import ErrorPopup from '../../../pages/ErrorPopup';
 import axios from 'axios';
 import { config } from '../../../assets/config/config';
 import { TitleSharp } from '@mui/icons-material';
+import {currencyList} from '../../../Utils/currency'
+import {countryList} from '../../../Utils/country'
+import {purposeTransaction} from '../../../Utils/purpose_transaction'
+import { sourceFundList } from '../../../Utils/sourceFund'
+import { relationship } from '../../../Utils/relationship'
+import { requestBodyData } from '../../../Utils/common'
 const apiUrl = config.api.url
 
 export default function PersonalBank() {
-  const [amount, setAmount] = useState('500')
-  const [currency, setCurrency] = useState('INR')
+  const [amount, setAmount] = useState('100000')
+  const [currency, setCurrency] = useState('NGN')
   const [transactionType, setTransactionType] = useState('inttransfer')
-  const [mobileNumber, setMobileNumber] = useState('+971810456234')
+  const [mobileNumber, setMobileNumber] = useState('')
   const [reciverMobileNumber, setReciverMobileNumber] = useState('+9779840002320')
   const [accountNr, setAccountNr] = useState('50100002965304')
   const [kycName, setKycName] = useState('HDFC Bank')
@@ -22,18 +28,18 @@ export default function PersonalBank() {
   const [sortCode, setSortCode] = useState('0002')
   const [network, setNetwork] = useState('')
   const [dob, setDob] = useState('1967-05-28')
-  const [receiverDob, setReceiverDob] = useState('1967-05-28')
+  const [receiverDob, setReceiverDob] = useState('')
   const [nationality, setNationality] = useState('AE')
   const [receiverNationality, setReceiverNationality] = useState('AE')
   // const [genter, setGenter] = useState('')
   const [genderDetails, setGenderDetails] = useState('M')
   const [receiverGenderDetails, setReceiverGenderDetails] = useState('M')
   const [idType, setIdType] = useState('VOTER_CARD')
-  const [receiverIdType, setReceiverIdType] = useState('VOTER_CARD')
+  const [receiverIdType, setReceiverIdType] = useState('')
   const [idNumber, setIdNumber] = useState('13321115521')
-  const [receiverIdNumber, setReceiverIdNumber] = useState('13321115521')
+  const [receiverIdNumber, setReceiverIdNumber] = useState('')
   const [expDate, setExpDate] = useState('2067-05-28')
-  const [receiverExpDate, setReceiverExpDate] = useState('2067-05-28')
+  const [receiverExpDate, setReceiverExpDate] = useState('')
 
   const [mobile, setMobile] = useState('13321115521')
   const [fullName, setFullName] = useState('Test Sender2')
@@ -41,38 +47,38 @@ export default function PersonalBank() {
   const [country, setCountry] = useState('US')
   const [receiverCountry, setReceiverCountry] = useState('US')
   const [city, setCity] = useState('Florida')
-  const [receiverCity, setReceiverCity] = useState('Florida')
+  const [receiverCity, setReceiverCity] = useState('')
   // const [accountKycName, setAccountKycName] = useState('Oyugi Randy Electric Sale Pvt. Ltd.')
-  const [remitancePurpose, setRemitancePurpose] = useState('Family Maintainance')
+  const [remitancePurpose, setRemitancePurpose] = useState('Family Maintenance')
   const [quoteId, setQuoteId] = useState('QR037C1NA6ZXBSQ88B')
   const [reciveCountry, setReciveCountry] = useState('NP')
   const [sourceFund, setSourceFund] = useState('Salary')
   const [senderRelation, setSenderRelation] = useState('Brother')
   const [address1, setAddress1] = useState('49 , park street')
-  const [receiverAddress1, setReceiverAddress1] = useState('49 , park street')
-  const [address2, setAddress2] = useState('12')
-  const [address3, setAddress3] = useState('12')
-  const [receiverAddress2, setReceiverAddress2] = useState('49 , park street')
-  const [stateProvince, setStateProvince] = useState('50000')
-  const [receiverStateProvince, setReceiverStateProvince] = useState('50000')
-  const [postalCode, setPostalCode] = useState('12')
-  const [receiverPostalCode, setReceiverPostalCode] = useState('12')
-  const [descriptionText, setDescriptionText] = useState('Gift for my brother')
-  const [providerCode, setProviderCode] = useState('123456789')
+  const [receiverAddress1, setReceiverAddress1] = useState('')
+  const [address2, setAddress2] = useState('')
+  const [address3, setAddress3] = useState('')
+  const [receiverAddress2, setReceiverAddress2] = useState('')
+  const [stateProvince, setStateProvince] = useState('')
+  const [receiverStateProvince, setReceiverStateProvince] = useState('')
+  const [postalCode, setPostalCode] = useState('')
+  const [receiverPostalCode, setReceiverPostalCode] = useState('')
+  const [descriptionText, setDescriptionText] = useState('')
+  const [providerCode, setProviderCode] = useState('')
   const [transactionRef, setTransactionRef] = useState('SrcTxnId001')
-  const [issueDate, setIssueDate] = useState('1967-05-28')
-  const [receiverIssueDate, setReceiverIssueDate] = useState('1967-05-28')
+  const [issueDate, setIssueDate] = useState('')
+  const [receiverIssueDate, setReceiverIssueDate] = useState('')
   const [issuerCountry, setIssuerCountry] = useState('AE')
   const [receiverIssuerCountry, setReceiverIssuerCountry] = useState('AE')
   const [recipientName, setRecipientName] = useState('David Robinson')
   const [errorPopup, setErrorPopup] = useState(false)
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [errorRes, setErrorRes] = useState({})
-  const [title, setTitle] = useState('Mr.')
+  const [title, setTitle] = useState('')
   const [receiverTitle, setReceiverTitle] = useState('Mr.')
   const [firstName, setFirstName] = useState('Einstein')
   const [receiverFirstName, setReceiverFirstName] = useState('John')
-  const [middleName, setMiddleName] = useState('James')
+  const [middleName, setMiddleName] = useState('')
   const [lastName, setLastName] = useState('Bela')
   const [receiverLastName, setReceiverLastName] = useState('Smith')
 
@@ -172,12 +178,12 @@ export default function PersonalBank() {
       }
     }
     axios.post(`${apiUrl}/js/transaction`
-      , {
+      ,  {
         "amount": `${amount}`,
         "currency": `${currency}`,
         "type": "inttransfer",
         "descriptionText": `${descriptionText}`,
-        "requestDate": "2021-05-23 08:19:36",
+        "requestDate": new Date().toLocaleString("sv-SE"),
         "requestingOrganisationTransactionReference": `${transactionRef}`,
         "debitParty": [
           {
@@ -302,20 +308,38 @@ export default function PersonalBank() {
 
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Amount
+                Amount <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Amount' value={amount} onChange={({ target }) => setAmount(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Currency
+                Currency <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Currency' value={currency} onChange={({ target }) => setCurrency(target.value)} />
+              <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Currency"
+              value={currency}
+              onChange={({ target }) => setCurrency(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+
+                            {currencyList && currencyList.length > 0 && currencyList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.id}</MenuItem>
+                  )
+                })}
+            </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Currency' value={currency} onChange={({ target }) => setCurrency(target.value)} /> */}
             </Stack>
 
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Transaction Reference
+                Transaction Reference <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Transaction Reference' value={transactionRef} onChange={({ target }) => setTransactionRef(target.value)} />
             </Stack>
@@ -357,7 +381,7 @@ export default function PersonalBank() {
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender Mobile Number
+                Sender Mobile Number <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobileNumber} onChange={({ target }) => setMobileNumber(target.value)} />
             </Stack>
@@ -369,46 +393,64 @@ export default function PersonalBank() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Beneficiary Bank Account No
+                Beneficiary Bank Account No <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Account no' value={accountNr} onChange={({ target }) => setAccountNr(target.value)} />
             </Stack>
 
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Account Type
-              </Typography>
+                Account Type 
+              </Typography> 
               <OutlinedInput sx={{ height: 40 }} placeholder='Account Type' value={accountType} onChange={({ target }) => setAccountType(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Bank Code
+                Bank Code <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Bank Code' value={bankCode} onChange={({ target }) => setBankCode(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Full name of beneficiary bank
+                Full name of beneficiary bank <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Account KYC Name' value={kycName} onChange={({ target }) => setKycName(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sort Code
+                Sort Code <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Bank Code' value={sortCode} onChange={({ target }) => setSortCode(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Nationality
+                Nationality <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Nationality' value={nationality} onChange={({ target }) => setNationality(target.value)} />
+              <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Nationality"
+              value={nationality}
+              onChange={({ target }) => setNationality(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+
+                            {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+            </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Nationality' value={nationality} onChange={({ target }) => setNationality(target.value)} /> */}
             </Stack>
 
 
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Date of Birth
+                Date of Birth <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Date of Birth' value={dob} onChange={({ target }) => setDob(target.value)} />
             </Stack>
@@ -431,6 +473,8 @@ export default function PersonalBank() {
                 </MenuItem>
                 <MenuItem value='M'>Male</MenuItem>
                 <MenuItem value='F'>Female</MenuItem>
+                <MenuItem value='U'>Unspecified</MenuItem>
+
                 {/* <MenuItem value='Jio'>Jio</MenuItem> */}
               </TextField>
             </Stack>
@@ -442,13 +486,13 @@ export default function PersonalBank() {
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                ID Document Type
+                ID Document Type <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='ID Type' value={idType} onChange={({ target }) => setIdType(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                ID Number
+                ID Number <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='ID Number' value={idNumber} onChange={({ target }) => setIdNumber(target.value)} />
             </Stack>
@@ -460,7 +504,7 @@ export default function PersonalBank() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                ID Expiry Date
+                ID Expiry Date <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Expiry Date' value={expDate} onChange={({ target }) => setExpDate(target.value)} />
             </Stack>
@@ -468,7 +512,25 @@ export default function PersonalBank() {
               <Typography color="#575757" fontWeight='500'>
                 ID Issuer Country
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Issuer Country' value={issuerCountry} onChange={({ target }) => setIssuerCountry(target.value)} />
+              <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Issuer Country"
+              value={issuerCountry}
+              onChange={({ target }) => setIssuerCountry(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+
+                            {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+            </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Issuer Country' value={issuerCountry} onChange={({ target }) => setIssuerCountry(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -478,7 +540,7 @@ export default function PersonalBank() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                First Name
+                First Name <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='First Name' value={firstName} onChange={({ target }) => setFirstName(target.value)} />
             </Stack>
@@ -490,13 +552,13 @@ export default function PersonalBank() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Last Name
+                Last Name <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Last Name' value={lastName} onChange={({ target }) => setLastName(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Address Line1
+                Address Line1 <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Address line 1' value={address1} onChange={({ target }) => setAddress1(target.value)} />
             </Stack>
@@ -506,20 +568,20 @@ export default function PersonalBank() {
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Address line 2' value={address2} onChange={({ target }) => setAddress2(target.value)} />
             </Stack>
-            
+
           </Stack>
 
 
           <Stack spacing={4} width={450}>
-          <Stack alignItems='center' justifyContent='space-between' direction='row'>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Address Line3
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Address line 3' value={address3} onChange={({ target }) => setAddress3(target.value)} />
             </Stack>
-          <Stack alignItems='center' justifyContent='space-between' direction='row'>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                City
+                City <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='City' value={city} onChange={({ target }) => setCity(target.value)} />
             </Stack>
@@ -537,21 +599,57 @@ export default function PersonalBank() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Country
+                Country <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Country' value={country} onChange={({ target }) => setCountry(target.value)} />
+              <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Sender Country"
+              value={country}
+              onChange={({ target }) => setCountry(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+
+                            {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+            </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Country' value={country} onChange={({ target }) => setCountry(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-               Receiver Nationality
+                Receiver Nationality
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Nationality' value={receiverNationality} onChange={({ target }) => setReceiverNationality(target.value)} />
+              <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Receiver Nationality"
+              value={receiverNationality}
+              onChange={({ target }) => setReceiverNationality(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+
+                            {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+            </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Nationality' value={receiverNationality} onChange={({ target }) => setReceiverNationality(target.value)} /> */}
             </Stack>
 
 
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver Date of Birth
+                Receiver Date of Birth
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Date of Birth' value={receiverDob} onChange={({ target }) => setReceiverDob(target.value)} />
             </Stack>
@@ -584,33 +682,51 @@ export default function PersonalBank() {
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver ID Document Type
+                Receiver ID Document Type
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='ID Type' value={receiverIdType} onChange={({ target }) => setReceiverIdType(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver  ID Number
+                Receiver  ID Number
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='ID Number' value={receiverIdNumber} onChange={({ target }) => setReceiverIdNumber(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver ID Issue Date
+                Receiver ID Issue Date
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='ID Number' value={receiverIssueDate} onChange={({ target }) => setReceiverIssueDate(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver ID Expiry Date
+                Receiver ID Expiry Date
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Expiry Date' value={receiverExpDate} onChange={({ target }) => setReceiverExpDate(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver ID Issuer Country
+                Receiver ID Issuer Country
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Issuer Country' value={receiverIssuerCountry} onChange={({ target }) => setReceiverIssuerCountry(target.value)} />
+              <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Receiver ID Issuer Country"
+              value={receiverIssuerCountry}
+              onChange={({ target }) => setReceiverIssuerCountry(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+
+                            {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+            </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Issuer Country' value={receiverIssuerCountry} onChange={({ target }) => setReceiverIssuerCountry(target.value)} /> */}
             </Stack>
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -620,7 +736,7 @@ export default function PersonalBank() {
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver First Name
+                Receiver First Name <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='First Name' value={receiverFirstName} onChange={({ target }) => setReceiverFirstName(target.value)} />
             </Stack>
@@ -632,7 +748,7 @@ export default function PersonalBank() {
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver Last Name
+                Receiver Last Name <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Last Name' value={receiverLastName} onChange={({ target }) => setReceiverLastName(target.value)} />
             </Stack>
@@ -658,39 +774,57 @@ export default function PersonalBank() {
             </TextField>            </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver Address Line1
+                Receiver Address Line1
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Address line 1' value={receiverAddress1} onChange={({ target }) => setReceiverAddress1(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver Address Line2
+                Receiver Address Line2
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Address line 2' value={receiverAddress2} onChange={({ target }) => setReceiverAddress2(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver City
+                Receiver City
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='City' value={receiverCity} onChange={({ target }) => setReceiverCity(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver State Province
+                Receiver State Province
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='State Province' value={receiverStateProvince} onChange={({ target }) => setReceiverStateProvince(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver  Postal Code
+                Receiver  Postal Code
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Postal Code' value={receiverPostalCode} onChange={({ target }) => setReceiverPostalCode(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Receiver  Country
+                Receiver  Country
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Country' value={receiverCountry} onChange={({ target }) => setReceiverCountry(target.value)} />
+              <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Receiver Country"
+              value={receiverCountry}
+              onChange={({ target }) => setReceiverCountry(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+
+                            {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+            </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Country' value={receiverCountry} onChange={({ target }) => setReceiverCountry(target.value)} /> */}
             </Stack>
 
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
@@ -701,9 +835,27 @@ export default function PersonalBank() {
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Remittance Purpose
+                Remittance Purpose <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Remittance Purpose' value={remitancePurpose} onChange={({ target }) => setRemitancePurpose(target.value)} />
+              <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Remittance Purpose"
+              value={remitancePurpose}
+              onChange={({ target }) => setRemitancePurpose(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+
+                            {purposeTransaction && purposeTransaction.length > 0 && purposeTransaction.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.name}</MenuItem>
+                  )
+                })}
+            </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Remittance Purpose' value={remitancePurpose} onChange={({ target }) => setRemitancePurpose(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -713,27 +865,81 @@ export default function PersonalBank() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Quote ID
+                Quote ID <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Quote ID' value={quoteId} onChange={({ target }) => setQuoteId(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Receiving Country
+                Receiving Country <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Receiving Country' value={reciveCountry} onChange={({ target }) => setReciveCountry(target.value)} />
+              <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Receive Country"
+              value={reciveCountry}
+              onChange={({ target }) => setReciveCountry(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+
+                            {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+            </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Receiving Country' value={reciveCountry} onChange={({ target }) => setReciveCountry(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Source of Fund
+                Source of Fund <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Source of Fund' value={sourceFund} onChange={({ target }) => setSourceFund(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Source of Fund"
+                value={sourceFund}
+                onChange={({ target }) => setSourceFund(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {sourceFundList && sourceFundList.length > 0 && sourceFundList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Source of Fund' value={sourceFund} onChange={({ target }) => setSourceFund(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender Relationship
+                Sender Relationship <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Sender Relationship' value={senderRelation} onChange={({ target }) => setSenderRelation(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Sender Relationship"
+                value={senderRelation}
+                onChange={({ target }) => setSenderRelation(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {relationship && relationship.length > 0 && relationship.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Sender Relationship' value={senderRelation} onChange={({ target }) => setSenderRelation(target.value)} /> */}
             </Stack>
           </Stack>
         </Stack>
@@ -755,7 +961,6 @@ export default function PersonalBank() {
         kycName={kycName}
         setFeaturedInfoClose={setFeaturedInfoClose}
         dob={dob}
-        network={network}
         mobileNumber={mobileNumber}
         bankCode={bankCode}
         accountNr={accountNr}

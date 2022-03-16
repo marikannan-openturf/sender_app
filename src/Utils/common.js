@@ -1,8 +1,5 @@
 export function requestBodyData (data) {
-    for (var propName in data) {
-        if (!data[propName]) {
-          delete data[propName];
-        }
-      }
-      return data
+    return JSON.parse(JSON.stringify(data, (key, value) => {
+      return (value === '' ? undefined : value);
+    }));
   }

@@ -6,6 +6,8 @@ import ErrorPopup from '../../pages/ErrorPopup';
 import { styled } from '@mui/system'
 import axios from 'axios'
 import { config } from '../../assets/config/config';
+import {countryList} from '../../Utils/country'
+import {requestBodyData} from '../../Utils/common'
 
 const apiUrl = config.api.url
 export default function Bank() {
@@ -13,7 +15,7 @@ export default function Bank() {
   const [accountNumber, setAccountNumber] = useState('50100002965304')
   const [kycNumber, setKycNumber] = useState('David Robinson')
   const [senderName, setSenderName] = useState('')
-  const [bankCode, setBankCode] = useState('HDFC0001626')
+  const [bankCode, setBankCode] = useState('')
   const [bankName, setBankName] = useState('HDFC Bank')
   const [country, setCountry] = useState('IN')
   const [provider, setProvider] = useState('')
@@ -77,85 +79,378 @@ export default function Bank() {
     }`
 
   const setFeaturedInfoDetails = () => {
-    if (accountNumber && bankName && country && kycNumber && bankCode && subCode && provider && msisdn && senderName) {
-      const options = {
-        headers: {
-          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-          'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US'
-        }
-      }
-      axios.post(`${apiUrl}/js/accounts-status`
-        , {
-          "instrument": 'bank-account',
-          "accountId": `${accountNumber}`,
-          "bankName": `${bankName}`,
-          "countryCode": `${country}`,
-          "beneficiaryName": `${kycNumber}`,
-          "bankCode": `${bankCode}`,
-          "banksubcode": `${subCode}`,
-          "provider": `${provider}`,
-          "snv": `${senderName}`,
-          "msisdn": `${msisdn}`
-        },
-        { headers: options.headers }
-      ).then((res) => {
-        if (res.data.error) {
-          setErrorPopup(true)
-          setErrorRes(res.data)
-          setFeaturedInfo(false)
-        } else {
-          setLei(res.data.lei)
-          setStatus(res.data.status)
-          setSubStatus(res.data.subStatus)
-          setFeaturedInfo(true)
-          setErrorPopup(false)
-        }
-      }).catch((err) => {
-        setErrorPopup(true)
-        setFeaturedInfo(false)
-      })
-    } else if (accountNumber && bankName && country && kycNumber && bankCode && subCode && provider && senderName) {
-      const options = {
-        headers: {
-          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-          'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US'
-        }
-      }
-      axios.post(`${apiUrl}/js/accounts-status`
-        , {
-          "instrument": 'bank-account',
-          "accountId": `${accountNumber}`,
-          "bankName": `${bankName}`,
-          "countryCode": `${country}`,
-          "beneficiaryName": `${kycNumber}`,
-          "bankCode": `${bankCode}`,
-          "banksubcode": `${subCode}`,
-          "provider": `${provider}`,
-          "snv": `${senderName}`
-        },
-        { headers: options.headers }
-      ).then((res) => {
-        if (res.data.error) {
-          setErrorPopup(true)
-          setErrorRes(res.data)
-          setFeaturedInfo(false)
-        } else {
-          setLei(res.data.lei)
-          setStatus(res.data.status)
-          setSubStatus(res.data.subStatus)
-          setFeaturedInfo(true)
-          setErrorPopup(false)
-        }
-      }).catch((err) => {
-        setErrorPopup(true)
-        setFeaturedInfo(false)
-      })
+    // if (accountNumber && bankName && country && kycNumber && bankCode && subCode && provider && msisdn && senderName) {
+    //   const options = {
+    //     headers: {
+    //       'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+    //       'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+    //       'actualdate': '2018-04-04 09:27:16',
+    //       'origincountry': 'US'
+    //     }
+    //   }
+    //   axios.post(`${apiUrl}/js/accounts-status`
+    //     , {
+    //       "instrument": 'bank-account',
+    //       "accountId": `${accountNumber}`,
+    //       "bankName": `${bankName}`,
+    //       "countryCode": `${country}`,
+    //       "beneficiaryName": `${kycNumber}`,
+    //       "bankCode": `${bankCode}`,
+    //       "banksubcode": `${subCode}`,
+    //       "provider": `${provider}`,
+    //       "snv": `${senderName}`,
+    //       "msisdn": `${msisdn}`
+    //     },
+    //     { headers: options.headers }
+    //   ).then((res) => {
+    //     if (res.data.error) {
+    //       setErrorPopup(true)
+    //       setErrorRes(res.data)
+    //       setFeaturedInfo(false)
+    //     } else {
+    //       setLei(res.data.lei)
+    //       setStatus(res.data.status)
+    //       setSubStatus(res.data.subStatus)
+    //       setFeaturedInfo(true)
+    //       setErrorPopup(false)
+    //     }
+    //   }).catch((err) => {
+    //     setErrorPopup(true)
+    //     setFeaturedInfo(false)
+    //   })
+    // } else if (accountNumber && bankName && country && kycNumber && bankCode && subCode && provider && senderName) {
+    //   const options = {
+    //     headers: {
+    //       'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+    //       'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+    //       'actualdate': '2018-04-04 09:27:16',
+    //       'origincountry': 'US'
+    //     }
+    //   }
+    //   axios.post(`${apiUrl}/js/accounts-status`
+    //     , {
+    //       "instrument": 'bank-account',
+    //       "accountId": `${accountNumber}`,
+    //       "bankName": `${bankName}`,
+    //       "countryCode": `${country}`,
+    //       "beneficiaryName": `${kycNumber}`,
+    //       "bankCode": `${bankCode}`,
+    //       "banksubcode": `${subCode}`,
+    //       "provider": `${provider}`,
+    //       "snv": `${senderName}`
+    //     },
+    //     { headers: options.headers }
+    //   ).then((res) => {
+    //     if (res.data.error) {
+    //       setErrorPopup(true)
+    //       setErrorRes(res.data)
+    //       setFeaturedInfo(false)
+    //     } else {
+    //       setLei(res.data.lei)
+    //       setStatus(res.data.status)
+    //       setSubStatus(res.data.subStatus)
+    //       setFeaturedInfo(true)
+    //       setErrorPopup(false)
+    //     }
+    //   }).catch((err) => {
+    //     setErrorPopup(true)
+    //     setFeaturedInfo(false)
+    //   })
 
-    } else if (accountNumber && bankName && country && kycNumber && bankCode && subCode && msisdn && senderName) {
+    // } else if (accountNumber && bankName && country && kycNumber && bankCode && subCode && msisdn && senderName) {
+    //   const options = {
+    //     headers: {
+    //       'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+    //       'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+    //       'actualdate': '2018-04-04 09:27:16',
+    //       'origincountry': 'US'
+    //     }
+    //   }
+    //   axios.post(`${apiUrl}/js/accounts-status`
+    //     , {
+    //       "instrument": 'bank-account',
+    //       "accountId": `${accountNumber}`,
+    //       "bankName": `${bankName}`,
+    //       "countryCode": `${country}`,
+    //       "beneficiaryName": `${kycNumber}`,
+    //       "bankCode": `${bankCode}`,
+    //       "banksubcode": `${subCode}`,
+    //       "msisdn": `${msisdn}`,
+    //       "snv": `${senderName}`
+    //     },
+    //     { headers: options.headers }
+    //   ).then((res) => {
+    //     if (res.data.error) {
+    //       setErrorPopup(true)
+    //       setErrorRes(res.data)
+    //       setFeaturedInfo(false)
+    //     } else {
+    //       setLei(res.data.lei)
+    //       setStatus(res.data.status)
+    //       setSubStatus(res.data.subStatus)
+    //       setFeaturedInfo(true)
+    //       setErrorPopup(false)
+    //     }
+    //   }).catch((err) => {
+    //     setErrorPopup(true)
+    //     setFeaturedInfo(false)
+    //   })
+    // } else if (accountNumber && bankName && country && kycNumber && bankCode && provider && msisdn && senderName) {
+    //   const options = {
+    //     headers: {
+    //       'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+    //       'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+    //       'actualdate': '2018-04-04 09:27:16',
+    //       'origincountry': 'US'
+    //     }
+    //   }
+    //   axios.post(`${apiUrl}/js/accounts-status`
+    //     , {
+    //       "instrument": 'bank-account',
+    //       "accountId": `${accountNumber}`,
+    //       "bankName": `${bankName}`,
+    //       "countryCode": `${country}`,
+    //       "beneficiaryName": `${kycNumber}`,
+    //       "bankCode": `${bankCode}`,
+    //       "provider": `${provider}`,
+    //       "snv": `${senderName}`,
+    //       "msisdn": `${msisdn}`
+    //     },
+    //     { headers: options.headers }
+    //   ).then((res) => {
+    //     if (res.data.error) {
+    //       setErrorPopup(true)
+    //       setErrorRes(res.data)
+    //       setFeaturedInfo(false)
+    //     } else {
+    //       setLei(res.data.lei)
+    //       setStatus(res.data.status)
+    //       setSubStatus(res.data.subStatus)
+    //       setFeaturedInfo(true)
+    //       setErrorPopup(false)
+    //     }
+    //   }).catch((err) => {
+    //     setErrorPopup(true)
+    //     setFeaturedInfo(false)
+    //   })
+    // } else if (accountNumber && bankName && country && kycNumber && bankCode && provider && senderName) {
+    //   const options = {
+    //     headers: {
+    //       'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+    //       'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+    //       'actualdate': '2018-04-04 09:27:16',
+    //       'origincountry': 'US'
+    //     }
+    //   }
+    //   axios.post(`${apiUrl}/js/accounts-status`
+    //     , {
+    //       "instrument": 'bank-account',
+    //       "accountId": `${accountNumber}`,
+    //       "bankName": `${bankName}`,
+    //       "countryCode": `${country}`,
+    //       "beneficiaryName": `${kycNumber}`,
+    //       "bankCode": `${bankCode}`,
+    //       "provider": `${provider}`,
+    //       "snv": `${senderName}`
+    //     },
+    //     { headers: options.headers }
+    //   ).then((res) => {
+    //     if (res.data.error) {
+    //       setErrorPopup(true)
+    //       setErrorRes(res.data)
+    //       setFeaturedInfo(false)
+    //     } else {
+    //       setLei(res.data.lei)
+    //       setStatus(res.data.status)
+    //       setSubStatus(res.data.subStatus)
+    //       setFeaturedInfo(true)
+    //       setErrorPopup(false)
+    //     }
+    //   }).catch((err) => {
+    //     setErrorPopup(true)
+    //     setFeaturedInfo(false)
+    //   })
+    // } else if (accountNumber && bankName && country && kycNumber && bankCode && subCode && senderName) {
+    //   const options = {
+    //     headers: {
+    //       'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+    //       'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+    //       'actualdate': '2018-04-04 09:27:16',
+    //       'origincountry': 'US'
+    //     }
+    //   }
+    //   axios.post(`${apiUrl}/js/accounts-status`
+    //     , {
+    //       "instrument": 'bank-account',
+    //       "accountId": `${accountNumber}`,
+    //       "bankName": `${bankName}`,
+    //       "countryCode": `${country}`,
+    //       "beneficiaryName": `${kycNumber}`,
+    //       "bankCode": `${bankCode}`,
+    //       "banksubcode": `${subCode}`,
+    //       "snv": `${senderName}`
+    //     },
+    //     { headers: options.headers }
+    //   ).then((res) => {
+    //     if (res.data.error) {
+    //       setErrorPopup(true)
+    //       setErrorRes(res.data)
+    //       setFeaturedInfo(false)
+    //     } else {
+    //       setLei(res.data.lei)
+    //       setStatus(res.data.status)
+    //       setSubStatus(res.data.subStatus)
+    //       setFeaturedInfo(true)
+    //       setErrorPopup(false)
+    //     }
+    //   }).catch((err) => {
+    //     setErrorPopup(true)
+    //     setFeaturedInfo(false)
+    //   })
+    // } else if (accountNumber && bankName && country && kycNumber && bankCode && msisdn && senderName) {
+    //   const options = {
+    //     headers: {
+    //       'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+    //       'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+    //       'actualdate': '2018-04-04 09:27:16',
+    //       'origincountry': 'US'
+    //     }
+    //   }
+    //   axios.post(`${apiUrl}/js/accounts-status`
+    //     , {
+    //       "instrument": 'bank-account',
+    //       "accountId": `${accountNumber}`,
+    //       "bankName": `${bankName}`,
+    //       "countryCode": `${country}`,
+    //       "beneficiaryName": `${kycNumber}`,
+    //       "bankCode": `${bankCode}`,
+    //       "snv": `${senderName}`,
+    //       "msisdn": `${msisdn}`
+    //     },
+    //     { headers: options.headers }
+    //   ).then((res) => {
+    //     if (res.data.error) {
+    //       setErrorPopup(true)
+    //       setErrorRes(res.data)
+    //       setFeaturedInfo(false)
+    //     } else {
+    //       setLei(res.data.lei)
+    //       setStatus(res.data.status)
+    //       setSubStatus(res.data.subStatus)
+    //       setFeaturedInfo(true)
+    //       setErrorPopup(false)
+    //     }
+    //   }).catch((err) => {
+    //     setErrorPopup(true)
+    //     setFeaturedInfo(false)
+    //   })
+    // } else if (accountNumber && bankName && country && kycNumber && bankCode && msisdn) {
+    //   const options = {
+    //     headers: {
+    //       'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+    //       'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+    //       'actualdate': '2018-04-04 09:27:16',
+    //       'origincountry': 'US'
+    //     }
+    //   }
+    //   axios.post(`${apiUrl}/js/accounts-status`
+    //     , {
+    //       "instrument": 'bank-account',
+    //       "accountId": `${accountNumber}`,
+    //       "bankName": `${bankName}`,
+    //       "countryCode": `${country}`,
+    //       "beneficiaryName": `${kycNumber}`,
+    //       "bankCode": `${bankCode}`,
+    //       "msisdn": `${msisdn}`
+    //     },
+    //     { headers: options.headers }
+    //   ).then((res) => {
+    //     if (res.data.error) {
+    //       setErrorPopup(true)
+    //       setErrorRes(res.data)
+    //       setFeaturedInfo(false)
+    //     } else {
+    //       setLei(res.data.lei)
+    //       setStatus(res.data.status)
+    //       setSubStatus(res.data.subStatus)
+    //       setFeaturedInfo(true)
+    //       setErrorPopup(false)
+    //     }
+    //   }).catch((err) => {
+    //     setErrorPopup(true)
+    //     setFeaturedInfo(false)
+    //   })
+    // } else if(accountNumber && bankName && country && kycNumber && msisdn) {
+    //   const options = {
+    //     headers: {
+    //       'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+    //       'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+    //       'actualdate': '2018-04-04 09:27:16',
+    //       'origincountry': 'US'
+    //     }
+    //   }
+    //   axios.post(`${apiUrl}/js/accounts-status`
+    //     , {
+    //       "instrument": 'bank-account',
+    //       "accountId": `${accountNumber}`,
+    //       "bankName": `${bankName}`,
+    //       "countryCode": `${country}`,
+    //       "beneficiaryName": `${kycNumber}`
+    //     },
+    //     { headers: options.headers }
+    //   ).then((res) => {
+    //     if (res.data.error) {
+    //       setErrorPopup(true)
+    //       setErrorRes(res.data)
+    //       setFeaturedInfo(false)
+    //     } else {
+    //       setLei(res.data.lei)
+    //       setStatus(res.data.status)
+    //       setSubStatus(res.data.subStatus)
+    //       setFeaturedInfo(true)
+    //       setErrorPopup(false)
+    //     }
+    //   }).catch((err) => {
+    //     setErrorPopup(true)
+    //     setFeaturedInfo(false)
+    //   })
+    // } else {
+    //   const options = {
+    //     headers: {
+    //       'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
+    //       'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+    //       'actualdate': '2018-04-04 09:27:16',
+    //       'origincountry': 'US'
+    //     }
+    //   }
+    //   axios.post(`${apiUrl}/js/accounts-status`
+    //     , {
+    //       "instrument": 'bank-account',
+    //       "accountId": `${accountNumber}`,
+    //       "bankName": `${bankName}`,
+    //       "countryCode": `${country}`,
+    //       "beneficiaryName": `${kycNumber}`,
+    //       "bankCode": `${bankCode}`
+    //     },
+    //     { headers: options.headers }
+    //   ).then((res) => {
+    //     if (res.data.error) {
+    //       setErrorPopup(true)
+    //       setErrorRes(res.data)
+    //       setFeaturedInfo(false)
+    //     } else {
+    //       setLei(res.data.lei)
+    //       setStatus(res.data.status)
+    //       setSubStatus(res.data.subStatus)
+    //       setFeaturedInfo(true)
+    //       setErrorPopup(false)
+    //     }
+    //   }).catch((err) => {
+    //     setErrorPopup(true)
+    //     setFeaturedInfo(false)
+    //   })
+    // }
+
       const options = {
         headers: {
           'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
@@ -164,8 +459,7 @@ export default function Bank() {
           'origincountry': 'US'
         }
       }
-      axios.post(`${apiUrl}/js/accounts-status`
-        , {
+      let requestBodyDataInfo = {
           "instrument": 'bank-account',
           "accountId": `${accountNumber}`,
           "bankName": `${bankName}`,
@@ -173,84 +467,14 @@ export default function Bank() {
           "beneficiaryName": `${kycNumber}`,
           "bankCode": `${bankCode}`,
           "banksubcode": `${subCode}`,
-          "msisdn": `${msisdn}`,
-          "snv": `${senderName}`
-        },
-        { headers: options.headers }
-      ).then((res) => {
-        if (res.data.error) {
-          setErrorPopup(true)
-          setErrorRes(res.data)
-          setFeaturedInfo(false)
-        } else {
-          setLei(res.data.lei)
-          setStatus(res.data.status)
-          setSubStatus(res.data.subStatus)
-          setFeaturedInfo(true)
-          setErrorPopup(false)
-        }
-      }).catch((err) => {
-        setErrorPopup(true)
-        setFeaturedInfo(false)
-      })
-    } else if (accountNumber && bankName && country && kycNumber && bankCode && provider && msisdn && senderName) {
-      const options = {
-        headers: {
-          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-          'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US'
-        }
-      }
-      axios.post(`${apiUrl}/js/accounts-status`
-        , {
-          "instrument": 'bank-account',
-          "accountId": `${accountNumber}`,
-          "bankName": `${bankName}`,
-          "countryCode": `${country}`,
-          "beneficiaryName": `${kycNumber}`,
-          "bankCode": `${bankCode}`,
           "provider": `${provider}`,
           "snv": `${senderName}`,
           "msisdn": `${msisdn}`
-        },
-        { headers: options.headers }
-      ).then((res) => {
-        if (res.data.error) {
-          setErrorPopup(true)
-          setErrorRes(res.data)
-          setFeaturedInfo(false)
-        } else {
-          setLei(res.data.lei)
-          setStatus(res.data.status)
-          setSubStatus(res.data.subStatus)
-          setFeaturedInfo(true)
-          setErrorPopup(false)
-        }
-      }).catch((err) => {
-        setErrorPopup(true)
-        setFeaturedInfo(false)
-      })
-    } else if (accountNumber && bankName && country && kycNumber && bankCode && provider && senderName) {
-      const options = {
-        headers: {
-          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-          'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US'
-        }
       }
+      const requestBody = requestBodyData(requestBodyDataInfo)
+
       axios.post(`${apiUrl}/js/accounts-status`
-        , {
-          "instrument": 'bank-account',
-          "accountId": `${accountNumber}`,
-          "bankName": `${bankName}`,
-          "countryCode": `${country}`,
-          "beneficiaryName": `${kycNumber}`,
-          "bankCode": `${bankCode}`,
-          "provider": `${provider}`,
-          "snv": `${senderName}`
-        },
+        , requestBody,
         { headers: options.headers }
       ).then((res) => {
         if (res.data.error) {
@@ -268,152 +492,6 @@ export default function Bank() {
         setErrorPopup(true)
         setFeaturedInfo(false)
       })
-    } else if (accountNumber && bankName && country && kycNumber && bankCode && subCode && senderName) {
-      const options = {
-        headers: {
-          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-          'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US'
-        }
-      }
-      axios.post(`${apiUrl}/js/accounts-status`
-        , {
-          "instrument": 'bank-account',
-          "accountId": `${accountNumber}`,
-          "bankName": `${bankName}`,
-          "countryCode": `${country}`,
-          "beneficiaryName": `${kycNumber}`,
-          "bankCode": `${bankCode}`,
-          "banksubcode": `${subCode}`,
-          "snv": `${senderName}`
-        },
-        { headers: options.headers }
-      ).then((res) => {
-        if (res.data.error) {
-          setErrorPopup(true)
-          setErrorRes(res.data)
-          setFeaturedInfo(false)
-        } else {
-          setLei(res.data.lei)
-          setStatus(res.data.status)
-          setSubStatus(res.data.subStatus)
-          setFeaturedInfo(true)
-          setErrorPopup(false)
-        }
-      }).catch((err) => {
-        setErrorPopup(true)
-        setFeaturedInfo(false)
-      })
-    } else if (accountNumber && bankName && country && kycNumber && bankCode && msisdn && senderName) {
-      const options = {
-        headers: {
-          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-          'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US'
-        }
-      }
-      axios.post(`${apiUrl}/js/accounts-status`
-        , {
-          "instrument": 'bank-account',
-          "accountId": `${accountNumber}`,
-          "bankName": `${bankName}`,
-          "countryCode": `${country}`,
-          "beneficiaryName": `${kycNumber}`,
-          "bankCode": `${bankCode}`,
-          "snv": `${senderName}`,
-          "msisdn": `${msisdn}`
-        },
-        { headers: options.headers }
-      ).then((res) => {
-        if (res.data.error) {
-          setErrorPopup(true)
-          setErrorRes(res.data)
-          setFeaturedInfo(false)
-        } else {
-          setLei(res.data.lei)
-          setStatus(res.data.status)
-          setSubStatus(res.data.subStatus)
-          setFeaturedInfo(true)
-          setErrorPopup(false)
-        }
-      }).catch((err) => {
-        setErrorPopup(true)
-        setFeaturedInfo(false)
-      })
-    } else if (accountNumber && bankName && country && kycNumber && bankCode && msisdn) {
-      const options = {
-        headers: {
-          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-          'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US'
-        }
-      }
-      axios.post(`${apiUrl}/js/accounts-status`
-        , {
-          "instrument": 'bank-account',
-          "accountId": `${accountNumber}`,
-          "bankName": `${bankName}`,
-          "countryCode": `${country}`,
-          "beneficiaryName": `${kycNumber}`,
-          "bankCode": `${bankCode}`,
-          "msisdn": `${msisdn}`
-        },
-        { headers: options.headers }
-      ).then((res) => {
-        if (res.data.error) {
-          setErrorPopup(true)
-          setErrorRes(res.data)
-          setFeaturedInfo(false)
-        } else {
-          setLei(res.data.lei)
-          setStatus(res.data.status)
-          setSubStatus(res.data.subStatus)
-          setFeaturedInfo(true)
-          setErrorPopup(false)
-        }
-      }).catch((err) => {
-        setErrorPopup(true)
-        setFeaturedInfo(false)
-      })
-    } else {
-      const options = {
-        headers: {
-          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
-          'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US'
-        }
-      }
-      axios.post(`${apiUrl}/js/accounts-status`
-        , {
-          "instrument": 'bank-account',
-          "accountId": `${accountNumber}`,
-          "bankName": `${bankName}`,
-          "countryCode": `${country}`,
-          "beneficiaryName": `${kycNumber}`,
-          "bankCode": `${bankCode}`
-        },
-        { headers: options.headers }
-      ).then((res) => {
-        if (res.data.error) {
-          setErrorPopup(true)
-          setErrorRes(res.data)
-          setFeaturedInfo(false)
-        } else {
-          setLei(res.data.lei)
-          setStatus(res.data.status)
-          setSubStatus(res.data.subStatus)
-          setFeaturedInfo(true)
-          setErrorPopup(false)
-        }
-      }).catch((err) => {
-        setErrorPopup(true)
-        setFeaturedInfo(false)
-      })
-    }
   }
 
   return (
@@ -423,13 +501,13 @@ export default function Bank() {
         <Stack width={600} spacing={5} sx={{ p: 4 }}>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Beneficiary Bank Account ID or IBAN Number
+              Beneficiary Bank Account ID or IBAN Number <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Beneficiary Bank Account' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Full KYC name of the beneficiary
+              Full KYC name of the beneficiary <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Full KYC name' onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
           </Stack>
@@ -461,7 +539,7 @@ export default function Bank() {
           </Stack> */}
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Bank Name
+              Bank Name <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Bank Name' onChange={({ target }) => setBankName(target.value)} value={bankName} />
           </Stack>
@@ -478,10 +556,31 @@ export default function Bank() {
             <OutlinedInput sx={{ height: 40 }} placeholder='Bank Subcode' onChange={({ target }) => setSubCode(target.value)} value={subCode} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography color="#575757" fontWeight='500'>
+          <Typography color="#575757" fontWeight='500'>
+              Country <span style={{color:'#ea5c57'}}>*</span>
+            </Typography>
+          <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Country"
+              value={country}
+              onChange={({ target }) => setCountry(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+
+                            {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+            </TextField>
+            {/* <Typography color="#575757" fontWeight='500'>
               Country
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Country' onChange={({ target }) => setCountry(target.value)} value={country} />
+            <OutlinedInput sx={{ height: 40 }} placeholder='Country' onChange={({ target }) => setCountry(target.value)} value={country} /> */}
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -498,7 +597,7 @@ export default function Bank() {
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
-            {accountNumber && kycNumber && bankCode && bankName && country
+            {accountNumber && kycNumber && bankName && country
               ? <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
               : <CustomButtom sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
             }

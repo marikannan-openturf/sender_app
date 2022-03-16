@@ -6,6 +6,7 @@ import ErrorPopup from '../../pages/ErrorPopup';
 import axios from 'axios'
 import { config } from '../../assets/config/config';
 import QuotationStatusPopup from './QuotationStatusPopup'
+import { currencyList } from '../../Utils/currency';
 const apiUrl = config.api.url
 
 export default function Mobile() {
@@ -52,7 +53,7 @@ export default function Mobile() {
     }
     axios.post(`${apiUrl}/js/quotation`
       , {
-        "requestDate": '2017-06-20 12:27:16',
+        "requestDate": new Date().toLocaleString("sv-SE"),
         "debitParty": [
           {
             "key": "msisdn",
@@ -112,7 +113,7 @@ export default function Mobile() {
           </Stack> */}
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Request Quotation Amount
+              Request Quotation Amount <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Request Quotation Amount' onChange={({ target }) => setAmount(target.value)} value={amount} />
           </Stack>
@@ -122,17 +123,18 @@ export default function Mobile() {
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Request Quotation Amount' onChange={({ target }) => setRequestDate(target.value)} value={requestDate} />
           </Stack> */}
+          
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Sender Mobile Number
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Sender Mobile Number' onChange={({ target }) => setCreditMobileNumber(target.value)} value={creditMobileNumber} />
+            <OutlinedInput sx={{ height: 40 }} placeholder='Sender Mobile Number' onChange={({ target }) => setReceiverMobileNumber(target.value)} value={receiverMobileNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Receiver Mobile Number
+              Receiver Mobile Number <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Receiver Mobile Number' onChange={({ target }) => setReceiverMobileNumber(target.value)} value={receiverMobileNumber} />
+            <OutlinedInput sx={{ height: 40 }} placeholder='Receiver Mobile Number' onChange={({ target }) => setCreditMobileNumber(target.value)} value={creditMobileNumber} />
           </Stack>
           {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -142,21 +144,75 @@ export default function Mobile() {
           </Stack> */}
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Request Currency
+              Request Currency <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Request Currency' onChange={({ target }) => setRequestCurrency(target.value)} value={requestCurrency} />
+            <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Request Currency"
+                value={requestCurrency}
+                onChange={({ target }) => setRequestCurrency(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {currencyList && currencyList.length > 0 && currencyList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.id}</MenuItem>
+                  )
+                })}
+              </TextField>
+            {/* <OutlinedInput sx={{ height: 40 }} placeholder='Request Currency' onChange={({ target }) => setRequestCurrency(target.value)} value={requestCurrency} /> */}
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Send Currency
+              Send Currency <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Send Currency' onChange={({ target }) => setSendCurrency(target.value)} value={sendCurrency} />
+            <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Send Currency"
+                value={sendCurrency}
+                onChange={({ target }) => setSendCurrency(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {currencyList && currencyList.length > 0 && currencyList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.id}</MenuItem>
+                  )
+                })}
+              </TextField>
+            {/* <OutlinedInput sx={{ height: 40 }} placeholder='Send Currency' onChange={({ target }) => setSendCurrency(target.value)} value={sendCurrency} /> */}
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Receive Currency
+              Receive Currency <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Receive Currency' onChange={({ target }) => setReciveCurrency(target.value)} value={reciveCurrency} />
+            <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Receive Currency"
+                value={reciveCurrency}
+                onChange={({ target }) => setReciveCurrency(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {currencyList && currencyList.length > 0 && currencyList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.id}</MenuItem>
+                  )
+                })}
+              </TextField>
+            {/* <OutlinedInput sx={{ height: 40 }} placeholder='Receive Currency' onChange={({ target }) => setReciveCurrency(target.value)} value={reciveCurrency} /> */}
           </Stack>
           {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -188,7 +244,7 @@ export default function Mobile() {
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
-            {creditMobileNumber && requestCurrency && amount && sendCurrency && reciveCurrency && requestDate && receiverMobileNumber && creditMobileNumber
+            {requestCurrency && amount && sendCurrency && reciveCurrency && requestDate && creditMobileNumber
               ? <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
               : <CustomButtom sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>
             }
@@ -201,7 +257,6 @@ export default function Mobile() {
         amount={amount}
         requestCurrency={requestCurrency}
         sendCurrency={sendCurrency}
-        reciveCurrency={reciveCurrency}
         reciveCurrency={reciveCurrency}
         quotationReference={quotationReference}
         setFeaturedInfoClose={setFeaturedInfoClose}

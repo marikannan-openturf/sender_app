@@ -431,18 +431,18 @@ export default function HistoryBank() {
         <TableHead>
           <TableRow>
             <StyledTableCell><Stack direction='row'>
-            <img src={SortIcon} height="16" weight="16" style={{marginTop:'1px'}} />
+            {/* <img src={SortIcon} height="16" weight="16" style={{marginTop:'1px'}} /> */}
             <Typography sx={{paddingLeft:0.5}}>Date</Typography>
           </Stack></StyledTableCell>
             <StyledTableCell align="left">Amount</StyledTableCell>
             <StyledTableCell align="left"><Stack direction='row'>
-            <img src={SortIcon} height="16" weight="16" style={{marginTop:'1px'}} />
+            {/* <img src={SortIcon} height="16" weight="16" style={{marginTop:'1px'}} /> */}
             <Typography sx={{paddingLeft:0.5}} >Currency</Typography>
           </Stack></StyledTableCell>
             {/* <StyledTableCell align="left">Type</StyledTableCell> */}
             {/* <StyledTableCell align="left">Req Ref Id</StyledTableCell> */}
             <StyledTableCell align="left"> <Stack direction='row'>
-            <img src={SortIcon} height="16" weight="16" style={{marginTop:'1px'}} />
+            {/* <img src={SortIcon} height="16" weight="16" style={{marginTop:'1px'}} /> */}
             <Typography sx={{paddingLeft:0.5}}>Status</Typography>
           </Stack></StyledTableCell>
             <StyledTableCell align="left">Reference</StyledTableCell>

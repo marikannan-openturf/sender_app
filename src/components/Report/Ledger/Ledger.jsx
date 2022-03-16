@@ -205,6 +205,12 @@ export default function Ledger() {
       getLedgerBalance()
     }
   }
+
+  const toIndianCurrency = (num) => {
+    console.log("test",num.toLocaleString('en-IN'))
+    const curr = num.toLocaleString('en-IN');
+ return curr;
+ }
   return (
     <>
       <Stack p={6} >
@@ -280,7 +286,7 @@ export default function Ledger() {
                       ).map((row) => (
                         <StyledTableRow key={row.corridorName}>
                           <StyledTableCell align="left">{row.currency}</StyledTableCell>
-                          <StyledTableCell component="th" scope="row" >{row.currentBalance}</StyledTableCell>
+                          <StyledTableCell component="th" scope="row" > {toIndianCurrency(parseFloat(row.currentBalance))}</StyledTableCell>
                           {/* <StyledTableCell align="left">{row.status}</StyledTableCell> */}
                         </StyledTableRow>
                       ))}

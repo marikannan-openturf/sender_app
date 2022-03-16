@@ -6,6 +6,9 @@ import ErrorPopup from '../../pages/ErrorPopup';
 import axios from 'axios'
 import { config } from '../../assets/config/config';
 import QuotationStatusBankPopUp from './QuotationStatusBankPopUp'
+import { currencyList } from '../../Utils/currency';
+import { countryList } from '../../Utils/country';
+import {requestBodyData} from '../../Utils/common'
 const apiUrl = config.api.url
 
 export default function Bank() {
@@ -55,19 +58,51 @@ export default function Bank() {
         'origincountry': 'US'
       }
     }
+    // let requestBodyDataInfo =  {
+    //   "requestDate": new Date().toLocaleString("sv-SE"),
+    //   "debitParty": [
+    //     {
+    //       "key": "msisdn",
+    //       "value": `${senderMobileNumber}`
+    //     }
+    //   ],
+    //   "creditParty": [
+    //     {
+    //       "key": "msisdn",
+    //       "value": `${receiverMobileNumber}`
+    //     },
+    //     {
+    //       "key": "bankaccountno",
+    //       "value": `${accountNumber}`
+    //     },
+    //     {
+    //       "key": "receivingCountry",
+    //       "value": `${reciveCountry}`
+    //     }
+    //   ],
+    //   "requestAmount": `${amount}`,
+    //   "requestCurrency": `${requestCurrency}`,
+    //   "quotes": [
+    //     {
+    //       "sendingCurrency": `${sendCurrency}`,
+    //       "receivingCurrency": `${reciveCurrency}`
+    //     }
+    //   ]
+    // }
+    // const requestBody = requestBodyData(requestBodyDataInfo)
     axios.post(`${apiUrl}/js/quotation`
       , {
-        "requestDate": '2017-06-20 12:27:16',
+        "requestDate": new Date().toLocaleString("sv-SE"),
         "debitParty": [
           {
             "key": "msisdn",
-            "value": `${receiverMobileNumber}`
+            "value": `${senderMobileNumber}`
           }
         ],
         "creditParty": [
           {
             "key": "msisdn",
-            "value": `${senderMobileNumber}`
+            "value": `${receiverMobileNumber}`
           },
           {
             "key": "bankaccountno",
@@ -127,6 +162,43 @@ export default function Bank() {
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='MSISDN number' onChange={({ target }) => setRequestDate(target.value)} value={requestDate} />
           </Stack> */}
+         
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+              Account Number <span style={{color:'#ea5c57'}}>*</span>
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='Account Number' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+              Receive Country <span style={{color:'#ea5c57'}}>*</span>
+            </Typography>
+            <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Receive Country"
+              value={reciveCountry}
+              onChange={({ target }) => setReciveCountry(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+
+                            {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+            </TextField>
+            {/* <OutlinedInput sx={{ height: 40 }} placeholder='Recive Country' onChange={({ target }) => setReciveCountry(target.value)} value={reciveCountry} /> */}
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+              Amount <span style={{color:'#ea5c57'}}>*</span>
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='Amount' onChange={({ target }) => setAmount(target.value)} value={amount} />
+          </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Sender Mobile Number
@@ -141,44 +213,81 @@ export default function Bank() {
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Account Number
+              Request Currency <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Account Number' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
+            <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Request Currency"
+                value={requestCurrency}
+                onChange={({ target }) => setRequestCurrency(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {currencyList && currencyList.length > 0 && currencyList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.id}</MenuItem>
+                  )
+                })}
+              </TextField>
+            {/* <OutlinedInput sx={{ height: 40 }} placeholder='Request Currency' onChange={({ target }) => setRequestCurrency(target.value)} value={requestCurrency} /> */}
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Receive Country
+              Send Currency <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Recive Country' onChange={({ target }) => setReciveCountry(target.value)} value={reciveCountry} />
+            <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Send Currency"
+                value={sendCurrency}
+                onChange={({ target }) => setSendCurrency(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {currencyList && currencyList.length > 0 && currencyList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.id}</MenuItem>
+                  )
+                })}
+              </TextField>
+            {/* <OutlinedInput sx={{ height: 40 }} placeholder='Send Currency' onChange={({ target }) => setSendCurrency(target.value)} value={sendCurrency} /> */}
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Amount
+              Receive Currency <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Amount' onChange={({ target }) => setAmount(target.value)} value={amount} />
+            <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Receive Currency"
+                value={reciveCurrency}
+                onChange={({ target }) => setReciveCurrency(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {currencyList && currencyList.length > 0 && currencyList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.id}</MenuItem>
+                  )
+                })}
+              </TextField>
+            {/* <OutlinedInput sx={{ height: 40 }} placeholder='Recive Currency' onChange={({ target }) => setReciveCurrency(target.value)} value={reciveCurrency} /> */}
           </Stack>
-          <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography color="#575757" fontWeight='500'>
-              Request Currency
-            </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Request Currency' onChange={({ target }) => setRequestCurrency(target.value)} value={requestCurrency} />
-          </Stack>
-          <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography color="#575757" fontWeight='500'>
-              Send Currency
-            </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Send Currency' onChange={({ target }) => setSendCurrency(target.value)} value={sendCurrency} />
-          </Stack>
-          <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography color="#575757" fontWeight='500'>
-              Receive Currency
-            </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Recive Currency' onChange={({ target }) => setReciveCurrency(target.value)} value={reciveCurrency} />
-          </Stack>
+          
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
-            {accountNumber && requestCurrency && amount && sendCurrency && reciveCurrency && requestDate 
+            {accountNumber && requestCurrency && amount && sendCurrency && reciveCurrency && reciveCountry 
             ? 
             <Button sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained'>Submit</Button>
               : <CustomButtom sx={{ letterSpacing: 1 }} onClick={setFeaturedInfoDetails} variant='contained' disabled>Submit</CustomButtom>

@@ -6,6 +6,10 @@ import TransactionBusinessMobileStatusPopup from './TransactionBusinessMobileSta
 import ErrorPopup from '../../../pages/ErrorPopup';
 import axios from 'axios';
 import { config } from '../../../assets/config/config';
+import { currencyList } from '../../../Utils/currency'
+import { countryList } from '../../../Utils/country'
+import { sourceFundList } from '../../../Utils/sourceFund'
+import {purposeTransaction} from '../../../Utils/purpose_transaction'
 const apiUrl = config.api.url
 
 export default function BusinessMobile() {
@@ -16,9 +20,9 @@ export default function BusinessMobile() {
   const [mobileNumber, setMobileNumber] = useState('+9779840002320')
   const [reciverMobileNumber, setReciverMobileNumber] = useState('+9779840002320')
   const [beneficiarySmsNotify, setBenificiarySmsNotify] = useState('test sms')
-  const [accountNr, setAccountNr] = useState('50100002965304')
-  const [kycName, setKycName] = useState('HDFC Bank')
-  const [bankCode, setBankCode] = useState('HDFC0001626')
+  const [accountNr, setAccountNr] = useState('')
+  const [kycName, setKycName] = useState('')
+  const [bankCode, setBankCode] = useState('')
   const [network, setNetwork] = useState('')
   const [dob, setDob] = useState('1967-05-28')
   const [nationality, setNationality] = useState('AE')
@@ -42,8 +46,8 @@ export default function BusinessMobile() {
   const [address2, setAddress2] = useState('12')
   const [stateProvince, setStateProvince] = useState('50000')
   const [postalCode, setPostalCode] = useState('12')
-  const [descriptionText, setDescriptionText] = useState('Gift for my brother')
-  const [providerCode, setProviderCode] = useState('23401')
+  const [descriptionText, setDescriptionText] = useState('')
+  const [providerCode, setProviderCode] = useState('')
   const [transactionRef, setTransactionRef] = useState('SrcTxnId003435435')
   const [issueDate, setIssueDate] = useState('1967-05-28')
   const [issuerCountry, setIssuerCountry] = useState('AE')
@@ -55,43 +59,43 @@ export default function BusinessMobile() {
   const [paymentMode, setpaymentMode] = useState('cash')
   const [authenticationPartnerCode, setAuthenticationPartnerCode] = useState('4534')
   const [sendingPartnerCode, setSendingPartnerCode] = useState('343432223')
-  const [receivingPartnerCode, setReceivingPartnerCode] = useState('343432223')
+  const [receivingPartnerCode, setReceivingPartnerCode] = useState('')
   const [businessName, setBusinessName] = useState('sample business')
   const [receipientBusinessName, setReceipientBusinessName] = useState('Oyugi Randy Electric Sale Pvt. Ltd.')
   const [receipientBusinessPincode, setReceipientBusinessPincode] = useState('123456')
   const [businessAddress1, setBusinessAddress1] = useState(`alton's road`)
   const [receipientBusinessAddress1, setReceipientBusinessAddress1] = useState(`24`)
-  const [receipientBusinessAddress2, setReceipientBusinessAddress2] = useState(`walton's road`)
+  const [receipientBusinessAddress2, setReceipientBusinessAddress2] = useState(``)
   const [receipientBusinessCity, setReceipientBusinessCity] = useState(`nyc`)
   const [receipientBusinessState, setReceipientBusinessState] = useState(`newyork`)
   const [receipientBusinessAddressCountryCode, setReceipientBusinessAddressCountryCode] = useState('NG')
-  const [receipientAddressZip, setReceipientAddressZip] = useState('123456')
+  const [receipientAddressZip, setReceipientAddressZip] = useState('')
   const [businessAddressCity, setBusinessAddressCity] = useState('Lyon')
   const [businessAddressCountryCode, setBusinessAddressCountryCode] = useState('US')
   const [businessPrimaryContactCountryCode, setBusinessPrimaryContactCountryCode] = useState('US')
   const [businessPrimaryContactNo, setBusinessPrimaryContactNo] = useState('3472034605')
   const [receipientBusinessPrimaryContactCountryCode, setReceipientBusinessPrimaryContactCountryCode] = useState('US')
-  const [receipientBusinessPrimaryContactNo, setReceipientBusinessPrimaryContactNo] = useState('3472034605')
-  const [receipientBusinessPrimaryContactNoType, setReceipientBusinessPrimaryContactNoType] = useState('3472034605')
+  const [receipientBusinessPrimaryContactNo, setReceipientBusinessPrimaryContactNo] = useState('')
+  const [receipientBusinessPrimaryContactNoType, setReceipientBusinessPrimaryContactNoType] = useState('')
   const [businessDescription, setBusinessDescription] = useState('Electronics')
-  const [receipientBusinessDescription, setreceipientBusinessDescription] = useState('Electronics')
+  const [receipientBusinessDescription, setreceipientBusinessDescription] = useState('')
   const [businessCountryCode, setBusinessCountryCode] = useState('US')
   const [receipientBusinessCountryCode, setreceipientBusinessCountryCode] = useState('US')
   const [businessRegistrationType, setBusinessRegistrationType] = useState('Private Limited Company')
-  const [receipientBusinessRegistrationType, setReceipientBusinessRegistrationType] = useState('Private Limited Company')
+  const [receipientBusinessRegistrationType, setReceipientBusinessRegistrationType] = useState('')
   const [businessRegistrationNumber, setBusinessRegistrationNumber] = useState('23123456789')
   const [recepientBusinessRegistrationNumber, setReceipientBusinessRegistrationNumber] = useState('2312345678912')
-  const [recepientBusinessRegistrationIssuedBy, setReceipientBusinessRegistrationNumberIssuedBy] = useState('NYC_TRADE')
-  const [recepientBusinessRegistrationIssuedAt, setReceipientBusinessRegistrationNumberIssuedAt] = useState('NYC')
+  const [recepientBusinessRegistrationIssuedBy, setReceipientBusinessRegistrationNumberIssuedBy] = useState('')
+  const [recepientBusinessRegistrationIssuedAt, setReceipientBusinessRegistrationNumberIssuedAt] = useState('')
   const [recepientBusinessRegistrationIssuedDate, setReceipientBusinessRegistrationNumberIssuedDate] = useState('2002-08-26')
   const [recepientBusinessRegistrationValidThru, setReceipientBusinessRegistrationNumberValidThru] = useState('2036-09-26')
-  const [typeOfBusiness, setTypeOfBusiness] = useState('Electronics')
-  const [businessPObox, setBusinessPOBox] = useState('12345')
+  const [typeOfBusiness, setTypeOfBusiness] = useState('')
+  const [businessPObox, setBusinessPOBox] = useState('')
   const [receipientBusinessMobile, setReceipientBusinessMobile] = useState('343234432')
-  const [businessRegistrationIssueDate, setBusinessRegistrationIssueDate] = useState('2001-09-26')
-  const [businessIDValidThru, setBusinessIDValidThru] = useState('2033-09-26')
+  const [businessRegistrationIssueDate, setBusinessRegistrationIssueDate] = useState('')
+  const [businessIDValidThru, setBusinessIDValidThru] = useState('')
   const [businessEmail, setBusinessEmail] = useState('test@testemail.com')
-  const [receipientBusinessEmail, setReceipientBusinessEmail] = useState('test@testemail.com')
+  const [receipientBusinessEmail, setReceipientBusinessEmail] = useState('')
   const [primaryContactCountryCode, setPrimaryContactcountryCode] = useState('NG')
   const [primaryContactNo, setPrimaryContactNo] = useState('2349061114853')
   const [personalePrimaryContactNo, setPersonalPrimaryContactNo] = useState('2349061114853')
@@ -127,7 +131,7 @@ export default function BusinessMobile() {
         "currency": `${currency}`,
         "type": `${transactionType}`,
         "descriptionText": `${descriptionText}`,
-        "requestDate": "2021-05-23 08:19:36",
+        "requestDate": new Date().toLocaleString("sv-SE"),
         "requestingOrganisationTransactionReference": `${transactionRef}`,
         "debitParty": [
           {
@@ -196,7 +200,7 @@ export default function BusinessMobile() {
       requestBodyData = {
         "currency": `${currency}`,
         "type": "b2b",
-        "requestDate": "2020-01-02 10:51:16",
+        "requestDate": new Date().toLocaleString("sv-SE"),
         "amount": `${amount}`,
         "descriptionText": `${descriptionText}`,
         "requestingOrganisationTransactionReference": `${transactionRef}`,
@@ -279,7 +283,7 @@ export default function BusinessMobile() {
       requestBodyData = {
         "currency": `${currency}`,
         "type": "p2b",
-        "requestDate": "2020-01-02 10:51:16",
+        "requestDate": new Date().toLocaleString("sv-SE"),
         "amount": `${amount}`,
         "descriptionText": `${descriptionText}`,
         "requestingOrganisationTransactionReference": `${transactionRef}`,
@@ -418,7 +422,25 @@ export default function BusinessMobile() {
               <Typography color="#575757" fontWeight='500'>
                 Currency
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Currency' value={currency} onChange={({ target }) => setCurrency(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Currency"
+                value={currency}
+                onChange={({ target }) => setCurrency(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {currencyList && currencyList.length > 0 && currencyList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.id}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Currency' value={currency} onChange={({ target }) => setCurrency(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -473,7 +495,25 @@ export default function BusinessMobile() {
               <Typography color="#575757" fontWeight='500'>
                 Paying Currency Code
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Business Email' value={payingCurrency} onChange={({ target }) => setPayingCurrency(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Paying Currency Code"
+                value={payingCurrency}
+                onChange={({ target }) => setPayingCurrency(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {currencyList && currencyList.length > 0 && currencyList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.id}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Business Email' value={payingCurrency} onChange={({ target }) => setPayingCurrency(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -567,7 +607,25 @@ export default function BusinessMobile() {
                 <Typography color="#575757" fontWeight='500'>
                   Sender Nationality
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Nationality' value={nationality} onChange={({ target }) => setNationality(target.value)} />
+                <TextField
+                  alignItems='center'
+                  sx={{ width: 205 }}
+                  label="Nationality"
+                  value={nationality}
+                  onChange={({ target }) => setNationality(target.value)}
+                  select
+                  InputProps={{ style: { height: 40 } }}
+                  InputLabelProps={{ style: { height: 40 } }}
+                >
+
+
+                  {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                    return (
+                      <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                    )
+                  })}
+                </TextField>
+                {/* <OutlinedInput sx={{ height: 40 }} placeholder='Nationality' value={nationality} onChange={({ target }) => setNationality(target.value)} /> */}
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -593,6 +651,7 @@ export default function BusinessMobile() {
                   </MenuItem>
                   <MenuItem value='M'>Male</MenuItem>
                   <MenuItem value='F'>Female</MenuItem>
+                  <MenuItem value='U'>Unspecified</MenuItem>
                   {/* <MenuItem value='Jio'>Jio</MenuItem> */}
                 </TextField>
               </Stack>
@@ -600,7 +659,25 @@ export default function BusinessMobile() {
                 <Typography color="#575757" fontWeight='500'>
                   Primary Contact Number Code
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Primary Contact Number' value={personalePrimaryContactNoCode} onChange={({ target }) => setPersonalPrimaryContactNoCode(target.value)} />
+                <TextField
+                  alignItems='center'
+                  sx={{ width: 205 }}
+                  label="Primary Contact Number Code"
+                  value={personalePrimaryContactNoCode}
+                  onChange={({ target }) => setPersonalPrimaryContactNoCode(target.value)}
+                  select
+                  InputProps={{ style: { height: 40 } }}
+                  InputLabelProps={{ style: { height: 40 } }}
+                >
+
+
+                  {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                    return (
+                      <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                    )
+                  })}
+                </TextField>
+                {/* <OutlinedInput sx={{ height: 40 }} placeholder='Primary Contact Number' value={personalePrimaryContactNoCode} onChange={({ target }) => setPersonalPrimaryContactNoCode(target.value)} /> */}
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -637,7 +714,25 @@ export default function BusinessMobile() {
                 <Typography color="#575757" fontWeight='500'>
                   Issuer Country
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Issuer Country' value={issuerCountry} onChange={({ target }) => setIssuerCountry(target.value)} />
+                <TextField
+                  alignItems='center'
+                  sx={{ width: 205 }}
+                  label="Issuer Country"
+                  value={issuerCountry}
+                  onChange={({ target }) => setIssuerCountry(target.value)}
+                  select
+                  InputProps={{ style: { height: 40 } }}
+                  InputLabelProps={{ style: { height: 40 } }}
+                >
+
+
+                  {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                    return (
+                      <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                    )
+                  })}
+                </TextField>
+                {/* <OutlinedInput sx={{ height: 40 }} placeholder='Issuer Country' value={issuerCountry} onChange={({ target }) => setIssuerCountry(target.value)} /> */}
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -692,13 +787,49 @@ export default function BusinessMobile() {
               <Typography color="#575757" fontWeight='500'>
                 Business Address Country
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder=' Business Address Country' value={businessAddressCountryCode} onChange={({ target }) => setBusinessAddressCountryCode(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Business Address Country"
+                value={businessAddressCountryCode}
+                onChange={({ target }) => setBusinessAddressCountryCode(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder=' Business Address Country' value={businessAddressCountryCode} onChange={({ target }) => setBusinessAddressCountryCode(target.value)} /> */}
             </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Contact Code
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Contact Code' value={businessPrimaryContactCountryCode} onChange={({ target }) => setBusinessPrimaryContactCountryCode(target.value)} />
+                <TextField
+                  alignItems='center'
+                  sx={{ width: 205 }}
+                  label="Business Contact Code"
+                  value={businessPrimaryContactCountryCode}
+                  onChange={({ target }) => setBusinessPrimaryContactCountryCode(target.value)}
+                  select
+                  InputProps={{ style: { height: 40 } }}
+                  InputLabelProps={{ style: { height: 40 } }}
+                >
+
+
+                  {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                    return (
+                      <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                    )
+                  })}
+                </TextField>
+                {/* <OutlinedInput sx={{ height: 40 }} placeholder='Business Contact Code' value={businessPrimaryContactCountryCode} onChange={({ target }) => setBusinessPrimaryContactCountryCode(target.value)} /> */}
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -716,7 +847,25 @@ export default function BusinessMobile() {
                 <Typography color="#575757" fontWeight='500'>
                   Business Country
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Country Code' value={businessCountryCode} onChange={({ target }) => setBusinessCountryCode(target.value)} />
+                <TextField
+                  alignItems='center'
+                  sx={{ width: 205 }}
+                  label="Business Country"
+                  value={businessCountryCode}
+                  onChange={({ target }) => setBusinessCountryCode(target.value)}
+                  select
+                  InputProps={{ style: { height: 40 } }}
+                  InputLabelProps={{ style: { height: 40 } }}
+                >
+
+
+                  {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                    return (
+                      <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                    )
+                  })}
+                </TextField>
+                {/* <OutlinedInput sx={{ height: 40 }} placeholder='Business Country Code' value={businessCountryCode} onChange={({ target }) => setBusinessCountryCode(target.value)} /> */}
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -753,15 +902,33 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Sender  Postal Code
+                  Sender Postal Code
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Postal Code' value={postalCode} onChange={({ target }) => setPostalCode(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Sender  Country
+                  Sender Country
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Country' value={country} onChange={({ target }) => setCountry(target.value)} />
+                <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Country"
+                value={country}
+                onChange={({ target }) => setCountry(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+                {/* <OutlinedInput sx={{ height: 40 }} placeholder='Country' value={country} onChange={({ target }) => setCountry(target.value)} /> */}
               </Stack>
             </>}
 
@@ -769,13 +936,49 @@ export default function BusinessMobile() {
               <Typography color="#575757" fontWeight='500'>
                 Business Address Country
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder=' Business Address Country' value={businessAddressCountryCode} onChange={({ target }) => setBusinessAddressCountryCode(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Business Address Country"
+                value={businessAddressCountryCode}
+                onChange={({ target }) => setBusinessAddressCountryCode(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder=' Business Address Country' value={businessAddressCountryCode} onChange={({ target }) => setBusinessAddressCountryCode(target.value)} /> */}
             </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Contact Code
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Contact Code' value={businessPrimaryContactCountryCode} onChange={({ target }) => setBusinessPrimaryContactCountryCode(target.value)} />
+                <TextField
+                  alignItems='center'
+                  sx={{ width: 205 }}
+                  label="Business Contact Code"
+                  value={businessPrimaryContactCountryCode}
+                  onChange={({ target }) => setBusinessPrimaryContactCountryCode(target.value)}
+                  select
+                  InputProps={{ style: { height: 40 } }}
+                  InputLabelProps={{ style: { height: 40 } }}
+                >
+
+
+                  {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                    return (
+                      <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                    )
+                  })}
+                </TextField>
+                {/* <OutlinedInput sx={{ height: 40 }} placeholder='Business Contact Code' value={businessPrimaryContactCountryCode} onChange={({ target }) => setBusinessPrimaryContactCountryCode(target.value)} /> */}
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -793,7 +996,25 @@ export default function BusinessMobile() {
                 <Typography color="#575757" fontWeight='500'>
                   Business Country
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Country Code' value={businessCountryCode} onChange={({ target }) => setBusinessCountryCode(target.value)} />
+                <TextField
+                  alignItems='center'
+                  sx={{ width: 205 }}
+                  label="Business Coutry Code"
+                  value={businessCountryCode}
+                  onChange={({ target }) => setBusinessCountryCode(target.value)}
+                  select
+                  InputProps={{ style: { height: 40 } }}
+                  InputLabelProps={{ style: { height: 40 } }}
+                >
+
+
+                  {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                    return (
+                      <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                    )
+                  })}
+                </TextField>
+                {/* <OutlinedInput sx={{ height: 40 }} placeholder='Business Country Code' value={businessCountryCode} onChange={({ target }) => setBusinessCountryCode(target.value)} /> */}
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -843,15 +1064,52 @@ export default function BusinessMobile() {
               <Typography color="#575757" fontWeight='500'>
                 Remittance Purpose
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Remittance Purpose' value={remitancePurpose} onChange={({ target }) => setRemitancePurpose(target.value)} />
+              <TextField
+            alignItems='center'
+              sx={{ width: 205}}
+              label="Remittance Purpose"
+              value={remitancePurpose}
+              onChange={({ target }) => setRemitancePurpose(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+              
+
+                            {purposeTransaction && purposeTransaction.length > 0 && purposeTransaction.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.name}</MenuItem>
+                  )
+                })}
+            </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Remittance Purpose' value={remitancePurpose} onChange={({ target }) => setRemitancePurpose(target.value)} /> */}
             </Stack>
 
             {transactionType === 'b2p' ?
               <>
                 <Stack alignItems='center' justifyContent='space-between' direction='row'>
                   <Typography color="#575757" fontWeight='500'>
-                    Recipient Contact Country Code              </Typography>
-                  <OutlinedInput sx={{ height: 40 }} placeholder='Primary Contact Country Code' value={primaryContactCountryCode} onChange={({ target }) => setPrimaryContactcountryCode(target.value)} />
+                    Recipient Contact Country Code
+                  </Typography>
+                  <TextField
+                    alignItems='center'
+                    sx={{ width: 205 }}
+                    label="Recipient Contact Country"
+                    value={primaryContactCountryCode}
+                    onChange={({ target }) => setPrimaryContactcountryCode(target.value)}
+                    select
+                    InputProps={{ style: { height: 40 } }}
+                    InputLabelProps={{ style: { height: 40 } }}
+                  >
+
+
+                    {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                      return (
+                        <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                      )
+                    })}
+                  </TextField>
+                  {/* <OutlinedInput sx={{ height: 40 }} placeholder='Primary Contact Country Code' value={primaryContactCountryCode} onChange={({ target }) => setPrimaryContactcountryCode(target.value)} /> */}
                 </Stack>
                 <Stack alignItems='center' justifyContent='space-between' direction='row'>
                   <Typography color="#575757" fontWeight='500'>
@@ -920,7 +1178,25 @@ export default function BusinessMobile() {
                 <Typography color="#575757" fontWeight='500'>
                   Receipient Business Country
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Country' value={receipientBusinessAddressCountryCode} onChange={({ target }) => setReceipientBusinessAddressCountryCode(target.value)} />
+                <TextField
+                  alignItems='center'
+                  sx={{ width: 205 }}
+                  label="Receipient Business Country"
+                  value={receipientBusinessAddressCountryCode}
+                  onChange={({ target }) => setReceipientBusinessAddressCountryCode(target.value)}
+                  select
+                  InputProps={{ style: { height: 40 } }}
+                  InputLabelProps={{ style: { height: 40 } }}
+                >
+
+
+                  {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                    return (
+                      <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                    )
+                  })}
+                </TextField>
+                {/* <OutlinedInput sx={{ height: 40 }} placeholder='Business Country' value={receipientBusinessAddressCountryCode} onChange={({ target }) => setReceipientBusinessAddressCountryCode(target.value)} /> */}
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -932,7 +1208,25 @@ export default function BusinessMobile() {
                 <Typography color="#575757" fontWeight='500'>
                   Receipient Business Contact Code
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Contact Code' value={receipientBusinessPrimaryContactCountryCode} onChange={({ target }) => setReceipientBusinessPrimaryContactCountryCode(target.value)} />
+                <TextField
+                  alignItems='center'
+                  sx={{ width: 205 }}
+                  label="Receipient Business Contact Code"
+                  value={receipientBusinessPrimaryContactCountryCode}
+                  onChange={({ target }) => setReceipientBusinessPrimaryContactCountryCode(target.value)}
+                  select
+                  InputProps={{ style: { height: 40 } }}
+                  InputLabelProps={{ style: { height: 40 } }}
+                >
+
+
+                  {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                    return (
+                      <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                    )
+                  })}
+                </TextField>
+                {/* <OutlinedInput sx={{ height: 40 }} placeholder='Business Contact Code' value={receipientBusinessPrimaryContactCountryCode} onChange={({ target }) => setReceipientBusinessPrimaryContactCountryCode(target.value)} /> */}
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -962,7 +1256,25 @@ export default function BusinessMobile() {
                 <Typography color="#575757" fontWeight='500'>
                   Receipient Business Country
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Country' value={receipientBusinessCountryCode} onChange={({ target }) => setreceipientBusinessCountryCode(target.value)} />
+                <TextField
+                  alignItems='center'
+                  sx={{ width: 205 }}
+                  label="Receipient Business Country"
+                  value={receipientBusinessCountryCode}
+                  onChange={({ target }) => setreceipientBusinessCountryCode(target.value)}
+                  select
+                  InputProps={{ style: { height: 40 } }}
+                  InputLabelProps={{ style: { height: 40 } }}
+                >
+
+
+                  {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                    return (
+                      <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                    )
+                  })}
+                </TextField>
+                {/* <OutlinedInput sx={{ height: 40 }} placeholder='Business Country' value={receipientBusinessCountryCode} onChange={({ target }) => setreceipientBusinessCountryCode(target.value)} /> */}
               </Stack>
 
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
@@ -1035,13 +1347,49 @@ export default function BusinessMobile() {
               <Typography color="#575757" fontWeight='500'>
                 Receiving Country
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Receiving Country' value={reciveCountry} onChange={({ target }) => setReciveCountry(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Receiving Country"
+                value={reciveCountry}
+                onChange={({ target }) => setReciveCountry(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Receiving Country' value={reciveCountry} onChange={({ target }) => setReciveCountry(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Source of Fund
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Source of Fund' value={sourceFund} onChange={({ target }) => setSourceFund(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Source of Fund"
+                value={sourceFund}
+                onChange={({ target }) => setSourceFund(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {sourceFundList && sourceFundList.length > 0 && sourceFundList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Source of Fund' value={sourceFund} onChange={({ target }) => setSourceFund(target.value)} /> */}
             </Stack>
             {transactionType === 'b2p' || transactionType === 'b2p' && <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>

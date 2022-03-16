@@ -6,21 +6,28 @@ import TransactionMobileStatusPopup from './TransactionMobileStatusPopup';
 import ErrorPopup from '../../../pages/ErrorPopup';
 import axios from 'axios';
 import { config } from '../../../assets/config/config';
+import { currencyList } from '../../../Utils/currency'
+import { countryList } from '../../../Utils/country'
+import { purposeTransaction } from '../../../Utils/purpose_transaction'
+import { sourceFundList } from '../../../Utils/sourceFund'
+import { relationship } from '../../../Utils/relationship'
+import { requestBodyData } from '../../../Utils/common';
 const apiUrl = config.api.url
 
 export default function PersonalMobile() {
-  const [amount, setAmount] = useState('500')
-  const [currency, setCurrency] = useState('INR')
+  const [amount, setAmount] = useState('100000')
+  const [currency, setCurrency] = useState('NGN')
   const [transactionType, setTransactionType] = useState('inttransfer')
-  const [mobileNumber, setMobileNumber] = useState('+971810456234')
-  const [reciverMobileNumber, setReciverMobileNumber] = useState('+9779840002320')
-  const [accountNr, setAccountNr] = useState('50100002965304')
-  const [kycName, setKycName] = useState('HDFC Bank')
-  const [bankCode, setBankCode] = useState('HDFC0001626')
+  const [mobileNumber, setMobileNumber] = useState('+33472034605')
+  const [reciverMobileNumber, setReciverMobileNumber] = useState('+23410706056')
+  const [accountNr, setAccountNr] = useState('')
+  const [kycName, setKycName] = useState('')
+  const [bankCode, setBankCode] = useState('')
+  const [branchCode, setBranchCode] = useState('')
   const [network, setNetwork] = useState('')
-  const [dob, setDob] = useState('1967-05-28')
+  const [dob, setDob] = useState('1986-06-28')
   const [receiverDob, setReceiverDob] = useState('1967-05-28')
-  const [nationality, setNationality] = useState('AE')
+  const [nationality, setNationality] = useState('FR')
   const [receiverNationality, setReceiverNationality] = useState('FR')
   // const [genter, setGenter] = useState('')
   const [genderDetails, setGenderDetails] = useState('M')
@@ -28,41 +35,43 @@ export default function PersonalMobile() {
   const [receiveridType, setReceiverIdType] = useState('nationalidcard')
   const [idNumber, setIdNumber] = useState('13321115521')
   const [receiveridNumber, setReceiverIdNumber] = useState('123456789')
-  const [expDate, setExpDate] = useState('2067-05-28')
-  const [receiverExpDate, setReceiverExpDate] = useState('2067-05-28')
+  const [expDate, setExpDate] = useState('2033-09-26')
+  const [receiverExpDate, setReceiverExpDate] = useState('2033-09-26')
   const [mobile, setMobile] = useState('13321115521')
   const [fullName, setFullName] = useState('Test Sender2')
   const [senderAddress, setSenderAddress] = useState('')
-  const [country, setCountry] = useState('US')
-  const [receiverCountry, setReceiverCountry] = useState('US')
-  const [city, setCity] = useState('Florida')
-  const [receivercity, setReceiverCity] = useState('Florida')
+  const [country, setCountry] = useState('FR')
+  const [receiverCountry, setReceiverCountry] = useState('FR')
+  const [city, setCity] = useState('Lyon')
+  const [receivercity, setReceiverCity] = useState('Lyon')
   // const [accountKycName, setAccountKycName] = useState('Oyugi Randy Electric Sale Pvt. Ltd.')
   const [remitancePurpose, setRemitancePurpose] = useState('Gift')
   const [quoteId, setQuoteId] = useState('QR037C1NA6ZXBSQ88B')
   const [reciveCountry, setReciveCountry] = useState('NP')
   const [sourceFund, setSourceFund] = useState('Salary')
   const [senderRelation, setSenderRelation] = useState('Brother')
-  const [address1, setAddress1] = useState('49 , park street')
-  const [receiverAddress1, setReceiverAddress1] = useState('49 , park street')
-  const [address2, setAddress2] = useState('12')
-  const [receiverAddress2, setReceiverAddress2] = useState('12')
-  const [stateProvince, setStateProvince] = useState('50000')
-  const [receiverStateProvince, setReceiverStateProvince] = useState('50000')
-  const [postalCode, setPostalCode] = useState('12')
-  const [receiverPostalCode, setReceiverPostalCode] = useState('12')
+  const [address1, setAddress1] = useState('49')
+  const [receiverAddress1, setReceiverAddress1] = useState('49')
+  const [address2, setAddress2] = useState('park street')
+  const [address3, setAddress3] = useState('waltons road')
+  const [receiverAddress2, setReceiverAddress2] = useState('park street')
+  const [receiverAddress3, setReceiverAddress3] = useState('walton`s road')
+  const [stateProvince, setStateProvince] = useState('Lyon')
+  const [receiverStateProvince, setReceiverStateProvince] = useState('Lyon')
+  const [postalCode, setPostalCode] = useState('123456')
+  const [receiverPostalCode, setReceiverPostalCode] = useState('123456')
   const [descriptionText, setDescriptionText] = useState('Gift for my brother')
-  const [transactionRef, setTransactionRef] = useState('SrcTxnId001')
-  const [issueDate, setIssueDate] = useState('1967-05-28')
-  const [receiverIssueDate, setReceiverIssueDate] = useState('1967-05-28')
-  const [issuerCountry, setIssuerCountry] = useState('AE')
+  const [transactionRef, setTransactionRef] = useState('partnerRefId1234')
+  const [issueDate, setIssueDate] = useState('2003-09-26')
+  const [receiverIssueDate, setReceiverIssueDate] = useState('2003-09-26')
+  const [issuerCountry, setIssuerCountry] = useState('FR')
   const [receiverIssuerCountry, setReceiverIssuerCountry] = useState('AE')
   const [recipientName, setRecipientName] = useState('David Robinson')
   const [errorPopup, setErrorPopup] = useState(false)
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [errorRes, setErrorRes] = useState({})
   const [providerCode, setProviderCode] = useState('23401')
-  const [title, setTitle] = useState('Mr.')
+  const [title, setTitle] = useState('')
   const [receiverTitle, setReceiverTitle] = useState('Mr.')
   const [firstName, setFirstname] = useState('Einstein')
   const [receiverFirstName, setReceiverFirstname] = useState('Einstein')
@@ -166,13 +175,14 @@ export default function PersonalMobile() {
         'origincountry': 'US'
       }
     }
+    // const requestBody = requestBodyData(requestBodyDataInfo)
     axios.post(`${apiUrl}/js/transaction`
       , {
         "amount": `${amount}`,
         "currency": `${currency}`,
         "type": "inttransfer",
         "descriptionText": `${descriptionText}`,
-        "requestDate": "2021-05-23 08:19:36",
+        "requestDate": new Date().toLocaleString("sv-SE"),
         "requestingOrganisationTransactionReference": `${transactionRef}`,
         "provider": `${providerCode}`,
         "debitParty": [
@@ -203,7 +213,7 @@ export default function PersonalMobile() {
           "postalAddress": {
             "addressLine1": `${address1}`,
             "addressLine2": `${address2}`,
-            "addressLine3": `${address2}`,
+            "addressLine3": `${address3}`,
             "city": `${city}`,
             "stateProvince": `${stateProvince}`,
             "postalCode": `${postalCode}`,
@@ -232,7 +242,7 @@ export default function PersonalMobile() {
           "postalAddress": {
             "addressLine1": `${receiverAddress1}`,
             "addressLine2": `${receiverAddress2}`,
-            "addressLine3": `${receiverAddress2}`,
+            "addressLine3": `${receiverAddress3}`,
             "city": `${receivercity}`,
             "stateProvince": `${receiverStateProvince}`,
             "postalCode": `${receiverPostalCode}`,
@@ -281,15 +291,33 @@ export default function PersonalMobile() {
 
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Amount
+                Amount <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Amount' value={amount} onChange={({ target }) => setAmount(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Currency
+                Currency <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Currency' value={currency} onChange={({ target }) => setCurrency(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Currency"
+                value={currency}
+                onChange={({ target }) => setCurrency(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {currencyList && currencyList.length > 0 && currencyList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.id}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Currency' value={currency} onChange={({ target }) => setCurrency(target.value)} /> */}
             </Stack>
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
             <Typography color="#575757" fontWeight='500'>
@@ -317,34 +345,40 @@ export default function PersonalMobile() {
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender Mobile Number
+                Sender Mobile Number <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobileNumber} onChange={({ target }) => setMobileNumber(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Receiver Mobile Number
+                Receiver Mobile Number <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={reciverMobileNumber} onChange={({ target }) => setReciverMobileNumber(target.value)} />
             </Stack>
-            {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Beneficiary Bank Account 
+                Beneficiary Bank Account
               </Typography>
-              <OutlinedInput sx={{ height: 40 }}   placeholder='Account no' value={accountNr} onChange={({target}) => setAccountNr(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Account no' value={accountNr} onChange={({ target }) => setAccountNr(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Full name of beneficiary bank
+                Full name of beneficiary bank
               </Typography>
-              <OutlinedInput sx={{ height: 40 }}   placeholder='Account KYC Name' value={kycName} onChange={({target}) => setKycName(target.value)}/>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Account KYC Name' value={kycName} onChange={({ target }) => setKycName(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-              Bank Code
+                Bank Code
               </Typography>
-              <OutlinedInput sx={{ height: 40 }}   placeholder='Bank Code' value={bankCode} onChange={({target}) => setBankCode(target.value)}/>
-            </Stack> */}
+              <OutlinedInput sx={{ height: 40 }} placeholder='Bank Code' value={bankCode} onChange={({ target }) => setBankCode(target.value)} />
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
+                Branch Code
+              </Typography>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Branch Code' value={branchCode} onChange={({ target }) => setBranchCode(target.value)} />
+            </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Sender Gender
@@ -363,18 +397,36 @@ export default function PersonalMobile() {
                 </MenuItem>
                 <MenuItem value='M'>Male</MenuItem>
                 <MenuItem value='F'>Female</MenuItem>
-                {/* <MenuItem value='Jio'>Jio</MenuItem> */}
+                <MenuItem value='U'>Unspecified</MenuItem>
               </TextField>
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender Nationality
+                Sender Nationality <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Nationality' value={nationality} onChange={({ target }) => setNationality(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Nationality"
+                value={nationality}
+                onChange={({ target }) => setNationality(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Nationality' value={nationality} onChange={({ target }) => setNationality(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender Date of Birth
+                Sender Date of Birth <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Date of Birth' value={dob} onChange={({ target }) => setDob(target.value)} />
             </Stack>
@@ -386,7 +438,7 @@ export default function PersonalMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Transaction Reference
+                Transaction Reference <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Transaction Reference' value={transactionRef} onChange={({ target }) => setTransactionRef(target.value)} />
             </Stack>
@@ -404,13 +456,13 @@ export default function PersonalMobile() {
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender ID Type
+                Sender ID Type <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='ID Type' value={idType} onChange={({ target }) => setIdType(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender ID Number
+                Sender ID Number <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='ID Number' value={idNumber} onChange={({ target }) => setIdNumber(target.value)} />
             </Stack>
@@ -422,7 +474,7 @@ export default function PersonalMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Expiry Date
+                Expiry Date <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Expiry Date' value={expDate} onChange={({ target }) => setExpDate(target.value)} />
             </Stack>
@@ -431,7 +483,25 @@ export default function PersonalMobile() {
               <Typography color="#575757" fontWeight='500'>
                 Issuer Country
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Issuer Country' value={issuerCountry} onChange={({ target }) => setIssuerCountry(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Issuer Country"
+                value={issuerCountry}
+                onChange={({ target }) => setIssuerCountry(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Issuer Country' value={issuerCountry} onChange={({ target }) => setIssuerCountry(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -441,7 +511,7 @@ export default function PersonalMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender First Name
+                Sender First Name <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='First Name' value={firstName} onChange={({ target }) => setFirstname(target.value)} />
             </Stack>
@@ -453,7 +523,7 @@ export default function PersonalMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender Last Name
+                Sender Last Name <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Last Name' value={lastName} onChange={({ target }) => setLastName(target.value)} />
             </Stack>
@@ -465,7 +535,7 @@ export default function PersonalMobile() {
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender Address Line1
+                Sender Address Line1 <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Address line 1' value={address1} onChange={({ target }) => setAddress1(target.value)} />
             </Stack>
@@ -477,23 +547,18 @@ export default function PersonalMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender City
+                Sender Address Line3
+              </Typography>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Address line 3' value={address3} onChange={({ target }) => setAddress3(target.value)} />
+            </Stack>
+
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
+                Sender City <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='City' value={city} onChange={({ target }) => setCity(target.value)} />
             </Stack>
-            <Stack alignItems='center' justifyContent='space-between' direction='row'>
-              <Typography color="#575757" fontWeight='500'>
-                Sender State Province
-              </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='State Province' value={stateProvince} onChange={({ target }) => setStateProvince(target.value)} />
-            </Stack>
-            <Stack alignItems='center' justifyContent='space-between' direction='row'>
-              <Typography color="#575757" fontWeight='500'>
-                Sender  Postal Code
-              </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Postal Code' value={postalCode} onChange={({ target }) => setPostalCode(target.value)} />
-            </Stack>
-            
+
           </Stack>
 
 
@@ -524,17 +589,66 @@ export default function PersonalMobile() {
                 <MenuItem value='F'>Female</MenuItem>
               </TextField>
             </Stack> */}
+
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender  Country
+                Sender State Province
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Country' value={country} onChange={({ target }) => setCountry(target.value)} />
+              <OutlinedInput sx={{ height: 40 }} placeholder='State Province' value={stateProvince} onChange={({ target }) => setStateProvince(target.value)} />
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
+                Sender  Postal Code
+              </Typography>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Postal Code' value={postalCode} onChange={({ target }) => setPostalCode(target.value)} />
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
+                Sender  Country <span style={{color:'#ea5c57'}}>*</span>
+              </Typography>
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Sender Country"
+                value={country}
+                onChange={({ target }) => setCountry(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Country' value={country} onChange={({ target }) => setCountry(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Receiver Nationality
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Receiver Nationality' value={receiverNationality} onChange={({ target }) => setReceiverNationality(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Receiver Nationality"
+                value={receiverNationality}
+                onChange={({ target }) => setReceiverNationality(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Receiver Nationality' value={receiverNationality} onChange={({ target }) => setReceiverNationality(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -595,7 +709,25 @@ export default function PersonalMobile() {
               <Typography color="#575757" fontWeight='500'>
                 Issuer Country
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Issuer Country' value={receiverIssuerCountry} onChange={({ target }) => setReceiverIssuerCountry(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Receiver Issuer Country"
+                value={receiverIssuerCountry}
+                onChange={({ target }) => setReceiverIssuerCountry(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Issuer Country' value={receiverIssuerCountry} onChange={({ target }) => setReceiverIssuerCountry(target.value)} /> */}
             </Stack>
 
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
@@ -632,6 +764,12 @@ export default function PersonalMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
+                Receiver Address Line3
+              </Typography>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Address line 3' value={receiverAddress3} onChange={({ target }) => setReceiverAddress3(target.value)} />
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
                 Receiver City
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='City' value={receivercity} onChange={({ target }) => setReceiverCity(target.value)} />
@@ -652,7 +790,25 @@ export default function PersonalMobile() {
               <Typography color="#575757" fontWeight='500'>
                 Receiver Country
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Country' value={receiverCountry} onChange={({ target }) => setReceiverCountry(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Receiver Country"
+                value={receiverCountry}
+                onChange={({ target }) => setReceiverCountry(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Country' value={receiverCountry} onChange={({ target }) => setReceiverCountry(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -662,19 +818,19 @@ export default function PersonalMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Receiver First Name
+                Receiver First Name <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='First Name' value={receiverFirstName} onChange={({ target }) => setReceiverFirstname(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Receiver Middle Name
+                Receiver Middle Name <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Middle Name' value={receiverMiddleName} onChange={({ target }) => setReceiverMiddleName(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Receiver Last Name
+                Receiver Last Name <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Last Name' value={receiverLastName} onChange={({ target }) => setReceiverLastName(target.value)} />
             </Stack>
@@ -694,7 +850,25 @@ export default function PersonalMobile() {
               <Typography color="#575757" fontWeight='500'>
                 Remittance Purpose
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Remittance Purpose' value={remitancePurpose} onChange={({ target }) => setRemitancePurpose(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Remittance Purpose"
+                value={remitancePurpose}
+                onChange={({ target }) => setRemitancePurpose(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {purposeTransaction && purposeTransaction.length > 0 && purposeTransaction.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Remittance Purpose' value={remitancePurpose} onChange={({ target }) => setRemitancePurpose(target.value)} /> */}
             </Stack>
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -704,27 +878,81 @@ export default function PersonalMobile() {
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Quote ID
+                Quote ID <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Quote ID' value={quoteId} onChange={({ target }) => setQuoteId(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Receiving Country
+                Receiving Country <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Receiving Country' value={reciveCountry} onChange={({ target }) => setReciveCountry(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Receiving Country"
+                value={reciveCountry}
+                onChange={({ target }) => setReciveCountry(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Receiving Country' value={reciveCountry} onChange={({ target }) => setReciveCountry(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Source of Fund
+                Source of Fund <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Source of Fund' value={sourceFund} onChange={({ target }) => setSourceFund(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Source of Fund"
+                value={sourceFund}
+                onChange={({ target }) => setSourceFund(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {sourceFundList && sourceFundList.length > 0 && sourceFundList.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Source of Fund' value={sourceFund} onChange={({ target }) => setSourceFund(target.value)} /> */}
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender Relationship
+                Sender Relationship <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Sender Relationship' value={senderRelation} onChange={({ target }) => setSenderRelation(target.value)} />
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Sender Relationship"
+                value={senderRelation}
+                onChange={({ target }) => setSenderRelation(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {relationship && relationship.length > 0 && relationship.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Sender Relationship' value={senderRelation} onChange={({ target }) => setSenderRelation(target.value)} /> */}
             </Stack>
           </Stack>
         </Stack>

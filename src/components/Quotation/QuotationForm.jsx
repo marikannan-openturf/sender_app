@@ -46,7 +46,7 @@ export default function QuotationForm() {
     }
     axios.post(`${apiUrl}/js/quotation`
       , {
-        "requestDate": "2017-06-20 12:27:16",
+        "requestDate": new Date().toLocaleString("sv-SE"),
         "creditParty": [
           {
             "key": "bankaccountno",
