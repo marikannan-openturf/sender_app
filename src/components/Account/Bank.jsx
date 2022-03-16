@@ -15,7 +15,7 @@ export default function Bank() {
   const [accountNumber, setAccountNumber] = useState('50100002965304')
   const [kycNumber, setKycNumber] = useState('David Robinson')
   const [senderName, setSenderName] = useState('')
-  const [bankCode, setBankCode] = useState('')
+  const [bankCode, setBankCode] = useState('12345')
   const [bankName, setBankName] = useState('HDFC Bank')
   const [country, setCountry] = useState('IN')
   const [provider, setProvider] = useState('')
@@ -460,22 +460,21 @@ export default function Bank() {
           'environment': localStorage.getItem('environment')
         }
       }
-      let requestBodyDataInfo = {
+
+
+      axios.post(`${apiUrl}/js/accounts-status`
+        , {
           "instrument": 'bank-account',
           "accountId": `${accountNumber}`,
           "bankName": `${bankName}`,
           "countryCode": `${country}`,
           "beneficiaryName": `${kycNumber}`,
-          "bankCode": `${bankCode}`,
+          "bankcode": `${bankCode}`,
           "banksubcode": `${subCode}`,
           "provider": `${provider}`,
           "snv": `${senderName}`,
           "msisdn": `${msisdn}`
-      }
-      const requestBody = requestBodyData(requestBodyDataInfo)
-
-      axios.post(`${apiUrl}/js/accounts-status`
-        , requestBody,
+      },
         { headers: options.headers }
       ).then((res) => {
         if (res.data.error) {

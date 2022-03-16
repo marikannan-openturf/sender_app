@@ -229,13 +229,13 @@ export default function Mobile() {
             <Typography color="#575757" fontWeight='500'>
             Sender Name
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='' onChange={({ target }) => setSenderName(target.value)} value={senderName} />
+            <OutlinedInput sx={{ height: 40 }} placeholder='Sender Name' onChange={({ target }) => setSenderName(target.value)} value={senderName} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
             Provider
             </Typography>
-            <OutlinedInput type='number' sx={{ height: 40 }} placeholder='' onChange={({ target }) => setProvider(target.value)} value={provider} />
+            <OutlinedInput type='number' sx={{ height: 40 }} placeholder='Provider' onChange={({ target }) => setProvider(target.value)} value={provider} />
           </Stack>
           
           <Stack direction='row'>

@@ -30,9 +30,9 @@ localStorage.setItem('environment',e.target.value)
                   InputProps={{ style: { height: 40 } }}
                   InputLabelProps={{ style: { height: 40 } }}
                 >
-                  <MenuItem value="" >
+                  {/* <MenuItem value="" >
                     Environment
-                  </MenuItem>
+                  </MenuItem> */}
                   <MenuItem value='sandbox'>Sandbox</MenuItem>
                   {/* <MenuItem value='F'>Female</MenuItem> */}
                   <MenuItem value='uat'>UAT</MenuItem>
