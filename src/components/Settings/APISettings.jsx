@@ -33,7 +33,7 @@ export default function APISettings() {
             </Link>
 
             <Link component="button" underline={production ? "always" : "none"} color="inherit" onClick={productionActive}>
-              <Typography fontSize={18} fontWeight='500' color={production ? '#e85654' : '#7e7e7e'}>Production</Typography>
+              <Typography fontSize={18} fontWeight='500' color={production ? '#e85654' : '#7e7e7e'}>UAT</Typography>
             </Link>
           </Stack>
         </Stack>

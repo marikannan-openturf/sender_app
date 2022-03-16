@@ -152,10 +152,11 @@ export default function Mobile() {
 
       const options = {
         headers: {
-          'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-          'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+          'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername'),
+          'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword'),
           'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US'
+          'origincountry': 'US',
+          'environment': localStorage.getItem('environment')
         }
       }
       let requestBodyDataInfo = {
@@ -228,13 +229,13 @@ export default function Mobile() {
             <Typography color="#575757" fontWeight='500'>
             Sender Name
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Sender Name' onChange={({ target }) => setSenderName(target.value)} value={senderName} />
+            <OutlinedInput sx={{ height: 40 }} placeholder='' onChange={({ target }) => setSenderName(target.value)} value={senderName} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
             Provider
             </Typography>
-            <OutlinedInput type='number' sx={{ height: 40 }} placeholder='Provider' onChange={({ target }) => setProvider(target.value)} value={provider} />
+            <OutlinedInput type='number' sx={{ height: 40 }} placeholder='' onChange={({ target }) => setProvider(target.value)} value={provider} />
           </Stack>
           
           <Stack direction='row'>

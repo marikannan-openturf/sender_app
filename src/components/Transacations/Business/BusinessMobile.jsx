@@ -20,9 +20,9 @@ export default function BusinessMobile() {
   const [mobileNumber, setMobileNumber] = useState('+9779840002320')
   const [reciverMobileNumber, setReciverMobileNumber] = useState('+9779840002320')
   const [beneficiarySmsNotify, setBenificiarySmsNotify] = useState('test sms')
-  const [accountNr, setAccountNr] = useState('')
-  const [kycName, setKycName] = useState('')
-  const [bankCode, setBankCode] = useState('')
+  const [accountNr, setAccountNr] = useState('1976010126')
+  const [kycName, setKycName] = useState('Nu Pagamentos')
+  const [bankCode, setBankCode] = useState('0001')
   const [network, setNetwork] = useState('')
   const [dob, setDob] = useState('1967-05-28')
   const [nationality, setNationality] = useState('AE')
@@ -46,8 +46,8 @@ export default function BusinessMobile() {
   const [address2, setAddress2] = useState('12')
   const [stateProvince, setStateProvince] = useState('50000')
   const [postalCode, setPostalCode] = useState('12')
-  const [descriptionText, setDescriptionText] = useState('')
-  const [providerCode, setProviderCode] = useState('')
+  const [descriptionText, setDescriptionText] = useState('Gift for my brother')
+  const [providerCode, setProviderCode] = useState('23401')
   const [transactionRef, setTransactionRef] = useState('SrcTxnId003435435')
   const [issueDate, setIssueDate] = useState('1967-05-28')
   const [issuerCountry, setIssuerCountry] = useState('AE')
@@ -59,43 +59,43 @@ export default function BusinessMobile() {
   const [paymentMode, setpaymentMode] = useState('cash')
   const [authenticationPartnerCode, setAuthenticationPartnerCode] = useState('4534')
   const [sendingPartnerCode, setSendingPartnerCode] = useState('343432223')
-  const [receivingPartnerCode, setReceivingPartnerCode] = useState('')
+  const [receivingPartnerCode, setReceivingPartnerCode] = useState('343432223')
   const [businessName, setBusinessName] = useState('sample business')
   const [receipientBusinessName, setReceipientBusinessName] = useState('Oyugi Randy Electric Sale Pvt. Ltd.')
   const [receipientBusinessPincode, setReceipientBusinessPincode] = useState('123456')
   const [businessAddress1, setBusinessAddress1] = useState(`alton's road`)
   const [receipientBusinessAddress1, setReceipientBusinessAddress1] = useState(`24`)
-  const [receipientBusinessAddress2, setReceipientBusinessAddress2] = useState(``)
+  const [receipientBusinessAddress2, setReceipientBusinessAddress2] = useState(`walton's road`)
   const [receipientBusinessCity, setReceipientBusinessCity] = useState(`nyc`)
   const [receipientBusinessState, setReceipientBusinessState] = useState(`newyork`)
   const [receipientBusinessAddressCountryCode, setReceipientBusinessAddressCountryCode] = useState('NG')
-  const [receipientAddressZip, setReceipientAddressZip] = useState('')
+  const [receipientAddressZip, setReceipientAddressZip] = useState('123456')
   const [businessAddressCity, setBusinessAddressCity] = useState('Lyon')
   const [businessAddressCountryCode, setBusinessAddressCountryCode] = useState('US')
   const [businessPrimaryContactCountryCode, setBusinessPrimaryContactCountryCode] = useState('US')
   const [businessPrimaryContactNo, setBusinessPrimaryContactNo] = useState('3472034605')
   const [receipientBusinessPrimaryContactCountryCode, setReceipientBusinessPrimaryContactCountryCode] = useState('US')
-  const [receipientBusinessPrimaryContactNo, setReceipientBusinessPrimaryContactNo] = useState('')
-  const [receipientBusinessPrimaryContactNoType, setReceipientBusinessPrimaryContactNoType] = useState('')
+  const [receipientBusinessPrimaryContactNo, setReceipientBusinessPrimaryContactNo] = useState('232323212')
+  const [receipientBusinessPrimaryContactNoType, setReceipientBusinessPrimaryContactNoType] = useState('Mobile')
   const [businessDescription, setBusinessDescription] = useState('Electronics')
-  const [receipientBusinessDescription, setreceipientBusinessDescription] = useState('')
+  const [receipientBusinessDescription, setreceipientBusinessDescription] = useState('Electronics wholesale')
   const [businessCountryCode, setBusinessCountryCode] = useState('US')
   const [receipientBusinessCountryCode, setreceipientBusinessCountryCode] = useState('US')
   const [businessRegistrationType, setBusinessRegistrationType] = useState('Private Limited Company')
-  const [receipientBusinessRegistrationType, setReceipientBusinessRegistrationType] = useState('')
+  const [receipientBusinessRegistrationType, setReceipientBusinessRegistrationType] = useState('Private Limited Company')
   const [businessRegistrationNumber, setBusinessRegistrationNumber] = useState('23123456789')
   const [recepientBusinessRegistrationNumber, setReceipientBusinessRegistrationNumber] = useState('2312345678912')
-  const [recepientBusinessRegistrationIssuedBy, setReceipientBusinessRegistrationNumberIssuedBy] = useState('')
-  const [recepientBusinessRegistrationIssuedAt, setReceipientBusinessRegistrationNumberIssuedAt] = useState('')
+  const [recepientBusinessRegistrationIssuedBy, setReceipientBusinessRegistrationNumberIssuedBy] = useState('NYC_TRADE')
+  const [recepientBusinessRegistrationIssuedAt, setReceipientBusinessRegistrationNumberIssuedAt] = useState('2020-09-26')
   const [recepientBusinessRegistrationIssuedDate, setReceipientBusinessRegistrationNumberIssuedDate] = useState('2002-08-26')
   const [recepientBusinessRegistrationValidThru, setReceipientBusinessRegistrationNumberValidThru] = useState('2036-09-26')
-  const [typeOfBusiness, setTypeOfBusiness] = useState('')
-  const [businessPObox, setBusinessPOBox] = useState('')
+  const [typeOfBusiness, setTypeOfBusiness] = useState('Electronics')
+  const [businessPObox, setBusinessPOBox] = useState('12345')
   const [receipientBusinessMobile, setReceipientBusinessMobile] = useState('343234432')
-  const [businessRegistrationIssueDate, setBusinessRegistrationIssueDate] = useState('')
-  const [businessIDValidThru, setBusinessIDValidThru] = useState('')
+  const [businessRegistrationIssueDate, setBusinessRegistrationIssueDate] = useState('2020-09-26')
+  const [businessIDValidThru, setBusinessIDValidThru] = useState('2033-09-26')
   const [businessEmail, setBusinessEmail] = useState('test@testemail.com')
-  const [receipientBusinessEmail, setReceipientBusinessEmail] = useState('')
+  const [receipientBusinessEmail, setReceipientBusinessEmail] = useState('rs.electronics@gmail.com')
   const [primaryContactCountryCode, setPrimaryContactcountryCode] = useState('NG')
   const [primaryContactNo, setPrimaryContactNo] = useState('2349061114853')
   const [personalePrimaryContactNo, setPersonalPrimaryContactNo] = useState('2349061114853')
@@ -384,10 +384,11 @@ export default function BusinessMobile() {
     }
     const options = {
       headers: {
-        'username': localStorage.getItem('username') ? localStorage.getItem('username') : 'OpenTurfDev',
-        'password': localStorage.getItem('password') ? localStorage.getItem('password') : '85d6dcc27d9fb21c7c346cdbcee2b56a84eba0f542a846de06658d2d094afd56',
+        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername'),
+        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword'),
         'actualdate': '2018-04-04 09:27:16',
-        'origincountry': 'US'
+        'origincountry': 'US',
+        'environment': localStorage.getItem('environment')
       }
     }
     axios.post(`${apiUrl}/js/transaction`
@@ -414,13 +415,13 @@ export default function BusinessMobile() {
 
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Amount
+                Amount <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Amount' value={amount} onChange={({ target }) => setAmount(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Currency
+                Currency <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <TextField
                 alignItems='center'
@@ -444,7 +445,7 @@ export default function BusinessMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Transaction Type
+                Transaction Type <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <TextField
                 sx={{ width: 205 }}
@@ -468,14 +469,14 @@ export default function BusinessMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Description
+                Description 
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Description' value={descriptionText} onChange={({ target }) => setDescriptionText(target.value)} />
             </Stack>
 
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Transaction Reference
+                Transaction Reference <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Transaction Reference' value={transactionRef} onChange={({ target }) => setTransactionRef(target.value)} />
             </Stack>
@@ -487,13 +488,13 @@ export default function BusinessMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sending Amount
+                Sending Amount <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Sending Amount' value={sendAmount} onChange={({ target }) => setSendAmount(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Paying Currency Code
+                Paying Currency Code <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <TextField
                 alignItems='center'
@@ -517,19 +518,19 @@ export default function BusinessMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Payment Mode
+                Payment Mode <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Payment Mode' value={paymentMode} onChange={({ target }) => setpaymentMode(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Authentication Partner Code
-              </Typography>
+                Authentication Partner Code <span style={{color:'#ea5c57'}}>*</span>
+              </Typography> 
               <OutlinedInput sx={{ height: 40 }} placeholder='Authentication Partner Code' value={authenticationPartnerCode} onChange={({ target }) => setAuthenticationPartnerCode(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Send Partner Code
+                Send Partner Code <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Send Partner Code' value={sendingPartnerCode} onChange={({ target }) => setSendingPartnerCode(target.value)} />
             </Stack>
@@ -541,13 +542,13 @@ export default function BusinessMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender Mobile Number
+                Sender Mobile Number <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobileNumber} onChange={({ target }) => setMobileNumber(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Receiver Mobile Number
+                Receiver Mobile Number <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={reciverMobileNumber} onChange={({ target }) => setReciverMobileNumber(target.value)} />
             </Stack>
@@ -566,13 +567,13 @@ export default function BusinessMobile() {
             </Stack>  */}
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Beneficiary Bank Account No
+                  Beneficiary Bank Account No  <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Account no' value={accountNr} onChange={({ target }) => setAccountNr(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Bank Code
+                  Bank Code <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Bank Code' value={bankCode} onChange={({ target }) => setBankCode(target.value)} />
               </Stack>
@@ -584,14 +585,14 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Business Name
+                  Business Name <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business-Name' value={businessName} onChange={({ target }) => setBusinessName(target.value)} />
               </Stack>
 
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Business Address
+                  Business Address <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Address1' value={businessAddress1} onChange={({ target }) => setBusinessAddress1(target.value)} />
               </Stack>
@@ -605,7 +606,7 @@ export default function BusinessMobile() {
 
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Sender Nationality
+                  Sender Nationality <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <TextField
                   alignItems='center'
@@ -629,7 +630,7 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Sender Date of Birth
+                  Sender Date of Birth <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Date of Birth' value={dob} onChange={({ target }) => setDob(target.value)} />
               </Stack>
@@ -657,7 +658,7 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Primary Contact Number Code
+                  Primary Contact Number Code <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <TextField
                   alignItems='center'
@@ -681,19 +682,19 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Primary Contact Number
+                  Primary Contact Number <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Primary Contact Number' value={personalePrimaryContactNo} onChange={({ target }) => setPersonalPrimaryContactNo(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Sender ID Type
+                  Sender ID Type <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='ID Type' value={idType} onChange={({ target }) => setIdType(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Sender ID Number
+                  Sender ID Number <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='ID Number' value={idNumber} onChange={({ target }) => setIdNumber(target.value)} />
               </Stack>
@@ -705,14 +706,14 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Expiry Date
+                  Expiry Date <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Expiry Date' value={expDate} onChange={({ target }) => setExpDate(target.value)} />
               </Stack>
 
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Issuer Country
+                  Issuer Country <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <TextField
                   alignItems='center'
@@ -742,7 +743,7 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Sender First Name
+                  Sender First Name <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='First Name' value={firstName} onChange={({ target }) => setFirstname(target.value)} />
               </Stack>
@@ -754,7 +755,7 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Sender Last Name
+                  Sender Last Name <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Last Name' value={lastName} onChange={({ target }) => setLastName(target.value)} />
               </Stack>
@@ -766,7 +767,7 @@ export default function BusinessMobile() {
             </Stack> */}
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Sender Address Line1
+                  Sender Address Line1 <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Address line 1' value={address1} onChange={({ target }) => setAddress1(target.value)} />
               </Stack>
@@ -778,14 +779,14 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Sender City
+                  Sender City <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='City' value={city} onChange={({ target }) => setCity(target.value)} />
               </Stack>
             </>}
             {transactionType === 'b2b' && <> <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Business Address Country
+                Business Address Country <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <TextField
                 alignItems='center'
@@ -845,7 +846,7 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Business Country
+                  Business Country 
                 </Typography>
                 <TextField
                   alignItems='center'
@@ -908,7 +909,7 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Sender Country
+                  Sender Country <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <TextField
                 alignItems='center'
@@ -994,7 +995,7 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Business Country
+                  Business Country <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <TextField
                   alignItems='center'
@@ -1018,31 +1019,31 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Business Registration Type
+                  Business Registration Type <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Type' value={businessRegistrationType} onChange={({ target }) => setBusinessRegistrationType(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Business Registration Number
+                  Business Registration Number <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Number' value={businessRegistrationNumber} onChange={({ target }) => setBusinessRegistrationNumber(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Business Registration Date
+                  Business Registration Date <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Date' value={businessRegistrationIssueDate} onChange={({ target }) => setBusinessRegistrationIssueDate(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Business Valid ID
+                  Business Valid ID <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business ID Valid' value={businessIDValidThru} onChange={({ target }) => setBusinessIDValidThru(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Business Email
+                  Business Email <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Email' value={businessEmail} onChange={({ target }) => setBusinessEmail(target.value)} />
               </Stack> </>
@@ -1050,19 +1051,19 @@ export default function BusinessMobile() {
             {transactionType === 'b2b' && <>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Business Valid ID
+                  Business Valid ID <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business ID Valid' value={businessIDValidThru} onChange={({ target }) => setBusinessIDValidThru(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Business Email
+                  Business Email <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Email' value={businessEmail} onChange={({ target }) => setBusinessEmail(target.value)} />
               </Stack> </>}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Remittance Purpose
+                Remittance Purpose <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <TextField
             alignItems='center'
@@ -1089,7 +1090,7 @@ export default function BusinessMobile() {
               <>
                 <Stack alignItems='center' justifyContent='space-between' direction='row'>
                   <Typography color="#575757" fontWeight='500'>
-                    Recipient Contact Country Code
+                    Recipient Contact Country <span style={{color:'#ea5c57'}}>*</span>
                   </Typography>
                   <TextField
                     alignItems='center'
@@ -1113,25 +1114,25 @@ export default function BusinessMobile() {
                 </Stack>
                 <Stack alignItems='center' justifyContent='space-between' direction='row'>
                   <Typography color="#575757" fontWeight='500'>
-                    Recipient Primary Contact No
+                    Recipient Primary Contact No <span style={{color:'#ea5c57'}}>*</span>
                   </Typography>
                   <OutlinedInput sx={{ height: 40 }} placeholder='Primary Contact Country No' value={primaryContactNo} onChange={({ target }) => setPrimaryContactNo(target.value)} />
                 </Stack>
                 <Stack alignItems='center' justifyContent='space-between' direction='row'>
                   <Typography color="#575757" fontWeight='500'>
-                    Recipient Primary Contact No Type
+                    Recipient Primary Contact Type <span style={{color:'#ea5c57'}}>*</span>
                   </Typography>
                   <OutlinedInput sx={{ height: 40 }} placeholder='Primary Contact Country No Type' value={primaryContactNoType} onChange={({ target }) => setPrimaryContactNoType(target.value)} />
                 </Stack>
                 <Stack alignItems='center' justifyContent='space-between' direction='row'>
                   <Typography color="#575757" fontWeight='500'>
-                    First Name
+                    First Name <span style={{color:'#ea5c57'}}>*</span>
                   </Typography>
                   <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Name' value={recipientName} onChange={({ target }) => setRecipientName(target.value)} />
                 </Stack>
                 <Stack alignItems='center' justifyContent='space-between' direction='row'>
                   <Typography color="#575757" fontWeight='500'>
-                    Last Name
+                    Last Name <span style={{color:'#ea5c57'}}>*</span>
                   </Typography>
                   <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Name' value={lastName} onChange={({ target }) => setLastName(target.value)} />
                 </Stack>
@@ -1139,49 +1140,49 @@ export default function BusinessMobile() {
               : ''}
             {(transactionType === 'b2b' || transactionType === 'p2b') && <> <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Receipient Business Name
+                Recipient Business Name <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Business-Name' value={receipientBusinessName} onChange={({ target }) => setReceipientBusinessName(target.value)} />
             </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business Pincode
+                  Recipient Business Pincode
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Pincode' value={receipientBusinessPincode} onChange={({ target }) => setReceipientBusinessPincode(target.value)} />
               </Stack>
 
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business Address1
+                  Recipient Business Address1
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Address1' value={receipientBusinessAddress1} onChange={({ target }) => setReceipientBusinessAddress1(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business Address2
+                  Recipient Business Address2
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Address2' value={receipientBusinessAddress2} onChange={({ target }) => setReceipientBusinessAddress2(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business City
+                  Recipient Business City
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business City' value={receipientBusinessCity} onChange={({ target }) => setReceipientBusinessCity(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business State
+                  Recipient Business State
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business State' value={receipientBusinessState} onChange={({ target }) => setReceipientBusinessState(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business Country
+                  Recipient Business Country <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <TextField
                   alignItems='center'
                   sx={{ width: 205 }}
-                  label="Receipient Business Country"
+                  label="Recipient Business Country"
                   value={receipientBusinessAddressCountryCode}
                   onChange={({ target }) => setReceipientBusinessAddressCountryCode(target.value)}
                   select
@@ -1200,18 +1201,18 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business ZIP
+                  Recipient Business ZIP <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business 575757' value={receipientAddressZip} onChange={({ target }) => setReceipientAddressZip(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business Contact Code
+                  Recipient Business Contact Code
                 </Typography>
                 <TextField
                   alignItems='center'
                   sx={{ width: 205 }}
-                  label="Receipient Business Contact Code"
+                  label="Recipient Business Contact Code"
                   value={receipientBusinessPrimaryContactCountryCode}
                   onChange={({ target }) => setReceipientBusinessPrimaryContactCountryCode(target.value)}
                   select
@@ -1230,36 +1231,36 @@ export default function BusinessMobile() {
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient  Contact Number
+                  Recipient  Contact Number
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Contact Number' value={receipientBusinessPrimaryContactNo} onChange={({ target }) => setReceipientBusinessPrimaryContactNo(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient  Contact Number Type
+                  Recipient  Contact Number Type
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Contact Number' value={receipientBusinessPrimaryContactNoType} onChange={({ target }) => setReceipientBusinessPrimaryContactNoType(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business Description
+                  Recipient Business Description
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Description' value={receipientBusinessDescription} onChange={({ target }) => setreceipientBusinessDescription(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business Email
+                  Recipient Business Email
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Email' value={receipientBusinessEmail} onChange={({ target }) => setReceipientBusinessEmail(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business Country
+                  Recipient Business Country
                 </Typography>
                 <TextField
                   alignItems='center'
                   sx={{ width: 205 }}
-                  label="Receipient Business Country"
+                  label="Recipient Business Country"
                   value={receipientBusinessCountryCode}
                   onChange={({ target }) => setreceipientBusinessCountryCode(target.value)}
                   select
@@ -1279,57 +1280,57 @@ export default function BusinessMobile() {
 
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient  Registration Type
+                  Recipient  Registration Type
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Type' value={receipientBusinessRegistrationType} onChange={({ target }) => setReceipientBusinessRegistrationType(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient  Registration Number
+                  Recipient  Registration Number
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Number' value={recepientBusinessRegistrationNumber} onChange={({ target }) => setReceipientBusinessRegistrationNumber(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Registration Issued By
+                  Recipient Registration Issued By
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Issued By' value={recepientBusinessRegistrationIssuedBy} onChange={({ target }) => setReceipientBusinessRegistrationNumberIssuedBy(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Registration Issued At
+                  Recipient Registration Issued At
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Issued At' value={recepientBusinessRegistrationIssuedAt} onChange={({ target }) => setReceipientBusinessRegistrationNumberIssuedAt(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Registration Issued Date
+                  Recipient Registration Issued Date <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Issued Date' value={recepientBusinessRegistrationIssuedDate} onChange={({ target }) => setReceipientBusinessRegistrationNumberIssuedDate(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business Valid Thru
+                  Recipient Business Valid Thru
                 </Typography>
                 <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Valid Thru' value={recepientBusinessRegistrationValidThru} onChange={({ target }) => setReceipientBusinessRegistrationNumberValidThru(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Type of Business
+                  Recipient Type of Business <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Receipient Type of Business' value={typeOfBusiness} onChange={({ target }) => setTypeOfBusiness(target.value)} />
+                <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Type of Business' value={typeOfBusiness} onChange={({ target }) => setTypeOfBusiness(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business PO Box
+                  Recipient Business PO Box <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Receipient Business PO Box' value={businessPObox} onChange={({ target }) => setBusinessPOBox(target.value)} />
+                <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Business PO Box' value={businessPObox} onChange={({ target }) => setBusinessPOBox(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
-                  Receipient Business Mobile
+                  Recipient Business Mobile <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Receipient Business Mobile' value={receipientBusinessMobile} onChange={({ target }) => setReceipientBusinessMobile(target.value)} />
+                <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Business Mobile' value={receipientBusinessMobile} onChange={({ target }) => setReceipientBusinessMobile(target.value)} />
               </Stack> </>}
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -1339,13 +1340,13 @@ export default function BusinessMobile() {
             </Stack> */}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Quote ID
+                Quote ID <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Quote ID' value={quoteId} onChange={({ target }) => setQuoteId(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Receiving Country
+                Receiving Country <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <TextField
                 alignItems='center'
@@ -1369,7 +1370,7 @@ export default function BusinessMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Source of Fund
+                Source of Fund <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <TextField
                 alignItems='center'
@@ -1393,7 +1394,7 @@ export default function BusinessMobile() {
             </Stack>
             {transactionType === 'b2p' || transactionType === 'b2p' && <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
-                Sender Relationship
+                Sender Relationship <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Sender Relationship' value={senderRelation} onChange={({ target }) => setSenderRelation(target.value)} />
             </Stack>}
@@ -1406,19 +1407,18 @@ export default function BusinessMobile() {
             remitancePurpose &&
             quoteId &&
             reciveCountry &&
-            businessRegistrationType &&
-            businessAddressCountryCode &&
-            businessDescription &&
-            businessAddress1 &&
-            businessAddressCity &&
-            businessAddressCountryCode &&
-            businessCountryCode &&
-            businessPrimaryContactNo &&
-            businessIDValidThru &&
+            // businessAddressCountryCode &&
+            // businessDescription &&
+            // businessAddress1 &&
+            // businessAddressCity &&
+            // businessAddressCountryCode &&
+            // businessCountryCode &&
+            // businessPrimaryContactNo &&
+            // businessIDValidThru &&
             sourceFund &&
             senderRelation
             ?
-            <Button variant='contained' onClick={setFeaturedInfoDetails} >Submits</Button>
+            <Button variant='contained' onClick={setFeaturedInfoDetails} >Submit</Button>
             :
             <CustomButtom variant='contained' disabled>Submit</CustomButtom>}
 
