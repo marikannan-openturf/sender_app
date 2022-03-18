@@ -1,5 +1,5 @@
 import { OutlinedInput, Paper, Stack, Typography, TextField, Button } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/system'
 import TransactionMobileStatusPopup from './TransactionMobileStatusPopup';
@@ -14,7 +14,7 @@ import { relationship } from '../../../Utils/relationship'
 import { requestBodyData } from '../../../Utils/common';
 const apiUrl = config.api.url
 
-export default function PersonalMobile() {
+export default function PersonalMobile(props) {
   const [amount, setAmount] = useState('100000')
   const [currency, setCurrency] = useState('NGN')
   const [transactionType, setTransactionType] = useState('inttransfer')
@@ -50,7 +50,7 @@ export default function PersonalMobile() {
   const [reciveCountry, setReciveCountry] = useState('NP')
   const [sourceFund, setSourceFund] = useState('Salary')
   const [senderRelation, setSenderRelation] = useState('Brother')
-  const [address1, setAddress1] = useState('49')
+  const [address1, setAddress1] = useState('49 , park street')
   const [receiverAddress1, setReceiverAddress1] = useState('49')
   const [address2, setAddress2] = useState('park street')
   const [address3, setAddress3] = useState('waltons road')
@@ -169,11 +169,11 @@ export default function PersonalMobile() {
     // setFeaturedInfo(true)
     const options = {
       headers: {
-        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername'),
-        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword'),
+        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername') ? localStorage.getItem('prodUsername') : '',
+        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
         'actualdate': '2018-04-04 09:27:16',
-        'origincountry': 'US',
-        'environment': localStorage.getItem('environment')
+        'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
+        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
     // const requestBody = requestBodyData(requestBodyDataInfo)
@@ -267,21 +267,38 @@ export default function PersonalMobile() {
       },
       { headers: options.headers }
     ).then((res) => {
-      console.log("res", res.data)
       setFeaturedInfo(true)
-
     })
       .catch((err) => {
-        console.log("CATCH", err.response.data)
         setErrorRes(err.response.data)
         setErrorPopup(true)
       })
   }
 
+  useEffect(()=>{
+  if (props.quoteIdInfo) {
+   if(props.quoteIdInfo.quotationReference) {
+     setQuoteId(props.quoteIdInfo.quotationReference)
+   }
+   if(props.quoteIdInfo && props.quoteIdInfo.creditParty && props.quoteIdInfo.creditParty.length > 0) {
+    setReciverMobileNumber(props.quoteIdInfo.creditParty[0].value)
+   }
+   if(props.quoteIdInfo && props.quoteIdInfo.debitParty && props.quoteIdInfo.debitParty.length > 0) {
+    setMobileNumber(props.quoteIdInfo.debitParty[0].value)
+   }
+   if(props.quoteIdInfo && props.quoteIdInfo.requestAmount) {
+    setAmount(props.quoteIdInfo.requestAmount)
+   }
+   if(props.quoteIdInfo && props.quoteIdInfo.requestAmount) {
+    setCurrency(props.quoteIdInfo.requestCurrency)
+   }
+  }
+  },[props])
+
   return (
     <>
 
-      <Paper sx={{ p: 5 }}>
+      {/* <Paper sx={{ p: 5 }}> */}
         <Stack alignItems='center' sx={{ pb: 4 }}>
           <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Transaction Personal Mobile Status</Typography>
 
@@ -847,30 +864,7 @@ export default function PersonalMobile() {
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Account KYC Name' value={accountKycName} onChange={({target}) => setAccountKycName(target.value)}/>
             </Stack> */}
-            <Stack alignItems='center' justifyContent='space-between' direction='row'>
-              <Typography color="#575757" fontWeight='500'>
-                Remittance Purpose
-              </Typography>
-              <TextField
-                alignItems='center'
-                sx={{ width: 205 }}
-                label="Remittance Purpose"
-                value={remitancePurpose}
-                onChange={({ target }) => setRemitancePurpose(target.value)}
-                select
-                InputProps={{ style: { height: 40 } }}
-                InputLabelProps={{ style: { height: 40 } }}
-              >
-
-
-                {purposeTransaction && purposeTransaction.length > 0 && purposeTransaction.map((value, index) => {
-                  return (
-                    <MenuItem key={index} value={value.id}>{value.name}</MenuItem>
-                  )
-                })}
-              </TextField>
-              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Remittance Purpose' value={remitancePurpose} onChange={({ target }) => setRemitancePurpose(target.value)} /> */}
-            </Stack>
+            
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Recipient Name
@@ -933,6 +927,30 @@ export default function PersonalMobile() {
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
+                Remittance Purpose <span style={{color:'#ea5c57'}}>*</span>
+              </Typography>
+              <TextField
+                alignItems='center'
+                sx={{ width: 205 }}
+                label="Remittance Purpose"
+                value={remitancePurpose}
+                onChange={({ target }) => setRemitancePurpose(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+
+
+                {purposeTransaction && purposeTransaction.length > 0 && purposeTransaction.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value.id}>{value.name}</MenuItem>
+                  )
+                })}
+              </TextField>
+              {/* <OutlinedInput sx={{ height: 40 }} placeholder='Remittance Purpose' value={remitancePurpose} onChange={({ target }) => setRemitancePurpose(target.value)} /> */}
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
                 Sender Relationship <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <TextField
@@ -966,7 +984,7 @@ export default function PersonalMobile() {
 
         </Stack>
 
-      </Paper>
+      {/* </Paper> */}
       <TransactionMobileStatusPopup
         featuredInfo={featuredInfo}
         amount={amount}

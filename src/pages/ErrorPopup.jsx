@@ -11,6 +11,9 @@ export default function ErrorPopup(props) {
        background-color : #1976d2;
        color:white
     }`
+    const tryAgain = () => {
+      window.location.reload()
+    }
   return (
     <Dialog
       open={props.errorPopup} sx={{ height: '100%', width: '100%' }} onClose={() => props.CloseErrorPopup()}
@@ -30,7 +33,7 @@ export default function ErrorPopup(props) {
         </Stack>
         <Stack spacing={3} py={5} justifyContent='center' direction='row'>
           <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={() => props.CloseErrorPopup()}>OK</Button>
-          <CustomButtom sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' disabled>TRY AGAIN</CustomButtom>
+          <CustomButtom sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={() => tryAgain()}>TRY AGAIN</CustomButtom>
 
         </Stack>
       </DialogContentText>

@@ -163,7 +163,6 @@ export default function HistoryMobile(props) {
   const [morePopup, setMorePopup] = React.useState(null);
   const open = Boolean(morePopup);
   const handleClick = (event) => {
-    console.log("event",event)
     setMorePopup(event.currentTarget);
   };
   const handleClose = () => {
@@ -171,14 +170,14 @@ export default function HistoryMobile(props) {
   };
 
   const OnClickCancel = () => {
-      const options = {
-        headers: {
-          'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername'),
-          'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword'),
-          'actualdate': '2018-04-04 09:27:16',
-          'origincountry': 'US',
-          'environment': localStorage.getItem('environment')
-        }
+    const options = {
+      headers: {
+        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername') ? localStorage.getItem('prodUsername') : '',
+        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
+        'actualdate': '2018-04-04 09:27:16',
+        'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
+        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
+      }
     }
     axios.post(`${apiUrl}/js/cancel-transaction`
       , {
@@ -202,11 +201,11 @@ export default function HistoryMobile(props) {
 
     const options = {
       headers: {
-        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername'),
-        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword'),
+        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername') ? localStorage.getItem('prodUsername') : '',
+        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
         'actualdate': '2018-04-04 09:27:16',
-        'origincountry': 'US',
-        'environment': localStorage.getItem('environment')
+        'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
+        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
     axios.post(`${apiUrl}/js/reverse-transaction`
@@ -248,26 +247,17 @@ export default function HistoryMobile(props) {
   const getHistoryTransaction = (data) => {
     const options = {
       headers: {
-        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername'),
-        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword'),
+        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername') ? localStorage.getItem('prodUsername') : '',
+        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
         'actualdate': '2018-04-04 09:27:16',
-        'origincountry': 'US',
-        'environment': localStorage.getItem('environment')
+        'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
+        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
     axios.get(`${apiUrl}/js/transaction/list`, { headers: options.headers }
     ).then((res) => {
-      // setFeaturedInfo(true)
       setHistory(res.data.rows)
-      //  if(res.data && res.data.length > 0) {
-      //    console.log("test")
-      //    setBalance(res.data[0].currentBalance)
-      //    setCurrency(res.data[0].currency)
-      //  }
-      //  console.log(res.data[0].currentBalance)
-
     }).catch((err) => {
-      // setErrorPopup(true)
     })
   }
 
@@ -420,9 +410,6 @@ export default function HistoryMobile(props) {
 }
     ]
 }
-
-console.log("res",history)
-
   return (
     <Paper sx={{ paddingTop: 3, paddingLeft: 5, paddingRight: 5, paddingBottom: 5, }}>
       <Stack alignItems='center' sx={{ pb: 4 }}>

@@ -1,5 +1,5 @@
 import { Button, OutlinedInput, Paper, Stack, TextField, Typography } from '@mui/material'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/system'
 import ErrorPopup from '../../pages/ErrorPopup';
@@ -7,16 +7,17 @@ import axios from 'axios'
 import { config } from '../../assets/config/config';
 import QuotationStatusPopup from './QuotationStatusPopup'
 import { currencyList } from '../../Utils/currency';
+import { useNavigate } from "react-router-dom";
 const apiUrl = config.api.url
 
-export default function Mobile() {
+export default function Mobile(props) {
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [creditMobileNumber, setCreditMobileNumber] = useState('+255897378380')
   const [receiverMobileNumber, setReceiverMobileNumber] = useState('+4491509874561')
   const [amount, setAmount] = useState('500')
-  const [requestCurrency, setRequestCurrency] = useState('USD')
+  const [requestCurrency, setRequestCurrency] = useState('NPR')
   const [sendCurrency, setSendCurrency] = useState('USD')
-  const [reciveCurrency, setReciveCurrency] = useState('INR')
+  const [reciveCurrency, setReciveCurrency] = useState('NPR')
   // const [receiverBankAccount, setReceiverBankAccount] = useState('NPR')
   const [requestDate, setRequestDate] = useState('2017-06-20 12:27:16')
   const [status, setStatus] = useState('')
@@ -25,6 +26,7 @@ export default function Mobile() {
   const [lei, setLei] = useState('')
   const [errorPopup, setErrorPopup] = useState(false)
   const [errorRes, setErrorRes] = useState({})
+  let navigate = useNavigate();
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
@@ -40,16 +42,34 @@ export default function Mobile() {
     /* setCreditMobileNumber('+9779840002320')
     setRequestCurrency('500')
     setRequestCurrency('NPR') */
+    props.quotationClose(quotationReference)
+  }
+
+  const createPersonalTransaction = () => {
+    setFeaturedInfo(false)
+    /* setCreditMobileNumber('+9779840002320')
+    setRequestCurrency('500')
+    setRequestCurrency('NPR') */
+    navigate(`/sender-app/transactions-personal`)
+  }
+
+  const createBusinessTransaction = () => {
+    setFeaturedInfo(false)
+    /* setCreditMobileNumber('+9779840002320')
+    setRequestCurrency('500')
+    setRequestCurrency('NPR') */
+    navigate(`/sender-app/transactions-business`)
+
   }
 
   const setFeaturedInfoDetails = () => {
     const options = {
       headers: {
-        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername'),
-        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword'),
+        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername') ? localStorage.getItem('prodUsername') : '',
+        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
         'actualdate': '2018-04-04 09:27:16',
-        'origincountry': 'US',
-        'environment': localStorage.getItem('environment')
+        'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
+        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
     axios.post(`${apiUrl}/js/quotation`
@@ -93,7 +113,6 @@ export default function Mobile() {
     })
   }
 
-  console.log("quota",quotationReference)
 
   const CustomButtom = styled(Button)`
     &.Mui-disabled{
@@ -101,30 +120,23 @@ export default function Mobile() {
        background-color : #1976d2;
        color:white
     }`
+
+  useEffect(()=>{
+   if(props.accountNumber) {
+    setCreditMobileNumber(props.accountNumber)
+   }
+  },[props])  
   return (
     <>
-      <Paper sx={{ p: 2 }}>
+      {/* <Paper sx={{ p: 2 }}> */}
         <Typography textAlign='center' pt={2} fontSize={20} variant='h6' color="#404040">Mobile Quotation</Typography>
         <Stack width={600} spacing={5} sx={{ p: 4 }}>
-          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography color="#575757" fontWeight='500'>
-              Request Date
-            </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Request Date' onChange={({ target }) => setRequestDate(target.value)} value={requestDate} />
-          </Stack> */}
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Request Quotation Amount <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Request Quotation Amount' onChange={({ target }) => setAmount(target.value)} value={amount} />
           </Stack>
-          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography color="#575757" fontWeight='500'>
-            Request Quotation Amount
-            </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Request Quotation Amount' onChange={({ target }) => setRequestDate(target.value)} value={requestDate} />
-          </Stack> */}
-          
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Sender Mobile Number
@@ -137,12 +149,6 @@ export default function Mobile() {
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Receiver Mobile Number' onChange={({ target }) => setCreditMobileNumber(target.value)} value={creditMobileNumber} />
           </Stack>
-          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography color="#575757" fontWeight='500'>
-            Receive Bank Account
-            </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Receive Bank Account' onChange={({ target }) => setReceiverBankAccount(target.value)} value={receiverMobileNumber} />
-          </Stack> */}
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Request Currency <span style={{color:'#ea5c57'}}>*</span>
@@ -165,7 +171,6 @@ export default function Mobile() {
                   )
                 })}
               </TextField>
-            {/* <OutlinedInput sx={{ height: 40 }} placeholder='Request Currency' onChange={({ target }) => setRequestCurrency(target.value)} value={requestCurrency} /> */}
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -189,7 +194,6 @@ export default function Mobile() {
                   )
                 })}
               </TextField>
-            {/* <OutlinedInput sx={{ height: 40 }} placeholder='Send Currency' onChange={({ target }) => setSendCurrency(target.value)} value={sendCurrency} /> */}
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -213,35 +217,8 @@ export default function Mobile() {
                   )
                 })}
               </TextField>
-            {/* <OutlinedInput sx={{ height: 40 }} placeholder='Receive Currency' onChange={({ target }) => setReciveCurrency(target.value)} value={reciveCurrency} /> */}
           </Stack>
-          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography color="#575757" fontWeight='500'>
-            Full KYC name of the beneficiary
-            </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Full KYC name' onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
-          </Stack> */}
-          {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography color="#575757" fontWeight='500'>
-              Account Instrument
-            </Typography>
-
-            <TextField
-              sx={{ width: 205 }}
-              label="Instrument"
-              value={network}
-              onChange={({ target }) => setNetwork(target.value)}
-              select
-              InputProps={{ style: { height: 40 } }}
-              InputLabelProps={{ style: { height: 40 } }}
-            >
-              <MenuItem value="" >
-                Instrument
-              </MenuItem>
-              <MenuItem value='mobile-wallet'>Mobile-Wallet</MenuItem>
-              <MenuItem value='bank-account'>Bank-Account</MenuItem>
-            </TextField>
-          </Stack> */}
+         
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
             </div>
@@ -251,7 +228,7 @@ export default function Mobile() {
             }
           </Stack>
         </Stack>
-      </Paper>
+      {/* </Paper> */}
       <QuotationStatusPopup
         featuredInfo={featuredInfo}
         creditMobileNumber={creditMobileNumber}

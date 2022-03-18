@@ -1,23 +1,29 @@
-import React,{useState,useEffect} from 'react';
-import { OutlinedInput, Stack, Paper, Button, Box, Typography } from "@mui/material";
+import React, { useState, useEffect } from 'react';
+import { OutlinedInput, Stack, Paper, Button, Box, Typography, TextField } from "@mui/material";
 import { styled } from '@mui/system'
-
+import { countryList } from '../../Utils/country'
+import MenuItem from '@mui/material/MenuItem';
 function Sandbox() {
-  const [username,setUsername] = useState('')
-  const [password,setPassword] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [country, setCountry] = useState('US')
 
-  useEffect(()=>{
-  if(localStorage.getItem('username')) {
-    setUsername(localStorage.getItem('username'))
-  }
-  if(localStorage.getItem('password')) {
-    setPassword(localStorage.getItem('password'))
-  }
-  },[])
+  useEffect(() => {
+    if (localStorage.getItem('username')) {
+      setUsername(localStorage.getItem('username'))
+    }
+    if (localStorage.getItem('password')) {
+      setPassword(localStorage.getItem('password'))
+    }
+    if (localStorage.getItem('country')) {
+      setCountry(localStorage.getItem('country'))
+    }
+  }, [])
 
   const sandboxHandler = () => {
-    localStorage.setItem('username',username)
-    localStorage.setItem('password',password)
+    localStorage.setItem('username', username)
+    localStorage.setItem('password', password)
+    localStorage.setItem('country', country)
   }
 
   const CustomButtom = styled(Button)`
@@ -27,39 +33,59 @@ function Sandbox() {
        color:white
     }`
   return (
-    <div>
-      <Paper>
-          <Box padding={6}>
-              <Stack spacing={4} alignItems='center' >
+    <>
+      <Paper sx={{ p: 2 }}>
+        <Typography textAlign='center' pt={2} fontSize={20} variant='h6' color="#404040">Sandbox Information</Typography>
+        <Stack width={600} spacing={5} sx={{ p: 4 }}>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+              Username
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='Username' onChange={({ target }) => setUsername(target.value)} value={username} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+              Password
+            </Typography>
+            <OutlinedInput sx={{ height: 40 }} placeholder='Password' onChange={({ target }) => setPassword(target.value)} value={password} />
+          </Stack>
+          <Stack direction='row' alignItems='center' justifyContent='space-between'>
+            <Typography color="#575757" fontWeight='500'>
+              Country
+            </Typography>
+            <TextField
+              alignItems='center'
+              sx={{ width: 205 }}
+              label="Country"
+              value={country}
+              onChange={({ target }) => setCountry(target.value)}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
 
-                <Stack spacing={12} alignItems='center' justifyContent='center' direction='row'>
-                  <Stack textAlign='right'>
-                  <Typography fontSize={18} color="#575757" fontWeight='500'>Username</Typography>
-                  </Stack>
-                  <Stack spacing={3}>
-                  <OutlinedInput sx={{ height: 40, width:300 }} placeholder='Username' value={username} onChange={({target}) => setUsername(target.value)}/>
-                  </Stack>
-                </Stack>
 
-                <Stack spacing={12} alignItems='center' justifyContent='center' direction='row'>
-                  <Stack textAlign='right'>
-                    <Typography fontSize={18} color="#575757" fontWeight='500'>Password</Typography>
-                  </Stack>
-                  <Stack spacing={3} pl={1}>
-                    <OutlinedInput sx={{ height: 40, width:300 }} placeholder='Password' value={password} onChange={({target}) => setPassword(target.value)} />
-                  </Stack>
-                </Stack>
-                  <Stack pl={52}>
-                  {username && password ? 
+              {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                return (
+                  <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                )
+              })}
+            </TextField>
+            {/* <OutlinedInput sx={{ height: 40 }} placeholder='Country' onChange={({ target }) => setCountry(target.value)} value={country} /> */}
+          </Stack>
 
-                    <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={sandboxHandler}>Save</Button>
-                 : <CustomButtom sx={{ alignSelf: 'center', letterSpacing: 1 }} onClick={sandboxHandler} variant='contained' disabled>Save</CustomButtom>}
-                    </Stack>
 
-              </Stack>
-          </Box>
+          <Stack direction='row'>
+            <div style={{ width: '400px' }}>
+            </div>
+            {username && password && country ?
+
+              <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={sandboxHandler}>Save</Button>
+              : <CustomButtom sx={{ alignSelf: 'center', letterSpacing: 1 }} onClick={sandboxHandler} variant='contained' disabled>Save</CustomButtom>}
+          </Stack>
+        </Stack>
       </Paper>
-    </div>
+    </>
   )
 }
 

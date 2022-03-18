@@ -1,5 +1,5 @@
 import { OutlinedInput, Paper, Stack, Typography, TextField, Button } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/system'
 import TransactionBusinessBankStatusPopup from './TransactionBusinessBankStatusPopup';
@@ -12,7 +12,7 @@ import {purposeTransaction} from '../../../Utils/purpose_transaction'
 import { sourceFundList } from '../../../Utils/sourceFund'
 const apiUrl = config.api.url
 
-export default function BusinessMobile() {
+export default function BusinessMobile(props) {
   const [amount, setAmount] = useState('500')
   const [currency, setCurrency] = useState('INR')
   const [payingCurrency, setPayingCurrency] = useState('USD')
@@ -325,7 +325,7 @@ export default function BusinessMobile() {
             "businessAddressZip": `${receipientAddressZip}`,
             "businessPrimaryContactCountryCode": `${receipientBusinessPrimaryContactCountryCode}`,
             "businessPrimaryContactNo": `${receipientBusinessPrimaryContactNo}`,
-            "businessPrimaryContactNoType": `${setReceipientBusinessPrimaryContactNoType}`,
+            "businessPrimaryContactNoType": `${receipientBusinessPrimaryContactNoType}`,
             "businessDescription": `${receipientBusinessDescription}`,
             "businessEmail": `${receipientBusinessEmail}`,
             "businessCountryCode": `${receipientBusinessCountryCode}`,
@@ -479,11 +479,11 @@ export default function BusinessMobile() {
     }
     const options = {
       headers: {
-        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername'),
-        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword'),
+        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername') ? localStorage.getItem('prodUsername') : '',
+        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
         'actualdate': '2018-04-04 09:27:16',
-        'origincountry': 'US',
-        'environment': localStorage.getItem('environment')
+        'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
+        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
     axios.post(`${apiUrl}/js/transaction`
@@ -496,10 +496,33 @@ export default function BusinessMobile() {
       setErrorPopup(true)
     })
   }
+
+  useEffect(() => {
+    if (props.accountNumber) {
+      setAccountNr(props.accountNumber)
+    }
+    if (props.quoteIdInfo) {
+    if (props.quoteIdInfo.quotationReference) {
+      setQuoteId(props.quoteIdInfo.quotationReference)
+    }
+    if (props.quoteIdInfo && props.quoteIdInfo.creditParty && props.quoteIdInfo.creditParty.length > 0) {
+      setReciverMobileNumber(props.quoteIdInfo.creditParty[0].value)
+    }
+    if (props.quoteIdInfo && props.quoteIdInfo.debitParty && props.quoteIdInfo.debitParty.length > 0) {
+      setMobileNumber(props.quoteIdInfo.debitParty[0].value)
+    }
+    if (props.quoteIdInfo && props.quoteIdInfo.requestAmount) {
+      setAmount(props.quoteIdInfo.requestAmount)
+    }
+    if (props.quoteIdInfo && props.quoteIdInfo.requestAmount) {
+      setCurrency(props.quoteIdInfo.requestCurrency)
+    }
+  }
+  }, [props])
   return (
     <>
 
-      <Paper sx={{ p: 5 }}>
+      {/* <Paper sx={{ p: 5 }}> */}
         <Stack alignItems='center' sx={{ pb: 4 }}>
           <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Transaction Business Bank Status</Typography>
 
@@ -1554,7 +1577,7 @@ export default function BusinessMobile() {
 
         </Stack>
 
-      </Paper>
+      {/* </Paper> */}
       <TransactionBusinessBankStatusPopup
         featuredInfo={featuredInfo}
         amount={amount}

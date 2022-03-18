@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { lazy,useEffect,useContext,useState } from 'react'
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -20,6 +20,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HistoryIcon from '@mui/icons-material/History';
 import TableRowsRoundedIcon from '@mui/icons-material/TableRowsRounded';
 import PublicIcon from '@mui/icons-material/Public';
+import { useLocation } from "react-router-dom";
 
 export default function MenuBar() {
   const [accountOpen, setAccountOpen] = React.useState(true)
@@ -35,6 +36,7 @@ export default function MenuBar() {
   const [bankListScreen, setBankListScreen] = React.useState(false)
   const [quotationScreen, setQuotationScreen] = React.useState(false)
   const [settingsScreen, setSettingsScreen] = React.useState(false)
+  const {pathname} = useLocation();
 
   const handleAccountClick = () => {
     setAccountOpen(!accountOpen);
@@ -175,11 +177,25 @@ export default function MenuBar() {
     setBankListScreen(false)
     setSettingsScreen(true)
   }
-
+  
+  useEffect(()=>{
+    if(pathname && pathname.includes('quotation')) {
+    setReportCorridorScreen(false)
+    setAccountScreen(false)
+    setTpActiveScreen(false)
+    setTbActiveScreen(false)
+    setThActiveScreen(false)
+    setReportLedgerScreen(false)
+    setReportStatementScreen(false)
+    setSettingsScreen(false)
+    setBankListScreen(false)
+    setQuotationScreen(true)
+    }
+  },[pathname])
 
   return (
     <List
-      sx={{ minWidth:200, bgcolor: 'background.paper',paddingTop:'0px',paddingBottom:'0px' }}
+      sx={{ minWidth:200, bgcolor: 'background.paper',paddingTop:'0px',paddingBottom:'0px',position:'fixed' }}
       component="nav"
       aria-labelledby="nested-list-subheader">
       {/* <ListItemButton component={Link} to="/">
@@ -216,22 +232,22 @@ export default function MenuBar() {
         {transactionOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={transactionOpen} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding sx={tpActiveScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
+        {/* <List component="div" disablePadding sx={tpActiveScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
           <ListItemButton  component={Link} to="sender-app/transactions-personal" onClick={tpActive}>
             <ListItemIcon sx={tpActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <AccountBoxOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Personal" />
           </ListItemButton>
-        </List>
-        <List component="div" disablePadding sx={tbActiveScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
+        </List> */}
+        {/* <List component="div" disablePadding sx={tbActiveScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
           <ListItemButton  component={Link} to="sender-app/transactions-business" onClick={tbActive}>
             <ListItemIcon sx={tbActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
               <BusinessCenterOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Business" />
           </ListItemButton>
-        </List>
+        </List> */}
         <List component="div" disablePadding sx={thActiveScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
           <ListItemButton  component={Link} to="sender-app/transactions-history" onClick={thActive}>
             <ListItemIcon sx={thActiveScreen ? {minWidth:'35px',paddingLeft:'30px',color:'white', marginTop: '-3px'} : {minWidth:'35px',paddingLeft:'30px', marginTop: '-3px'}}>
@@ -287,14 +303,14 @@ export default function MenuBar() {
       </ListItemButton>
       </List>
 
-      <List component="div" disablePadding sx={ quotationScreen? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
+      {/* <List component="div" disablePadding sx={ quotationScreen? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>
       <ListItemButton component={Link} to="sender-app/quotation" onClick={QuotationList}>
         <ListItemIcon sx={quotationScreen ? {minWidth:'35px',color:'white', marginTop: '-3px'} : {minWidth:'35px', marginTop: '-3px'}}>
           <TableRowsRoundedIcon />
         </ListItemIcon>
         <ListItemText primary="Quotation" />
       </ListItemButton>
-      </List>
+      </List> */}
       
       {/* <Divider/> */}
       <List component="div" disablePadding sx={settingsScreen ? {background: '#4490fa',color:'white', borderTopRightRadius: '5px', borderBottomRightRadius:'5px', marginRight:'5px'} : {}}>

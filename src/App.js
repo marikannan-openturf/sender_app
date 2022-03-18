@@ -1,3 +1,4 @@
+import React, { lazy,useEffect,useContext,useState } from 'react'
 import Topbar from "./components/topbar/Topbar";
 import './app.css'
 import Home from "./pages/Home";
@@ -18,6 +19,7 @@ import TransactionsHistory from "./pages/TransactionsHistory";
 import Quotation from "./pages/Quotation";
 import ReportCorridor from "./pages/ReportCorridor";
 function App() {
+
   return (
     <BrowserRouter>
         <Topbar />
@@ -27,15 +29,15 @@ function App() {
         <Routes basename={process.env.REACT_APP_BASE_URL}>
             <Route path="/" element= {<Home />} />
             <Route path={`${process.env.REACT_APP_BASE_URL}/account-status`} element = {<AccountStatus />}/>
-            <Route path={`${process.env.REACT_APP_BASE_URL}/transactions-business`} element = {<TransactionsBusiness />}/>
-            <Route path={`${process.env.REACT_APP_BASE_URL}/transactions-personal`} element = {<TransactionsPersonal />}/>
+            {/* <Route path={`${process.env.REACT_APP_BASE_URL}/transactions-business`} element = {<TransactionsBusiness />}/> */}
+            {/* <Route path={`${process.env.REACT_APP_BASE_URL}/transactions-personal`} element = {<TransactionsPersonal />}/> */}
             <Route path={`${process.env.REACT_APP_BASE_URL}/transactions-history`} element={<TransactionsHistory/>}/>
             <Route path={`${process.env.REACT_APP_BASE_URL}/report-ledger`} element = {<ReportLetger />}/>
             <Route path={`${process.env.REACT_APP_BASE_URL}/report-statement`} element = {<ReportStatement />}/>
             <Route path={`${process.env.REACT_APP_BASE_URL}/report-corridor`} element = {<ReportCorridor/>}/>
             <Route path={`${process.env.REACT_APP_BASE_URL}/bank-list`} element={<BankList/>}/>
             <Route path={`${process.env.REACT_APP_BASE_URL}/settings`} element={<Settings/>}/>
-            <Route path={`${process.env.REACT_APP_BASE_URL}/quotation`} element={<Quotation/>}/>
+            {/* <Route path={`${process.env.REACT_APP_BASE_URL}/quotation`} element={<Quotation/>}/> */}
             <Route path="*" element={<Home />} />
         </Routes>
 

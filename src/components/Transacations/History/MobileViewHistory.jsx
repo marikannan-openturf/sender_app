@@ -49,26 +49,17 @@ export default function MobileViewHistory(props) {
   const getHistoryStatusView = () => {
     const options = {
       headers: {
-        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername'),
-        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword'),
+        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername') ? localStorage.getItem('prodUsername') : '',
+        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
         'actualdate': '2018-04-04 09:27:16',
-        'origincountry': 'US',
-        'environment': localStorage.getItem('environment')
+        'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
+        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
     axios.get(`${apiUrl}/js/transaction?transactionReference=SrcTxnId003435436`, { headers: options.headers }
     ).then((res) => {
-      // setFeaturedInfo(true)
       setHistoryList(res.data)
-      //  if(res.data && res.data.length > 0) {
-      //    console.log("test")
-      //    setBalance(res.data[0].currentBalance)
-      //    setCurrency(res.data[0].currency)
-      //  }
-      //  console.log(res.data[0].currentBalance)
-
     }).catch((err) => {
-      // setErrorPopup(true)
     })
   }
   return (

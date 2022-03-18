@@ -100,8 +100,9 @@ export default function AccountStatusPopup(props) {
               </Table>
           </TableContainer>
         </Stack>
-        <Stack py={3} justifyContent='center' direction='row'>
+        <Stack spacing={3} py={3} justifyContent='center' direction='row'>
           <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={() => props.setFeaturedInfoClose()}>OK</Button>
+          {/* <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={() => props.createQuotation()}>Create Quotation</Button> */}
           {/* <CustomButtom sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' disabled>Create Transaction</CustomButtom> */}
 
         </Stack>

@@ -1,5 +1,5 @@
 import { Button, OutlinedInput, Paper, Stack, TextField, Typography } from '@mui/material'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/system'
 import ErrorPopup from '../../pages/ErrorPopup';
@@ -11,7 +11,7 @@ import { countryList } from '../../Utils/country';
 import {requestBodyData} from '../../Utils/common'
 const apiUrl = config.api.url
 
-export default function Bank() {
+export default function Bank(props) {
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [accountNumber, setAccountNumber] = useState('232201001600')
   const [senderMobileNumber, setSenderMobileNumber] = useState('+9779840002444')
@@ -28,6 +28,7 @@ export default function Bank() {
   const [errorPopup, setErrorPopup] = useState(false)
   const [errorRes, setErrorRes] = useState({})
   const [successRes, setSuccessRes] = useState({})
+  const [quotationReference, setQuotationReference] = useState({})
 
   const CloseErrorPopup = () => {
     setErrorPopup(false)
@@ -41,6 +42,8 @@ export default function Bank() {
 
   const setFeaturedInfoClose = () => {
     setFeaturedInfo(false)
+    props.quotationClose(quotationReference)
+
     /* setAccountNumber('50100002965304')
     setRequestCurrency('500')
     setRequestCurrency('NPR')
@@ -52,11 +55,11 @@ export default function Bank() {
   const setFeaturedInfoDetails = () => {
     const options = {
       headers: {
-        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername'),
-        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword'),
+        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername') ? localStorage.getItem('prodUsername') : '',
+        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
         'actualdate': '2018-04-04 09:27:16',
-        'origincountry': 'US',
-        'environment': localStorage.getItem('environment')
+        'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
+        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
     // let requestBodyDataInfo =  {
@@ -126,22 +129,17 @@ export default function Bank() {
       { headers: options.headers }
     ).then((res) => {
       if (res.data.error) {
-        console.log("res", res.data)
         setErrorPopup(true)
         setErrorRes(res.data)
       } else {
-
-        console.log("res", res.data)
-
         setLei(res.data.lei)
         setStatus(res.data.status)
         setSubStatus(res.data.subStatus)
         setSuccessRes(res.data)
+        setQuotationReference(res.data)
         setFeaturedInfo(true)
       }
     }).catch((err) => {
-      console.log("catch", err)
-
       setFeaturedInfo(true)
     })
   }
@@ -152,9 +150,21 @@ export default function Bank() {
        background-color : #1976d2;
        color:white
     }`
+
+    useEffect(()=>{
+    if(props.accountNumber) {
+      setAccountNumber(props.accountNumber)
+    }
+    if(props.reciveCountry) {
+      setReciveCountry(props.reciveCountry)
+    }
+    if(props.benificiaryNumber) {
+      setReceiverMobileNumber(props.benificiaryNumber)
+    }
+    },[props])
   return (
     <>
-      <Paper sx={{ p: 2 }}>
+      {/* <Paper sx={{ p: 2 }}> */}
         <Typography textAlign='center' pt={2} fontSize={20} variant='h6' color="#404040">Bank Quotation</Typography>
         <Stack width={600} spacing={5} sx={{ p: 4 }}>
           {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
@@ -295,7 +305,7 @@ export default function Bank() {
             }
           </Stack>
         </Stack>
-      </Paper>
+      {/* </Paper> */}
       <QuotationStatusBankPopUp
         featuredInfo={featuredInfo}
         accountNumber={accountNumber}
@@ -305,6 +315,7 @@ export default function Bank() {
         sendCurrency={sendCurrency}
         reciveCurrency={reciveCurrency}
         setFeaturedInfoClose={setFeaturedInfoClose}
+        quotationReference={quotationReference}
         lei={lei}
         status={status}
         subStatus={subStatus}

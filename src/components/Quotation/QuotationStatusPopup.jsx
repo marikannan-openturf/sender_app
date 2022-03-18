@@ -33,7 +33,6 @@ import Paper from '@mui/material/Paper';
   }));
 
 export default function QuotationStatusPopup(props) {
-console.log("prop",props)
   return (
     <Dialog
       open={props.featuredInfo} sx={{ height: '100%', width: '100%' }} onClose={() => props.setFeaturedInfoClose()} >

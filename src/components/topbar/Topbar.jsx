@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import './topbar.css'
 import { NotificationsNone } from '@mui/icons-material';
 import { Link } from "react-router-dom";
@@ -12,6 +12,14 @@ const environmentHandler = (e) => {
 setEnvironment(e.target.value)
 localStorage.setItem('environment',e.target.value)
 }
+useEffect(()=>{
+  if(localStorage.getItem('environment')) {
+    setEnvironment(localStorage.getItem('environment'))
+  } else {
+    setEnvironment('sandbox')
+    localStorage.setItem('environment','sandbox')
+  }
+},[])
   return (
     <div className='topbar'>
     <div className="topbarWrapper">

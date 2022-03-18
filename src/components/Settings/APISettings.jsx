@@ -19,7 +19,7 @@ export default function APISettings() {
 
   return (
     <>
-      <Stack p={6}>
+      <Stack p={6} sx={{height:'calc(100vh - 100px)'}}>
 
         {/* <Stack direction='row' mb={3}>
           <Typography textAlign='left' fontSize={20} fontFamily='Poppins' variant='h6' color="#404040">API Settings</Typography> 
