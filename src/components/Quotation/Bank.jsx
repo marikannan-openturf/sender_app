@@ -212,7 +212,7 @@ export default function Bank(props) {
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
-              Sender Mobile Number
+              Sender Mobile Number <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Sender Mobile Number' onChange={({ target }) => setSenderMobileNumber(target.value)} value={senderMobileNumber} />
           </Stack>

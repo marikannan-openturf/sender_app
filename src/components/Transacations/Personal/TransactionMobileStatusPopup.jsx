@@ -119,9 +119,17 @@ export default function TransactionMobileStatusPopup(props) {
                   </TableRow>
               </TableHead>
               <TableBody>
+                    <StyledTableRow>
+                    <StyledTableCell component="th" scope="row" > Transaction Status</StyledTableCell>
+                    <StyledTableCell align="left">{props.successRes.transactionStatus}</StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow>
+                    <StyledTableCell component="th" scope="row" > Transaction Reference</StyledTableCell>
+                    <StyledTableCell align="left">{props.successRes.transactionReference}</StyledTableCell>
+                  </StyledTableRow>
                   <StyledTableRow>
                     <StyledTableCell component="th" scope="row" > Amount</StyledTableCell>
-                    <StyledTableCell align="left">{props.amount}</StyledTableCell>
+                    <StyledTableCell align="left">{props.successRes.amount}</StyledTableCell>
                   </StyledTableRow>
                   <StyledTableRow>
                     <StyledTableCell component="th" scope="row" >Currency</StyledTableCell>
@@ -136,16 +144,16 @@ export default function TransactionMobileStatusPopup(props) {
                     <StyledTableCell align="left">{props.reciverMobileNumber}
                     </StyledTableCell>
                   </StyledTableRow>
-                  <StyledTableRow>
+                  {/* <StyledTableRow>
                     <StyledTableCell component="th" scope="row" >Gender</StyledTableCell>
                     <StyledTableCell align="left">{props.genderDetails}
                     </StyledTableCell>
-                  </StyledTableRow>
-                  <StyledTableRow>
+                  </StyledTableRow> */}
+                  {/* <StyledTableRow>
                     <StyledTableCell component="th" scope="row" > Nationality</StyledTableCell>
                     <StyledTableCell align="left">{props.nationality}
                     </StyledTableCell>
-                  </StyledTableRow>
+                  </StyledTableRow> */}
                   <StyledTableRow>
                     <StyledTableCell component="th" scope="row" >Date of Birth</StyledTableCell>
                     <StyledTableCell align="left">{props.dob}

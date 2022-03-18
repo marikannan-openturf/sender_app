@@ -413,11 +413,11 @@ export default function BusinessMobile(props) {
    if(props.quoteIdInfo && props.quoteIdInfo.debitParty && props.quoteIdInfo.debitParty.length > 0) {
     setMobileNumber(props.quoteIdInfo.debitParty[0].value)
    }
-   if(props.quoteIdInfo && props.quoteIdInfo.requestAmount) {
-    setAmount(props.quoteIdInfo.requestAmount)
+   if(props.quoteIdInfo && props.quoteIdInfo.quotes && props.quoteIdInfo.quotes.length > 0 && props.quoteIdInfo.quotes[0].receivingAmount) {
+    setAmount(props.quoteIdInfo.quotes[0].receivingAmount)
    }
-   if(props.quoteIdInfo && props.quoteIdInfo.requestAmount) {
-    setCurrency(props.quoteIdInfo.requestCurrency)
+   if(props.quoteIdInfo && props.quoteIdInfo.quotes && props.quoteIdInfo.quotes.length > 0 && props.quoteIdInfo.quotes[0].receivingCurrency) {
+    setCurrency(props.quoteIdInfo.quotes[0].receivingCurrency)
    }
   }
   },[props])

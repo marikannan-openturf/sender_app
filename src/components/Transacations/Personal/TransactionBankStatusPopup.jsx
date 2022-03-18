@@ -114,9 +114,17 @@ export default function TransactionBankStatusPopup(props) {
                   </TableRow>
               </TableHead>
               <TableBody>
+              <StyledTableRow>
+                    <StyledTableCell component="th" scope="row" > Transaction Status</StyledTableCell>
+                    <StyledTableCell align="left">{props.successRes.transactionStatus}</StyledTableCell>
+                  </StyledTableRow>
+                  <StyledTableRow>
+                    <StyledTableCell component="th" scope="row" > Transaction Reference</StyledTableCell>
+                    <StyledTableCell align="left">{props.successRes.transactionReference}</StyledTableCell>
+                  </StyledTableRow>
                   <StyledTableRow>
                     <StyledTableCell component="th" scope="row" > Amount</StyledTableCell>
-                    <StyledTableCell align="left">{props.amount}</StyledTableCell>
+                    <StyledTableCell align="left">{props.successRes.amount}</StyledTableCell>
                   </StyledTableRow>
                   <StyledTableRow>
                     <StyledTableCell component="th" scope="row" >Currency</StyledTableCell>

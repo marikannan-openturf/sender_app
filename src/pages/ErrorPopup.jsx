@@ -14,6 +14,7 @@ export default function ErrorPopup(props) {
     const tryAgain = () => {
       window.location.reload()
     }
+    console.log("props",props.errorRes)
   return (
     <Dialog
       open={props.errorPopup} sx={{ height: '100%', width: '100%' }} onClose={() => props.CloseErrorPopup()}

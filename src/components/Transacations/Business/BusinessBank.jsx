@@ -460,7 +460,7 @@ export default function BusinessMobile(props) {
             "businessAddressZip": `${receipientAddressZip}`,
             "businessPrimaryContactCountryCode": `${receipientBusinessPrimaryContactCountryCode}`,
             "businessPrimaryContactNo": `${receipientBusinessPrimaryContactNo}`,
-            "businessPrimaryContactNoType": `${setReceipientBusinessPrimaryContactNoType}`,
+            "businessPrimaryContactNoType": `${receipientBusinessPrimaryContactNoType}`,
             "businessDescription": `${receipientBusinessDescription}`,
             "businessEmail": `${receipientBusinessEmail}`,
             "businessCountryCode": `${receipientBusinessCountryCode}`,
