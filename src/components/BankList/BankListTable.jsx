@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Container, Stack, Box, Button, Paper, Typography } from '@mui/material';
+import { Container, Stack, Box, Button, Paper, Typography, TextField } from '@mui/material';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
@@ -17,6 +17,8 @@ import IconButton from "@mui/material/IconButton";
 import axios from 'axios'
 import { config } from '../../assets/config/config';
 import { useEffect, useState } from 'react';
+import { countryList } from '../../Utils/country';
+import MenuItem from '@mui/material/MenuItem';
 
 const apiUrl = config.api.url
 
@@ -105,9 +107,10 @@ const rows = [
 ].sort((a, b) => (a.dates < b.dates ? -1 : 1));
 
 export default function BankListTable() {
-  const [banks,setBanks] = useState([])
+  const [banks, setBanks] = useState([])
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [country, setCountry] = useState('US')
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -122,34 +125,46 @@ export default function BankListTable() {
     setPage(0);
   };
 
+  const setCountryHandler = (e) => {
+    setCountry(e.target.value)
+    if (e.target.value !== 'All') {
+      getBankList(e.target.value)
+    }
+  }
+
 
   // function refreshPage() {
   //   window.location.reload();
   // }
 
   useEffect(() => {
-    getBankList()
+    getBankList(country)
   }, [])
 
-  const getBankList = () => {
+  const getBankList = (currency) => {
     const options = {
       headers: {
         'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername') ? localStorage.getItem('prodUsername') : '',
         'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
         'actualdate': '2018-04-04 09:27:16',
         'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
-        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
+        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox'
       }
     }
-    axios.get(`${apiUrl}/js/bank-list?countryCode=BD`, { headers: options.headers }
+    axios.get(`${apiUrl}/js/bank-list?countryCode=${currency}`, { headers: options.headers }
     ).then((res) => {
-      setBanks(res.data.banks)
-      
-
+      if(res.data && res.data.banks) {
+        setBanks(res.data.banks)
+      } else {
+        setBanks([])
+      }
     }).catch((err) => {
     })
   }
 
+  const refreshBank = () => {
+    getBankList('US')
+  }
   return (
     <>
       <Stack p={6} >
@@ -158,10 +173,35 @@ export default function BankListTable() {
             <Typography textAlign='left' fontSize={20} fontFamily='Poppins' variant='h6' color="#404040">Bank List</Typography>
           </Stack>
           <Stack spacing={3}>
-            <Button variant='contained' sx={{ backgroundColor: '#4490fa' }} onClick={getBankList} >Refresh</Button>
+            <Button variant='contained' sx={{ backgroundColor: '#4490fa' }} onClick={refreshBank} >Refresh</Button>
           </Stack>
         </Stack>
         <Paper sx={{ paddingTop: 5, paddingLeft: 5, paddingRight: 5, paddingBottom: 5, }}>
+          <Stack direction='row' alignItems='center' justifyContent='space-between' pb={4}>
+            {/* <Typography color="#575757" fontWeight='500'>
+              Account Instrument
+            </Typography> */}
+
+            <TextField
+              alignItems='center'
+              sx={{ width: 205 }}
+              label="Country"
+              value={country}
+              onChange={setCountryHandler}
+              select
+              InputProps={{ style: { height: 40 } }}
+              InputLabelProps={{ style: { height: 40 } }}
+            >
+
+              {/* <MenuItem value='All'>All</MenuItem> */}
+
+              {countryList && countryList.length > 0 && countryList.map((value, index) => {
+                return (
+                  <MenuItem key={index} value={value.code}>{value.name}</MenuItem>
+                )
+              })}
+            </TextField>
+          </Stack>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="custom pagination table">
               <TableHead>
@@ -174,7 +214,7 @@ export default function BankListTable() {
                   <StyledTableCell align="left">Status</StyledTableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
+              {banks && banks.length > 0 ?     <TableBody>
                 {(rowsPerPage > 0
                   ? banks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   : banks
@@ -194,8 +234,19 @@ export default function BankListTable() {
                     <TableCell colSpan={6} />
                   </TableRow>
                 )}
-              </TableBody>
-              <TableFooter>
+              </TableBody> : 
+              <TableBody>
+              <TableRow>
+              {/* <TableCell align='center' colSpan='center'> */}
+              <Typography spacing={2} p={2}>
+
+No data available
+</Typography>
+              {/* </TableCell> */}
+             
+              </TableRow>
+              </TableBody>}
+              {banks && banks.length > 0 ?   <TableFooter>
                 <TableRow>
                   <TablePagination
                     rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
@@ -214,7 +265,7 @@ export default function BankListTable() {
                     ActionsComponent={TablePaginationActions}
                   />
                 </TableRow>
-              </TableFooter>
+              </TableFooter> : ''}
             </Table>
           </TableContainer>
         </Paper>

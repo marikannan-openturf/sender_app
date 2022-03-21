@@ -15,7 +15,7 @@ export default function Bank(props) {
   const [featuredInfo, setFeaturedInfo] = useState(false)
   const [accountNumber, setAccountNumber] = useState('232201001600')
   const [senderMobileNumber, setSenderMobileNumber] = useState('+9779840002444')
-  const [receiverMobileNumber, setReceiverMobileNumber] = useState('+9779840002320')
+  const [receiverMobileNumber, setReceiverMobileNumber] = useState('')
   const [reciveCountry, setReciveCountry] = useState('IN')
   const [amount, setAmount] = useState('500')
   const [requestCurrency, setRequestCurrency] = useState('INR')

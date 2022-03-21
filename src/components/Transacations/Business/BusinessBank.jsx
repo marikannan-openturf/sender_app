@@ -111,6 +111,7 @@ export default function BusinessMobile(props) {
   const [accountIBAN, setAccountIBAN] = useState('')
   const [accountAdditionalNo1, setAccountAdditionalNo1] = useState('')
   const [successRes, setSuccessRes] = useState({})
+  const [paymentOption, setPaymentOption] = useState('Mobile Wallet')
 
   const CustomButtom = styled(Button)`
   &.Mui-disabled{
@@ -210,7 +211,7 @@ export default function BusinessMobile(props) {
         // "provider": `${providerCode}`,
         "paymentMode": `${paymentMode}`,
         "authenticationPartnerCode": `${authenticationPartnerCode}`,
-        "paymentOption": "Mobile Wallet",
+        "paymentOption": `${paymentOption}`,
         "sendingPartnerCode": `${sendingPartnerCode}`,
         "receivingPartnerCode": `${receivingPartnerCode}`,
         "business": {
@@ -252,7 +253,7 @@ export default function BusinessMobile(props) {
         "provider": `${providerCode}`,
         "paymentMode": `${paymentMode}`,
         "authenticationPartnerCode": `${authenticationPartnerCode}`,
-        "paymentOption": "Mobile Wallet",
+        "paymentOption": `${paymentOption}`,
         "sendingPartnerCode": `${sendingPartnerCode}`,
         "receivingPartnerCode": `${receivingPartnerCode}`,
         "debitParty": [
@@ -367,7 +368,7 @@ export default function BusinessMobile(props) {
         "provider": `${providerCode}`,
         "paymentMode": `${paymentMode}`,
         "authenticationPartnerCode": `${authenticationPartnerCode}`,
-        "paymentOption": "Mobile Wallet",
+        "paymentOption": `${paymentOption}`,
         "sendingPartnerCode": `${sendingPartnerCode}`,
         "receivingPartnerCode": `${receivingPartnerCode}`,
         "debitParty": [
@@ -667,6 +668,26 @@ export default function BusinessMobile(props) {
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Payment Mode' value={paymentMode} onChange={({ target }) => setpaymentMode(target.value)} />
           </Stack>
+          <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
+               Payment Option
+              </Typography>
+              <TextField
+                sx={{ width: 205 }}
+                label="Payment Option"
+                value={paymentOption}
+                onChange={({ target }) => setPaymentOption(target.value)}
+                select
+                InputProps={{ style: { height: 40 } }}
+                InputLabelProps={{ style: { height: 40 } }}
+              >
+                
+                <MenuItem value='Mobile Wallet'>Mobile Wallet</MenuItem>
+                <MenuItem value='Account Credit'>Account Credit</MenuItem>
+                {/* <MenuItem value='U'>Unspecified</MenuItem> */}
+                {/* <MenuItem value='Jio'>Jio</MenuItem> */}
+              </TextField>
+            </Stack>
           <Stack alignItems='center' justifyContent='space-between' direction='row'>
             <Typography color="#575757" fontWeight='500'>
               Authentication Partner Code <span style={{ color: '#ea5c57' }}>*</span>
@@ -1584,12 +1605,12 @@ export default function BusinessMobile(props) {
             </TextField>
             {/* <OutlinedInput sx={{ height: 40 }} placeholder='Source of Fund' value={sourceFund} onChange={({ target }) => setSourceFund(target.value)} /> */}
           </Stack>
-          {transactionType === 'b2p' || transactionType === 'b2p' && <Stack alignItems='center' justifyContent='space-between' direction='row'>
+          <Stack alignItems='center' justifyContent='space-between' direction='row'>
             <Typography color="#575757" fontWeight='500'>
               Sender Relationship
             </Typography>
             <OutlinedInput sx={{ height: 40 }} placeholder='Sender Relationship' value={senderRelation} onChange={({ target }) => setSenderRelation(target.value)} />
-          </Stack>}
+          </Stack>
         </Stack>
       </Stack>
 

@@ -39,6 +39,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function MobileViewHistory(props) {
 
   const [historyList, setHistoryList] = useState({})
+  const [errorList, setErrorList] = useState({})
+  const [errorListShow, setErrorListShow] = useState(false)
+  const [historyListShow, setHistoryListShow] = useState(false)
 
   useEffect(() => {
     if (props.viewTrans) {
@@ -56,12 +59,22 @@ export default function MobileViewHistory(props) {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
-    axios.get(`${apiUrl}/js/transaction?transactionReference=SrcTxnId003435436`, { headers: options.headers }
+    axios.get(`${apiUrl}/js/transaction?transactionReference=${props.refId}`, { headers: options.headers }
     ).then((res) => {
-      setHistoryList(res.data)
+      console.log("res.da",res.data)
+      if(res.data.error) {
+      setErrorList(res.data.error)
+      setErrorListShow(true)
+      setHistoryList({})
+      } else {
+        setHistoryList(res.data)
+        setHistoryListShow(true)
+        setErrorList({})
+      }
     }).catch((err) => {
     })
   }
+  console.log("errorl",errorList)
   return (
     <Dialog
       open={props.viewTrans} sx={{ height: '100%', width: '100%' }} onClose={() => props.OnClickViewClose()}
@@ -89,66 +102,8 @@ export default function MobileViewHistory(props) {
         </Stack>
 
       </Stack> */}
-      {historyList ?
+      {historyListShow ?
         <Stack px={5} width={500} alignItems='center' justifyContent='center' direction='row'>
-          {/* <Stack direction="column" spacing={2} textAlign="right" >
-            <Typography color="#575757" fontWeight='500'>
-              Transaction Date :
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              Mobile Number :
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              Transaction Type :
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              Transaction Reference :
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              Transaction Status :
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              Tp Transaction Reference :
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              Sender Mobile Number :
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              Benificiary Mobile Number :
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              Benificiary Mobile Account :
-            </Typography>
-          </Stack>
-          <Stack spacing={2} textAlign="left">
-            <Typography color="#575757" fontWeight='500'>
-              27 Jan 2020
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              USD 50$
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              Bank
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              Bank
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              Success
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              Success
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              9025797873
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              9025797873
-            </Typography>
-            <Typography color="#575757" fontWeight='500'>
-              9025797873
-            </Typography>
-          </Stack> */}
           <TableContainer component={Paper}>
             <Table aria-label="custom pagination table">
               <TableHead>
@@ -166,10 +121,6 @@ export default function MobileViewHistory(props) {
                   <StyledTableCell component="th" scope="row" >Currency</StyledTableCell>
                   <StyledTableCell align="left"> {historyList.currency}</StyledTableCell>
                 </StyledTableRow>
-                {/* {historyList && historyList.creditParty && historyList.creditParty.length > 0 &&  <StyledTableRow>
-                  <StyledTableCell component="th" scope="row" >Sender Mobile</StyledTableCell>
-                  <StyledTableCell align="left"> {historyList.creditParty[0].value}</StyledTableCell>
-                </StyledTableRow>} */}
                 {historyList && historyList.debitParty && historyList.debitParty.length > 0 &&  <StyledTableRow>
                   <StyledTableCell component="th" scope="row" >Reciver Mobile</StyledTableCell>
                   <StyledTableCell align="left"> {historyList.debitParty[0].value}</StyledTableCell>
@@ -190,34 +141,44 @@ export default function MobileViewHistory(props) {
                   <StyledTableCell component="th" scope="row" >Transaction Type</StyledTableCell>
                   <StyledTableCell align="left">{historyList.type}</StyledTableCell>
                 </StyledTableRow>
-                {/* <StyledTableRow>
-                    <StyledTableCell component="th" scope="row" >Business Name</StyledTableCell>
-                    <StyledTableCell align="left">{props.businessName}
-                    </StyledTableCell>
-                  </StyledTableRow>
-                  <StyledTableRow>
-                    <StyledTableCell component="th" scope="row" >Business Registration Type</StyledTableCell>
-                    <StyledTableCell align="left">{props.businessRegistrationType}
-                    </StyledTableCell>
-                  </StyledTableRow>
-                  <StyledTableRow>
-                    <StyledTableCell component="th" scope="row" > Business Email</StyledTableCell>
-                    <StyledTableCell align="left">{props.businessEmail}
-                    </StyledTableCell>
-                  </StyledTableRow> */}
-                {/* <StyledTableRow>
-                    <StyledTableCell component="th" scope="row" >Description</StyledTableCell>
-                    <StyledTableCell align="left">{props.dob}
-                    </StyledTableCell>
-                  </StyledTableRow> */}
-                {/* <StyledTableRow>
-                    <StyledTableCell component="th" scope="row" >Description</StyledTableCell>
-                    <StyledTableCell align="left">{props.descriptionText}</StyledTableCell>
-                  </StyledTableRow> */}
               </TableBody>
             </Table>
           </TableContainer>
-        </Stack> : ''}
+        </Stack> : 
+        errorListShow ? 
+        <Stack px={5} width={500} alignItems='center' justifyContent='center' direction='row'>
+        <TableContainer component={Paper}>
+          <Table aria-label="custom pagination table">
+            <TableHead>
+              <TableRow>
+              <StyledTableCell>Error</StyledTableCell>
+                  <StyledTableCell align="left">Description</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <StyledTableRow>
+              <StyledTableCell component="th" scope="row">Error Category</StyledTableCell>
+                <StyledTableCell align="left">{errorList && errorList.errorCategory ? errorList.errorCategory : ''}</StyledTableCell>
+              </StyledTableRow>
+              <StyledTableRow>
+                <StyledTableCell component="th" scope="row" > Error Code</StyledTableCell>
+                <StyledTableCell align="left">{errorList && errorList.errorCode ? errorList.errorCode : ''}</StyledTableCell>
+              </StyledTableRow>
+             
+              <StyledTableRow>
+                <StyledTableCell component="th" scope="row" >Date && Time</StyledTableCell>
+                <StyledTableCell align="left"> {errorList && errorList.errorDateTime ? errorList.errorDateTime : ''}</StyledTableCell>
+              </StyledTableRow>
+              <StyledTableRow>
+                <StyledTableCell component="th" scope="row" >errorDescription</StyledTableCell>
+                <StyledTableCell align="left"> {errorList && errorList.errorDescription ? errorList.errorDescription : ''}</StyledTableCell>
+              </StyledTableRow>
+              
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Stack>
+       : '' }
       <Stack spacing={3} py={5} justifyContent='center' direction='row'>
         <Button sx={{ alignSelf: 'center', letterSpacing: 1 }} variant='contained' onClick={props.OnClickViewClose}>OK</Button>
       </Stack>

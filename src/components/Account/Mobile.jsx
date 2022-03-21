@@ -269,7 +269,7 @@ export default function Mobile() {
                       InputLabelProps={{ style: { height: 40 } }}
                     >
                       <MenuItem value='personal'>Personal-Transaction</MenuItem>
-                      <MenuItem value='business'>Business-Transaction</MenuItem>
+                      {/* <MenuItem value='business'>Business-Transaction</MenuItem> */}
                     </TextField>
                   </Stack>
                   <Stack direction='row'>

@@ -159,8 +159,9 @@ export default function Ledger() {
       if (res.data && res.data.length > 0) {
         setBalance(res.data[0].currentBalance)
         setResponse(res.data)
+      } else {
+        setResponse([])
       }
-
     }).catch((err) => {
     })
   }
@@ -180,6 +181,8 @@ export default function Ledger() {
       if (res.data && res.data.length > 0) {
         setBalance(res.data[0].currentBalance)
         setResponse(res.data)
+      } else {
+        setResponse([])
       }
     }).catch((err) => {
       setBalance(0)

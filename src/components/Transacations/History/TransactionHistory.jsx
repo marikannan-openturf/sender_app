@@ -25,7 +25,7 @@ export default function TransactionHistory() {
       <Stack p={6}>
         <Stack spacing={3}>
         <Stack direction='row' justifyContent='space-between' spacing={5}>
-          <Stack direction='row' spacing={3}>
+          {/* <Stack direction='row' spacing={3}>
             <Link component="button"
               underline={mobile ? "always" : "none"} color="inherit" onClick={mobileActive}>
               <Typography fontSize={18} fontWeight='500' color={mobile ? '#e85654' : '#7e7e7e'}>Mobile</Typography>
@@ -36,7 +36,7 @@ export default function TransactionHistory() {
               <Typography fontSize={18} fontWeight='500' color={bank ? '#e85654' : '#7e7e7e'}>Bank</Typography>
 
             </Link>
-          </Stack>
+          </Stack> */}
             {/* <Stack>
             <Button variant='contained' sx={{backgroundColor:'#4490fa'}}>Create Transaction</Button>
             </Stack> */}

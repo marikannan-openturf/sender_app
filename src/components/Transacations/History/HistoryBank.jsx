@@ -42,28 +42,6 @@ function TablePaginationActions(props) {
     onPageChange(event, page + 1);
   };
 
-  useEffect(()=>{
-    getTransactionHistory()
-   },[])
- 
-   const getTransactionHistory = () => {
-    const options = {
-      headers: {
-        'username': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('username') : localStorage.getItem('prodUsername') ? localStorage.getItem('prodUsername') : '',
-        'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
-        'actualdate': '2018-04-04 09:27:16',
-        'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
-        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
-      }
-    }
-     axios.get(`${apiUrl}/js/transaction?transactionReference=SrcTxnId001`,{ headers: options.headers } 
-     ).then((res) => {
-       // setFeaturedInfo(true)
- 
-     }).catch((err) => {
-       // setErrorPopup(true)
-     }) 
-   }
 
 
   return (
@@ -165,8 +143,9 @@ export default function HistoryBank() {
   /* more popup */
   const [morePopup, setMorePopup] = React.useState(null);
   const open = Boolean(morePopup);
-  const handleClick = (event) => {
+  const handleClick = (event,data) => {
     setMorePopup(event.currentTarget);
+    setRefId(data)
   };
   const handleClose = () => {
     setMorePopup(null);
@@ -185,7 +164,7 @@ export default function HistoryBank() {
     axios.post(`${apiUrl}/js/cancel-transaction`
       , {
         "reason": "cancelling",
-        "txnId": "SrcTxnId001"
+        "txnId": `${refId}`
     },
       { headers: options.headers }
     ).then((res) => {
@@ -213,7 +192,7 @@ export default function HistoryBank() {
     axios.post(`${apiUrl}/js/reverse-transaction`
       , {
         "reversalReason": "reversalreason",
-        "txnId": "TPKM000000056269"
+        "txnId": `${refId}`
     },
       { headers: options.headers } 
     ).then((res) => {
@@ -466,7 +445,7 @@ export default function HistoryBank() {
                   <Box>
                     <Tooltip title="More">
                       <IconButton
-                        onClick={handleClick}
+                        onClick={(e)=>handleClick(e,row.data.transactionReference)}
                         size="small"
                         sx={{ ml: 0 }}
                         aria-controls={open ? "More" : undefined}

@@ -142,7 +142,7 @@ export default function HistoryMobile(props) {
   const [cancelTrans, setCancelTrans] = useState(false)
   const [reverseTrans, setReverseTrans] = useState(false)
   const [viewTrans, setViewTrans] = useState(false)
-  const [refId, setRefId] = useState('SrcTxnId001')
+  const [refId, setRefId] = useState('')
   const [reverseDetails, setReverseDetails] = useState({})
   const [cancelDetails, setCancelDetails] = useState({})
   const [history,setHistory] = useState([])
@@ -162,8 +162,9 @@ export default function HistoryMobile(props) {
   /* more popup */
   const [morePopup, setMorePopup] = React.useState(null);
   const open = Boolean(morePopup);
-  const handleClick = (event) => {
+  const handleClick = (event,data) => {
     setMorePopup(event.currentTarget);
+    setRefId(data)
   };
   const handleClose = () => {
     setMorePopup(null);
@@ -182,7 +183,7 @@ export default function HistoryMobile(props) {
     axios.post(`${apiUrl}/js/cancel-transaction`
       , {
         "reason": "cancelling",
-        "txnId": "SrcTxnId001"
+        "txnId": `${refId}`
     },
       { headers: options.headers }
     ).then((res) => {
@@ -211,7 +212,7 @@ export default function HistoryMobile(props) {
     axios.post(`${apiUrl}/js/reverse-transaction`
       , {
         "reversalReason": "reversalreason",
-        "txnId": "TPKM000000056269"
+        "txnId": `${refId}`
       },
       { headers: options.headers }
     ).then((res) => {
@@ -261,159 +262,11 @@ export default function HistoryMobile(props) {
     })
   }
 
-  const historyMockJson = {
-    "count": 1,
-    "rows": [
-        {
-            "id": 1,
-            "data": {
-                "type": "inttransfer",
-                "amount": "500",
-                "currency": "NPR",
-                "debitParty": [
-                    {
-                        "key": "msisdn",
-                        "value": "+9779840002320"
-                    }
-                ],
-                "creditParty": [
-                    {
-                        "key": "msisdn",
-                        "value": "+9779840002320"
-                    }
-                ],
-                "requestDate": "2021-05-23 08:19:36",
-                "transactionStatus": "3050:Remit Acknowledged.",
-                "transactionReference": "TPOT000000723289",
-                "requestingOrganisationTransactionReference": "SrcTxnId3858"
-            }
-        },
-        {
-          "id": 2,
-          "data": {
-              "type": "inttransfer",
-              "amount": "500",
-              "currency": "NPR",
-              "debitParty": [
-                  {
-                      "key": "msisdn",
-                      "value": "+9779840002320"
-                  }
-              ],
-              "creditParty": [
-                  {
-                      "key": "msisdn",
-                      "value": "+9779840002320"
-                  }
-              ],
-              "requestDate": "2021-05-23 08:19:36",
-              "transactionStatus": "3050:Remit Acknowledged.",
-              "transactionReference": "TPOT000000723289",
-              "requestingOrganisationTransactionReference": "SrcTxnId3858"
-          }
-      },
-      {
-        "id": 3,
-        "data": {
-            "type": "inttransfer",
-            "amount": "500",
-            "currency": "NPR",
-            "debitParty": [
-                {
-                    "key": "msisdn",
-                    "value": "+9779840002320"
-                }
-            ],
-            "creditParty": [
-                {
-                    "key": "msisdn",
-                    "value": "+9779840002320"
-                }
-            ],
-            "requestDate": "2021-05-23 08:19:36",
-            "transactionStatus": "3050:Remit Acknowledged.",
-            "transactionReference": "TPOT000000723289",
-            "requestingOrganisationTransactionReference": "SrcTxnId3858"
-        }
-    },
-    {
-      "id": 4,
-      "data": {
-          "type": "inttransfer",
-          "amount": "500",
-          "currency": "NPR",
-          "debitParty": [
-              {
-                  "key": "msisdn",
-                  "value": "+9779840002320"
-              }
-          ],
-          "creditParty": [
-              {
-                  "key": "msisdn",
-                  "value": "+9779840002320"
-              }
-          ],
-          "requestDate": "2021-05-23 08:19:36",
-          "transactionStatus": "3050:Remit Acknowledged.",
-          "transactionReference": "TPOT000000723289",
-          "requestingOrganisationTransactionReference": "SrcTxnId3858"
-      }
-  },
-  {
-    "id": 5,
-    "data": {
-        "type": "inttransfer",
-        "amount": "500",
-        "currency": "NPR",
-        "debitParty": [
-            {
-                "key": "msisdn",
-                "value": "+9779840002320"
-            }
-        ],
-        "creditParty": [
-            {
-                "key": "msisdn",
-                "value": "+9779840002320"
-            }
-        ],
-        "requestDate": "2021-05-23 08:19:36",
-        "transactionStatus": "3050:Remit Acknowledged.",
-        "transactionReference": "TPOT000000723289",
-        "requestingOrganisationTransactionReference": "SrcTxnId3858"
-    }
-},
-{
-  "id": 6,
-  "data": {
-      "type": "inttransfer",
-      "amount": "500",
-      "currency": "NPR",
-      "debitParty": [
-          {
-              "key": "msisdn",
-              "value": "+9779840002320"
-          }
-      ],
-      "creditParty": [
-          {
-              "key": "msisdn",
-              "value": "+9779840002320"
-          }
-      ],
-      "requestDate": "2021-05-23 08:19:36",
-      "transactionStatus": "3050:Remit Acknowledged.",
-      "transactionReference": "TPOT000000723289",
-      "requestingOrganisationTransactionReference": "SrcTxnId3858"
-  }
-}
-    ]
-}
+
   return (
     <Paper sx={{ paddingTop: 3, paddingLeft: 5, paddingRight: 5, paddingBottom: 5, }}>
       <Stack alignItems='center' sx={{ pb: 4 }}>
-        <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Mobile Transaction History</Typography>
+        <Typography variant='h6' fontFamily='Poppins' fontWeight='600'> Transaction History</Typography>
 
       </Stack>
       <TableContainer component={Paper}>
@@ -468,7 +321,7 @@ export default function HistoryMobile(props) {
                   <Box>
                     <Tooltip title="More">
                       <IconButton
-                        onClick={handleClick}
+                        onClick={(e)=>handleClick(e,row.data.transactionReference)}
                         size="small"
                         sx={{ ml: 0 }}
                         aria-controls={open ? "More" : undefined}

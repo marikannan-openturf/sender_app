@@ -122,6 +122,17 @@ export default function BusinessMobile(props) {
     setFeaturedInfo(false)
   }
 
+  const create_UUID = () => {
+    var dt = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = (dt + Math.random() * 16) % 16 | 0;
+      dt = Math.floor(dt / 16);
+      return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
+  }
+
+
   const setFeaturedInfoDetails = () => {
 
     let requestBodyData = {}
@@ -132,7 +143,7 @@ export default function BusinessMobile(props) {
         "type": `${transactionType}`,
         "descriptionText": `${descriptionText}`,
         "requestDate": new Date().toLocaleString("sv-SE"),
-        "requestingOrganisationTransactionReference": `${transactionRef}`,
+        "requestingOrganisationTransactionReference": create_UUID('SrcTxnId004565463'),
         "debitParty": [
           {
             "key": "msisdn",
@@ -160,7 +171,7 @@ export default function BusinessMobile(props) {
           "subjectName": {
             "firstName": `${recipientName}`,
             "lastName": `${lastName}`,
-            "fullName": `${recipientName} ${lastName}`
+            "fullName": concatFunction(recipientName, '', lastName)
           }
         },
         "sendingAmount": `${sendAmount}`,
@@ -203,7 +214,7 @@ export default function BusinessMobile(props) {
         "requestDate": new Date().toLocaleString("sv-SE"),
         "amount": `${amount}`,
         "descriptionText": `${descriptionText}`,
-        "requestingOrganisationTransactionReference": `${transactionRef}`,
+        "requestingOrganisationTransactionReference": create_UUID('SrcTxnId004565463'),
         "sendingAmount": `${amount}`,
         "payinCcyCode": `${payingCurrency}`,
         "provider": `${providerCode}`,
@@ -262,7 +273,7 @@ export default function BusinessMobile(props) {
             "businessAddressZip": `${receipientAddressZip}`,
             "businessPrimaryContactCountryCode": `${receipientBusinessPrimaryContactCountryCode}`,
             "businessPrimaryContactNo": `${receipientBusinessPrimaryContactNo}`,
-            "businessPrimaryContactNoType": `${setReceipientBusinessPrimaryContactNoType}`,
+            "businessPrimaryContactNoType": `${receipientBusinessPrimaryContactNoType}`,
             "businessDescription": `${receipientBusinessDescription}`,
             "businessEmail": `${receipientBusinessEmail}`,
             "businessCountryCode": `${receipientBusinessCountryCode}`,
@@ -286,7 +297,7 @@ export default function BusinessMobile(props) {
         "requestDate": new Date().toLocaleString("sv-SE"),
         "amount": `${amount}`,
         "descriptionText": `${descriptionText}`,
-        "requestingOrganisationTransactionReference": `${transactionRef}`,
+        "requestingOrganisationTransactionReference": create_UUID('SrcTxnId004565463'),
         "sendingAmount": `${amount}`,
         "payinCcyCode": `${payingCurrency}`,
         "provider": `${providerCode}`,
@@ -337,7 +348,7 @@ export default function BusinessMobile(props) {
             "firstName": `${firstName}`,
             "middleName": `${middleName}`,
             "lastName": `${lastName}`,
-            "fullName": `${fullName}`
+            "fullName": concatFunction(firstName, middleName, lastName)
           }
         },
         "recipientKyc": {
@@ -365,7 +376,7 @@ export default function BusinessMobile(props) {
             "businessAddressZip": `${receipientAddressZip}`,
             "businessPrimaryContactCountryCode": `${receipientBusinessPrimaryContactCountryCode}`,
             "businessPrimaryContactNo": `${receipientBusinessPrimaryContactNo}`,
-            "businessPrimaryContactNoType": `${setReceipientBusinessPrimaryContactNoType}`,
+            "businessPrimaryContactNoType": `${receipientBusinessPrimaryContactNoType}`,
             "businessDescription": `${receipientBusinessDescription}`,
             "businessEmail": `${receipientBusinessEmail}`,
             "businessCountryCode": `${receipientBusinessCountryCode}`,
@@ -400,6 +411,15 @@ export default function BusinessMobile(props) {
     }).catch((err) => {
       setErrorPopup(true)
     })
+  }
+
+  const concatFunction = (fname, mname, lname) => {
+    if (!mname) {
+      mname = '';
+    }
+    let nameArray = [fname, mname, lname];
+    nameArray = nameArray.filter(Boolean);
+    return nameArray.join(' ');
   }
 
   useEffect(()=>{
@@ -499,6 +519,12 @@ export default function BusinessMobile(props) {
                 Transaction Reference <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Transaction Reference' value={transactionRef} onChange={({ target }) => setTransactionRef(target.value)} />
+            </Stack>
+            <Stack alignItems='center' justifyContent='space-between' direction='row'>
+              <Typography color="#575757" fontWeight='500'>
+                Quote ID <span style={{color:'#ea5c57'}}>*</span>
+              </Typography>
+              <OutlinedInput sx={{ height: 40 }} placeholder='Quote ID' value={quoteId} onChange={({ target }) => setQuoteId(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -1358,12 +1384,7 @@ export default function BusinessMobile(props) {
               </Typography>
               <OutlinedInput sx={{ height: 40 }} placeholder='Business Address City' value={businessAddressCity} onChange={({ target }) => setBusinessAddressCity(target.value)} />
             </Stack> */}
-            <Stack alignItems='center' justifyContent='space-between' direction='row'>
-              <Typography color="#575757" fontWeight='500'>
-                Quote ID <span style={{color:'#ea5c57'}}>*</span>
-              </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Quote ID' value={quoteId} onChange={({ target }) => setQuoteId(target.value)} />
-            </Stack>
+            
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Receiving Country <span style={{color:'#ea5c57'}}>*</span>
