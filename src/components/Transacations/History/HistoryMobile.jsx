@@ -255,9 +255,20 @@ export default function HistoryMobile(props) {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
-    axios.get(`${apiUrl}/js/transaction/list`, { headers: options.headers }
+    axios.get(`${apiUrl}/js/transaction/list?limit=10000`, { headers: options.headers }
     ).then((res) => {
-      setHistory(res.data.rows)
+      if(res.data.rows && res.data.rows.length > 0) {
+        setHistory(
+          res.data.rows.sort(function(a,b){
+           
+            return new Date(b.data.requestDate) - new Date(a.data.requestDate);
+          })
+        )
+      } else {
+        setHistory([])
+      }
+      
+      
     }).catch((err) => {
     })
   }
@@ -336,11 +347,11 @@ export default function HistoryMobile(props) {
               </StyledTableRow>
             ))}
 
-            {emptyRows > 0 && (
+            {/* {emptyRows > 0 && (
               <TableRow style={{ height: 53 * emptyRows }}>
                 <TableCell colSpan={6} />
               </TableRow>
-            )}
+            )} */}
           </TableBody>
                   :  <TableBody>
                   <TableRow>
@@ -353,7 +364,7 @@ No data available
                  
                   </TableRow>
                   </TableBody> }
-          <TableFooter>
+                  {history && history.length > 0 ?  <TableFooter>
             <TableRow>
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
@@ -372,7 +383,7 @@ No data available
                 ActionsComponent={TablePaginationActions}
               />
             </TableRow>
-          </TableFooter>
+          </TableFooter> : ''}
         </Table>
       </TableContainer>
       <Menu
