@@ -191,6 +191,18 @@ export default function MenuBar() {
     setBankListScreen(false)
     setQuotationScreen(true)
     }
+    if(pathname && pathname.includes('account-status')) {
+      setReportCorridorScreen(false)
+      setAccountScreen(true)
+      setTpActiveScreen(false)
+      setTbActiveScreen(false)
+      setThActiveScreen(false)
+      setReportLedgerScreen(false)
+      setReportStatementScreen(false)
+      setSettingsScreen(false)
+      setBankListScreen(false)
+      setQuotationScreen(false)
+      }
   },[pathname])
 
   return (
