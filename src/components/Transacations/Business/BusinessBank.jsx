@@ -505,6 +505,7 @@ export default function BusinessMobile(props) {
       setFeaturedInfo(true)
       setSuccessRes(res.data.data)
     }).catch((err) => {
+      setErrorRes(err.response.data)
       setErrorPopup(true)
     })
   }

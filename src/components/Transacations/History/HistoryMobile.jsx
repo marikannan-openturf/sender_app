@@ -326,7 +326,7 @@ export default function HistoryMobile(props) {
                 <StyledTableCell align="left">{row.data.transactionStatus}</StyledTableCell>
                 <StyledTableCell align="left">{row.data.transactionReference}</StyledTableCell>
                 {/* <StyledTableCell align="left">{row.data.creditParty[0].value}</StyledTableCell> */}
-                <StyledTableCell align="left">{row.data.debitParty[0].value}</StyledTableCell>
+                <StyledTableCell align="left">{row.data.creditParty[0].value}</StyledTableCell>
                 {/* <StyledTableCell align="left">{row.recepient}</StyledTableCell> */}
                 <StyledTableCell align="center">
                   <Box>

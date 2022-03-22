@@ -47,16 +47,7 @@ export default function AccountStatusPopup(props) {
       </DialogTitle>
       <DialogContentText>
       <Stack px={5} width={500} alignItems='center' justifyContent='center' direction='row'>
-      {/* <Stack  spacing={3} textAlign='right'>
-            <Typography color="#575757" fontWeight='500' >Account Status :</Typography>
-            <Typography color="#575757" fontWeight='500' >Account Sub Status :</Typography>
-            <Typography color="#575757" fontWeight='500' > Legal Entity Identifier :</Typography>
-          </Stack>
-          <Stack spacing={3}>
-            <Typography color="#575757" fontWeight='500'>{props.accountNumber}</Typography>
-            <Typography color="#575757" fontWeight='500'>{props.kycNumber}</Typography>
-            <Typography color="#575757" fontWeight='500'>{props.network}</Typography>
-          </Stack> */}
+      
             <TableContainer component={Paper}>
               <Table aria-label="custom pagination table">
               <TableHead>

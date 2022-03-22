@@ -147,17 +147,8 @@ export default function CorridorQuotation() {
     }
     axios.get(`${apiUrl}/js/quotation`, { headers: options.headers }
     ).then((res) => {
-      // setFeaturedInfo(true)
       setCorridors(res.data.quotes)
-      //  if(res.data && res.data.length > 0) {
-      //    console.log("test")
-      //    setBalance(res.data[0].currentBalance)
-      //    setCurrency(res.data[0].currency)
-      //  }
-      //  console.log(res.data[0].currentBalance)
-
     }).catch((err) => {
-      // setErrorPopup(true)
     })
   }
 
