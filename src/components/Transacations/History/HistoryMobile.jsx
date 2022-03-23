@@ -145,7 +145,7 @@ export default function HistoryMobile(props) {
   const [refId, setRefId] = useState('')
   const [reverseDetails, setReverseDetails] = useState({})
   const [cancelDetails, setCancelDetails] = useState({})
-  const [history,setHistory] = useState([])
+  const [history, setHistory] = useState([])
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -162,7 +162,7 @@ export default function HistoryMobile(props) {
   /* more popup */
   const [morePopup, setMorePopup] = React.useState(null);
   const open = Boolean(morePopup);
-  const handleClick = (event,data) => {
+  const handleClick = (event, data) => {
     setMorePopup(event.currentTarget);
     setRefId(data)
   };
@@ -177,14 +177,14 @@ export default function HistoryMobile(props) {
         'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
         'actualdate': '2018-04-04 09:27:16',
         'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
-        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
+        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox'
       }
     }
     axios.post(`${apiUrl}/js/cancel-transaction`
       , {
         "reason": "cancelling",
         "txnId": `${refId}`
-    },
+      },
       { headers: options.headers }
     ).then((res) => {
       setCancelDetails(res.data)
@@ -206,7 +206,7 @@ export default function HistoryMobile(props) {
         'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
         'actualdate': '2018-04-04 09:27:16',
         'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
-        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
+        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox'
       }
     }
     axios.post(`${apiUrl}/js/reverse-transaction`
@@ -232,18 +232,21 @@ export default function HistoryMobile(props) {
     setViewTrans(true);
   };
   const onClickCancelClose = () => {
+    getHistoryTransaction()
     setCancelTrans(false);
   };
   const OnClickReverseClose = () => {
+    getHistoryTransaction()
     setReverseTrans(false);
   };
   const OnClickViewClose = () => {
+    getHistoryTransaction()
     setViewTrans(false);
   };
 
-  useEffect(()=>{
-  getHistoryTransaction()
-  },[])
+  useEffect(() => {
+    getHistoryTransaction()
+  }, [])
 
   const getHistoryTransaction = (data) => {
     const options = {
@@ -252,27 +255,33 @@ export default function HistoryMobile(props) {
         'password': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('password') : localStorage.getItem('prodPassword') ? localStorage.getItem('prodPassword') : '',
         'actualdate': '2018-04-04 09:27:16',
         'origincountry': localStorage.getItem('environment') === 'sandbox' ? localStorage.getItem('country') : localStorage.getItem('prodCountry') ? localStorage.getItem('prodCountry') : '',
-        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
+        'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox'
       }
     }
     axios.get(`${apiUrl}/js/transaction/list?limit=10000`, { headers: options.headers }
     ).then((res) => {
-      if(res.data.rows && res.data.rows.length > 0) {
+      if (res.data.rows && res.data.rows.length > 0) {
+        let filterArray = []
+        filterArray = res.data.rows && res.data.rows.length > 0 && res.data.rows.filter((value) => {
+          if (!value.data.error) {
+            //  filterArray.push(value.data)
+            return value.data
+          }
+        })
         setHistory(
-          res.data.rows.sort(function(a,b){
-           
+          filterArray.sort(function (a, b) {
+
             return new Date(b.data.requestDate) - new Date(a.data.requestDate);
           })
         )
       } else {
         setHistory([])
       }
-      
-      
+
+
     }).catch((err) => {
     })
   }
-
 
   return (
     <Paper sx={{ paddingTop: 3, paddingLeft: 5, paddingRight: 5, paddingBottom: 5, }}>
@@ -312,39 +321,42 @@ export default function HistoryMobile(props) {
               <StyledTableCell align="center">More</StyledTableCell>
             </TableRow>
           </TableHead>
-          {history && history.length > 0 ?   <TableBody>
+          {history && history.length > 0 ? <TableBody>
             {(rowsPerPage > 0
               ? history.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : history
             ).map((row) => (
-              <StyledTableRow key={row.id}>
-                <StyledTableCell component="th" scope="row" >{row.data.requestDate}</StyledTableCell>
-                <StyledTableCell align="left">{row.data.amount}</StyledTableCell>
-                <StyledTableCell align="left">{row.data.currency}</StyledTableCell>
-                {/* <StyledTableCell align="left">{row.type}</StyledTableCell> */}
-                {/* <StyledTableCell align="left">{row.reqrefid}</StyledTableCell> */}
-                <StyledTableCell align="left">{row.data.transactionStatus}</StyledTableCell>
-                <StyledTableCell align="left">{row.data.transactionReference}</StyledTableCell>
-                {/* <StyledTableCell align="left">{row.data.creditParty[0].value}</StyledTableCell> */}
-                <StyledTableCell align="left">{row.data.creditParty[0].value}</StyledTableCell>
-                {/* <StyledTableCell align="left">{row.recepient}</StyledTableCell> */}
-                <StyledTableCell align="center">
-                  <Box>
-                    <Tooltip title="More">
-                      <IconButton
-                        onClick={(e)=>handleClick(e,row.data.transactionReference)}
-                        size="small"
-                        sx={{ ml: 0 }}
-                        aria-controls={open ? "More" : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                      >
-                        <MoreHorizIcon />
-                      </IconButton>
-                    </Tooltip>
-                  </Box>
-                </StyledTableCell>
-              </StyledTableRow>
+
+              !row.data.error ?
+                <StyledTableRow key={row.id}>
+                  <StyledTableCell component="th" scope="row" >{row.data.requestDate}</StyledTableCell>
+                  <StyledTableCell align="left">{row.data.amount}</StyledTableCell>
+                  <StyledTableCell align="left">{row.data.currency}</StyledTableCell>
+                  {/* <StyledTableCell align="left">{row.type}</StyledTableCell> */}
+                  {/* <StyledTableCell align="left">{row.reqrefid}</StyledTableCell> */}
+                  <StyledTableCell align="left">{row.data.transactionStatus}</StyledTableCell>
+                  <StyledTableCell align="left">{row.data.transactionReference}</StyledTableCell>
+                  {/* <StyledTableCell align="left">{row.data.creditParty[0].value}</StyledTableCell> */}
+                  <StyledTableCell align="left">{row.data.creditParty && row.data.creditParty.length > 0 ? row.data.creditParty[0].value : ''}</StyledTableCell>
+                  {/* <StyledTableCell align="left">{row.recepient}</StyledTableCell> */}
+                  <StyledTableCell align="center">
+                    <Box>
+                      <Tooltip title="More">
+                        <IconButton
+                          onClick={(e) => handleClick(e, row.data.transactionReference)}
+                          size="small"
+                          sx={{ ml: 0 }}
+                          aria-controls={open ? "More" : undefined}
+                          aria-haspopup="true"
+                          aria-expanded={open ? "true" : undefined}
+                        >
+                          <MoreHorizIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </Box>
+                  </StyledTableCell>
+                </StyledTableRow>
+                : ''
             ))}
 
             {/* {emptyRows > 0 && (
@@ -353,18 +365,18 @@ export default function HistoryMobile(props) {
               </TableRow>
             )} */}
           </TableBody>
-                  :  <TableBody>
-                  <TableRow>
-                  {/* <TableCell align='center' colSpan='center'> */}
-                  <Typography spacing={2} p={2}>
+            : <TableBody>
+              <TableRow>
+                {/* <TableCell align='center' colSpan='center'> */}
+                <Typography spacing={2} p={2}>
 
-No data available
-</Typography>
-                  {/* </TableCell> */}
-                 
-                  </TableRow>
-                  </TableBody> }
-                  {history && history.length > 0 ?  <TableFooter>
+                  No data available
+                </Typography>
+                {/* </TableCell> */}
+
+              </TableRow>
+            </TableBody>}
+          {history && history.length > 0 ? <TableFooter>
             <TableRow>
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
