@@ -179,14 +179,14 @@ export default function PersonalMobile(props) {
       }
     }
     // const requestBody = requestBodyData(requestBodyDataInfo)
-    axios.post(`${apiUrl}/js/transaction`
+    axios.post(`${apiUrl}/${localStorage.getItem('language')}/transaction`
       , {
         "amount": `${amount}`,
         "currency": `${currency}`,
         "type": "inttransfer",
         "descriptionText": `${descriptionText}`,
         "requestDate": new Date().toLocaleString("sv-SE"),
-        "requestingOrganisationTransactionReference": `${transactionRef}`,
+        "requestingOrganisationTransactionReference": create_UUID('SrcTxnId004565463'),
         "provider": '',
         "debitParty": [
           {
@@ -278,6 +278,17 @@ export default function PersonalMobile(props) {
         setErrorPopup(true)
       })
   }
+
+  const create_UUID = () => {
+    var dt = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = (dt + Math.random() * 16) % 16 | 0;
+      dt = Math.floor(dt / 16);
+      return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
+  }
+
 
   const concatFunction = (fname,mname,lname) => {
     if(!mname){

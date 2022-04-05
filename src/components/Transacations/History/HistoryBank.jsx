@@ -161,7 +161,7 @@ export default function HistoryBank() {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
-    axios.post(`${apiUrl}/js/cancel-transaction`
+    axios.post(`${apiUrl}/${localStorage.getItem('language')}/cancel-transaction`
       , {
         "reason": "cancelling",
         "txnId": `${refId}`
@@ -189,7 +189,7 @@ export default function HistoryBank() {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
-    axios.post(`${apiUrl}/js/reverse-transaction`
+    axios.post(`${apiUrl}/${localStorage.getItem('language')}/reverse-transaction`
       , {
         "reversalReason": "reversalreason",
         "txnId": `${refId}`
@@ -235,7 +235,7 @@ export default function HistoryBank() {
           'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
         }
       }
-      axios.get(`${apiUrl}/js/transaction/list`, { headers: options.headers }
+      axios.get(`${apiUrl}/${localStorage.getItem('language')}/transaction/list`, { headers: options.headers }
       ).then((res) => {
         if(res && res.data && res.data.rows) {
           setHistory(res.data.rows)

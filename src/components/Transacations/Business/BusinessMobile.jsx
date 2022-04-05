@@ -402,7 +402,7 @@ export default function BusinessMobile(props) {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
-    axios.post(`${apiUrl}/js/transaction`
+    axios.post(`${apiUrl}/${localStorage.getItem('language')}/transaction`
       , requestBodyData,
       { headers: options.headers }
     ).then((res) => {

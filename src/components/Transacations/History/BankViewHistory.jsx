@@ -56,7 +56,7 @@ export default function BankViewHistory(props) {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
-    axios.get(`${apiUrl}/js/transaction?transactionReference=${props.refId}`, { headers: options.headers }
+    axios.get(`${apiUrl}/${localStorage.getItem('language')}/transaction?transactionReference=${props.refId}`, { headers: options.headers }
     ).then((res) => {
       setHistoryList(res.data)
     }).catch((err) => {

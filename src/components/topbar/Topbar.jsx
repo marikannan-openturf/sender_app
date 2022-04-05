@@ -8,16 +8,27 @@ import MenuItem from '@mui/material/MenuItem';
 
 export default function Topbar() {
   const [environment, setEnvironment] = useState('sandbox')
+  const [language, setLanguage] = useState('js')
 const environmentHandler = (e) => {
 setEnvironment(e.target.value)
 localStorage.setItem('environment',e.target.value)
 }
+const languageHandler = (e) => {
+  setLanguage(e.target.value)
+  localStorage.setItem('language',e.target.value)
+  }
 useEffect(()=>{
   if(localStorage.getItem('environment')) {
     setEnvironment(localStorage.getItem('environment'))
   } else {
     setEnvironment('sandbox')
     localStorage.setItem('environment','sandbox')
+  }
+  if(localStorage.getItem('language')) {
+    setLanguage(localStorage.getItem('language'))
+  } else {
+    setLanguage('js')
+    localStorage.setItem('language','js')
   }
 },[])
   return (
@@ -29,7 +40,9 @@ useEffect(()=>{
       {/* <Typography color="#575757" fontWeight='500'>
                   Sender Gender
                 </Typography> */}
-                <TextField
+                <Stack direction='row'>
+               <Stack p={1}>
+               <TextField
                   sx={{ width: 205 }}
                   label="Environment"
                   value={environment}
@@ -46,14 +59,30 @@ useEffect(()=>{
                   <MenuItem value='uat'>UAT</MenuItem>
                   {/* <MenuItem value='Jio'>Jio</MenuItem> */}
                 </TextField>
-        {/* <div className="topRight">
-          <div className="topbarIconContainer">
-              <NotificationsNone />
-              <span className="topIconBadge">2</span>
-          </div>
-          <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" className="topAvatar"/>
+               </Stack>
+               <Stack p={1}>
+               <TextField
+                  sx={{ width: 205 }}
+                  label="Language"
+                  value={language}
+                  onChange={languageHandler}
+                  select
+                  InputProps={{ style: { height: 40 } }}
+                  InputLabelProps={{ style: { height: 40 } }}
+                >
+                  {/* <MenuItem value="" >
+                    Environment
+                  </MenuItem> */}
+                  <MenuItem value='js'>Javascript</MenuItem>
+                  {/* <MenuItem value='F'>Female</MenuItem> */}
+                  <MenuItem value='java'>Java</MenuItem>
+                  <MenuItem value='python'>Python</MenuItem>
 
-        </div> */}
+                  {/* <MenuItem value='Jio'>Jio</MenuItem> */}
+                </TextField>
+               </Stack>
+                </Stack>
+       
     </div>
     </div>
   )

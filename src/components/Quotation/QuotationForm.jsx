@@ -45,7 +45,7 @@ export default function QuotationForm() {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
-    axios.post(`${apiUrl}/js/quotation`
+    axios.post(`${apiUrl}/${localStorage.getItem('language')}/quotation`
       , {
         "requestDate": new Date().toLocaleString("sv-SE"),
         "creditParty": [

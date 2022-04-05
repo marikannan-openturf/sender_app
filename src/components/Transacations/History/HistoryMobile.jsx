@@ -180,7 +180,7 @@ export default function HistoryMobile(props) {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox'
       }
     }
-    axios.post(`${apiUrl}/js/cancel-transaction`
+    axios.post(`${apiUrl}/${localStorage.getItem('language')}/cancel-transaction`
       , {
         "reason": "cancelling",
         "txnId": `${refId}`
@@ -209,7 +209,7 @@ export default function HistoryMobile(props) {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox'
       }
     }
-    axios.post(`${apiUrl}/js/reverse-transaction`
+    axios.post(`${apiUrl}/${localStorage.getItem('language')}/reverse-transaction`
       , {
         "reversalReason": "reversalreason",
         "txnId": `${refId}`
@@ -258,7 +258,7 @@ export default function HistoryMobile(props) {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox'
       }
     }
-    axios.get(`${apiUrl}/js/transaction/list?limit=10000`, { headers: options.headers }
+    axios.get(`${apiUrl}/${localStorage.getItem('language')}/transaction/list?limit=10000`, { headers: options.headers }
     ).then((res) => {
       if (res.data.rows && res.data.rows.length > 0) {
         let filterArray = []

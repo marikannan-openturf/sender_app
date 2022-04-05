@@ -59,7 +59,7 @@ export default function MobileViewHistory(props) {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
-    axios.get(`${apiUrl}/js/transaction?transactionReference=${props.refId}`, { headers: options.headers }
+    axios.get(`${apiUrl}/${localStorage.getItem('language')}/transaction?transactionReference=${props.refId}`, { headers: options.headers }
     ).then((res) => {
       console.log("res.da",res.data)
       if(res.data.error) {

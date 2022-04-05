@@ -151,7 +151,7 @@ export default function BankListTable() {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox'
       }
     }
-    axios.get(`${apiUrl}/js/bank-list?countryCode=${currency}`, { headers: options.headers }
+    axios.get(`${apiUrl}/${localStorage.getItem('language')}/bank-list?countryCode=${currency}`, { headers: options.headers }
     ).then((res) => {
       if(res.data && res.data.banks) {
         setBanks(res.data.banks)
@@ -164,6 +164,7 @@ export default function BankListTable() {
 
   const refreshBank = () => {
     getBankList('US')
+    setCountry('US')
   }
   return (
     <>

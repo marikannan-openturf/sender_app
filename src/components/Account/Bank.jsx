@@ -115,7 +115,7 @@ export default function Bank() {
       }
     }
 
-      axios.post(`${apiUrl}/js/accounts-status`
+      axios.post(`${apiUrl}/${localStorage.getItem('language')}/accounts-status`
         , {
           "instrument": 'bank-account',
           "accountId": `${accountNumber}`,

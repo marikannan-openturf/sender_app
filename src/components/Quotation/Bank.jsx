@@ -94,7 +94,7 @@ export default function Bank(props) {
     //   ]
     // }
     // const requestBody = requestBodyData(requestBodyDataInfo)
-    axios.post(`${apiUrl}/js/quotation`
+    axios.post(`${apiUrl}/${localStorage.getItem('language')}/quotation`
       , {
         "requestDate": new Date().toLocaleString("sv-SE"),
         "debitParty": [

@@ -145,7 +145,7 @@ export default function CorridorQuotation() {
         'environment': localStorage.getItem('environment')
       }
     }
-    axios.get(`${apiUrl}/js/quotation`, { headers: options.headers }
+    axios.get(`${apiUrl}/${localStorage.getItem('language')}/quotation`, { headers: options.headers }
     ).then((res) => {
       setCorridors(res.data.quotes)
     }).catch((err) => {
@@ -162,7 +162,7 @@ export default function CorridorQuotation() {
         'environment': localStorage.getItem('environment')
       }
     }
-    axios.get(`${apiUrl}/js/quotation?currency=${data}`, { headers: options.headers }
+    axios.get(`${apiUrl}/${localStorage.getItem('language')}/quotation?currency=${data}`, { headers: options.headers }
     ).then((res) => {
       // setFeaturedInfo(true)
       setCorridors(res.data.quotes)

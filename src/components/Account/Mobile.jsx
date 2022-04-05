@@ -78,7 +78,7 @@ export default function Mobile() {
       "senderName": `${senderName}`
     }
     const requestBody = requestBodyData(requestBodyDataInfo)
-    axios.post(`${apiUrl}/js/accounts-status`
+    axios.post(`${apiUrl}/${localStorage.getItem('language')}/accounts-status`
       ,
       requestBody
       ,

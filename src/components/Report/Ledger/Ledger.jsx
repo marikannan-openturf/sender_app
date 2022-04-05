@@ -154,7 +154,7 @@ export default function Ledger() {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
-    axios.post(`${apiUrl}/js/ledger-balance`, {}, { headers: options.headers }
+    axios.post(`${apiUrl}/${localStorage.getItem('language')}/ledger-balance`, {}, { headers: options.headers }
     ).then((res) => {
       if (res.data && res.data.length > 0) {
         setBalance(res.data[0].currentBalance)
@@ -176,7 +176,7 @@ export default function Ledger() {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
-    axios.post(`${apiUrl}/js/ledger-balance?currency=${data}`, {}, { headers: options.headers }
+    axios.post(`${apiUrl}/${localStorage.getItem('language')}/ledger-balance?currency=${data}`, {}, { headers: options.headers }
     ).then((res) => {
       if (res.data && res.data.length > 0) {
         setBalance(res.data[0].currentBalance)
