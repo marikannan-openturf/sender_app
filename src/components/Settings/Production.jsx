@@ -42,13 +42,13 @@ function Production() {
          <Typography color="#575757" fontWeight='500'>
          Username 
          </Typography>
-         <OutlinedInput sx={{ height: 40 }} placeholder='Username' onChange={({ target }) => setUsername(target.value)} value={username} />
+         <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Username' onChange={({ target }) => setUsername(target.value)} value={username} />
        </Stack>
        <Stack direction='row' alignItems='center' justifyContent='space-between'>
          <Typography color="#575757" fontWeight='500'>
          Password
          </Typography>
-         <OutlinedInput sx={{ height: 40 }} placeholder='Password' onChange={({ target }) => setPassword(target.value)} value={password} />
+         <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Password' onChange={({ target }) => setPassword(target.value)} value={password} />
        </Stack>
        <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -56,7 +56,7 @@ function Production() {
             </Typography>
             <TextField
               alignItems='center'
-              sx={{ width: 205 }}
+              sx={{ width: 200 }}
               label="Country"
               value={country}
               onChange={({ target }) => setCountry(target.value)}

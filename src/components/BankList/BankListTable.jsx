@@ -19,6 +19,7 @@ import { config } from '../../assets/config/config';
 import { useEffect, useState } from 'react';
 import { countryList } from '../../Utils/country';
 import MenuItem from '@mui/material/MenuItem';
+import SettingsErrorPopUp from '../../pages/SettingsErrorPopUp';
 
 const apiUrl = config.api.url
 
@@ -111,6 +112,7 @@ export default function BankListTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [country, setCountry] = useState('US')
+  const [settingsPopUp,setSettingsPopUp] = useState(false)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -165,6 +167,26 @@ export default function BankListTable() {
   const refreshBank = () => {
     getBankList('US')
     setCountry('US')
+  }
+
+  useEffect(()=>{
+    if(localStorage.getItem('environment') === 'sandbox') {
+      if(localStorage.getItem('username') && localStorage.getItem('password')) {
+        setSettingsPopUp(false)
+      } else {
+        setSettingsPopUp(true)
+      }
+    } else if (localStorage.getItem('environment') === 'uat') {
+      if(localStorage.getItem('prodUsername') && localStorage.getItem('prodPassword')) {
+        setSettingsPopUp(false)
+      } else {
+        setSettingsPopUp(true)
+      }
+    }
+  },[])
+  
+  const closeSettingsPopUp = () => {
+    setSettingsPopUp(false)
   }
   return (
     <>
@@ -271,6 +293,8 @@ No data available
           </TableContainer>
         </Paper>
       </Stack>
+      {settingsPopUp && <SettingsErrorPopUp errorPopup={settingsPopUp} closeSettingsPopUp={closeSettingsPopUp}/> }
+
     </>
   )
 }

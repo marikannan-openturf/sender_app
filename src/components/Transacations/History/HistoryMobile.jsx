@@ -28,6 +28,7 @@ import { config } from '../../../assets/config/config';
 import MobileReverseHistory from './MobileReverseHistory';
 import MobileViewHistory from './MobileViewHistory';
 import MobileCancelHistory from './MobileCancelHistory';
+import SettingsErrorPopUp from '../../../pages/SettingsErrorPopUp';
 const apiUrl = config.api.url
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -146,6 +147,8 @@ export default function HistoryMobile(props) {
   const [reverseDetails, setReverseDetails] = useState({})
   const [cancelDetails, setCancelDetails] = useState({})
   const [history, setHistory] = useState([])
+  const [settingsPopUp,setSettingsPopUp] = useState(false)
+
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -281,6 +284,27 @@ export default function HistoryMobile(props) {
 
     }).catch((err) => {
     })
+  }
+
+  useEffect(()=>{
+    if(localStorage.getItem('environment') === 'sandbox') {
+      if(localStorage.getItem('username') && localStorage.getItem('password')) {
+        setSettingsPopUp(false)
+      } else {
+        setSettingsPopUp(true)
+      }
+    } else if (localStorage.getItem('environment') === 'uat') {
+      if(localStorage.getItem('prodUsername') && localStorage.getItem('prodPassword')) {
+        setSettingsPopUp(false)
+      } else {
+        setSettingsPopUp(true)
+      }
+    }
+  },[])
+  
+  const closeSettingsPopUp = () => {
+    setSettingsPopUp(false)
+  
   }
 
   return (
@@ -440,6 +464,8 @@ export default function HistoryMobile(props) {
       {reverseTrans && <MobileReverseHistory reverseTrans={reverseTrans} reverseDetails={reverseDetails} OnClickReverseClose={OnClickReverseClose} />}
       {viewTrans && <MobileViewHistory viewTrans={viewTrans} refId={refId} OnClickViewClose={OnClickViewClose} />}
       {cancelTrans && <MobileCancelHistory cancelTrans={cancelTrans} cancelDetails={cancelDetails} onClickCancelClose={onClickCancelClose} />}
+      {settingsPopUp && <SettingsErrorPopUp errorPopup={settingsPopUp} closeSettingsPopUp={closeSettingsPopUp}/> }
+
     </Paper>
   );
 }

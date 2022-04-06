@@ -178,7 +178,7 @@ export default function Bank(props) {
             <Typography color="#575757" fontWeight='500'>
               Account Number <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Account Number' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
+            <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Account Number' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -186,7 +186,7 @@ export default function Bank(props) {
             </Typography>
             <TextField
             alignItems='center'
-              sx={{ width: 205}}
+              sx={{ width: 200}}
               label="Receive Country"
               value={reciveCountry}
               onChange={({ target }) => setReciveCountry(target.value)}
@@ -208,19 +208,19 @@ export default function Bank(props) {
             <Typography color="#575757" fontWeight='500'>
               Amount <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Amount' onChange={({ target }) => setAmount(target.value)} value={amount} />
+            <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Amount' onChange={({ target }) => setAmount(target.value)} value={amount} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Sender Mobile Number <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Sender Mobile Number' onChange={({ target }) => setSenderMobileNumber(target.value)} value={senderMobileNumber} />
+            <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Sender Mobile Number' onChange={({ target }) => setSenderMobileNumber(target.value)} value={senderMobileNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Receiver Mobile Number
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Receiver Mobile Number' onChange={({ target }) => setReceiverMobileNumber(target.value)} value={receiverMobileNumber} />
+            <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Receiver Mobile Number' onChange={({ target }) => setReceiverMobileNumber(target.value)} value={receiverMobileNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -228,7 +228,7 @@ export default function Bank(props) {
             </Typography>
             <TextField
                 alignItems='center'
-                sx={{ width: 205 }}
+                sx={{ width: 200 }}
                 label="Request Currency"
                 value={requestCurrency}
                 onChange={({ target }) => setRequestCurrency(target.value)}
@@ -252,7 +252,7 @@ export default function Bank(props) {
             </Typography>
             <TextField
                 alignItems='center'
-                sx={{ width: 205 }}
+                sx={{ width: 200 }}
                 label="Send Currency"
                 value={sendCurrency}
                 onChange={({ target }) => setSendCurrency(target.value)}
@@ -276,7 +276,7 @@ export default function Bank(props) {
             </Typography>
             <TextField
                 alignItems='center'
-                sx={{ width: 205 }}
+                sx={{ width: 200 }}
                 label="Receive Currency"
                 value={reciveCurrency}
                 onChange={({ target }) => setReciveCurrency(target.value)}

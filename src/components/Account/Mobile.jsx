@@ -1,5 +1,5 @@
 import { Button, OutlinedInput, Paper, Stack, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import AccountStatusPopup from './AccountStatusPopup'
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/system'
@@ -15,6 +15,7 @@ import StepButton from '@mui/material/StepButton';
 import MobileQuotation from '../Quotation/Mobile'
 import PersonalMobile from '../Transacations/Personal/PersonalMobile';
 import BusinessMobile from '../Transacations/Business/BusinessMobile'
+import SettingsErrorPopUp from '../../pages/SettingsErrorPopUp';
 const apiUrl = config.api.url
 const steps = ['Account Status', 'Quotation', 'Select Transaction', 'Transaction'];
 export default function Mobile() {
@@ -41,6 +42,8 @@ export default function Mobile() {
   const [transactionPersonal, setTransactionPersonal] = useState(false)
   const [transactionBusiness, setTransactionBusiness] = useState(false)
   const [quoteIdInfo, setQuoteIdInfo] = useState('')
+  const [settingsPopUp,setSettingsPopUp] = useState(false)
+
   const CloseErrorPopup = () => {
     setErrorPopup(false)
     /* setAccountNumber('+9779840002320')
@@ -177,6 +180,28 @@ export default function Mobile() {
     handleNext()
     handleComplete()
   }
+
+  useEffect(()=>{
+    if(localStorage.getItem('environment') === 'sandbox') {
+      if(localStorage.getItem('username') && localStorage.getItem('password')) {
+        setSettingsPopUp(false)
+      } else {
+        setSettingsPopUp(true)
+      }
+    } else if (localStorage.getItem('environment') === 'uat') {
+      if(localStorage.getItem('prodUsername') && localStorage.getItem('prodPassword')) {
+        setSettingsPopUp(false)
+      } else {
+        setSettingsPopUp(true)
+      }
+    }
+  },[])
+  
+  const closeSettingsPopUp = () => {
+    setSettingsPopUp(false)
+  
+  }
+
   return (
     <>
 
@@ -201,7 +226,7 @@ export default function Mobile() {
                   Beneficiary MSISDN with country code <span style={{ color: '#ea5c57' }}>*</span>
                 </Typography>
                 <OutlinedInput
-                  sx={{ height: 40 }}
+                  sx={{ height: 40,width:200 }}
                   placeholder='MSISDN number'
                   onChange={({ target }) => setAccountNumber(target.value)}
                   value={accountNumber}
@@ -214,7 +239,7 @@ export default function Mobile() {
                   Full KYC name of the beneficiary <span style={{ color: '#ea5c57' }}>*</span>
                 </Typography>
                 <OutlinedInput
-                  sx={{ height: 40 }}
+                  sx={{ height: 40,width:200 }}
                   placeholder='Full KYC name'
                   onChange={({ target }) => setKycNumber(target.value)}
                   value={kycNumber}
@@ -226,13 +251,13 @@ export default function Mobile() {
                 <Typography color="#575757" fontWeight='500'>
                   Sender Name
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Sender Name' onChange={({ target }) => setSenderName(target.value)} value={senderName} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Sender Name' onChange={({ target }) => setSenderName(target.value)} value={senderName} />
               </Stack>
               <Stack direction='row' alignItems='center' justifyContent='space-between'>
                 <Typography color="#575757" fontWeight='500'>
                   Provider
                 </Typography>
-                <OutlinedInput type='number' sx={{ height: 40 }} placeholder='Provider' onChange={({ target }) => setProvider(target.value)} value={provider} />
+                <OutlinedInput type='number' sx={{ height: 40,width:200 }} placeholder='Provider' onChange={({ target }) => setProvider(target.value)} value={provider} />
               </Stack>
 
               <Stack direction='row'>
@@ -300,6 +325,7 @@ export default function Mobile() {
       />
       <ErrorPopup errorPopup={errorPopup} errorRes={errorRes}
         CloseErrorPopup={CloseErrorPopup} />
+              {settingsPopUp && <SettingsErrorPopUp errorPopup={settingsPopUp} closeSettingsPopUp={closeSettingsPopUp}/> }
     </>
   )
 }

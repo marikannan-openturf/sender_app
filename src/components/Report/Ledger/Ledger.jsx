@@ -24,7 +24,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import MenuItem from '@mui/material/MenuItem';
 import { currencyList } from '../../../Utils/currency';
 import Autocomplete from '@mui/material/Autocomplete';
-
+import SettingsErrorPopUp from '../../../pages/SettingsErrorPopUp';
 const apiUrl = config.api.url
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -118,6 +118,7 @@ export default function Ledger() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [corridors, setCorridors] = useState([])
   const [page, setPage] = React.useState(0);
+  const [settingsPopUp,setSettingsPopUp] = useState(false)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -154,7 +155,7 @@ export default function Ledger() {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
-    axios.get(`${apiUrl}/${localStorage.getItem('language')}/ledger-balance`, {}, { headers: options.headers }
+    axios.get(`${apiUrl}/${localStorage.getItem('language')}/ledger-balance`, { headers: options.headers }
     ).then((res) => {
       if (res.data && res.data.length > 0) {
         setBalance(res.data[0].currentBalance)
@@ -176,7 +177,7 @@ export default function Ledger() {
         'environment': localStorage.getItem('environment') === 'uat' ? 'uat' : 'sandbox' 
       }
     }
-    axios.get(`${apiUrl}/${localStorage.getItem('language')}/ledger-balance?currency=${data}`, {}, { headers: options.headers }
+    axios.get(`${apiUrl}/${localStorage.getItem('language')}/ledger-balance?currency=${data}`, { headers: options.headers }
     ).then((res) => {
       if (res.data && res.data.length > 0) {
         setBalance(res.data[0].currentBalance)
@@ -204,6 +205,27 @@ export default function Ledger() {
     const curr = num.toLocaleString('en-IN');
  return curr;
  }
+
+ useEffect(()=>{
+  if(localStorage.getItem('environment') === 'sandbox') {
+    if(localStorage.getItem('username') && localStorage.getItem('password')) {
+      setSettingsPopUp(false)
+    } else {
+      setSettingsPopUp(true)
+    }
+  } else if (localStorage.getItem('environment') === 'uat') {
+    if(localStorage.getItem('prodUsername') && localStorage.getItem('prodPassword')) {
+      setSettingsPopUp(false)
+    } else {
+      setSettingsPopUp(true)
+    }
+  }
+},[])
+
+const closeSettingsPopUp = () => {
+  setSettingsPopUp(false)
+}
+
   return (
     <>
       <Stack p={6} >
@@ -329,6 +351,8 @@ No data available
 
         <LedgerPopup response={response} closeLedgerPopup={closeLedgerPopup} ledgerPopup={ledgerPopup} />
       </Stack>
+      {settingsPopUp && <SettingsErrorPopUp errorPopup={settingsPopUp} closeSettingsPopUp={closeSettingsPopUp}/> }
+
     </>
   )
 }

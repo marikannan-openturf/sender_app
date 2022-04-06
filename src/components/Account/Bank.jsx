@@ -231,19 +231,19 @@ export default function Bank() {
             <Typography color="#575757" fontWeight='500'>
               Beneficiary Bank Account ID or IBAN Number <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Beneficiary Bank Account' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
+            <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Beneficiary Bank Account' onChange={({ target }) => setAccountNumber(target.value)} value={accountNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Full KYC name of the beneficiary <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Full KYC name' onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
+            <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Full KYC name' onChange={({ target }) => setKycNumber(target.value)} value={kycNumber} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Full name of Sender
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Full name of Sender' onChange={({ target }) => setSenderName(target.value)} value={senderName} />
+            <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Full name of Sender' onChange={({ target }) => setSenderName(target.value)} value={senderName} />
           </Stack>
           {/* <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
@@ -269,19 +269,19 @@ export default function Bank() {
             <Typography color="#575757" fontWeight='500'>
               Bank Name <span style={{color:'#ea5c57'}}>*</span>
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Bank Name' onChange={({ target }) => setBankName(target.value)} value={bankName} />
+            <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Bank Name' onChange={({ target }) => setBankName(target.value)} value={bankName} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Bank code-IFSC/Routing Code/Swift BIC
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Bank code' onChange={({ target }) => setBankCode(target.value)} value={bankCode} />
+            <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Bank code' onChange={({ target }) => setBankCode(target.value)} value={bankCode} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Bank Subcode
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Bank Subcode' onChange={({ target }) => setSubCode(target.value)} value={subCode} />
+            <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Bank Subcode' onChange={({ target }) => setSubCode(target.value)} value={subCode} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
           <Typography color="#575757" fontWeight='500'>
@@ -289,7 +289,7 @@ export default function Bank() {
             </Typography>
           <TextField
             alignItems='center'
-              sx={{ width: 205}}
+              sx={{ width: 200}}
               label="Country"
               value={country}
               onChange={({ target }) => setCountry(target.value)}
@@ -314,13 +314,13 @@ export default function Bank() {
             <Typography color="#575757" fontWeight='500'>
               Provider
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Provider' onChange={({ target }) => setProvider(target.value)} value={provider} />
+            <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Provider' onChange={({ target }) => setProvider(target.value)} value={provider} />
           </Stack>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography color="#575757" fontWeight='500'>
               Beneficiary Mobile Number
             </Typography>
-            <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' onChange={({ target }) => setMsisdn(target.value)} value={msisdn} />
+            <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Mobile Number' onChange={({ target }) => setMsisdn(target.value)} value={msisdn} />
           </Stack>
           <Stack direction='row'>
             <div style={{ width: '400px' }}>
@@ -345,7 +345,7 @@ export default function Bank() {
                </Typography>
                <TextField
                  alignItems='center'
-                 sx={{ width: 205 }}
+                 sx={{ width: 200 }}
                  label="Transaction"
                  value={transaction}
                  onChange={({ target }) => setTransaction(target.value)}

@@ -61,7 +61,6 @@ export default function MobileViewHistory(props) {
     }
     axios.get(`${apiUrl}/${localStorage.getItem('language')}/transaction?transactionReference=${props.refId}`, { headers: options.headers }
     ).then((res) => {
-      console.log("res.da",res.data)
       if(res.data.error) {
       setErrorList(res.data.error)
       setErrorListShow(true)
@@ -74,7 +73,6 @@ export default function MobileViewHistory(props) {
     }).catch((err) => {
     })
   }
-  console.log("errorl",errorList)
   return (
     <Dialog
       open={props.viewTrans} sx={{ height: '100%', width: '100%' }} onClose={() => props.OnClickViewClose()}

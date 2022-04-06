@@ -19,6 +19,7 @@ import axios from 'axios'
 import { config } from '../../../assets/config/config';
 import MenuItem from '@mui/material/MenuItem';
 import { currencyList } from '../../../Utils/currency';
+import SettingsErrorPopUp from '../../../pages/SettingsErrorPopUp';
 
 const apiUrl = config.api.url
 
@@ -111,6 +112,7 @@ export default function CorridorQuotation() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [corridors, setCorridors] = useState([])
   const [currency, setCurrency] = useState('All')
+  const [settingsPopUp,setSettingsPopUp] = useState(false)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -185,6 +187,26 @@ export default function CorridorQuotation() {
     } else {
       getCorridorList()
     }
+  }
+
+  useEffect(()=>{
+    if(localStorage.getItem('environment') === 'sandbox') {
+      if(localStorage.getItem('username') && localStorage.getItem('password')) {
+        setSettingsPopUp(false)
+      } else {
+        setSettingsPopUp(true)
+      }
+    } else if (localStorage.getItem('environment') === 'uat') {
+      if(localStorage.getItem('prodUsername') && localStorage.getItem('prodPassword')) {
+        setSettingsPopUp(false)
+      } else {
+        setSettingsPopUp(true)
+      }
+    }
+  },[])
+  
+  const closeSettingsPopUp = () => {
+    setSettingsPopUp(false)
   }
 
   return (
@@ -286,6 +308,8 @@ No data available
           </TableContainer>
         </Paper>
       </Stack>
+      {settingsPopUp && <SettingsErrorPopUp errorPopup={settingsPopUp} closeSettingsPopUp={closeSettingsPopUp}/> }
+
     </>
   )
 }

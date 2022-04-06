@@ -18,8 +18,29 @@ import Settings from "./pages/Settings";
 import TransactionsHistory from "./pages/TransactionsHistory";
 import Quotation from "./pages/Quotation";
 import ReportCorridor from "./pages/ReportCorridor";
+import SettingsErrorPopUp from './pages/SettingsErrorPopUp';
 function App() {
+const [settingsPopUp,setSettingsPopUp] = useState(false)
+useEffect(()=>{
+  if(localStorage.getItem('environment') === 'sandbox') {
+    if(localStorage.getItem('username') && localStorage.getItem('password')) {
+      setSettingsPopUp(false)
+    } else {
+      setSettingsPopUp(true)
+    }
+  } else if (localStorage.getItem('environment') === 'uat') {
+    if(localStorage.getItem('prodUsername') && localStorage.getItem('prodPassword')) {
+      setSettingsPopUp(false)
+    } else {
+      setSettingsPopUp(true)
+    }
+  }
+},[])
 
+const closeSettingsPopUp = () => {
+  setSettingsPopUp(false)
+
+}
   return (
     <BrowserRouter>
         <Topbar />
@@ -40,7 +61,7 @@ function App() {
             {/* <Route path={`${process.env.REACT_APP_BASE_URL}/quotation`} element={<Quotation/>}/> */}
             <Route path="*" element={<Home />} />
         </Routes>
-
+      {settingsPopUp && <SettingsErrorPopUp errorPopup={settingsPopUp} closeSettingsPopUp={closeSettingsPopUp}/> }
       </div>
   </BrowserRouter>  );
 }

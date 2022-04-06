@@ -457,7 +457,7 @@ export default function BusinessMobile(props) {
               <Typography color="#575757" fontWeight='500'>
                 Amount <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Amount' value={amount} onChange={({ target }) => setAmount(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Amount' value={amount} onChange={({ target }) => setAmount(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -465,7 +465,7 @@ export default function BusinessMobile(props) {
               </Typography>
               <TextField
                 alignItems='center'
-                sx={{ width: 205 }}
+                sx={{ width: 200 }}
                 label="Currency"
                 value={currency}
                 onChange={({ target }) => setCurrency(target.value)}
@@ -488,7 +488,7 @@ export default function BusinessMobile(props) {
                 Transaction Type <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
               <TextField
-                sx={{ width: 205 }}
+                sx={{ width: 200 }}
                 label="Transaction Type"
                 value={transactionType}
                 onChange={({ target }) => setTransactionType(target.value)}
@@ -511,32 +511,32 @@ export default function BusinessMobile(props) {
               <Typography color="#575757" fontWeight='500'>
                 Description 
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Description' value={descriptionText} onChange={({ target }) => setDescriptionText(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Description' value={descriptionText} onChange={({ target }) => setDescriptionText(target.value)} />
             </Stack>
 
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Transaction Reference <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Transaction Reference' value={transactionRef} onChange={({ target }) => setTransactionRef(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Transaction Reference' value={transactionRef} onChange={({ target }) => setTransactionRef(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Quote ID <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Quote ID' value={quoteId} onChange={({ target }) => setQuoteId(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Quote ID' value={quoteId} onChange={({ target }) => setQuoteId(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Provider Code
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Provider Code' value={providerCode} onChange={({ target }) => setProviderCode(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Provider Code' value={providerCode} onChange={({ target }) => setProviderCode(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Sending Amount <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Sending Amount' value={sendAmount} onChange={({ target }) => setSendAmount(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Sending Amount' value={sendAmount} onChange={({ target }) => setSendAmount(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -544,7 +544,7 @@ export default function BusinessMobile(props) {
               </Typography>
               <TextField
                 alignItems='center'
-                sx={{ width: 205 }}
+                sx={{ width: 200 }}
                 label="Paying Currency Code"
                 value={payingCurrency}
                 onChange={({ target }) => setPayingCurrency(target.value)}
@@ -566,43 +566,43 @@ export default function BusinessMobile(props) {
               <Typography color="#575757" fontWeight='500'>
                 Payment Mode <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Payment Mode' value={paymentMode} onChange={({ target }) => setpaymentMode(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Payment Mode' value={paymentMode} onChange={({ target }) => setpaymentMode(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Authentication Partner Code <span style={{color:'#ea5c57'}}>*</span>
               </Typography> 
-              <OutlinedInput sx={{ height: 40 }} placeholder='Authentication Partner Code' value={authenticationPartnerCode} onChange={({ target }) => setAuthenticationPartnerCode(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Authentication Partner Code' value={authenticationPartnerCode} onChange={({ target }) => setAuthenticationPartnerCode(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Send Partner Code <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Send Partner Code' value={sendingPartnerCode} onChange={({ target }) => setSendingPartnerCode(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Send Partner Code' value={sendingPartnerCode} onChange={({ target }) => setSendingPartnerCode(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Receive Partner Code
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Receive Partner Code' value={receivingPartnerCode} onChange={({ target }) => setReceivingPartnerCode(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Receive Partner Code' value={receivingPartnerCode} onChange={({ target }) => setReceivingPartnerCode(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Sender Mobile Number <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={mobileNumber} onChange={({ target }) => setMobileNumber(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Mobile Number' value={mobileNumber} onChange={({ target }) => setMobileNumber(target.value)} />
             </Stack>
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 Receiver Mobile Number <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Mobile Number' value={reciverMobileNumber} onChange={({ target }) => setReciverMobileNumber(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Mobile Number' value={reciverMobileNumber} onChange={({ target }) => setReciverMobileNumber(target.value)} />
             </Stack>
             {transactionType === 'b2b' && <>  <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
                 SMS Notification
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='SMS Notification' value={beneficiarySmsNotify} onChange={({ target }) => setBenificiarySmsNotify(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='SMS Notification' value={beneficiarySmsNotify} onChange={({ target }) => setBenificiarySmsNotify(target.value)} />
             </Stack> </>}
             {transactionType !== 'p2b' && <>
               {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
@@ -615,38 +615,38 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Beneficiary Bank Account No  <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Account no' value={accountNr} onChange={({ target }) => setAccountNr(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Account no' value={accountNr} onChange={({ target }) => setAccountNr(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Bank Code <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Bank Code' value={bankCode} onChange={({ target }) => setBankCode(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Bank Code' value={bankCode} onChange={({ target }) => setBankCode(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Full name of beneficiary bank
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Account KYC Name' value={kycName} onChange={({ target }) => setKycName(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Account KYC Name' value={kycName} onChange={({ target }) => setKycName(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Name <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business-Name' value={businessName} onChange={({ target }) => setBusinessName(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business-Name' value={businessName} onChange={({ target }) => setBusinessName(target.value)} />
               </Stack>
 
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Address <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Address1' value={businessAddress1} onChange={({ target }) => setBusinessAddress1(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Address1' value={businessAddress1} onChange={({ target }) => setBusinessAddress1(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Address City
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Address City' value={businessAddressCity} onChange={({ target }) => setBusinessAddressCity(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Address City' value={businessAddressCity} onChange={({ target }) => setBusinessAddressCity(target.value)} />
               </Stack> </>}
             {transactionType === 'p2b' && <>
 
@@ -656,7 +656,7 @@ export default function BusinessMobile(props) {
                 </Typography>
                 <TextField
                   alignItems='center'
-                  sx={{ width: 205 }}
+                  sx={{ width: 200 }}
                   label="Nationality"
                   value={nationality}
                   onChange={({ target }) => setNationality(target.value)}
@@ -678,14 +678,14 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Sender Date of Birth <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Date of Birth' value={dob} onChange={({ target }) => setDob(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Date of Birth' value={dob} onChange={({ target }) => setDob(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Sender Gender
                 </Typography>
                 <TextField
-                  sx={{ width: 205 }}
+                  sx={{ width: 200 }}
                   label="Gender"
                   value={genderDetails}
                   onChange={({ target }) => setGenderDetails(target.value)}
@@ -708,7 +708,7 @@ export default function BusinessMobile(props) {
                 </Typography>
                 <TextField
                   alignItems='center'
-                  sx={{ width: 205 }}
+                  sx={{ width: 200 }}
                   label="Primary Contact Number Code"
                   value={personalePrimaryContactNoCode}
                   onChange={({ target }) => setPersonalPrimaryContactNoCode(target.value)}
@@ -730,31 +730,31 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Primary Contact Number <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Primary Contact Number' value={personalePrimaryContactNo} onChange={({ target }) => setPersonalPrimaryContactNo(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Primary Contact Number' value={personalePrimaryContactNo} onChange={({ target }) => setPersonalPrimaryContactNo(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Sender ID Type <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='ID Type' value={idType} onChange={({ target }) => setIdType(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='ID Type' value={idType} onChange={({ target }) => setIdType(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Sender ID Number <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='ID Number' value={idNumber} onChange={({ target }) => setIdNumber(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='ID Number' value={idNumber} onChange={({ target }) => setIdNumber(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Issue Date
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='ID Number' value={issueDate} onChange={({ target }) => setIssueDate(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='ID Number' value={issueDate} onChange={({ target }) => setIssueDate(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Expiry Date <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Expiry Date' value={expDate} onChange={({ target }) => setExpDate(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Expiry Date' value={expDate} onChange={({ target }) => setExpDate(target.value)} />
               </Stack>
 
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
@@ -763,7 +763,7 @@ export default function BusinessMobile(props) {
                 </Typography>
                 <TextField
                   alignItems='center'
-                  sx={{ width: 205 }}
+                  sx={{ width: 200 }}
                   label="Issuer Country"
                   value={issuerCountry}
                   onChange={({ target }) => setIssuerCountry(target.value)}
@@ -785,25 +785,25 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Sender Title
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Full Name' value={title} onChange={({ target }) => setTitle(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Full Name' value={title} onChange={({ target }) => setTitle(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Sender First Name <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='First Name' value={firstName} onChange={({ target }) => setFirstname(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='First Name' value={firstName} onChange={({ target }) => setFirstname(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Sender Middle Name
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Middle Name' value={middleName} onChange={({ target }) => setMiddleName(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Middle Name' value={middleName} onChange={({ target }) => setMiddleName(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Sender Last Name <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Last Name' value={lastName} onChange={({ target }) => setLastName(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Last Name' value={lastName} onChange={({ target }) => setLastName(target.value)} />
               </Stack>
               {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -815,19 +815,19 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Sender Address Line1 <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Address line 1' value={address1} onChange={({ target }) => setAddress1(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Address line 1' value={address1} onChange={({ target }) => setAddress1(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Sender Address Line2
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Address line 2' value={address2} onChange={({ target }) => setAddress2(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Address line 2' value={address2} onChange={({ target }) => setAddress2(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Sender City <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='City' value={city} onChange={({ target }) => setCity(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='City' value={city} onChange={({ target }) => setCity(target.value)} />
               </Stack>
             </>}
             {transactionType === 'b2b' && <> <Stack alignItems='center' justifyContent='space-between' direction='row'>
@@ -836,7 +836,7 @@ export default function BusinessMobile(props) {
               </Typography>
               <TextField
                 alignItems='center'
-                sx={{ width: 205 }}
+                sx={{ width: 200 }}
                 label="Business Address Country"
                 value={businessAddressCountryCode}
                 onChange={({ target }) => setBusinessAddressCountryCode(target.value)}
@@ -860,7 +860,7 @@ export default function BusinessMobile(props) {
                 </Typography>
                 <TextField
                   alignItems='center'
-                  sx={{ width: 205 }}
+                  sx={{ width: 200 }}
                   label="Business Contact Code"
                   value={businessPrimaryContactCountryCode}
                   onChange={({ target }) => setBusinessPrimaryContactCountryCode(target.value)}
@@ -882,13 +882,13 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Business Contact Number
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Contact Number' value={businessPrimaryContactNo} onChange={({ target }) => setBusinessPrimaryContactNo(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Contact Number' value={businessPrimaryContactNo} onChange={({ target }) => setBusinessPrimaryContactNo(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Description
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Description' value={businessDescription} onChange={({ target }) => setBusinessDescription(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Description' value={businessDescription} onChange={({ target }) => setBusinessDescription(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -896,7 +896,7 @@ export default function BusinessMobile(props) {
                 </Typography>
                 <TextField
                   alignItems='center'
-                  sx={{ width: 205 }}
+                  sx={{ width: 200 }}
                   label="Business Country"
                   value={businessCountryCode}
                   onChange={({ target }) => setBusinessCountryCode(target.value)}
@@ -918,19 +918,19 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Business Registration Type
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Type' value={businessRegistrationType} onChange={({ target }) => setBusinessRegistrationType(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Registration Type' value={businessRegistrationType} onChange={({ target }) => setBusinessRegistrationType(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Registration Number
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Number' value={businessRegistrationNumber} onChange={({ target }) => setBusinessRegistrationNumber(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Registration Number' value={businessRegistrationNumber} onChange={({ target }) => setBusinessRegistrationNumber(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Registration Date
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Date' value={businessRegistrationIssueDate} onChange={({ target }) => setBusinessRegistrationIssueDate(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Registration Date' value={businessRegistrationIssueDate} onChange={({ target }) => setBusinessRegistrationIssueDate(target.value)} />
               </Stack>
 
             </>}
@@ -945,13 +945,13 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Sender State Province
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='State Province' value={stateProvince} onChange={({ target }) => setStateProvince(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='State Province' value={stateProvince} onChange={({ target }) => setStateProvince(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Sender Postal Code
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Postal Code' value={postalCode} onChange={({ target }) => setPostalCode(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Postal Code' value={postalCode} onChange={({ target }) => setPostalCode(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -959,7 +959,7 @@ export default function BusinessMobile(props) {
                 </Typography>
                 <TextField
                 alignItems='center'
-                sx={{ width: 205 }}
+                sx={{ width: 200 }}
                 label="Country"
                 value={country}
                 onChange={({ target }) => setCountry(target.value)}
@@ -985,7 +985,7 @@ export default function BusinessMobile(props) {
               </Typography>
               <TextField
                 alignItems='center'
-                sx={{ width: 205 }}
+                sx={{ width: 200 }}
                 label="Business Address Country"
                 value={businessAddressCountryCode}
                 onChange={({ target }) => setBusinessAddressCountryCode(target.value)}
@@ -1009,7 +1009,7 @@ export default function BusinessMobile(props) {
                 </Typography>
                 <TextField
                   alignItems='center'
-                  sx={{ width: 205 }}
+                  sx={{ width: 200 }}
                   label="Business Contact Code"
                   value={businessPrimaryContactCountryCode}
                   onChange={({ target }) => setBusinessPrimaryContactCountryCode(target.value)}
@@ -1031,13 +1031,13 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Business Contact Number
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Contact Number' value={businessPrimaryContactNo} onChange={({ target }) => setBusinessPrimaryContactNo(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Contact Number' value={businessPrimaryContactNo} onChange={({ target }) => setBusinessPrimaryContactNo(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Description
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Description' value={businessDescription} onChange={({ target }) => setBusinessDescription(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Description' value={businessDescription} onChange={({ target }) => setBusinessDescription(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -1045,7 +1045,7 @@ export default function BusinessMobile(props) {
                 </Typography>
                 <TextField
                   alignItems='center'
-                  sx={{ width: 205 }}
+                  sx={{ width: 200 }}
                   label="Business Coutry Code"
                   value={businessCountryCode}
                   onChange={({ target }) => setBusinessCountryCode(target.value)}
@@ -1067,31 +1067,31 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Business Registration Type <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Type' value={businessRegistrationType} onChange={({ target }) => setBusinessRegistrationType(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Registration Type' value={businessRegistrationType} onChange={({ target }) => setBusinessRegistrationType(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Registration Number <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Number' value={businessRegistrationNumber} onChange={({ target }) => setBusinessRegistrationNumber(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Registration Number' value={businessRegistrationNumber} onChange={({ target }) => setBusinessRegistrationNumber(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Registration Date <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Date' value={businessRegistrationIssueDate} onChange={({ target }) => setBusinessRegistrationIssueDate(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Registration Date' value={businessRegistrationIssueDate} onChange={({ target }) => setBusinessRegistrationIssueDate(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Valid ID <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business ID Valid' value={businessIDValidThru} onChange={({ target }) => setBusinessIDValidThru(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business ID Valid' value={businessIDValidThru} onChange={({ target }) => setBusinessIDValidThru(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Email <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Email' value={businessEmail} onChange={({ target }) => setBusinessEmail(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Email' value={businessEmail} onChange={({ target }) => setBusinessEmail(target.value)} />
               </Stack> </>
             }
             {transactionType === 'b2b' && <>
@@ -1099,13 +1099,13 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Business Valid ID <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business ID Valid' value={businessIDValidThru} onChange={({ target }) => setBusinessIDValidThru(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business ID Valid' value={businessIDValidThru} onChange={({ target }) => setBusinessIDValidThru(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Business Email <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Email' value={businessEmail} onChange={({ target }) => setBusinessEmail(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Email' value={businessEmail} onChange={({ target }) => setBusinessEmail(target.value)} />
               </Stack> </>}
             <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -1113,7 +1113,7 @@ export default function BusinessMobile(props) {
               </Typography>
               <TextField
             alignItems='center'
-              sx={{ width: 205}}
+              sx={{ width: 200}}
               label="Remittance Purpose"
               value={remitancePurpose}
               onChange={({ target }) => setRemitancePurpose(target.value)}
@@ -1140,7 +1140,7 @@ export default function BusinessMobile(props) {
                   </Typography>
                   <TextField
                     alignItems='center'
-                    sx={{ width: 205 }}
+                    sx={{ width: 200 }}
                     label="Recipient Contact Country"
                     value={primaryContactCountryCode}
                     onChange={({ target }) => setPrimaryContactcountryCode(target.value)}
@@ -1162,25 +1162,25 @@ export default function BusinessMobile(props) {
                   <Typography color="#575757" fontWeight='500'>
                     Recipient Primary Contact No <span style={{color:'#ea5c57'}}>*</span>
                   </Typography>
-                  <OutlinedInput sx={{ height: 40 }} placeholder='Primary Contact Country No' value={primaryContactNo} onChange={({ target }) => setPrimaryContactNo(target.value)} />
+                  <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Primary Contact Country No' value={primaryContactNo} onChange={({ target }) => setPrimaryContactNo(target.value)} />
                 </Stack>
                 <Stack alignItems='center' justifyContent='space-between' direction='row'>
                   <Typography color="#575757" fontWeight='500'>
                     Recipient Primary Contact Type <span style={{color:'#ea5c57'}}>*</span>
                   </Typography>
-                  <OutlinedInput sx={{ height: 40 }} placeholder='Primary Contact Country No Type' value={primaryContactNoType} onChange={({ target }) => setPrimaryContactNoType(target.value)} />
+                  <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Primary Contact Country No Type' value={primaryContactNoType} onChange={({ target }) => setPrimaryContactNoType(target.value)} />
                 </Stack>
                 <Stack alignItems='center' justifyContent='space-between' direction='row'>
                   <Typography color="#575757" fontWeight='500'>
                     First Name <span style={{color:'#ea5c57'}}>*</span>
                   </Typography>
-                  <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Name' value={recipientName} onChange={({ target }) => setRecipientName(target.value)} />
+                  <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Recipient Name' value={recipientName} onChange={({ target }) => setRecipientName(target.value)} />
                 </Stack>
                 <Stack alignItems='center' justifyContent='space-between' direction='row'>
                   <Typography color="#575757" fontWeight='500'>
                     Last Name <span style={{color:'#ea5c57'}}>*</span>
                   </Typography>
-                  <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Name' value={lastName} onChange={({ target }) => setLastName(target.value)} />
+                  <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Recipient Name' value={lastName} onChange={({ target }) => setLastName(target.value)} />
                 </Stack>
               </>
               : ''}
@@ -1188,38 +1188,38 @@ export default function BusinessMobile(props) {
               <Typography color="#575757" fontWeight='500'>
                 Recipient Business Name <span style={{color:'#ea5c57'}}>*</span>
               </Typography>
-              <OutlinedInput sx={{ height: 40 }} placeholder='Business-Name' value={receipientBusinessName} onChange={({ target }) => setReceipientBusinessName(target.value)} />
+              <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business-Name' value={receipientBusinessName} onChange={({ target }) => setReceipientBusinessName(target.value)} />
             </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Business Pincode
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Pincode' value={receipientBusinessPincode} onChange={({ target }) => setReceipientBusinessPincode(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Pincode' value={receipientBusinessPincode} onChange={({ target }) => setReceipientBusinessPincode(target.value)} />
               </Stack>
 
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Business Address1
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Address1' value={receipientBusinessAddress1} onChange={({ target }) => setReceipientBusinessAddress1(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Address1' value={receipientBusinessAddress1} onChange={({ target }) => setReceipientBusinessAddress1(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Business Address2
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Address2' value={receipientBusinessAddress2} onChange={({ target }) => setReceipientBusinessAddress2(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Address2' value={receipientBusinessAddress2} onChange={({ target }) => setReceipientBusinessAddress2(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Business City
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business City' value={receipientBusinessCity} onChange={({ target }) => setReceipientBusinessCity(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business City' value={receipientBusinessCity} onChange={({ target }) => setReceipientBusinessCity(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Business State
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business State' value={receipientBusinessState} onChange={({ target }) => setReceipientBusinessState(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business State' value={receipientBusinessState} onChange={({ target }) => setReceipientBusinessState(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -1227,7 +1227,7 @@ export default function BusinessMobile(props) {
                 </Typography>
                 <TextField
                   alignItems='center'
-                  sx={{ width: 205 }}
+                  sx={{ width: 200 }}
                   label="Recipient Business Country"
                   value={receipientBusinessAddressCountryCode}
                   onChange={({ target }) => setReceipientBusinessAddressCountryCode(target.value)}
@@ -1249,7 +1249,7 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Business ZIP <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business 575757' value={receipientAddressZip} onChange={({ target }) => setReceipientAddressZip(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business 575757' value={receipientAddressZip} onChange={({ target }) => setReceipientAddressZip(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -1257,7 +1257,7 @@ export default function BusinessMobile(props) {
                 </Typography>
                 <TextField
                   alignItems='center'
-                  sx={{ width: 205 }}
+                  sx={{ width: 200 }}
                   label="Recipient Business Contact Code"
                   value={receipientBusinessPrimaryContactCountryCode}
                   onChange={({ target }) => setReceipientBusinessPrimaryContactCountryCode(target.value)}
@@ -1279,25 +1279,25 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Recipient  Contact Number
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Contact Number' value={receipientBusinessPrimaryContactNo} onChange={({ target }) => setReceipientBusinessPrimaryContactNo(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Contact Number' value={receipientBusinessPrimaryContactNo} onChange={({ target }) => setReceipientBusinessPrimaryContactNo(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient  Contact Number Type
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Contact Number' value={receipientBusinessPrimaryContactNoType} onChange={({ target }) => setReceipientBusinessPrimaryContactNoType(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Contact Number' value={receipientBusinessPrimaryContactNoType} onChange={({ target }) => setReceipientBusinessPrimaryContactNoType(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Business Description
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Description' value={receipientBusinessDescription} onChange={({ target }) => setreceipientBusinessDescription(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Description' value={receipientBusinessDescription} onChange={({ target }) => setreceipientBusinessDescription(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Business Email
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Email' value={receipientBusinessEmail} onChange={({ target }) => setReceipientBusinessEmail(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Email' value={receipientBusinessEmail} onChange={({ target }) => setReceipientBusinessEmail(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
@@ -1305,7 +1305,7 @@ export default function BusinessMobile(props) {
                 </Typography>
                 <TextField
                   alignItems='center'
-                  sx={{ width: 205 }}
+                  sx={{ width: 200 }}
                   label="Recipient Business Country"
                   value={receipientBusinessCountryCode}
                   onChange={({ target }) => setreceipientBusinessCountryCode(target.value)}
@@ -1328,55 +1328,55 @@ export default function BusinessMobile(props) {
                 <Typography color="#575757" fontWeight='500'>
                   Recipient  Registration Type
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Type' value={receipientBusinessRegistrationType} onChange={({ target }) => setReceipientBusinessRegistrationType(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Registration Type' value={receipientBusinessRegistrationType} onChange={({ target }) => setReceipientBusinessRegistrationType(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient  Registration Number
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Number' value={recepientBusinessRegistrationNumber} onChange={({ target }) => setReceipientBusinessRegistrationNumber(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Registration Number' value={recepientBusinessRegistrationNumber} onChange={({ target }) => setReceipientBusinessRegistrationNumber(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Registration Issued By
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Issued By' value={recepientBusinessRegistrationIssuedBy} onChange={({ target }) => setReceipientBusinessRegistrationNumberIssuedBy(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Registration Issued By' value={recepientBusinessRegistrationIssuedBy} onChange={({ target }) => setReceipientBusinessRegistrationNumberIssuedBy(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Registration Issued At
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Issued At' value={recepientBusinessRegistrationIssuedAt} onChange={({ target }) => setReceipientBusinessRegistrationNumberIssuedAt(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Registration Issued At' value={recepientBusinessRegistrationIssuedAt} onChange={({ target }) => setReceipientBusinessRegistrationNumberIssuedAt(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Registration Issued Date <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Issued Date' value={recepientBusinessRegistrationIssuedDate} onChange={({ target }) => setReceipientBusinessRegistrationNumberIssuedDate(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Registration Issued Date' value={recepientBusinessRegistrationIssuedDate} onChange={({ target }) => setReceipientBusinessRegistrationNumberIssuedDate(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Business Valid Thru
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Business Registration Valid Thru' value={recepientBusinessRegistrationValidThru} onChange={({ target }) => setReceipientBusinessRegistrationNumberValidThru(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Business Registration Valid Thru' value={recepientBusinessRegistrationValidThru} onChange={({ target }) => setReceipientBusinessRegistrationNumberValidThru(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Type of Business <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Type of Business' value={typeOfBusiness} onChange={({ target }) => setTypeOfBusiness(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Recipient Type of Business' value={typeOfBusiness} onChange={({ target }) => setTypeOfBusiness(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Business PO Box <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Business PO Box' value={businessPObox} onChange={({ target }) => setBusinessPOBox(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Recipient Business PO Box' value={businessPObox} onChange={({ target }) => setBusinessPOBox(target.value)} />
               </Stack>
               <Stack alignItems='center' justifyContent='space-between' direction='row'>
                 <Typography color="#575757" fontWeight='500'>
                   Recipient Business Mobile <span style={{color:'#ea5c57'}}>*</span>
                 </Typography>
-                <OutlinedInput sx={{ height: 40 }} placeholder='Recipient Business Mobile' value={receipientBusinessMobile} onChange={({ target }) => setReceipientBusinessMobile(target.value)} />
+                <OutlinedInput sx={{ height: 40,width:200 }} placeholder='Recipient Business Mobile' value={receipientBusinessMobile} onChange={({ target }) => setReceipientBusinessMobile(target.value)} />
               </Stack> </>}
             {/* <Stack alignItems='center' justifyContent='space-between' direction='row'>
               <Typography color="#575757" fontWeight='500'>
@@ -1391,7 +1391,7 @@ export default function BusinessMobile(props) {
               </Typography>
               <TextField
                 alignItems='center'
-                sx={{ width: 205 }}
+                sx={{ width: 200 }}
                 label="Receiving Country"
                 value={reciveCountry}
                 onChange={({ target }) => setReciveCountry(target.value)}
@@ -1415,7 +1415,7 @@ export default function BusinessMobile(props) {
               </Typography>
               <TextField
                 alignItems='center'
-                sx={{ width: 205 }}
+                sx={{ width: 200 }}
                 label="Source of Fund"
                 value={sourceFund}
                 onChange={({ target }) => setSourceFund(target.value)}
