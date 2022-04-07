@@ -250,7 +250,24 @@ export default function HistoryMobile(props) {
   };
 
   useEffect(() => {
-    getHistoryTransaction()
+    if(localStorage.getItem('environment') === 'sandbox') {
+      if(localStorage.getItem('username') && localStorage.getItem('password')) {
+        setSettingsPopUp(false)
+        getHistoryTransaction()
+      } else {
+        setSettingsPopUp(true)
+        setHistory([])
+      }
+    } else if (localStorage.getItem('environment') === 'uat') {
+      if(localStorage.getItem('prodUsername') && localStorage.getItem('prodPassword')) {
+        setSettingsPopUp(false)
+        getHistoryTransaction()
+      } else {
+        setSettingsPopUp(true)
+        setHistory([])
+      }
+    }
+    // getHistoryTransaction()
   }, [])
 
   const getHistoryTransaction = (data) => {

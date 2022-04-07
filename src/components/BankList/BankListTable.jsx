@@ -139,9 +139,9 @@ export default function BankListTable() {
   //   window.location.reload();
   // }
 
-  useEffect(() => {
-    getBankList(country)
-  }, [])
+  // useEffect(() => {
+  //   getBankList(country)
+  // }, [])
 
   const getBankList = (currency) => {
     const options = {
@@ -173,14 +173,18 @@ export default function BankListTable() {
     if(localStorage.getItem('environment') === 'sandbox') {
       if(localStorage.getItem('username') && localStorage.getItem('password')) {
         setSettingsPopUp(false)
+        getBankList(country)
       } else {
         setSettingsPopUp(true)
+        setBanks([])
       }
     } else if (localStorage.getItem('environment') === 'uat') {
       if(localStorage.getItem('prodUsername') && localStorage.getItem('prodPassword')) {
         setSettingsPopUp(false)
+        getBankList(country)
       } else {
         setSettingsPopUp(true)
+        setBanks([])
       }
     }
   },[])
