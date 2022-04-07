@@ -202,8 +202,8 @@ export default function Ledger() {
   }
 
   const toIndianCurrency = (num) => {
-    const curr = num.toLocaleString('en-IN');
- return curr;
+    const curr = num.toLocaleString("en-US", {style:"currency", currency:"USD"});
+    return curr;
  }
 
  useEffect(()=>{

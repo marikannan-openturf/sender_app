@@ -215,6 +215,18 @@ export default function MenuBar() {
         setBankListScreen(false)
         setQuotationScreen(false)
         }
+        if(pathname && pathname.includes('transactions-history')) {
+          setReportCorridorScreen(false)
+          setAccountScreen(false)
+          setTpActiveScreen(false)
+          setTbActiveScreen(false)
+          setThActiveScreen(true)
+          setReportLedgerScreen(false)
+          setReportStatementScreen(false)
+          setSettingsScreen(false)
+          setBankListScreen(false)
+          setQuotationScreen(false)
+          }
   },[pathname])
 
   return (

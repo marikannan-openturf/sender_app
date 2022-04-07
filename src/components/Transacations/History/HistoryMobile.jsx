@@ -148,6 +148,7 @@ export default function HistoryMobile(props) {
   const [cancelDetails, setCancelDetails] = useState({})
   const [history, setHistory] = useState([])
   const [settingsPopUp,setSettingsPopUp] = useState(false)
+  const [historyDropDownData,setHistoryDropDownData] = useState({})
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -165,9 +166,10 @@ export default function HistoryMobile(props) {
   /* more popup */
   const [morePopup, setMorePopup] = React.useState(null);
   const open = Boolean(morePopup);
-  const handleClick = (event, data) => {
+  const handleClick = (event, data,historyData) => {
     setMorePopup(event.currentTarget);
     setRefId(data)
+    setHistoryDropDownData(historyData)
   };
   const handleClose = () => {
     setMorePopup(null);
@@ -307,6 +309,8 @@ export default function HistoryMobile(props) {
   
   }
 
+  console.log("ref",historyDropDownData)
+
   return (
     <Paper sx={{ paddingTop: 3, paddingLeft: 5, paddingRight: 5, paddingBottom: 5, }}>
       <Stack alignItems='center' sx={{ pb: 4 }}>
@@ -338,7 +342,7 @@ export default function HistoryMobile(props) {
                   <Typography sx={{ paddingLeft: 0.5 }}>Status</Typography>
                 </Stack>
               </StyledTableCell>
-              <StyledTableCell align="left">Reference</StyledTableCell>
+              <StyledTableCell align="left">Transaction Id</StyledTableCell>
               {/* <StyledTableCell align="left">Sender</StyledTableCell> */}
               <StyledTableCell align="left">Receiver</StyledTableCell>
               {/* <StyledTableCell align="left">Recipient</StyledTableCell> */}
@@ -367,7 +371,7 @@ export default function HistoryMobile(props) {
                     <Box>
                       <Tooltip title="More">
                         <IconButton
-                          onClick={(e) => handleClick(e, row.data.transactionReference)}
+                          onClick={(e) => handleClick(e, row.data.transactionReference,row.data)}
                           size="small"
                           sx={{ ml: 0 }}
                           aria-controls={open ? "More" : undefined}
@@ -457,9 +461,10 @@ export default function HistoryMobile(props) {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
+        
         <MenuItem onClick={onClickView} >View</MenuItem>
-        <MenuItem onClick={OnClickCancel}>Cancel</MenuItem>
-        <MenuItem onClick={OnClickReverse} >Reverse</MenuItem>
+       {historyDropDownData && historyDropDownData.transactionStatus === '3050:Remit Acknowledged.' && <MenuItem onClick={OnClickCancel}>Cancel</MenuItem>}
+       {historyDropDownData && historyDropDownData.transactionStatus === '3000:Remit Success' &&  <MenuItem onClick={OnClickReverse} >Reverse</MenuItem>}
       </Menu>
       {reverseTrans && <MobileReverseHistory reverseTrans={reverseTrans} reverseDetails={reverseDetails} OnClickReverseClose={OnClickReverseClose} />}
       {viewTrans && <MobileViewHistory viewTrans={viewTrans} refId={refId} OnClickViewClose={OnClickViewClose} />}

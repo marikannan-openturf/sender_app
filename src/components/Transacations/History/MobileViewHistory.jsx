@@ -79,7 +79,7 @@ export default function MobileViewHistory(props) {
     >
       <DialogTitle>
         <Stack spacing={12} justifyContent='end' direction='row'>
-          <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Mobile Transacation View</Typography>
+          <Typography variant='h6' fontFamily='Poppins' fontWeight='600' my={2}>Account Transaction View</Typography>
           <IconButton sx={{ justifyContent: 'right', marginBlockEnd: `auto !important`, marginLeft: 'auto' }} p={0}><CloseRounded width={10} height={10} onClick={props.OnClickViewClose} /></IconButton>
         </Stack>
       </DialogTitle>
