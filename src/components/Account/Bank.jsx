@@ -40,8 +40,8 @@ export default function Bank() {
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
 
-  const [accountStatus, setAccountStatus] = useState(false)
-  const [quotationActive, setQuotationActive] = useState(true)
+  const [accountStatus, setAccountStatus] = useState(true)
+  const [quotationActive, setQuotationActive] = useState(false)
   const [showTransactionActive, setShowTransactionActive] = useState(false)
   const [transaction, setTransaction] = useState("personal")
   const [transactionPersonal,setTransactionPersonal] = useState(false)
