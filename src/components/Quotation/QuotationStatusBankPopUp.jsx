@@ -57,8 +57,8 @@ export default function QuotationStatusBankPopup(props) {
               <Table aria-label="custom pagination table">
               <TableHead>
                   <TableRow>
-                  <StyledTableCell>Quotation</StyledTableCell>
-                  <StyledTableCell align="left">Report</StyledTableCell>
+                  <StyledTableCell>Key</StyledTableCell>
+                  <StyledTableCell align="left">Value</StyledTableCell>
                   </TableRow>
               </TableHead>
               <TableBody>

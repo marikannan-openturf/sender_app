@@ -210,7 +210,7 @@ export default function Mobile() {
           <Stepper nonLinear activeStep={activeStep}>
             {steps.map((label, index) => (
               <Step key={label} completed={completed[index]}>
-                <StepButton color="inherit" onClick={handleStep(index)}>
+                <StepButton color="inherit" onClick={handleStep(index)} disabled>
                   {label}
                 </StepButton>
               </Step>

@@ -114,8 +114,8 @@ export default function TransactionBankStatusPopup(props) {
               <Table aria-label="custom pagination table">
               <TableHead>
                   <TableRow>
-                  <StyledTableCell>Account</StyledTableCell>
-                  <StyledTableCell align="left">Status</StyledTableCell>
+                  <StyledTableCell>Key</StyledTableCell>
+                  <StyledTableCell align="left">Value</StyledTableCell>
                   </TableRow>
               </TableHead>
               <TableBody>

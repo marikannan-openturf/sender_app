@@ -128,6 +128,10 @@ export default function MobileViewHistory(props) {
                   <StyledTableCell align="left"> {historyList.requestDate}</StyledTableCell>
                 </StyledTableRow>
                 <StyledTableRow>
+                  <StyledTableCell component="th" scope="row" >Organization Transaction Reference</StyledTableCell>
+                  <StyledTableCell align="left">{historyList.requestingOrganisationTransactionReference}</StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow>
                   <StyledTableCell component="th" scope="row" >Transaction Reference</StyledTableCell>
                   <StyledTableCell align="left">{historyList.transactionReference}</StyledTableCell>
                 </StyledTableRow>
