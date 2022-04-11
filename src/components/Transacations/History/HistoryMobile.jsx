@@ -424,7 +424,7 @@ export default function HistoryMobile(props) {
           {history && history.length > 0 ? <TableFooter>
             <TableRow>
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                rowsPerPageOptions={[5, 10, 25, 50, 100]}
                 colSpan={10}
                 count={history.length}
                 rowsPerPage={rowsPerPage}
