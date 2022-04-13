@@ -43,7 +43,7 @@ export default function BusinessMobile(props) {
   const [reciveCountry, setReciveCountry] = useState('GH')
   const [sourceFund, setSourceFund] = useState('Business Income')
   const [senderRelation, setSenderRelation] = useState('Employer')
-  const [address1, setAddress1] = useState('49 , park street')
+  const [address1, setAddress1] = useState('No 49 , park street')
   const [address2, setAddress2] = useState('park street')
   const [stateProvince, setStateProvince] = useState('')
   const [postalCode, setPostalCode] = useState('')

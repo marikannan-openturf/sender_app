@@ -54,7 +54,7 @@ export default function PersonalBank(props) {
   const [reciveCountry, setReciveCountry] = useState('IN')
   const [sourceFund, setSourceFund] = useState('Salary')
   const [senderRelation, setSenderRelation] = useState('Brother')
-  const [address1, setAddress1] = useState('49 , park street')
+  const [address1, setAddress1] = useState('No 49 , park street')
   const [receiverAddress1, setReceiverAddress1] = useState('')
   const [address2, setAddress2] = useState('12sdfgsdfg')
   const [address3, setAddress3] = useState('12 sdfgsdfgsdfg')
